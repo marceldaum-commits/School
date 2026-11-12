@@ -157,7 +157,9 @@ button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid 
 
 <div id="modal" hidden><div class="card paper" id="modalCard" role="dialog" aria-modal="true"></div></div>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/utils/SkeletonUtils.js"></script>
 <script>
 'use strict';
 /* =========================================================
@@ -175,7 +177,8 @@ const CFG={dayStart:13*60,dayEnd:20*60,lastArrival:18*60+40,rent:60,priceGroup:3
 const WEEKDAYS=['Montag','Dienstag','Mittwoch','Donnerstag','Freitag'];
 const SUBJECTS={Mathe:'#3b6fd8',Physik:'#7a5bd0',Chemie:'#2f9e8f',Deutsch:'#e2725b',Englisch:'#d64b7a',Französisch:'#e0a020',Latein:'#7d6a4f'};
 const SUBJECT_WEIGHTS=[['Mathe',30],['Englisch',20],['Deutsch',15],['Physik',10],['Chemie',10],['Französisch',8],['Latein',7]];
-const STUDENT_NAMES=['Lena','Jonas','Mia','Paul','Emma','Ben','Hannah','Luca','Sophie','Elias','Lea','Noah','Marie','Finn','Emilia','Leon','Clara','Felix','Ella','Anton','Ida','Mats','Leni','Karl','Aylin','Mehmet','Zoe','Tim','Nele','Jan','Amira','David','Lina','Moritz','Greta','Yusuf','Pia','Henry','Mila','Oskar'];
+const NAMES_F=['Lena','Mia','Emma','Hannah','Sophie','Lea','Marie','Emilia','Clara','Ella','Ida','Leni','Aylin','Zoe','Nele','Amira','Lina','Greta','Pia','Mila'];
+const NAMES_M=['Jonas','Paul','Ben','Luca','Elias','Noah','Finn','Leon','Felix','Anton','Mats','Karl','Mehmet','Tim','Jan','David','Moritz','Yusuf','Henry','Oskar'];
 const TEACHER_POOL=[
   {name:'Frau Nowak',subjects:['Englisch','Französisch'],salary:95,skill:1.0},
   {name:'Herr Schmitt',subjects:['Mathe','Chemie'],salary:100,skill:1.05},
@@ -620,6 +623,14 @@ const SKINS=['#f1c9a5','#e0ac85','#c68863','#8d5a3b','#f5d6bf','#a86b4a','#ecc19
 const HAIRS=['#2b1d14','#5a3a22','#c48a3f','#e3c27a','#1c1c1c','#8a3b1f','#3b2a20'];
 const SHIRTS=['#e2725b','#3b6fd8','#2f8f6b','#f2b544','#8e5bd0','#e0577f','#3aa3b8','#6b7a3c','#f0f0f0'];
 const PANTS=['#2d3a55','#4b4f5c','#5b4636','#2f4f43','#3a3a3a','#6d7fa8'];
+const SUIT_COLS=['#2d3a55','#3d4b63','#4b4f5c','#5b4636','#2f5d50','#6b3f4a','#55606e'];
+const MODELS_STUDENT={f:['Casual_Female','Casual2_Female'],m:['Casual_Male','Casual2_Male','Casual3_Male']};
+function modelLook(kind,female){
+  const l=randomLook(kind!=='student');
+  l.model=kind==='student'?pick(MODELS_STUDENT[female?'f':'m']):(female?'Suit_Female':'Suit_Male');
+  l.suit=pick(SUIT_COLS);l.tie=pick(['#c23a3a','#2148a8','#e0a020','#2f5d50','#7a5bd0']);l.shirt2=pick(['#f4f4f4','#dfe9f5','#f5ecdf']);
+  return l;
+}
 function randomLook(adult){return{skin:pick(SKINS),hair:adult&&Math.random()<.15?'#b9b9b9':pick(HAIRS),shirt:pick(SHIRTS),pants:pick(PANTS),style:pick(['kurz','lang','zopf','kurz','dutt']),glasses:Math.random()<(adult?.4:.15),bag:adult?null:pick(['#e2725b','#3b6fd8','#f4d93e','#22814f','#7a5bd0'])}}
 function makeFigure(look,scale){
   const g=new THREE.Group(),body=new THREE.Group();g.add(body);
@@ -646,13 +657,51 @@ function makeFigure(look,scale){
   return{g,body,legL,legR,armL,armR,head,ring,hit};
 }
 
+/* Modell-Figuren (Ultimate Animated Character Pack von Quaternius, CC0) */
+let MODELS=null;
+const MODEL_NAMES=['Casual_Male','Casual_Female','Casual2_Male','Casual2_Female','Casual3_Male','Suit_Male','Suit_Female'];
+const FIG_H=1.75, SIT_HIP=0.42;
+function loadModels(){
+  if(!THREE.GLTFLoader||!THREE.SkeletonUtils)return Promise.reject(new Error('Loader fehlt'));
+  const L=new THREE.GLTFLoader(),get=f=>new Promise((res,rej)=>L.load('assets/models/'+f+'.glb',res,undefined,rej));
+  const all=Promise.all([get('anims'),...MODEL_NAMES.map(get)]).then(([an,...gs])=>{
+    const clips={};for(const c of an.animations)clips[c.name]=c;
+    const scenes={};gs.forEach((g,k)=>{const b=new THREE.Box3().setFromObject(g.scene);scenes[MODEL_NAMES[k]]={scene:g.scene,norm:FIG_H/(b.max.y-b.min.y)}});
+    MODELS={clips,scenes};
+  });
+  return Promise.race([all,new Promise((_,rej)=>setTimeout(()=>rej(new Error('Zeitüberschreitung')),25000))]);
+}
+function lin(c){return new THREE.Color(c).convertSRGBToLinear()}
+function shoeShader(sh){
+  sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying float vBindY;').replace('#include <begin_vertex>','#include <begin_vertex>\nvBindY=position.y;');
+  sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying float vBindY;').replace('#include <color_fragment>','#include <color_fragment>\nif(vBindY<0.17)diffuseColor.rgb=vec3(0.035,0.03,0.03);');
+}
+function makeModelFigure(look,scale){
+  const g=new THREE.Group(),src=MODELS.scenes[look.model]||MODELS.scenes.Casual_Male;
+  const o=THREE.SkeletonUtils.clone(src.scene);o.scale.setScalar(src.norm);g.add(o);
+  const casual=look.model.startsWith('Casual');
+  const col={Skin:look.skin,Face:'#2a2320',Hair:look.hair,Shirt:casual?look.shirt:look.shirt2,Pants:look.pants,Belt:'#3a2a1e',Black:look.suit,Details:look.tie};
+  o.traverse(x=>{if(!x.isMesh)return;x.castShadow=true;x.receiveShadow=false;x.frustumCulled=false;
+    const m=new THREE.MeshStandardMaterial({color:col[x.material.name]?lin(col[x.material.name]):x.material.color.clone(),roughness:.78,metalness:0});
+    if(x.material.name==='Skin'&&casual)m.onBeforeCompile=shoeShader;
+    x.material=m});
+  const ring=mesh(new THREE.RingGeometry(.32,.42,32),new THREE.MeshBasicMaterial({color:'#3a9a5b',transparent:true,opacity:.9,depthWrite:false}),0,.03,0,g,false);ring.rotation.x=-Math.PI/2;ring.visible=false;ring.receiveShadow=false;
+  const hit=new THREE.Mesh(new THREE.CylinderGeometry(.35,.35,1.8,8),new THREE.MeshBasicMaterial({visible:false}));hit.position.y=.9;g.add(hit);
+  g.scale.setScalar(scale);
+  const mixer=new THREE.AnimationMixer(o),acts={};
+  for(const[k,n]of[['idle','Idle'],['walk','Walk'],['sit','SitDown'],['cheer','Victory']]){const a=mixer.clipAction(MODELS.clips[n]);if(k==='sit'){a.setLoop(THREE.LoopOnce);a.clampWhenFinished=true}acts[k]=a}
+  acts.idle.play();acts.idle.time=Math.random()*4;
+  return{g,model:true,mixer,acts,cur:'idle',ring,hit};
+}
+
 let persons=[],personId=1;
 class Person{
   constructor(kind,o){
     Object.assign(this,{kind,id:personId++,x:o.x,z:o.z,rot:0,path:[],onArrive:null,dest:null,sitting:false,seatH:0,state:'idle',timer:0,anim:Math.random()*10,moving:false,bubbleT:0,cool:{}});
     Object.assign(this,o);
-    this.scale=kind==='student'?rand(.74,.86):rand(.97,1.04);
-    this.fig=makeFigure(this.look,this.scale);
+    this.scale=MODELS?(kind==='student'?rand(.84,.92):rand(.98,1.04)):(kind==='student'?rand(.74,.86):rand(.97,1.04));
+    if(MODELS&&!this.look.model)this.look=Object.assign(modelLook(kind,/^Frau/.test(this.name||'')||NAMES_F.includes(this.name)),{});
+    this.fig=MODELS?makeModelFigure(this.look,this.scale):makeFigure(this.look,this.scale);
     this.fig.g.traverse(m=>m.userData.person=this);
     world.add(this.fig.g);
     persons.push(this);
@@ -689,6 +738,13 @@ class Person{
   pose(dt){
     const f=this.fig;this.anim+=dt;const a=this.anim;
     f.g.position.set(this.x,0,this.z);f.g.rotation.y=this.rot;
+    if(f.model){
+      const want=this.state==='celebrate'?'cheer':this.moving?'walk':this.sitting?'sit':'idle';
+      if(want!==f.cur){const prev=f.acts[f.cur],next=f.acts[want];next.reset().play();prev.crossFadeTo(next,want==='sit'?0.2:0.25,false);f.cur=want}
+      if(this.sitting&&!this.moving)f.g.position.y=this.seatH-SIT_HIP*this.scale+0.02;
+      f.mixer.update(dt);
+      this.ringUpdate();return;
+    }
     f.body.position.y=0;f.head.rotation.set(0,0,0);
     f.armL.rotation.set(0,0,0.06);f.armR.rotation.set(0,0,-0.06);f.legL.rotation.set(0,0,0);f.legR.rotation.set(0,0,0);
     if(this.moving){
@@ -710,6 +766,10 @@ class Person{
       else if(this.state==='checkin'||this.kind==='staff'){f.armR.rotation.x=-.3+Math.sin(a*3)*.1;f.head.rotation.y=Math.sin(a*.7)*.3}
     }
     if(this.kind==='student'&&this.mood<30&&!this.moving)f.head.rotation.x=.35;
+    this.ringUpdate();
+  }
+  ringUpdate(){
+    const f=this.fig;
     f.ring.visible=G.selected===this;
     if(f.ring.visible){const m=this.kind==='teacher'?this.energy:this.mood??80;f.ring.material.color.set(m>60?'#3a9a5b':m>30?'#e0a020':'#cf4a3b');f.ring.position.y=(this.sitting?(-f.g.position.y/this.scale):0)+.03}
   }
@@ -722,7 +782,7 @@ function freshStats(){return{income:0,salaries:0,rent:CFG.rent,done:0,lost:0,rej
 
 /* Lehrkräfte */
 function spawnTeacher(data,atSpot){
-  const t=new Person('teacher',{x:ENTRY.x+rand(-.5,.5),z:ENTRY.z,name:data.name,subjects:data.subjects,salary:data.salary,skill:data.skill,room:data.room||null,look:data.look||randomLook(true),energy:100,state:'arrive'});
+  const t=new Person('teacher',{x:ENTRY.x+rand(-.5,.5),z:ENTRY.z,name:data.name,subjects:data.subjects,salary:data.salary,skill:data.skill,room:data.room||null,look:data.look||(MODELS?modelLook('teacher',/^Frau/.test(data.name)):randomLook(true)),energy:100,state:'arrive'});
   G.teachers.push(t);
   if(atSpot){const s=t.room?roomSpot(t.room):randomPointIn(ROOM.lehrer);t.x=s.x;t.z=s.z+ (t.room?0:0);}
   teacherToPost(t);
@@ -766,7 +826,7 @@ function updateTeacher(t,gm){
 /* Schüler */
 function spawnStudent(){
   const subject=weightedSubject();
-  const s=new Person('student',{x:ENTRY.x+rand(-1.2,1.2),z:ENTRY.z+rand(-.3,.6),name:pick(STUDENT_NAMES),subject,klasse:Math.floor(rand(5,13)),note:pick([3,4,4,4,5,5]),look:randomLook(false),
+  const female=Math.random()<.5,s=new Person('student',{x:ENTRY.x+rand(-1.2,1.2),z:ENTRY.z+rand(-.3,.6),name:pick(female?NAMES_F:NAMES_M),subject,klasse:Math.floor(rand(5,13)),note:pick([3,4,4,4,5,5]),look:MODELS?modelLook('student',female):randomLook(false),
     mood:rand(65,90),focus:rand(70,100),progress:0,state:'arrive',assignT:0,wantsSolo:Math.random()<.25});
   const rec=usesOf('reception')[0];
   if(rec)s.goToUse(rec,()=>{s.state='checkin';s.timer=1.5;s.say('Hallo! '+subject+', bitte.')});
@@ -813,7 +873,7 @@ function studentFinish(s){
   let msg='Endlich verstanden!';
   if(Math.random()<0.25+s.mood/250&&s.note>1){const old=s.note;s.note--;G.stats.better++;msg='Note '+old+' → '+s.note+'!';toast(s.name+' verbessert sich in '+s.subject+' von '+old+' auf '+s.note+'.','good')}
   s.say(msg,4);
-  studentLeave(s,true);
+  s.state='celebrate';s.timer=2.2;s.stand();
 }
 function studentAngry(s){
   s.say(pick(['Mir reicht’s, ich geh!','Das dauert zu lange …','Tschüss.']),4);
@@ -824,6 +884,7 @@ function studentAngry(s){
 function updateStudent(s,gm){
   const room=s.seat?s.seat.item.room:null;
   switch(s.state){
+    case 'celebrate':s.timer-=gm;if(s.timer<=0)studentLeave(s,true);break;
     case 'checkin':s.timer-=gm;if(s.timer<=0){
       if(!G.teachers.some(t=>t.subjects.includes(s.subject))){
         s.say('Kein '+s.subject+'? Schade …',3.5);G.stats.rejected++;G.rep=clamp(G.rep-0.03,0,5);
@@ -865,7 +926,7 @@ function updateStudent(s,gm){
 function spawnReceptionist(){
   const rec=items.find(i=>i.type==='reception');if(!rec)return;
   const[ox,oz]=rotVec(DEFS.reception.staffPos[0],DEFS.reception.staffPos[1],rec.rot*Math.PI/2);
-  const p=new Person('staff',{x:rec.x+ox,z:rec.z+oz,name:'Frau Albers',role:'Empfang',look:{skin:'#f1c9a5',hair:'#8a3b1f',shirt:'#2f5d50',pants:'#2d3a55',style:'dutt',glasses:true},state:'idle'});
+  const p=new Person('staff',{x:rec.x+ox,z:rec.z+oz,name:'Frau Albers',role:'Empfang',look:{skin:'#f1c9a5',hair:'#8a3b1f',shirt:'#2f5d50',pants:'#2d3a55',style:'dutt',glasses:true,model:'Suit_Female',suit:'#2f5d50',tie:'#f4d93e',shirt2:'#f4f4f4'},state:'idle'});
   p.rot=p.targetRot=rec.rot*Math.PI/2;p.homeItem=rec;
   return p;
 }
@@ -1014,7 +1075,7 @@ function toast(msg,kind=''){
 }
 function select(x){if(x&&G.mode!=='live')setMode('live');G.selected=x;renderPanel()}
 function bar(label,v,inv){const c=v>60?'var(--good)':v>30?'var(--warn)':'var(--bad)';return`<div class="bar"><span>${label}</span><span class="t"><i style="width:${clamp(v,0,100)}%;background:${inv?'var(--chalk)':c}"></i></span><span>${Math.round(v)}</span></div>`}
-const STATE_TXT={arrive:'Kommt an',checkin:'Meldet sich an',waiting:'Wartet auf einen Platz',toSeat:'Geht zum Platz',learning:'Lernt',toBreak:'Geht in die Pause',break:'Macht Pause',leaving:'Geht nach Hause',toSpot:'Geht zum Unterricht',teaching:'Unterrichtet',idle:'Hat keinen Raum, wartet im Lehrerzimmer'};
+const STATE_TXT={celebrate:'Freut sich über den Erfolg',arrive:'Kommt an',checkin:'Meldet sich an',waiting:'Wartet auf einen Platz',toSeat:'Geht zum Platz',learning:'Lernt',toBreak:'Geht in die Pause',break:'Macht Pause',leaving:'Geht nach Hause',toSpot:'Geht zum Unterricht',teaching:'Unterrichtet',idle:'Hat keinen Raum, wartet im Lehrerzimmer'};
 function subjTag(s){return`<span class="tag-s" style="border-color:${SUBJECTS[s]};color:${SUBJECTS[s]}">${s}</span>`}
 let panelSig='';
 function renderPanel(force=true){
@@ -1247,11 +1308,14 @@ function frame(now){
 const saved=load();
 if(saved){G.name=saved.name||G.name;G.day=saved.day||1;G.money=saved.money??CFG.startMoney;G.rep=saved.rep??2}
 $('#nameLbl').textContent=G.name;document.title=G.name;
-buildBaseGrid();buildEnvironment();buildWalls();setupWorld(saved);
+buildBaseGrid();buildEnvironment();buildWalls();
 camDefault();resize();updateHud();setSpeed(0);
 refreshLogos();logoImg.onload=refreshLogos;if(document.fonts)document.fonts.ready.then(refreshLogos);
-startDay();
 requestAnimationFrame(frame);
+showModal('<h2>Einen Moment …</h2><p>Die Schüler und Lehrkräfte kommen gleich.</p>');
+loadModels().catch(e=>{console.warn('Figuren nicht geladen:',e);toast('3D-Figuren konnten nicht geladen werden. Öffne das Spiel über einen Webserver, nicht als Datei.','bad')}).then(()=>{
+  setupWorld(saved);startDay();welcome();
+});
 function welcome(){
   showModal(`<h2>Willkommen bei ${esc(G.name)}!</h2>
   <p>Du leitest ein Nachhilfe-Institut. Schüler kommen nachmittags, melden sich am Empfang an und lernen bei deinen Lehrkräften.</p>
@@ -1263,7 +1327,6 @@ function welcome(){
   <div class="row">${saved?'<button class="btn" data-m="reset">Neu anfangen</button>':''}<button class="btn primary" data-m="go">${saved?'Weiterspielen (Tag '+G.day+')':'Los geht’s'}</button></div>`,
   a=>{if(a==='reset'){showModal('<h2>Spielstand löschen?</h2><p>Dein Institut, Geld und Personal werden zurückgesetzt.</p><div class="row"><button class="btn" data-m="no">Abbrechen</button><button class="btn primary" data-m="yes">Neu anfangen</button></div>',b=>{if(b==='yes'){try{localStorage.removeItem(SAVE_KEY)}catch(e){}location.reload()}else welcome()})}else setSpeed(1)});
 }
-welcome();
 </script>
 <!--FRAGMENT-END-->
 </body>
