@@ -663,7 +663,7 @@ const MODEL_NAMES=['Casual_Male','Casual_Female','Casual2_Male','Casual2_Female'
 const FIG_H=1.75, SIT_HIP=0.42;
 function loadModels(){
   if(!THREE.GLTFLoader||!THREE.SkeletonUtils)return Promise.reject(new Error('Loader fehlt'));
-  const L=new THREE.GLTFLoader(),get=f=>new Promise((res,rej)=>L.load('assets/models/'+f+'.glb',res,undefined,rej));
+  const L=new THREE.GLTFLoader(),get=f=>new Promise((res,rej)=>L.load((window.MODEL_DATA&&MODEL_DATA[f])||('assets/models/'+f+'.glb'),res,undefined,rej));
   const all=Promise.all([get('anims'),...MODEL_NAMES.map(get)]).then(([an,...gs])=>{
     const clips={};for(const c of an.animations)clips[c.name]=c;
     const scenes={};gs.forEach((g,k)=>{const b=new THREE.Box3().setFromObject(g.scene);scenes[MODEL_NAMES[k]]={scene:g.scene,norm:FIG_H/(b.max.y-b.min.y)}});
