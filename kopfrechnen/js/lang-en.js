@@ -875,4 +875,10 @@ I18N.add('en', {"% sind":"% are",
 "🍃 Ruhig üben":"🍃 Calm practice",
 "⚔️ Duell":"⚔️ Duel",
 "🧪 Einstufungstest":"🧪 Placement test",
-"Tage in Folge":"Days in a row"});
+"Tage in Folge":"Days in a row",
+"auf ein Einzelnachhilfe-Paket":"on a one-to-one tutoring package",
+"{} % auf ein Einzelnachhilfe-Paket":"{}% on a one-to-one tutoring package",
+"Mit mindestens {} von {} richtig je Türchen gibt es einen {}-%-Gutschein auf ein Einzelnachhilfe-Paket von Nachhilfe – online (gültig bis {}). Gilt nur, wenn die Klassenstufe (Klasse {}) stimmt, einmal je Familie. Noch {} Türchen.":"With at least {} of {} correct per door you get a {}% voucher on a one-to-one tutoring package from Nachhilfe – online (valid until {}). Only valid if the grade (grade {}) is correct, once per family. {} doors to go.",
+"Mit mindestens {} von {} richtig je Türchen gibt es einen {}-%-Gutschein auf ein Einzelnachhilfe-Paket von Nachhilfe – online (gültig bis {}). Gilt nur, wenn die Klassenstufe ({}) stimmt, einmal je Familie. Noch {} Türchen.":"With at least {} of {} correct per door you get a {}% voucher on a one-to-one tutoring package from Nachhilfe – online (valid until {}). Only valid if the grade ({}) is correct, once per family. {} doors to go.",
+"Gilt für Klasse {} – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft. Einmal je Familie einlösbar, nicht mit anderen Gutscheinen kombinierbar.":"Valid for grade {} – only if the grade is correct. It is checked when booking. Can be redeemed once per family, cannot be combined with other vouchers.",
+"Gilt für Oberstufe – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft. Einmal je Familie einlösbar, nicht mit anderen Gutscheinen kombinierbar.":"Valid for upper school – only if the grade is correct. It is checked when booking. Can be redeemed once per family, cannot be combined with other vouchers."});

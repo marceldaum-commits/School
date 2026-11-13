@@ -43,7 +43,7 @@ function fillArgs(tr, args) {
 function i18nNumbers(s) {
   if (I18N.lang === 'en') {
     s = s.replace(/(\d)([.,])(?=(\d)|$)/g, (m, d, sep, nx) => d + (sep === ',' ? '.' : nx !== undefined ? ',' : '.'));
-    s = s.replace(/ · /g, ' × ').replace(/ : /g, ' ÷ ');
+    s = s.replace(/([\d)x²³]) · (?=[\d(x√−])/g, '$1 × ').replace(/([\d)x²³]) : (?=[\d(x√−])/g, '$1 ÷ ');   // nur in Rechnungen, nicht als Trennpunkt
     if (s === '·') s = '×'; else if (s === ':') s = '÷'; else if (s === ',') s = '.';
   } else if (I18N.lang === 'uk') {
     s = s.replace(/(\d)\.(?=\d{3}(?!\d))/g, '$1 ');

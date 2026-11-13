@@ -858,7 +858,6 @@ Neue Abzeichen	New badges	Нові значки
 Kostenlose Probestunde: {}	Free trial lesson: {}	Безкоштовний пробний урок: {}
 Rechenblitz – Wochenbericht für	Rechenblitz – weekly report for	Rechenblitz – тижневий звіт для
 Rechenblitz – Ergebnis von	Rechenblitz – result of	Rechenblitz – результат
-Runden geschafft	rounds done	раундів пройдено
 Kopfrechen-Trick	Mental maths trick	Трюк усного рахунку
 Mal {} heißt mal {} und dann halbieren. {}	Times {} means times {} and then halve. {}	Помножити на {} – це помножити на {} і поділити навпіл. {}
 Mal {} heißt mal {} und dann halbieren. {}.	Times {} means times {} and then halve. {}.	Помножити на {} – це помножити на {} і поділити навпіл. {}.
@@ -868,16 +867,19 @@ In Cent rechnen	Calculate in cents	Рахуй у центах
 Was willst du üben?	What do you want to practise?	Що хочеш потренувати?
 ändern	change	змінити
 Schwierigkeit:	Difficulty:	Складність:
-Schwierigkeit	Difficulty	Складність
 (gerade Stufe {})	(currently level {})	(зараз рівень {})
 ▶ Los geht’s	▶ Let's go	▶ Почнімо
 Weniger	Less	Менше
 Rekord: {} Punkte	Record: {} points	Рекорд: {} балів
-Mein Fortschritt	My progress	Мій прогрес
 📦 Fehlerkiste	📦 Mistake box	📦 Скринька помилок
 ⚡ Blitzrunde	⚡ Speed round	⚡ Бліц-раунд
 🍃 Ruhig üben	🍃 Calm practice	🍃 Спокійне тренування
 ⚔️ Duell	⚔️ Duel	⚔️ Дуель
 🧪 Einstufungstest	🧪 Placement test	🧪 Тест рівня
-Themen für	Topics for	Теми для
 Tage in Folge	Days in a row	Днів поспіль
+auf ein Einzelnachhilfe-Paket	on a one-to-one tutoring package	на пакет індивідуальних уроків
+{} % auf ein Einzelnachhilfe-Paket	{}% on a one-to-one tutoring package	{}% на пакет індивідуальних уроків
+Mit mindestens {} von {} richtig je Türchen gibt es einen {}-%-Gutschein auf ein Einzelnachhilfe-Paket von Nachhilfe – online (gültig bis {}). Gilt nur, wenn die Klassenstufe (Klasse {}) stimmt, einmal je Familie. Noch {} Türchen.	With at least {} of {} correct per door you get a {}% voucher on a one-to-one tutoring package from Nachhilfe – online (valid until {}). Only valid if the grade (grade {}) is correct, once per family. {} doors to go.	Маючи щонайменше {} з {} правильних у кожному віконці, отримаєш ваучер на {}% на пакет індивідуальних уроків Nachhilfe – online (дійсний до {}). Лише якщо клас ({} клас) правильний, один раз на сім'ю. Залишилося {} віконець.
+Mit mindestens {} von {} richtig je Türchen gibt es einen {}-%-Gutschein auf ein Einzelnachhilfe-Paket von Nachhilfe – online (gültig bis {}). Gilt nur, wenn die Klassenstufe ({}) stimmt, einmal je Familie. Noch {} Türchen.	With at least {} of {} correct per door you get a {}% voucher on a one-to-one tutoring package from Nachhilfe – online (valid until {}). Only valid if the grade ({}) is correct, once per family. {} doors to go.	Маючи щонайменше {} з {} правильних у кожному віконці, отримаєш ваучер на {}% на пакет індивідуальних уроків Nachhilfe – online (дійсний до {}). Лише якщо клас ({}) правильний, один раз на сім'ю. Залишилося {} віконець.
+Gilt für Klasse {} – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft. Einmal je Familie einlösbar, nicht mit anderen Gutscheinen kombinierbar.	Valid for grade {} – only if the grade is correct. It is checked when booking. Can be redeemed once per family, cannot be combined with other vouchers.	Дійсний для {} класу – лише якщо клас указано правильно. Перевіряється під час бронювання. Один раз на сім'ю, не поєднується з іншими ваучерами.
+Gilt für Oberstufe – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft. Einmal je Familie einlösbar, nicht mit anderen Gutscheinen kombinierbar.	Valid for upper school – only if the grade is correct. It is checked when booking. Can be redeemed once per family, cannot be combined with other vouchers.	Дійсний для старших класів – лише якщо клас указано правильно. Перевіряється під час бронювання. Один раз на сім'ю, не поєднується з іншими ваучерами.

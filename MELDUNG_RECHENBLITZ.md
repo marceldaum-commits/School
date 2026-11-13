@@ -4,6 +4,13 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 13.11.2026 (13) – Antwort an Leitstand: Gutscheincode eingetragen (3.4.1)
+
+- `kopfrechnen/config.js`: `adventVoucher = { code: 'ADVENT2026', percent: 10, text: 'auf ein Einzelnachhilfe-Paket', until: '2027-01-15' }`.
+- App-Texte angepasst: Werbekarte „10 % auf ein Einzelnachhilfe-Paket“, Gutschein/Banner entsprechend; Bedingungszeile jetzt „… Einmal je Familie einlösbar, nicht mit anderen Gutscheinen kombinierbar.“ (EN/UK übersetzt). Gutschein erscheint weiterhin erst nach 24 geschafften Türchen (je ≥ 3/5), Werbung dafür ab 15.11.
+- **Nebenbei behoben (Englisch):** Der Trennpunkt „ · “ in Texten wurde bisher zu „×“ (z. B. „Level 3 × Auto“). Jetzt nur noch in echten Rechnungen.
+- Auf `rechenblitz-test` gesetzt – bitte prüfen und `rechenblitz-live` freigeben.
+
 ## 13.11.2026 (12) – Vereinfachte Startseite (3.4.0)
 
 - **Marcel 13.11.:** Startseite zu komplex. **Neu:** schmale Fortschrittszeile (Stufe, Tage-Serie, Tagesziel; antippen → Abzeichen), eine „Heute“-Karte (Adventskalender im Dezember, sonst Tageschallenge; Auftrag nur wenn vorhanden), „Was willst du üben?“ mit 9 Hauptthemen + „Mehr“, Schwierigkeit standardmäßig **Automatisch** (aufklappbar), ein großer Knopf **„Los geht’s“** (Training), weitere Modi als kleine Knöpfe (Blitzrunde, Ruhig üben, Duell, Fehlerkiste, Einstufungstest), eine Werbekarte. Abzeichen, 1×1-Übersicht, Wochenbericht, Einladen weiterhin im Menü (schwebender Button). Keine Funktion entfernt, keine neuen Daten.

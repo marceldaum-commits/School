@@ -875,4 +875,10 @@ I18N.add('uk', {"% sind":"% — це",
 "🍃 Ruhig üben":"🍃 Спокійне тренування",
 "⚔️ Duell":"⚔️ Дуель",
 "🧪 Einstufungstest":"🧪 Тест рівня",
-"Tage in Folge":"Днів поспіль"});
+"Tage in Folge":"Днів поспіль",
+"auf ein Einzelnachhilfe-Paket":"на пакет індивідуальних уроків",
+"{} % auf ein Einzelnachhilfe-Paket":"{}% на пакет індивідуальних уроків",
+"Mit mindestens {} von {} richtig je Türchen gibt es einen {}-%-Gutschein auf ein Einzelnachhilfe-Paket von Nachhilfe – online (gültig bis {}). Gilt nur, wenn die Klassenstufe (Klasse {}) stimmt, einmal je Familie. Noch {} Türchen.":"Маючи щонайменше {} з {} правильних у кожному віконці, отримаєш ваучер на {}% на пакет індивідуальних уроків Nachhilfe – online (дійсний до {}). Лише якщо клас ({} клас) правильний, один раз на сім'ю. Залишилося {} віконець.",
+"Mit mindestens {} von {} richtig je Türchen gibt es einen {}-%-Gutschein auf ein Einzelnachhilfe-Paket von Nachhilfe – online (gültig bis {}). Gilt nur, wenn die Klassenstufe ({}) stimmt, einmal je Familie. Noch {} Türchen.":"Маючи щонайменше {} з {} правильних у кожному віконці, отримаєш ваучер на {}% на пакет індивідуальних уроків Nachhilfe – online (дійсний до {}). Лише якщо клас ({}) правильний, один раз на сім'ю. Залишилося {} віконець.",
+"Gilt für Klasse {} – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft. Einmal je Familie einlösbar, nicht mit anderen Gutscheinen kombinierbar.":"Дійсний для {} класу – лише якщо клас указано правильно. Перевіряється під час бронювання. Один раз на сім'ю, не поєднується з іншими ваучерами.",
+"Gilt für Oberstufe – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft. Einmal je Familie einlösbar, nicht mit anderen Gutscheinen kombinierbar.":"Дійсний для старших класів – лише якщо клас указано правильно. Перевіряється під час бронювання. Один раз на сім'ю, не поєднується з іншими ваучерами."});

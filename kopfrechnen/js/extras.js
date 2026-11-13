@@ -96,7 +96,7 @@ function voucherHtml() {
   const v = voucher(); if (!v) return '';
   return `<div class="voucher"><div class="v-top"><span class="v-pct">${v.percent || 10} %</span><div><b>Dein Gutschein für Nachhilfe – online</b><small>${esc(v.text || 'auf ein Stundenpaket')}${v.until ? ` · gültig bis ${fmtDay(v.until)}` : ''}</small></div></div>
     <div class="v-code"><code id="vCode">${esc(v.code)}</code><button class="btn small" id="vCopy">Kopieren</button></div>
-    <p class="v-cond">Gilt für ${esc(adventClassName(adventState().klasse || 0))} – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft. Einmal je Familie einlösbar.</p>
+    <p class="v-cond">Gilt für ${esc(adventClassName(adventState().klasse || 0))} – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft. Einmal je Familie einlösbar, nicht mit anderen Gutscheinen kombinierbar.</p>
     <p class="small muted" style="margin:6px 0 10px">Zeig den Code deinen Eltern – sie geben ihn bei der Buchung eines Stundenpakets zusammen mit der Klassenstufe an.</p>
     <a class="btn primary block" href="${esc(siteLink(v.url || CONFIG.packagesUrl, 'advent-gutschein'))}" target="_blank" rel="noopener">Zu den Stundenpaketen ↗</a></div>`;
 }
@@ -356,7 +356,7 @@ function renderExtrasHome() {
   }
   if (voucher() && ['teaser', 'on'].includes(ph) && $('promo')) {
     const v = voucher();
-    $('promo').innerHTML = `<div class="pr-ico">🎁</div><div class="pr-txt"><span class="eyebrow">Adventsaktion</span><b>${v.percent || 10} % auf jedes Stundenpaket</b><p>Öffne alle 24 Türchen im Rechen-Adventskalender und hol dir deinen Gutschein für die Nachhilfe – online${v.until ? ` (gültig bis ${fmtDay(v.until)})` : ''}.</p></div><button class="btn primary small" data-open="advent">Zum Adventskalender</button>`;
+    $('promo').innerHTML = `<div class="pr-ico">🎁</div><div class="pr-txt"><span class="eyebrow">Adventsaktion</span><b>${v.percent || 10} % ${esc(v.text || 'auf ein Stundenpaket')}</b><p>Öffne alle 24 Türchen im Rechen-Adventskalender und hol dir deinen Gutschein für die Nachhilfe – online${v.until ? ` (gültig bis ${fmtDay(v.until)})` : ''}.</p></div><button class="btn primary small" data-open="advent">Zum Adventskalender</button>`;
   }
   $('challengeCard').hidden = ph === 'on' || ph === 'after';
   const cc = $('classCard');

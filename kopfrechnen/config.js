@@ -19,7 +19,8 @@ window.RECHENBLITZ_CONFIG = {
   adventPreview: 'auto',
   adventRaffleUrl: '',
   adventRaffleMin: 12,
-  // Gutschein für alle 24 Türchen (Marcel: 10 % auf jedes Stundenpaket). Erscheint erst, wenn `code` eingetragen ist.
+  // Gutschein für alle 24 Türchen (Leitstand 13.11.: im Shop angelegt; 10 % auf Einzelnachhilfe – Neukundenpaket und Bestandskunden,
+  // nicht auf Gruppe/Fragenflat/Video; bis 15.01.2027; einmal je Kunde; nicht mit anderen Gutscheinen kombinierbar).
   // Den Code bitte im Shop anlegen (Leitstand) und hier eintragen. Hinweis: Der Code ist im Quelltext der App lesbar.
-  adventVoucher: { code: '', percent: 10, text: 'auf jedes Stundenpaket', until: '2027-01-15' }
+  adventVoucher: { code: 'ADVENT2026', percent: 10, text: 'auf ein Einzelnachhilfe-Paket', until: '2027-01-15' }
 };
