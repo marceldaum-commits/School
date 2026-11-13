@@ -67,15 +67,28 @@ function adventPhase() {   // 'off' | 'teaser' | 'on' | 'after'
 }
 const adventOpen = d => adventPreview() || adventPhase() === 'after' || (adventPhase() === 'on' && new Date().getDate() >= d);
 function adventState() { if (!S.advent || S.advent.year !== adventYear()) S.advent = { year: adventYear(), doors: {} }; return S.advent; }
+// Aufgaben passend zur Klassenstufe: Themen der Klasse + Wiederholung aus dem Vorjahr, gegen Ende schwerer
+const ADVENT_MIN_OK = 3;   // Türchen zählt erst ab 3 von 5 richtig
+const ADVENT_UPPER = [['eq', 4], ['eq', 3], ['pow', 4], ['pow', 3], ['pct', 4], ['frac', 4], ['dec', 4], ['neg', 4], ['order', 4], ['divis', 4], ['round', 4], ['unit', 4], ['word', 4]];
+const adventClassName = k => k >= 11 ? 'Oberstufe' : `Klasse ${k}`;
+function adventPool(k) {
+  if (k >= 11) return ADVENT_UPPER;
+  const cur = CLASS_TOPICS[k] || [], prev = (CLASS_TOPICS[k - 1] || []).filter(([t]) => !cur.some(([c]) => c === t));
+  return [...cur, ...cur, ...prev];   // aktuelle Klasse doppelt gewichtet
+}
 function adventTasks(d) {
-  const tier = challengeTier();
-  return withSeed(hashStr(`rechenblitz-advent-${adventYear()}-${d}-${tier}`), () => {
-    const topics = tier === 'A' ? ['add', 'sub', 'mul', 'div', 'gap', 'order', 'unit', 'word'] : ['mul', 'div', 'gap', 'frac', 'dec', 'pct', 'neg', 'pow', 'order', 'round', 'unit', 'divis', 'eq', 'word'];
-    const lvl = tier === 'A' ? (d <= 8 ? 0 : d <= 16 ? 1 : 2) : (d <= 8 ? 1 : d <= 16 ? 2 : 3);
-    return Array.from({ length: 5 }, () => makeTask(pick(topics), lvl));
+  const k = adventState().klasse || 5;
+  return withSeed(hashStr(`rechenblitz-advent-${adventYear()}-${d}-k${k}`), () => {
+    const pool = shuffle(adventPool(k).slice()), out = [], used = new Set();
+    for (const [t, l] of pool) { if (out.length >= 5) break; if (used.has(t) && pool.length > 8) continue; used.add(t); out.push([t, l]); }
+    while (out.length < 5) out.push(pick(pool));
+    return out.map(([t, l], i) => {
+      const bump = d <= 8 ? 0 : d <= 16 ? (i % 2) : 1;   // 1.–8. normal, 9.–16. gemischt, ab 17. eine Stufe schwerer
+      return makeTask(t, Math.min(4, l + (k >= 11 ? 0 : bump)));
+    });
   });
 }
-function startAdventDoor(d) { closeSheet(); startGame('advent', { queue: adventTasks(d), op: 'mix', lvl: 0, title: `Türchen ${d}`, door: d }); }
+function startAdventDoor(d) { if (!adventState().klasse) return openSheet('advent'); closeSheet(); startGame('advent', { queue: adventTasks(d), op: 'mix', lvl: 0, title: `Türchen ${d}`, door: d }); }
 
 /* ---------- Gutschein für alle 24 Türchen ---------- */
 const voucher = () => CONFIG.adventVoucher && CONFIG.adventVoucher.code ? CONFIG.adventVoucher : null;
@@ -83,7 +96,8 @@ function voucherHtml() {
   const v = voucher(); if (!v) return '';
   return `<div class="voucher"><div class="v-top"><span class="v-pct">${v.percent || 10} %</span><div><b>Dein Gutschein für Nachhilfe – online</b><small>${esc(v.text || 'auf ein Stundenpaket')}${v.until ? ` · gültig bis ${fmtDay(v.until)}` : ''}</small></div></div>
     <div class="v-code"><code id="vCode">${esc(v.code)}</code><button class="btn small" id="vCopy">Kopieren</button></div>
-    <p class="small muted" style="margin:6px 0 10px">Zeig den Code deinen Eltern – sie geben ihn bei der Buchung eines Stundenpakets an.</p>
+    <p class="v-cond">Gilt für ${esc(adventClassName(adventState().klasse || 0))} – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft.</p>
+    <p class="small muted" style="margin:6px 0 10px">Zeig den Code deinen Eltern – sie geben ihn bei der Buchung eines Stundenpakets zusammen mit der Klassenstufe an.</p>
     <a class="btn primary block" href="${esc(siteLink(v.url || CONFIG.packagesUrl, 'advent-gutschein'))}" target="_blank" rel="noopener">Zu den Stundenpaketen ↗</a></div>`;
 }
 function bindVoucher() {
@@ -188,6 +202,14 @@ function rankingHtml(d) {
 Object.assign(PANELS, {
   advent() {
     const st = adventState(), phase = adventPhase(), done = Object.keys(st.doors).length;
+    if (!st.klasse) {
+      const pre = S.settings.klasse || 0;
+      return { title: 'Rechen-Adventskalender', html: `<p style="margin:0 0 6px"><b>In welche Klasse gehst du?</b></p>
+        <p class="small muted" style="margin:0 0 8px">Damit die Aufgaben zu dir passen. Die Klassenstufe gilt für den ganzen Kalender – wer sie später ändert, fängt wieder bei Türchen 1 an.</p>
+        ${voucher() ? `<p class="note">🎁 <b>Wichtig:</b> Der ${voucher().percent || 10}-%-Gutschein für alle 24 Türchen gilt nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft.</p>` : ''}
+        <div class="chips big" id="advK">${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => `<button data-v="${n}" class="${pre === n ? 'sel' : ''}">${n}</button>`).join('')}<button data-v="11" style="flex-basis:100%">Oberstufe (11–13)</button></div>`,
+        init() { $('advK').onclick = e => { const b = e.target.closest('button'); if (!b) return; const k = +b.dataset.v; st.klasse = k; if (k <= 10 && !S.settings.klasse) S.settings.klasse = k; save(); renderHome(); showPanel('advent'); toast(`🎄 ${adventClassName(k)} – viel Spaß!`); }; } };
+    }
     const doors = ADVENT_ORDER.map(d => {
       const r = st.doors[d], open = adventOpen(d);
       return `<button class="door ${r ? 'done' : open ? 'open' : 'locked'}" data-door="${d}" ${open ? '' : 'disabled'} aria-label="Türchen ${d}${r ? ', geschafft' : open ? '' : ', noch geschlossen'}"><b>${d}</b>${r ? `<span>${ADVENT_FACTS[d - 1][0]}</span><small>${'★'.repeat(Math.max(1, Math.round(r.correct / 5 * 3)))}</small>` : open ? '<span>🎁</span>' : '<span>🔒</span>'}</button>`;
@@ -195,22 +217,23 @@ Object.assign(PANELS, {
     const raffle = CONFIG.adventRaffleUrl && done >= (CONFIG.adventRaffleMin || 12)
       ? `<a class="btn primary block" href="${esc(siteLink(CONFIG.adventRaffleUrl, 'advent-verlosung'))}" target="_blank" rel="noopener">🎁 Bei der Verlosung mitmachen ↗</a>` : CONFIG.adventRaffleUrl ? `<p class="small muted" style="margin:0">Ab ${CONFIG.adventRaffleMin || 12} geöffneten Türchen kannst du bei unserer Verlosung mitmachen.</p>` : '';
     return { title: 'Rechen-Adventskalender', html: `
-      ${voucher() && done < 24 ? `<div class="vbanner"><span class="v-pct">${voucher().percent || 10} %</span><div><b>Schaff alle 24 Türchen!</b><small>Dann gibt es einen ${voucher().percent || 10}-%-Gutschein ${esc(voucher().text || 'auf ein Stundenpaket')} von Nachhilfe – online${voucher().until ? ` (gültig bis ${fmtDay(voucher().until)})` : ''}. Noch ${24 - done} Türchen.</small></div></div>` : ''}
-      ${phase === 'teaser' ? '<p class="note">Ab dem <b>1. Dezember</b> öffnet sich jeden Tag ein Türchen mit 5 Aufgaben und einem Rechen-Trick. Verpasste Türchen kannst du nachholen.</p>' : `<p class="small muted" style="margin:0 0 10px">Jeden Tag ein Türchen: 5 Aufgaben – für alle gleich – und ein Rechen-Trick. Verpasste Türchen kannst du nachholen. Geschafft: <b>${done}/24</b></p>`}
+      ${voucher() && done < 24 ? `<div class="vbanner"><span class="v-pct">${voucher().percent || 10} %</span><div><b>Schaff alle 24 Türchen!</b><small>Mit mindestens ${ADVENT_MIN_OK} von 5 richtig je Türchen gibt es einen ${voucher().percent || 10}-%-Gutschein ${esc(voucher().text || 'auf ein Stundenpaket')} von Nachhilfe – online${voucher().until ? ` (gültig bis ${fmtDay(voucher().until)})` : ''}. Gilt nur, wenn die Klassenstufe (${adventClassName(st.klasse)}) stimmt. Noch ${24 - done} Türchen.</small></div></div>` : ''}
+      ${phase === 'teaser' ? '<p class="note">Ab dem <b>1. Dezember</b> öffnet sich jeden Tag ein Türchen mit 5 Aufgaben und einem Rechen-Trick. Verpasste Türchen kannst du nachholen.</p>' : `<p class="small muted" style="margin:0 0 10px">Jeden Tag ein Türchen: 5 Aufgaben für <b>${adventClassName(st.klasse)}</b> und ein Rechen-Trick. Ein Türchen ist geschafft ab ${ADVENT_MIN_OK} von 5 richtig. Verpasste Türchen kannst du nachholen. Geschafft: <b>${done}/24</b> · <button class="linkbtn" id="advChange">Klasse ändern</button></p>`}
       ${adventPreview() && phase === 'on' && !(new Date().getMonth() === 11) ? '<p class="note">Vorschau-Modus (Testseite): alle Türchen sind offen.</p>' : ''}
       <div class="advent">${doors}</div>
       ${done >= 20 ? '<button class="btn block" id="advCert" style="margin-top:12px">🏅 Advents-Urkunde holen</button>' : `<p class="small muted" style="margin:10px 0">Ab 20 Türchen gibt es eine Advents-Urkunde.</p>`}
       ${done >= 24 ? voucherHtml() : ''}
       ${raffle}`, init() {
         bindVoucher();
+        $('advChange') && ($('advChange').onclick = () => { if (!done || confirm('Klassenstufe ändern? Dein Fortschritt im Adventskalender beginnt dann wieder bei null.')) { S.advent = { year: adventYear(), doors: {} }; save(); renderHome(); showPanel('advent'); } });
         $('sheetBody').querySelectorAll('[data-door]').forEach(b => b.onclick = () => showPanel('adventDoor', { d: +b.dataset.door }, true));
-        $('advCert') && ($('advCert').onclick = () => showPanel('cert', { line1: 'Rechen-Adventskalender', line2: `${done} von 24 Türchen geschafft`, icon: '🎄' }, true));
+        $('advCert') && ($('advCert').onclick = () => showPanel('cert', { line1: 'Rechen-Adventskalender', line2: `${done} von 24 Türchen geschafft · ${adventClassName(st.klasse)}`, icon: '🎄' }, true));
       } };
   },
   adventDoor({ d }) {
     const r = adventState().doors[d], [icon, fact] = ADVENT_FACTS[d - 1];
     return { title: `Türchen ${d}`, html: `<div class="doorview"><div class="dicon">${icon}</div><p class="fact">${esc(fact)}</p>
-      ${r ? `<p class="muted">Geschafft am ${fmtDay(r.date)}: <b>${r.correct}/5</b> richtig.</p>` : ''}
+      ${r ? `<p class="muted">Geschafft am ${fmtDay(r.date)}: <b>${r.correct}/5</b> richtig.</p>` : `<p class="small muted">5 Aufgaben für ${adventClassName(adventState().klasse)} – ab ${ADVENT_MIN_OK} richtigen ist das Türchen geschafft.</p>`}
       <button class="btn primary block" id="doorGo">${r ? 'Nochmal rechnen' : '5 Aufgaben lösen'}</button></div>`, init() { $('doorGo').onclick = () => startAdventDoor(d); } };
   },
   cert(o) {
@@ -326,7 +349,7 @@ function renderExtrasHome() {
     ac.hidden = ph === 'off';
     if (ph !== 'off') {
       const n = Object.keys(adventState().doors).length, today = new Date().getDate();
-      const sub = ph === 'teaser' ? 'Ab 1. Dezember: jeden Tag ein Türchen mit Rechen-Rätseln' : ph === 'after' ? `Du hast ${n}/24 Türchen geschafft – noch bis 6. Januar nachholbar` : adventState().doors[today] ? `Heute geschafft! ${n}/24 Türchen` : `Türchen ${Math.min(24, today)} wartet auf dich · ${n}/24 geschafft`;
+      const sub = !adventState().klasse && ph !== 'teaser' ? 'Wähle deine Klassenstufe – dann geht’s los!' : ph === 'teaser' ? 'Ab 1. Dezember: jeden Tag ein Türchen mit Rechen-Rätseln' : ph === 'after' ? `Du hast ${n}/24 Türchen geschafft – noch bis 6. Januar nachholbar` : adventState().doors[today] ? `Heute geschafft! ${n}/24 Türchen` : `Türchen ${Math.min(24, today)} wartet auf dich · ${n}/24 geschafft`;
       const vtag = voucher() && n < 24 ? `<em class="vtag">🎁 ${voucher().percent || 10} % Gutschein bei 24 Türchen</em>` : '';
       ac.innerHTML = `<div class="adv-ico">🎄</div><div class="ch-txt"><b>Rechen-Adventskalender</b><span>${sub}</span>${vtag}</div><button class="btn small primary" data-open="advent">${ph === 'teaser' ? 'Ansehen' : 'Öffnen'}</button>`;
     }
@@ -347,12 +370,15 @@ function renderExtrasHome() {
 function extrasAfterGame(acc) {
   let html = '';
   if (G.mode === 'advent' && G.door) {
-    const st = adventState(), prev = st.doors[G.door];
-    if (!prev || G.correct > prev.correct) st.doors[G.door] = { correct: G.correct, date: todayStr() };
-    const allNow = Object.keys(st.doors).length >= 24 && !prev;
-    award('advent'); if (Object.keys(st.doors).length >= 24) award('advent24');
+    const st = adventState(), prev = st.doors[G.door], ok = G.correct >= ADVENT_MIN_OK;
+    if (ok && (!prev || G.correct > prev.correct)) st.doors[G.door] = { correct: G.correct, date: todayStr() };
+    const allNow = ok && !prev && Object.keys(st.doors).length >= 24;
+    if (ok) { award('advent'); if (Object.keys(st.doors).length >= 24) award('advent24'); }
     const [icon, fact] = ADVENT_FACTS[G.door - 1];
-    html += `<div class="card doorview"><div class="dicon">${icon}</div><b>Türchen ${G.door} geöffnet!</b><p class="fact">${esc(fact)}</p><button class="btn block" data-open="advent">Zum Adventskalender</button></div>`;
+    html += ok || prev
+      ? `<div class="card doorview"><div class="dicon">${icon}</div><b>Türchen ${G.door} geöffnet!</b><p class="fact">${esc(fact)}</p><button class="btn block" data-open="advent">Zum Adventskalender</button></div>`
+      : `<div class="card doorview"><div class="dicon">🔒</div><b>Fast! ${G.correct} von 5 richtig</b><p class="muted">Für Türchen ${G.door} brauchst du mindestens ${ADVENT_MIN_OK} richtige. Schau dir die Lösungswege an und probier's nochmal!</p><button class="btn primary block" id="doorRetry">Nochmal versuchen</button></div>`;
+    if (!ok && !prev) setTimeout(() => { const b = $('doorRetry'); if (b) b.onclick = () => startAdventDoor(G.door); }, 50);
     if (allNow && voucher()) { html += `<div class="card"><h3 style="margin:0 0 10px">🎉 Alle 24 Türchen geschafft!</h3>${voucherHtml()}</div>`; setTimeout(bindVoucher, 50); Confetti.burst(200); }
   }
   if (S.klasse && CONFIG.classApi && G.correct > 0 && G.mode !== 'test') {
