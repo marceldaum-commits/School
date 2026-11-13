@@ -3,7 +3,7 @@
    Rechenblitz – App: Speicher & Profile, Sound, Statistik, Abzeichen,
    Startseite, Spielmodi, Ergebnis, Duell, Tageschallenge, Einstufung
    ===================================================================== */
-const APP_VERSION = '3.1.0';
+const APP_VERSION = '3.1.1';
 const CONFIG = Object.assign({
   reportEndpoint: '',                                   // URL, die Meldungen per POST (JSON) annimmt – siehe MELDUNGEN-API.md
   fallbackMail: 'website@mathenachhilfe-online.com',    // nur falls kein Endpunkt eingerichtet ist
@@ -17,7 +17,9 @@ const CONFIG = Object.assign({
   publicUrl: '',                                        // Adresse für QR-Codes, Flyer, Urkunden, Einladungen
   referralUrl: 'https://www.mathenachhilfe-online.com/freunde-werben/',
   classApi: '',                                         // Server für die Klassen-Challenge (z. B. '/api'); leer = ausgeblendet
-  advent: true, adventPreview: 'auto', adventRaffleUrl: '', adventRaffleMin: 12,                                           // true = Website-Links mit utm_source=rechenblitz (nur sinnvoll mit Besucherstatistik)                                      // Rück-Link „← Lernraum“; leer = ausgeblendet                                           // öffentliche Adresse der App (für geteilte Links); leer = aktuelle Adresse
+  advent: true, adventPreview: 'auto', adventRaffleUrl: '', adventRaffleMin: 12,
+  adventVoucher: null,                                  // { code, percent, text, until, url } – Gutschein für alle 24 Türchen
+  packagesUrl: 'https://www.mathenachhilfe-online.com/stundenpakete-preise/',                                           // true = Website-Links mit utm_source=rechenblitz (nur sinnvoll mit Besucherstatistik)                                      // Rück-Link „← Lernraum“; leer = ausgeblendet                                           // öffentliche Adresse der App (für geteilte Links); leer = aktuelle Adresse
 }, window.RECHENBLITZ_CONFIG || {});
 
 const $ = id => document.getElementById(id);

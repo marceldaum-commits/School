@@ -77,6 +77,20 @@ function adventTasks(d) {
 }
 function startAdventDoor(d) { closeSheet(); startGame('advent', { queue: adventTasks(d), op: 'mix', lvl: 0, title: `Türchen ${d}`, door: d }); }
 
+/* ---------- Gutschein für alle 24 Türchen ---------- */
+const voucher = () => CONFIG.adventVoucher && CONFIG.adventVoucher.code ? CONFIG.adventVoucher : null;
+function voucherHtml() {
+  const v = voucher(); if (!v) return '';
+  return `<div class="voucher"><div class="v-top"><span class="v-pct">${v.percent || 10} %</span><div><b>Dein Gutschein für Nachhilfe – online</b><small>${esc(v.text || 'auf ein Stundenpaket')}${v.until ? ` · gültig bis ${fmtDay(v.until)}` : ''}</small></div></div>
+    <div class="v-code"><code id="vCode">${esc(v.code)}</code><button class="btn small" id="vCopy">Kopieren</button></div>
+    <p class="small muted" style="margin:6px 0 10px">Zeig den Code deinen Eltern – sie geben ihn bei der Buchung eines Stundenpakets an.</p>
+    <a class="btn primary block" href="${esc(siteLink(v.url || CONFIG.packagesUrl, 'advent-gutschein'))}" target="_blank" rel="noopener">Zu den Stundenpaketen ↗</a></div>`;
+}
+function bindVoucher() {
+  const b = $('vCopy'); if (!b) return;
+  b.onclick = async () => { try { await navigator.clipboard.writeText(voucher().code); toast('Gutscheincode kopiert ✓'); } catch { const r = document.createRange(); r.selectNodeContents($('vCode')); getSelection().removeAllRanges(); getSelection().addRange(r); } };
+}
+
 /* ================= Urkunde ================= */
 const loadImg = src => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = src; });
 function wrapText(ctx, text, x, y, maxW, lh) {
@@ -185,7 +199,9 @@ Object.assign(PANELS, {
       ${adventPreview() && phase === 'on' && !(new Date().getMonth() === 11) ? '<p class="note">Vorschau-Modus (Testseite): alle Türchen sind offen.</p>' : ''}
       <div class="advent">${doors}</div>
       ${done >= 20 ? '<button class="btn block" id="advCert" style="margin-top:12px">🏅 Advents-Urkunde holen</button>' : `<p class="small muted" style="margin:10px 0">Ab 20 Türchen gibt es eine Advents-Urkunde.</p>`}
+      ${done >= 24 ? voucherHtml() : voucher() ? `<p class="note" style="margin-top:10px">🎁 Alle 24 Türchen geschafft? Dann gibt es einen <b>${voucher().percent || 10}-%-Gutschein</b> ${esc(voucher().text || 'auf ein Stundenpaket')}!</p>` : ''}
       ${raffle}`, init() {
+        bindVoucher();
         $('sheetBody').querySelectorAll('[data-door]').forEach(b => b.onclick = () => showPanel('adventDoor', { d: +b.dataset.door }, true));
         $('advCert') && ($('advCert').onclick = () => showPanel('cert', { line1: 'Rechen-Adventskalender', line2: `${done} von 24 Türchen geschafft`, icon: '🎄' }, true));
       } };
@@ -327,9 +343,11 @@ function extrasAfterGame(acc) {
   if (G.mode === 'advent' && G.door) {
     const st = adventState(), prev = st.doors[G.door];
     if (!prev || G.correct > prev.correct) st.doors[G.door] = { correct: G.correct, date: todayStr() };
+    const allNow = Object.keys(st.doors).length >= 24 && !prev;
     award('advent'); if (Object.keys(st.doors).length >= 24) award('advent24');
     const [icon, fact] = ADVENT_FACTS[G.door - 1];
     html += `<div class="card doorview"><div class="dicon">${icon}</div><b>Türchen ${G.door} geöffnet!</b><p class="fact">${esc(fact)}</p><button class="btn block" data-open="advent">Zum Adventskalender</button></div>`;
+    if (allNow && voucher()) { html += `<div class="card"><h3 style="margin:0 0 10px">🎉 Alle 24 Türchen geschafft!</h3>${voucherHtml()}</div>`; setTimeout(bindVoucher, 50); Confetti.burst(200); }
   }
   if (S.klasse && CONFIG.classApi && G.correct > 0 && G.mode !== 'test') {
     const punkte = G.correct * (G.lvl + 1);

@@ -561,3 +561,9 @@ button.badge{font:inherit;cursor:pointer}
   .flyer-a6 .flyer .fl-qr .qr{width:24mm;height:24mm}.flyer-a6 .flyer .fl-qr{font-size:6.5pt}.flyer-a6 .flyer .fl-foot{font-size:7pt;margin-top:auto}
   .flyer-a6 .flyer .fl-body{flex:1}
 }
+.voucher{border:2px dashed var(--orange);border-radius:18px;padding:14px;background:rgba(255,116,24,.06);margin-top:10px;text-align:left}
+.v-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.v-pct{background:var(--orange);color:#fff;font-weight:800;font-size:22px;border-radius:14px;padding:8px 12px;white-space:nowrap}
+.v-top b{display:block;color:var(--head)}.v-top small{color:var(--muted)}
+.v-code{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:8px 8px 8px 14px}
+.v-code code{flex:1;font-size:20px;font-weight:800;letter-spacing:2px;color:var(--head);font-family:ui-monospace,Menlo,monospace}
