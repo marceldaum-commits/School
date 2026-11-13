@@ -17,3 +17,17 @@ Direkt als Datei geöffnet läuft das Spiel mit einfachen Ersatzfiguren.
 Der Spielstand wird im Browser gespeichert. Logo: `assets/logo.png`.
 
 Figuren: *Ultimate Animated Character Pack* von Quaternius (https://quaternius.com), Lizenz CC0 1.0 (gemeinfrei), für das Web verkleinert in `assets/models/`.
+
+---
+
+# Rechenblitz – Kopfrechnen üben (`kopfrechnen/`)
+
+Eine einzelne HTML-Datei ohne Installation: `kopfrechnen/index.html` im Browser öffnen (auch direkt als Datei, auf Handy, Tablet und PC).
+
+- **Rechenarten:** Plus, Minus, Mal, Geteilt und Mix, je 5 Schwierigkeitsstufen (Zahlenraum 10 bis 1000, Kernaufgaben bis zweistellig · zweistellig)
+- **Modi:** Training (20 Aufgaben), Blitzrunde (60 Sekunden), Fehlerkiste (falsche Aufgaben werden wiederholt, bis sie zweimal richtig gelöst sind)
+- **Motivation:** Punkte mit Serienbonus, 3 Sterne, Rekorde je Stufe, XP und Ränge, Tagesziel (50 Aufgaben), Tage-Serie, Konfetti
+- **Sound:** komplett im Browser erzeugt (Web Audio API), Ton steigt mit der Serie; optional Vorlesen der Aufgaben (Sprachausgabe)
+- **Bedienung:** großes Ziffernfeld oder Tastatur (Ziffern, ⌫, Enter, Esc); Antwort wird automatisch geprüft, sobald sie genug Stellen hat
+
+Fortschritt wird im Browser gespeichert (localStorage).
