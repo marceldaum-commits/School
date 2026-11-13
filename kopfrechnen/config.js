@@ -21,5 +21,5 @@ window.RECHENBLITZ_CONFIG = {
   adventRaffleMin: 12,
   // Gutschein für alle 24 Türchen (Marcel: 10 % auf jedes Stundenpaket). Erscheint erst, wenn `code` eingetragen ist.
   // Den Code bitte im Shop anlegen (Leitstand) und hier eintragen. Hinweis: Der Code ist im Quelltext der App lesbar.
-  adventVoucher: { code: '', percent: 10, text: 'auf jedes Stundenpaket', until: '2027-01-31' }
+  adventVoucher: { code: '', percent: 10, text: 'auf jedes Stundenpaket', until: '2027-01-15' }
 };

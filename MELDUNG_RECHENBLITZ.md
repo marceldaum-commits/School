@@ -9,7 +9,7 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 - **Marcel 13.11. (Auswahlfenster):** statt Verlosung ein **10-%-Gutschein**, den bekommt, wer **alle 24 Türchen** schafft; gilt für **jedes Stundenpaket**.
 - **App:** Nach dem 24. geschafften Türchen erscheint der Gutschein (Code, „Kopieren“, Hinweis „Zeig den Code deinen Eltern“, Knopf „Zu den Stundenpaketen“ → `https://www.mathenachhilfe-online.com/stundenpakete-preise/`) im Ergebnis und dauerhaft im Adventskalender. Vorher steht im Kalender nur der Hinweis auf den Gutschein. **Ohne Code in `config.js` erscheint nichts** (aktueller Stand).
 - **OFFEN (Leitstand, bis spätestens 24.12.):**
-  1. Gutscheincode im Shop anlegen: 10 % auf jedes Stundenpaket, Vorschlag gültig bis **31.01.2027** (in `config.js` als `until` hinterlegt – bei anderem Datum bitte nennen), ggf. Nutzung je Kunde begrenzen.
+  1. Gutscheincode im Shop anlegen: 10 % auf jedes Stundenpaket, gültig bis **15.01.2027** (Marcel 13.11.; in `config.js` als `until` hinterlegt), ggf. Nutzung je Kunde begrenzen.
   2. Code in `kopfrechnen/config.js` → `adventVoucher.code` eintragen (oder mir nennen) und auf `rechenblitz-test`/`-live` bringen.
   3. **Hinweis:** Der Code steht im öffentlichen Repo und im Quelltext der App und ist damit für Findige lesbar. Ein „echter“ Nachweis von 24 Türchen ginge nur mit Server; für eine Werbeaktion halte ich den offenen Code für vertretbar (ggf. Nutzung je Kunde begrenzen).
   4. Falls nötig: kurzer Hinweis zu den Gutschein-Bedingungen auf der Paketseite oder in den AGB.
