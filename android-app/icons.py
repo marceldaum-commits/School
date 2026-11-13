@@ -26,4 +26,11 @@ for root, _, files in os.walk(R):
             sp = Image.new('RGB', (w, h), (0xf7, 0xf9, 0xfd)); k = round(min(w, h) * 0.28)
             sp.paste(icon.resize((k, k), Image.LANCZOS), ((w - k) // 2, (h - k) // 2), icon.resize((k, k), Image.LANCZOS))
             sp.save(p)
+# Alle erzeugten PNGs verlustarm verkleinern (Palette), damit die APK klein bleibt
+for root, _, files in os.walk(R):
+    for fn in files:
+        if fn.endswith('.png') and (fn.startswith('ic_launcher') or fn == 'splash.png'):
+            p = os.path.join(root, fn); im = Image.open(p)
+            im = im.convert('RGBA').quantize(256, method=Image.FASTOCTREE) if im.mode == 'RGBA' else im.convert('RGB').quantize(256)
+            im.save(p, optimize=True)
 print('Hintergrund', hexbg)

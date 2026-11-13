@@ -22,7 +22,7 @@ Deshalb ist die APK **keine Hülle um die Website** (TWA). Sie liefert **alle Da
 | Android | ab 7.0 (minSdk 23), Ziel-SDK 35 |
 | Berechtigungen | Internet (nur für freiwillige Meldungen/Gutschein), Mitteilungen, Neustart-Empfang + Wecker (damit die Erinnerung nach einem Neustart bleibt) |
 | Symbol / Startbild | aus `kopfrechnen/icons` erzeugt (`android-app/icons.py`) |
-| Größe | ca. 5,5 MB |
+| Größe | ca. 2,4 MB (R8 verkleinert, Bilder als Palette) |
 
 ## APK bauen
 

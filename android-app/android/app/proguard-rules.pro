@@ -19,3 +19,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Rechenblitz: Capacitor-Brücke und Plugins werden per Reflexion/Annotation gefunden – nicht entfernen
+-keep class com.getcapacitor.** { *; }
+-keep @com.getcapacitor.annotation.CapacitorPlugin class * { *; }
+-keep class com.capacitorjs.plugins.** { *; }
+-keepattributes *Annotation*, JavascriptInterface
+-keepclassmembers class * { @android.webkit.JavascriptInterface <methods>; }

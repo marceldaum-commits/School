@@ -21,7 +21,7 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
   - **`assetlinks.json` wird nicht mehr gebraucht.**
   - Paketname-Vorschlag `com.mathenachhilfeonline.rechenblitz` bleibt **OFFEN** zur Bestätigung.
   - Anleitung und Store-Punkte stehen in `PLAYSTORE_RECHENBLITZ.md`.
-- **Test-APK 3.5.2** (versionCode 30502, 5,5 MB, debug-signiert) ist gebaut, liegt aber nicht im Repo. Eine Kopie geht an Marcel in Google Drive. Der Web-Modus ist unverändert. Getestet:
+- **Test-APK 3.5.2** (versionCode 30502, 2,4 MB, debug-signiert, mit R8 verkleinert; Capacitor-Brücke und Mitteilungs-Plugin bleiben laut Prüfung erhalten) ist gebaut und liegt nicht im Repo. Sie liegt mit der Web-App als ZIP in Marcels Google Drive unter „AndroidApps/Rechenblitz“. Der Web-Modus ist unverändert. Getestet:
   - Web-App komplett offline nach dem ersten Besuch: 4 Themen gespielt, Panels geöffnet, Meldung landet im Postausgang.
   - APK-Modus im Browser mit nachgebildetem Capacitor ohne Netz: keine einzige Netzanfrage, Erinnerung planen, Uhrzeit ändern und ausschalten in DE/EN/UK, keine Fehler.
   - Seitenbreite 320 px in allen Ansichten.

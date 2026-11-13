@@ -23,5 +23,5 @@ sed -i -E "s/versionCode [0-9]+/versionCode $CODE/; s/versionName \"[^\"]*\"/ver
 
 # 4. Bauen
 cd android
-if [ "$MODE" = release ]; then ./gradlew -q assembleRelease bundleRelease; ls -1 app/build/outputs/apk/release/*.apk app/build/outputs/bundle/release/*.aab
-else ./gradlew -q assembleDebug; ls -1 app/build/outputs/apk/debug/*.apk; fi
+if [ "$MODE" = release ]; then ./gradlew -q clean assembleRelease bundleRelease; ls -1 app/build/outputs/apk/release/*.apk app/build/outputs/bundle/release/*.aab
+else ./gradlew -q clean assembleDebug; ls -1 app/build/outputs/apk/debug/*.apk; fi
