@@ -498,3 +498,5 @@ select{font:inherit;color:inherit;width:100%;border:1px solid var(--border);back
   :root[data-theme=auto] .win{background:#050a1f;box-shadow:0 0 0 1px #253064,var(--sh-act)}
   :root[data-theme=auto] .fab{background:#fff;color:var(--navy)}
 }
+.backlink{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:999px;background:var(--surface);border:1px solid var(--border);color:var(--head);font-weight:700;font-size:13.5px;text-decoration:none;white-space:nowrap}
+.backlink:hover{border-color:var(--orange)}

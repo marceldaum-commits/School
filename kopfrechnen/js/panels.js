@@ -30,6 +30,7 @@ const PANELS = {
       ${mi('idea', '💡', 'Idee oder Feedback', 'Was sollen wir verbessern?')}
       ${miLink(siteLink(CONFIG.websiteUrl, 'menu'), '🌐', 'Zu Nachhilfe – online', 'Online-Nachhilfe 1:1 in Mathe & mehr', 'accent')}
       ${miLink(siteLink(CONFIG.trialUrl, 'menu-probestunde'), '🎓', 'Kostenlose Probestunde', 'Unverbindlich ausprobieren')}
+      ${CONFIG.lernraumUrl ? `<a class="mi" href="${esc(siteLink(CONFIG.lernraumUrl, 'menu-lernraum'))}"><div class="ico">📚</div><div><b>Zurück zum Lernraum</b><span>Weitere Lernspiele und Übungen</span></div><span class="chev">←</span></a>` : ''}
       <div class="mlabel">Mein Fortschritt</div>
       ${mi('badges', '🏅', 'Abzeichen', `${Object.keys(S.badges).length} von ${BADGES.length} gesammelt`)}
       ${mi('facts', '✖️', 'Einmaleins-Übersicht', 'Welche Reihen sitzen – und welche noch nicht')}
@@ -443,6 +444,7 @@ function init() {
   loadRoot(); applyTheme();
   for (const [id, url, place] of [['lnkSite', CONFIG.websiteUrl, 'footer'], ['lnkImp', CONFIG.imprintUrl], ['lnkPriv', CONFIG.privacyUrl], ['btnSite', CONFIG.websiteUrl, 'header'], ['resultSite', CONFIG.websiteUrl, 'result']]) { const el = $(id); if (el) el.href = place ? siteLink(url, place) : url; }
   $('verText').textContent = 'Version ' + APP_VERSION;
+  if (CONFIG.lernraumUrl) { $('btnLernraum').href = siteLink(CONFIG.lernraumUrl, 'lernraum'); $('btnLernraum').hidden = false; $('topbarText').hidden = true; }
   $('btnProfile').onclick = () => openSheet('profiles');
   renderPromo(); renderHome(); handleHash(); flushOutbox();
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});

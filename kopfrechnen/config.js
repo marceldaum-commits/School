@@ -4,5 +4,7 @@
 // Format der Meldungen: siehe MELDUNGEN-API.md im Repo-Stamm.
 // '/api/meldung' ist relativ: läuft auf rechenblitz(-test).mathenachhilfe-online.com (Leitstand, Übergabe 27).
 window.RECHENBLITZ_CONFIG = {
-  reportEndpoint: '/api/meldung'
+  reportEndpoint: '/api/meldung',
+  // Rück-Link „← Lernraum“ oben links und im Menü; leer = ausgeblendet
+  lernraumUrl: 'https://www.mathenachhilfe-online.com/lernraum/'
 };
