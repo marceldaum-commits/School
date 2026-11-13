@@ -13,31 +13,43 @@ Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erl
 6. Commit auf den Arbeits-Branch, auf `rechenblitz-test` schieben (nie `rechenblitz-live` – das setzt der Leitstand), Meldung oben in `MELDUNG_RECHENBLITZ.md`, Status hier abhaken.
 7. Braucht etwas einen Server oder eine Entscheidung von Marcel: App-Seite bauen und hinter einem Schalter in `config.js` verstecken, Frage als „OFFEN“ in die Meldung.
 
+## Leitlinien (Marcel 13.11., Markt 2025/26)
+
+- **Mechanik, die das Lernen trägt** – nicht nur Punkte/Abzeichen: Wiederholen zum richtigen Zeitpunkt, Strategien als Spielzüge.
+- **Kurze Einheiten (3–5 Min.) und Fortschritt über eine Geschichte** statt über Listen.
+- **Lernen trifft Spielgenres** (Roguelike/Deckbuilder) – für Schulmathe auf dem Handy noch frei.
+- **Gemütlich statt Druck:** keine Bestrafung für Pausen, ruhige Modi.
+- **Design 2026:** kräftige Formen, Bewegung beim Antippen, Vibration, dunkler Modus, große Knöpfe, wenig Text, eigene gezeichnete Illustrationen (keine Stockbilder).
+- **Android-Stärken** (Widgets, Sperrbildschirm, Wear OS, Farben aus dem Hintergrundbild) gehen nur als native App → Store ab 2027; im Browser vorbereiten, was geht.
+- Konkurrenz in DE: Anton, Simpleclub, Knowunity – keins ist ein richtiges Spiel.
+
 ## Plan
 
 | Tag | Datum | Thema | Inhalt |
 |---|---|---|---|
-| 1 | Sa 14.11. | **Neues Thema „Uhr & Zeit“** | Zeitspannen („Von 7:45 bis 9:10?“), Uhrzeit + Minuten, Stunden ↔ Minuten, Kalender (Tage/Wochen); 5 Stufen, Lösungsweg mit Zeitstrahl |
-| 2 | So 15.11. | **Trick des Tages** | Kurze Rechentrick-Lektionen (×11, ×5, ×9, Quadrate mit 5, Ergänzen auf 100 …) mit Mini-Übung, täglich wechselnd, Abzeichen „Trickkiste“ |
-| 3 | Mo 16.11. | **Zahlenmauern & Rechenpyramiden** | Neues Spiel: Lücken in Zahlenmauern füllen, 5 Stufen, passend zur Klassenstufe |
-| 4 | Di 17.11. | **Sterne-Shop** | Gesammelte Sterne gegen Profilbilder, Farbthemen und Konfetti-Effekte tauschen (nur im Gerät) |
-| 5 | Mi 18.11. | **Lernpfad „Missionen“** | Geführter Pfad je Klassenstufe mit 10 Stationen, Fortschrittskarte, Abschluss-Urkunde |
-| 6 | Do 19.11. | **Barrierefreiheit** | Schriftgröße, gut lesbare Schrift für Kinder mit Leseschwäche, hoher Kontrast, Tastaturbedienung, Bildschirmleser-Texte |
-| 7 | Fr 20.11. | **Zahlenstrahl-Hilfe** | Bildliche Erklärung im Lösungsweg für Plus/Minus/negative Zahlen/Runden |
-| 8 | Sa 21.11. | **Bruch-Bilder** | Kreis- und Balkendarstellung bei Brüchen im Lösungsweg und als Hilfe-Knopf |
-| 9 | So 22.11. | **Schätz-Blitz** | Neues Spiel: Ergebnis schätzen mit Toleranz-Ring, Punkte nach Nähe |
-| 10 | Mo 23.11. | **Geometrie im Kopf** | Neues Thema: Umfang, Fläche, Winkel, Würfelnetze (Zahlen), mit Skizzen |
-| 11 | Di 24.11. | **Wochenziele & Erinnerung** | Eigenes Wochenziel, Belohnung bei Erreichen, Kalender-Erinnerung als .ics-Datei |
-| 12 | Mi 25.11. | **Eltern-Bereich mit PIN** | Fortschritt je Kind, Übungszeit-Grenze, Wochenbericht, Einstellungen sperren |
-| 13 | Do 26.11. | **Fehler-Detektiv** | Typische Fehlermuster erkennen (Übertrag vergessen, Vorzeichen, Komma verrutscht) und gezielten Tipp geben |
-| 14 | Fr 27.11. | **Klassenzimmer-Quiz** | Präsentationsmodus für Beamer/Whiteboard: Aufgabe groß, Countdown, Lösung aufdecken, 2–4 Teams |
-| 15 | Sa 28.11. | **Winterdesign** | Schnee, Weihnachts-Farben und Klänge im Dezember (abschaltbar), passend zum Adventskalender |
-| 16 | So 29.11. | **Hör-Rechnen** | Modus: Aufgaben nur hören (Vorlesen), Antwort tippen – für Kopfrechnen ohne Bild |
-| 17 | Mo 30.11. | **Statistik-Seite** | Verlauf je Thema: Treffer, Tempo, Übungstage (eigene Diagramme, ohne Bibliothek) |
-| 18 | Di 01.12. | **Adventskalender-Start** | Start-Check am 1. Türchen, Feinschliff, Fehler aus den ersten Meldungen beheben |
-| 19 | Mi 02.12. | **Gleichungen mit Waage** | Animierte Waage im Lösungsweg und als Übungsmodus „Waage ausbalancieren“ |
-| 20 | Do 03.12. | **Einkaufsspiel** | Prozent & Geld im Alltag: Einkaufszettel, Rabatte, Wechselgeld |
-| 21 | Fr 04.12. | **Abschluss** | Ladezeit, Barrierefreiheit-Check, alle Sprachen prüfen, Rückblick + Liste offener Ideen für Marcel/Leitstand |
+| 1 | Sa 14.11. | **Merk-Training** | Verteilte Wiederholung (Leitner/Intervalle) für Einmaleins, Kernaufgaben, Brüche usw.: jede Aufgabe hat eine Merkstärke, „Heute wiederholen“ als 3-Minuten-Runde, Anzeige „X Aufgaben sitzen fest“ |
+| 2 | So 15.11. | **3-Minuten-Runden + Maskottchen „Blitz“** | Eigenes, gezeichnetes SVG-Maskottchen (Fuchs/Blitz) mit Stimmungen (freut sich, denkt nach, tröstet); Standard-Runde 3–5 Minuten; Texte kürzen, mehr Symbole |
+| 3 | Mo 16.11. | **Rechen-Reise (Kapitel 1–3)** | Story-Karte statt Liste: Etappen à 3–5 Min., kleine Geschichte je Kapitel, passend zur Klassenstufe |
+| 4 | Di 17.11. | **Rechen-Reise (Kapitel 4–6)** | Weitere Kapitel, Belohnungsbilder, Urkunde je Kapitel |
+| 5 | Mi 18.11. | **Rechengarten (gemütlich)** | Gelöste Aufgaben lassen Pflanzen wachsen; keine Serien-Strafe: „Tage diese Woche“ statt Tage in Folge, Pausen ohne Verlust |
+| 6 | Do 19.11. | **Zahlen-Dungeon 1** | Roguelike: Räume, Gegner = Aufgaben, Lebenspunkte, kurze Läufe (3–5 Min.) |
+| 7 | Fr 20.11. | **Zahlen-Dungeon 2** | Deckbuilding: Rechen-Karten = echte Strategien (Zehnerfreund, Verdoppeln, Halbieren, Kommaschieber …) |
+| 8 | Sa 21.11. | **Zahlen-Dungeon 3** | Bosse, Freischaltungen, Balance je Klassenstufe |
+| 9 | So 22.11. | **Design „Expressive“** | Kräftige Formen, Feder-Animationen beim Antippen, Vibration als Rückmeldung, größere Knöpfe, weniger Text überall |
+| 10 | Mo 23.11. | **Neues Thema „Uhr & Zeit“** | Zeitspannen, Uhrzeit + Minuten, Stunden ↔ Minuten, mit Zeitstrahl im Lösungsweg |
+| 11 | Di 24.11. | **Trick des Tages** | Kurze Trick-Lektionen mit Mini-Übung; Tricks werden zu Karten im Zahlen-Dungeon |
+| 12 | Mi 25.11. | **Zahlenmauern & Rechenpyramiden** | Neues Spiel, passend zur Klassenstufe |
+| 13 | Do 26.11. | **Bilder statt Worte** | Zahlenstrahl- und Bruch-Bilder (Kreis/Balken) im Lösungsweg |
+| 14 | Fr 27.11. | **Klassenzimmer-Quiz** | Beamer-/Whiteboard-Modus, 2–4 Teams, Countdown |
+| 15 | Sa 28.11. | **Winterdesign + Weihnachtskapitel** | Schnee/Farben im Dezember (abschaltbar), Weihnachtskapitel in der Rechen-Reise |
+| 16 | So 29.11. | **Barrierefreiheit** | Schriftgröße, gut lesbare Schrift, Kontrast, Tastatur, Bildschirmleser |
+| 17 | Mo 30.11. | **Eltern-Bereich + Statistik** | PIN, Fortschritt je Kind, Verlauf je Thema, Übungszeit-Grenze |
+| 18 | Di 01.12. | **Adventskalender-Start** | Start-Check, Feinschliff, erste Rückmeldungen |
+| 19 | Mi 02.12. | **Geometrie im Kopf** | Umfang, Fläche, Winkel mit eigenen Skizzen |
+| 20 | Do 03.12. | **Android-Vorbereitung 2027** | App-Verknüpfungen (Manifest „shortcuts“), Zahl am App-Symbol (Badging-API: „X zu wiederholen“), Store-Screenshots; Konzept für native App mit Widgets, Sperrbildschirm, Wear OS, Farben aus dem Hintergrundbild |
+| 21 | Fr 04.12. | **Abschluss** | Ladezeit, Barrierefreiheit-Check, alle Sprachen, Rückblick + offene Ideen für Marcel/Leitstand |
+
+**Ideen-Speicher (wenn Zeit bleibt):** Schätz-Blitz, Hör-Rechnen, Fehler-Detektiv (typische Fehlermuster), Gleichungs-Waage, Einkaufsspiel, Wochenziele mit Kalender-Erinnerung.
 
 ## Erledigt
 
