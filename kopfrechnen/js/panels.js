@@ -10,7 +10,7 @@ addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt
 const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 // Links zur Website mit Kennung, damit man in der Statistik sieht, dass Besucher aus der App kommen
-const siteLink = (url, place) => { try { const u = new URL(url); u.searchParams.set('utm_source', 'rechenblitz'); u.searchParams.set('utm_medium', 'app'); u.searchParams.set('utm_campaign', place); return u.toString(); } catch { return url; } };
+const siteLink = (url, place) => { if (!CONFIG.utm) return url; try { const u = new URL(url); u.searchParams.set('utm_source', 'rechenblitz'); u.searchParams.set('utm_medium', 'app'); u.searchParams.set('utm_campaign', place); return u.toString(); } catch { return url; } };
 const mi = (go, icon, title, sub, extra = '') => `<button class="mi ${extra}" data-go="${go}"><div class="ico">${icon}</div><div><b>${title}</b><span>${sub}</span></div><span class="chev">›</span></button>`;
 const miLink = (href, icon, title, sub, extra = '') => `<a class="mi ${extra}" href="${esc(href)}" target="_blank" rel="noopener"><div class="ico">${icon}</div><div><b>${title}</b><span>${sub}</span></div><span class="chev">↗</span></a>`;
 const topicOptions = sel => Object.entries(TOPICS).map(([k, o]) => `<option value="${k}" ${k === sel ? 'selected' : ''}>${o.name}</option>`).join('');

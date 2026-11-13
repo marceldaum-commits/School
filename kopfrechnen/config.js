@@ -6,5 +6,7 @@
 window.RECHENBLITZ_CONFIG = {
   reportEndpoint: '/api/meldung',
   // Rück-Link „← Lernraum“ oben links und im Menü; leer = ausgeblendet
-  lernraumUrl: 'https://www.mathenachhilfe-online.com/lernraum/'
+  lernraumUrl: 'https://www.mathenachhilfe-online.com/lernraum/',
+  // true: Links zur Website bekommen ?utm_source=rechenblitz… (nur sinnvoll mit Besucherstatistik)
+  utm: false
 };
