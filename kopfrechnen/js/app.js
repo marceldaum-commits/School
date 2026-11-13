@@ -424,7 +424,7 @@ function fitExpr() {
   const desk = innerWidth >= 1000 && innerHeight >= 640;
   let size = story ? (desk ? 26 : innerHeight < 620 ? 16 : 19) : desk ? 84 : innerHeight < 620 ? 40 : innerHeight < 760 ? 48 : 56;
   el.style.fontSize = size + 'px';
-  while ((el.scrollWidth > box.clientWidth - 20 || box.scrollHeight > box.clientHeight + 1) && size > (story ? 12 : 26)) { size -= story ? 1 : 3; el.style.fontSize = size + 'px'; }
+  while ((el.scrollWidth > box.clientWidth - 20 || box.scrollHeight > box.clientHeight + 1) && size > (story ? 12 : 20)) { size -= story ? 1 : 2; el.style.fontSize = size + 'px'; }
 }
 
 function nextTask() {
