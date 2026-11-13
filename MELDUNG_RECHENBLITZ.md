@@ -4,6 +4,16 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 13.11.2026 (8) – Gutschein wird in der App beworben (3.1.2)
+
+- **Marcel 13.11.:** Gutschein auch in der App bewerben. Gültigkeit **15.01.2027** (bereits in (7)/`config.js`).
+- **Umgesetzt** – erscheint nur, wenn `adventVoucher.code` gesetzt ist (kein Versprechen ohne Code):
+  - Startseite: Adventskalender-Karte mit Hinweis „🎁 10 % Gutschein bei 24 Türchen“.
+  - Große Werbekarte: vom 15.11. bis 24.12. „Adventsaktion – 10 % auf jedes Stundenpaket“ statt der wechselnden Website-Texte, Knopf zum Kalender.
+  - Im Kalender oben ein Banner „Schaff alle 24 Türchen! … Noch X Türchen.“
+  - Flyer/Poster im Advent mit Zeile „Im Advent: Rechen-Adventskalender mit 10-%-Gutschein“.
+- **Bitte an den Leitstand:** Code möglichst **vor dem 15.11.** anlegen und eintragen – ab dann zeigt die App die Kalender-Karte (Vorankündigung). Gern auch auf der Website (Startseite/Lernraum) auf die Adventsaktion hinweisen; Direktlink in den Kalender: `https://rechenblitz.mathenachhilfe-online.com/?advent`.
+
 ## 13.11.2026 (7) – 10-%-Gutschein für alle 24 Türchen (3.1.1)
 
 - **Marcel 13.11. (Auswahlfenster):** statt Verlosung ein **10-%-Gutschein**, den bekommt, wer **alle 24 Türchen** schafft; gilt für **jedes Stundenpaket**.

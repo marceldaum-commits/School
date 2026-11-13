@@ -195,11 +195,12 @@ Object.assign(PANELS, {
     const raffle = CONFIG.adventRaffleUrl && done >= (CONFIG.adventRaffleMin || 12)
       ? `<a class="btn primary block" href="${esc(siteLink(CONFIG.adventRaffleUrl, 'advent-verlosung'))}" target="_blank" rel="noopener">🎁 Bei der Verlosung mitmachen ↗</a>` : CONFIG.adventRaffleUrl ? `<p class="small muted" style="margin:0">Ab ${CONFIG.adventRaffleMin || 12} geöffneten Türchen kannst du bei unserer Verlosung mitmachen.</p>` : '';
     return { title: 'Rechen-Adventskalender', html: `
+      ${voucher() && done < 24 ? `<div class="vbanner"><span class="v-pct">${voucher().percent || 10} %</span><div><b>Schaff alle 24 Türchen!</b><small>Dann gibt es einen ${voucher().percent || 10}-%-Gutschein ${esc(voucher().text || 'auf ein Stundenpaket')} von Nachhilfe – online${voucher().until ? ` (gültig bis ${fmtDay(voucher().until)})` : ''}. Noch ${24 - done} Türchen.</small></div></div>` : ''}
       ${phase === 'teaser' ? '<p class="note">Ab dem <b>1. Dezember</b> öffnet sich jeden Tag ein Türchen mit 5 Aufgaben und einem Rechen-Trick. Verpasste Türchen kannst du nachholen.</p>' : `<p class="small muted" style="margin:0 0 10px">Jeden Tag ein Türchen: 5 Aufgaben – für alle gleich – und ein Rechen-Trick. Verpasste Türchen kannst du nachholen. Geschafft: <b>${done}/24</b></p>`}
       ${adventPreview() && phase === 'on' && !(new Date().getMonth() === 11) ? '<p class="note">Vorschau-Modus (Testseite): alle Türchen sind offen.</p>' : ''}
       <div class="advent">${doors}</div>
       ${done >= 20 ? '<button class="btn block" id="advCert" style="margin-top:12px">🏅 Advents-Urkunde holen</button>' : `<p class="small muted" style="margin:10px 0">Ab 20 Türchen gibt es eine Advents-Urkunde.</p>`}
-      ${done >= 24 ? voucherHtml() : voucher() ? `<p class="note" style="margin-top:10px">🎁 Alle 24 Türchen geschafft? Dann gibt es einen <b>${voucher().percent || 10}-%-Gutschein</b> ${esc(voucher().text || 'auf ein Stundenpaket')}!</p>` : ''}
+      ${done >= 24 ? voucherHtml() : ''}
       ${raffle}`, init() {
         bindVoucher();
         $('sheetBody').querySelectorAll('[data-door]').forEach(b => b.onclick = () => showPanel('adventDoor', { d: +b.dataset.door }, true));
@@ -312,7 +313,7 @@ function flyerHtml(note, preview) {
     <div class="fl-eyebrow">Kostenlos · ohne Anmeldung</div>
     <h2>Kopfrechnen üben mit <em>Rechenblitz</em></h2>
     <p class="fl-lead">Vom Einmaleins bis zu Brüchen, Prozent und Gleichungen – mit Lösungsweg bei jedem Fehler.</p>
-    <div class="fl-body"><ul><li>17 Themen, 5 Stufen – passt sich automatisch an</li><li>Tageschallenge, Duell & Abzeichen</li><li>Handy, Tablet und PC – auch offline</li><li>Für Lehrkräfte: Aufträge & Arbeitsblätter</li></ul>
+    <div class="fl-body"><ul><li>17 Themen, 5 Stufen – passt sich automatisch an</li><li>Tageschallenge, Duell & Abzeichen</li><li>Handy, Tablet und PC – auch offline</li><li>Für Lehrkräfte: Aufträge & Arbeitsblätter</li>${voucher() && ['teaser', 'on'].includes(adventPhase()) ? `<li>Im Advent: Rechen-Adventskalender mit ${voucher().percent || 10}-%-Gutschein</li>` : ''}</ul>
     <div class="fl-qr">${qrSvg(url)}<span>${esc(short)}</span></div></div>
     ${note ? `<div class="fl-note">${esc(note)}</div>` : ''}
     <div class="fl-foot"><b>Nachhilfe – online</b> · Persönliche Online-Nachhilfe 1:1 · Kostenlose Probestunde: mathenachhilfe-online.com/probestunde</div></div>`;
@@ -326,8 +327,13 @@ function renderExtrasHome() {
     if (ph !== 'off') {
       const n = Object.keys(adventState().doors).length, today = new Date().getDate();
       const sub = ph === 'teaser' ? 'Ab 1. Dezember: jeden Tag ein Türchen mit Rechen-Rätseln' : ph === 'after' ? `Du hast ${n}/24 Türchen geschafft – noch bis 6. Januar nachholbar` : adventState().doors[today] ? `Heute geschafft! ${n}/24 Türchen` : `Türchen ${Math.min(24, today)} wartet auf dich · ${n}/24 geschafft`;
-      ac.innerHTML = `<div class="adv-ico">🎄</div><div class="ch-txt"><b>Rechen-Adventskalender</b><span>${sub}</span></div><button class="btn small primary" data-open="advent">${ph === 'teaser' ? 'Ansehen' : 'Öffnen'}</button>`;
+      const vtag = voucher() && n < 24 ? `<em class="vtag">🎁 ${voucher().percent || 10} % Gutschein bei 24 Türchen</em>` : '';
+      ac.innerHTML = `<div class="adv-ico">🎄</div><div class="ch-txt"><b>Rechen-Adventskalender</b><span>${sub}</span>${vtag}</div><button class="btn small primary" data-open="advent">${ph === 'teaser' ? 'Ansehen' : 'Öffnen'}</button>`;
     }
+  }
+  if (voucher() && ['teaser', 'on'].includes(ph) && $('promo')) {
+    const v = voucher();
+    $('promo').innerHTML = `<div class="pr-ico">🎁</div><div class="pr-txt"><span class="eyebrow">Adventsaktion</span><b>${v.percent || 10} % auf jedes Stundenpaket</b><p>Öffne alle 24 Türchen im Rechen-Adventskalender und hol dir deinen Gutschein für die Nachhilfe – online${v.until ? ` (gültig bis ${fmtDay(v.until)})` : ''}.</p></div><button class="btn primary small" data-open="advent">Zum Adventskalender</button>`;
   }
   const cc = $('classCard');
   if (cc) {
