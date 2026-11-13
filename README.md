@@ -24,7 +24,7 @@ Figuren: *Ultimate Animated Character Pack* von Quaternius (https://quaternius.c
 
 Web-App im Design von mathenachhilfe-online.com, für Handy, Tablet und PC (eigenes PC-Layout). Läuft im Browser und lässt sich als App installieren (PWA, offline nutzbar). Für Installation/Offline über einen Webserver ausliefern (z. B. als Unterordner der Website).
 
-**Aufbau:** `index.html` (Gerüst), `app.css` (Design), `js/engine.js` (Aufgaben-Generatoren mit Lösungswegen), `js/app.js` (Spiel, Profile, Statistik, Abzeichen, Duell), `js/panels.js` (Menü & Panels), `config.js` (Meldungs-Adresse `/api/meldung`), `LICENSE-fonts-OFL.txt`, `sw.js` (Offline).
+**Aufbau:** `index.html` (Gerüst), `app.css` (Design), `js/engine.js` (Aufgaben-Generatoren mit Lösungswegen), `js/app.js` (Spiel, Profile, Statistik, Abzeichen, Duell), `js/panels.js` (Menü & Panels), `js/extras.js` (Advent, Urkunde, Flyer, Klassen-Challenge), `js/vendor/qrcode.js` (MIT), `config.js` (Adressen & Schalter), `LICENSE-*.txt`, `sw.js` (Offline).
 
 - **17 Themen, je 5 Stufen, alles zufällig erzeugt:** Plus, Minus, Mal, Geteilt, Lücken · Brüche, Dezimalzahlen, Prozent, negative Zahlen, Potenzen & Wurzeln · Klammern/Punkt vor Strich, Runden & Überschlag, Einheiten, Teiler (Rest, Quersumme, ggT, kgV, Primfaktoren), Gleichungen · Textaufgaben · Alles gemischt
 - **Lösungsweg** bei jedem Fehler (Schritt für Schritt), auch im Ergebnis nachlesbar
@@ -34,7 +34,8 @@ Web-App im Design von mathenachhilfe-online.com, für Handy, Tablet und PC (eige
 - **Motivation:** Punkte, Sterne, Rekorde, XP & Ränge, 29 Abzeichen, Tagesziel, Tage-Serie, Sound (Web Audio), Vorlesen
 - **Profile** für mehrere Kinder auf einem Gerät · **Wochenbericht** für Eltern (teilen/drucken)
 - **Für Lehrkräfte:** Auftrag als Link verschicken (Thema, Stufe, Runden, Mindest-Treffer, Termin, gleiche Aufgaben für alle) – Schüler schicken einen Ergebnis-Link zurück; **Arbeitsblätter** mit Lösungsblatt drucken
-- **Website-Werbung:** Button „Zur Website“, wechselnde Werbekarte, Probestunden-Hinweise (Links mit `utm_source=rechenblitz`)
+- **Reichweite:** Rechen-Adventskalender (1.–24.12.), Urkunden zum Teilen/Drucken, Flyer & Poster mit QR-Code, „Freunde einladen“, Klassen-Challenge mit Wochen-Rangliste (Server nach `KLASSEN-API.md`, sonst ausgeblendet), Direktlinks `?thema=…&stufe=…` für Themenseiten (`THEMENSEITEN.md`)
+- **Website-Werbung:** Button „Zur Website“, wechselnde Werbekarte, Probestunden-Hinweise (optional mit `utm_source=rechenblitz`, Schalter `utm` in `config.js`); Probestunden-Hinweis höchstens einmal am Tag, passend zum Lernstand
 - **Schwebender Button unten rechts:** Fehler melden (mit Aufgabe), Idee, Einstellungen, Profile, Fortschritt, Lehrkräfte, Website
 - **Fehlermeldungen:** POST an `reportEndpoint` in `kopfrechnen/config.js` (Format: `MELDUNGEN-API.md` im Repo-Stamm, Endpunkt `/api/meldung` des Leitstands); ohne Endpunkt/offline Postausgang auf dem Gerät
 - Schriften (Inter, Source Serif 4, Caveat; SIL Open Font License) lokal eingebunden – kein Abruf bei Google

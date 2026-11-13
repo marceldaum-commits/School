@@ -500,3 +500,64 @@ select{font:inherit;color:inherit;width:100%;border:1px solid var(--border);back
 }
 .backlink{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:999px;background:var(--surface);border:1px solid var(--border);color:var(--head);font-weight:700;font-size:13.5px;text-decoration:none;white-space:nowrap}
 .backlink:hover{border-color:var(--orange)}
+
+/* ===================== 3.1: Advent, Urkunde, Flyer, Einladen, Klasse ===================== */
+.adv-ico{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#1f9d55,#167a42);display:grid;place-items:center;font-size:22px;flex:none}
+.advent-card{border:2px solid #1f9d55}
+.advent{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (min-width:480px){.advent{grid-template-columns:repeat(6,1fr)}}
+.door{aspect-ratio:1;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-weight:800;color:#fff;background:linear-gradient(145deg,#173a74,#101b43);border:2px solid #101b43;position:relative}
+.door b{font-size:18px}.door span{font-size:22px}.door small{font-size:10px;color:#ffd27a;letter-spacing:1px}
+.door.open{background:linear-gradient(145deg,#ff8a3d,#df5e0c);border-color:#df5e0c;animation:wiggle 2.4s ease-in-out infinite}
+.door.done{background:var(--surface);color:var(--head);border-color:#1f9d55}
+.door.done small{color:var(--orange)}
+.door.locked{opacity:.55}
+@keyframes wiggle{0%,90%,100%{transform:rotate(0)}93%{transform:rotate(-4deg)}96%{transform:rotate(4deg)}}
+.note{background:rgba(255,116,24,.1);border-radius:12px;padding:10px 12px;font-size:14px;margin:0 0 10px}
+.doorview{text-align:center}.doorview .dicon{font-size:64px;line-height:1.1}.doorview .fact{font-size:17px;font-weight:600;color:var(--head);margin:8px 0 14px}
+.certprev{margin:12px 0;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#fff}
+.certprev img{display:block;width:100%;height:auto}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.row3 .btn{padding:0 8px}
+.sharerow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.sharerow .btn{flex:1 1 140px}
+.qrbox{display:flex;flex-direction:column;align-items:center;gap:6px;margin:6px 0 14px}
+.qrbox .qr{width:200px;height:200px;border-radius:12px;border:1px solid var(--border)}
+.parents{margin-top:14px;box-shadow:none}
+.bigcode{font-size:44px;font-weight:800;letter-spacing:6px;color:var(--head);margin:4px 0 8px}
+.ranking{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.ranking li{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--border)}
+.ranking li.me{border-color:var(--orange);background:rgba(255,116,24,.08)}
+.ranking .rk{width:28px;text-align:center;font-weight:800}.ranking b{flex:1;color:var(--head)}.ranking .pt{font-weight:800;color:var(--orange-d)}
+button.badge{font:inherit;cursor:pointer}
+/* Flyer (Vorschau im Panel und Druck) */
+.flyer{background:#fff;color:#101b43;border-radius:16px;border:1px solid #dbe4ef;padding:22px;font-family:var(--sans)}
+.flyerprev{margin-top:12px;max-height:360px;overflow:auto;border-radius:16px}
+.flyer .fl-head{display:flex;align-items:center;gap:10px}.flyer .fl-head img{width:40px;height:40px}.flyer .fl-head b{display:block;font-size:20px}.flyer .fl-head small{color:#61718a;font-size:12px}
+.flyer .fl-eyebrow{margin-top:16px;color:#df5e0c;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:12px}
+.flyer h2{font-size:30px;line-height:1.05;margin:6px 0 8px;font-weight:800;letter-spacing:-.03em;color:#101b43}
+.flyer h2 em{font-family:var(--serif);font-weight:500;color:#df5e0c}
+.flyer .fl-lead{color:#475569;margin:0 0 12px;font-size:15px}
+.flyer .fl-body{display:flex;gap:16px;align-items:center}
+.flyer ul{flex:1;margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:14px;font-weight:600}
+.flyer li::before{content:'✓ ';color:#1f9d55;font-weight:800}
+.flyer .fl-qr{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:700;color:#df5e0c}
+.flyer .fl-qr .qr{width:120px;height:120px}
+.flyer .fl-note{margin-top:12px;padding:8px 12px;border-radius:10px;background:#fff4ea;font-weight:700;text-align:center}
+.flyer .fl-foot{margin-top:14px;padding-top:10px;border-top:2px solid #101b43;font-size:12px;color:#475569}
+@media print{
+  #print.landscape{width:100%}
+  @page{margin:10mm}
+  .certprint{width:100%;height:auto;display:block}
+  #print.flyerprint .flyer{border:0;border-radius:0}
+  .flyer-a4 .flyer{padding:18mm 16mm;height:270mm;display:flex;flex-direction:column}
+  #print .flyer-a4 .flyer h2{font-size:46pt;margin:6mm 0 5mm}#print .flyer-a4 .flyer .fl-eyebrow{font-size:13pt;margin-top:14mm}#print .flyer-a4 .flyer .fl-lead{font-size:17pt;margin-bottom:10mm}#print .flyer-a4 .flyer ul{font-size:16pt;gap:14px}
+  .flyer-a4 .flyer .fl-qr .qr{width:62mm;height:62mm}.flyer-a4 .flyer .fl-qr{font-size:12pt}
+  .flyer-a4 .flyer .fl-head img{width:18mm;height:18mm}.flyer-a4 .flyer .fl-head b{font-size:22pt}
+  .flyer-a4 .flyer .fl-body{flex:1}.flyer-a4 .flyer .fl-foot{font-size:11pt}.flyer-a4 .flyer .fl-note{font-size:14pt}
+  .flyer-a6{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;width:190mm;height:277mm}
+  .flyer-a6 .flyer{padding:6mm;border:1px dashed #bbb;border-radius:0;display:flex;flex-direction:column;overflow:hidden}
+  #print .flyer-a6 .flyer h2{font-size:17pt;margin:2mm 0}#print .flyer-a6 .flyer .fl-lead{font-size:9pt}#print .flyer-a6 .flyer ul{font-size:8pt;gap:2px}#print .flyer-a6 .flyer .fl-body{gap:3mm}
+  .flyer-a6 .flyer .fl-qr .qr{width:24mm;height:24mm}.flyer-a6 .flyer .fl-qr{font-size:6.5pt}.flyer-a6 .flyer .fl-foot{font-size:7pt;margin-top:auto}
+  .flyer-a6 .flyer .fl-body{flex:1}
+}

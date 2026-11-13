@@ -31,6 +31,9 @@ const PANELS = {
       ${miLink(siteLink(CONFIG.websiteUrl, 'menu'), '🌐', 'Zu Nachhilfe – online', 'Online-Nachhilfe 1:1 in Mathe & mehr', 'accent')}
       ${miLink(siteLink(CONFIG.trialUrl, 'menu-probestunde'), '🎓', 'Kostenlose Probestunde', 'Unverbindlich ausprobieren')}
       ${CONFIG.lernraumUrl ? `<a class="mi" href="${esc(siteLink(CONFIG.lernraumUrl, 'menu-lernraum'))}"><div class="ico">📚</div><div><b>Zurück zum Lernraum</b><span>Weitere Lernspiele und Übungen</span></div><span class="chev">←</span></a>` : ''}
+      ${mi('invite', '💌', 'Freunde einladen', 'Rechenblitz ist kostenlos – teile es!')}
+      ${adventPhase() !== 'off' ? mi('advent', '🎄', 'Rechen-Adventskalender', 'Jeden Tag ein Türchen') : ''}
+      ${CONFIG.classApi ? mi('klasse', '🏫', 'Klassen-Challenge', S.klasse ? 'Rangliste deiner Klasse' : 'Mit Klassencode beitreten') : ''}
       <div class="mlabel">Mein Fortschritt</div>
       ${mi('badges', '🏅', 'Abzeichen', `${Object.keys(S.badges).length} von ${BADGES.length} gesammelt`)}
       ${mi('facts', '✖️', 'Einmaleins-Übersicht', 'Welche Reihen sitzen – und welche noch nicht')}
@@ -94,7 +97,7 @@ const PANELS = {
   /* ---------- Abzeichen ---------- */
   badges() {
     const n = Object.keys(S.badges).length;
-    return { title: `Abzeichen ${n}/${BADGES.length}`, html: `<div class="badgegrid">${BADGES.map(b => { const d = S.badges[b.id]; return `<div class="badge ${d ? 'on' : ''}" title="${esc(b.desc)}"><span>${b.icon}</span><b>${esc(b.name)}</b><small>${d ? fmtDay(d) : esc(b.desc)}</small></div>`; }).join('')}</div>` };
+    return { title: `Abzeichen ${n}/${BADGES.length}`, html: `${n ? '<p class="small muted" style="margin:0 0 10px">Tippe auf ein Abzeichen, um eine Urkunde zu bekommen.</p>' : ''}<div class="badgegrid">${BADGES.map(b => { const d = S.badges[b.id]; return `<${d ? `button data-cert="${b.id}"` : 'div'} class="badge ${d ? 'on' : ''}" title="${esc(b.desc)}"><span>${b.icon}</span><b>${esc(b.name)}</b><small>${d ? fmtDay(d) + ' · Urkunde' : esc(b.desc)}</small></${d ? 'button' : 'div'}>`; }).join('')}</div>` };
   },
 
   /* ---------- Einmaleins-Übersicht ---------- */
@@ -139,6 +142,8 @@ const PANELS = {
       ${mi('assignCreate', '📝', 'Auftrag erstellen', 'Übung festlegen und als Link verschicken', 'accent')}
       ${mi('resultView', '📥', 'Ergebnis ansehen', 'Link oder Code eines Schülers öffnen')}
       ${mi('worksheet', '🖨️', 'Arbeitsblatt drucken', 'Zufällige Aufgaben mit Lösungsblatt')}
+      ${mi('flyer', '📣', 'Flyer & Poster', 'Mit QR-Code zum Aushängen und Verteilen')}
+      ${CONFIG.classApi ? mi('classCreate', '🏫', 'Klassen-Challenge anlegen', 'Eine Woche Wettrechnen mit Rangliste') : ''}
       ${mi('facts', '✖️', 'Einmaleins-Übersicht', 'Stand dieses Geräts')}</div>` };
   },
   assignCreate() {
@@ -446,6 +451,6 @@ function init() {
   $('verText').textContent = 'Version ' + APP_VERSION;
   if (CONFIG.lernraumUrl) { $('btnLernraum').href = siteLink(CONFIG.lernraumUrl, 'lernraum'); $('btnLernraum').hidden = false; $('topbarText').hidden = true; }
   $('btnProfile').onclick = () => openSheet('profiles');
-  renderPromo(); renderHome(); handleHash(); flushOutbox();
+  renderPromo(); renderHome(); handleHash(); handleParams(); flushOutbox(); submitClassPoints();
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
 }

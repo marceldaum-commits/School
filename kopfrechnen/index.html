@@ -48,10 +48,12 @@
       <div class="stat"><b id="sToday">0/50</b><span>🎯 Tagesziel</span></div>
       <div class="stat"><b id="sTotal">0</b><span>✔ gelöst</span></div>
     </div>
-    <div class="quick"><button data-open="badges" id="qBadges">🏅 Abzeichen</button><button data-open="facts">✖️ 1×1-Übersicht</button><button data-open="week">📊 Wochenbericht</button></div>
+    <div class="quick"><button data-open="badges" id="qBadges">🏅 Abzeichen</button><button data-open="facts">✖️ 1×1-Übersicht</button><button data-open="week">📊 Wochenbericht</button><button data-open="invite">💌 Einladen</button></div>
   </div>
 
+  <div class="card challenge advent-card" id="adventCard" hidden></div>
   <div class="card challenge" id="challengeCard"></div>
+  <div class="card challenge" id="classCard" hidden></div>
   <div class="card promo" id="promo"></div>
   </div>
   <div class="col-right">
@@ -129,6 +131,8 @@
 <script src="js/engine.js"></script>
 <script src="js/app.js"></script>
 <script src="js/panels.js"></script>
+<script src="js/vendor/qrcode.js"></script>
+<script src="js/extras.js"></script>
 <script>init();</script>
 </body>
 </html>

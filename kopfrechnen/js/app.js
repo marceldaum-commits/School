@@ -3,7 +3,7 @@
    Rechenblitz – App: Speicher & Profile, Sound, Statistik, Abzeichen,
    Startseite, Spielmodi, Ergebnis, Duell, Tageschallenge, Einstufung
    ===================================================================== */
-const APP_VERSION = '3.0.3';
+const APP_VERSION = '3.1.0';
 const CONFIG = Object.assign({
   reportEndpoint: '',                                   // URL, die Meldungen per POST (JSON) annimmt – siehe MELDUNGEN-API.md
   fallbackMail: 'website@mathenachhilfe-online.com',    // nur falls kein Endpunkt eingerichtet ist
@@ -13,7 +13,11 @@ const CONFIG = Object.assign({
   privacyUrl: 'https://www.mathenachhilfe-online.com/datenschutz/#rechenblitz',
   appUrl: '',
   lernraumUrl: '',
-  utm: false,                                           // true = Website-Links mit utm_source=rechenblitz (nur sinnvoll mit Besucherstatistik)                                      // Rück-Link „← Lernraum“; leer = ausgeblendet                                           // öffentliche Adresse der App (für geteilte Links); leer = aktuelle Adresse
+  utm: false,
+  publicUrl: '',                                        // Adresse für QR-Codes, Flyer, Urkunden, Einladungen
+  referralUrl: 'https://www.mathenachhilfe-online.com/freunde-werben/',
+  classApi: '',                                         // Server für die Klassen-Challenge (z. B. '/api'); leer = ausgeblendet
+  advent: true, adventPreview: 'auto', adventRaffleUrl: '', adventRaffleMin: 12,                                           // true = Website-Links mit utm_source=rechenblitz (nur sinnvoll mit Besucherstatistik)                                      // Rück-Link „← Lernraum“; leer = ausgeblendet                                           // öffentliche Adresse der App (für geteilte Links); leer = aktuelle Adresse
 }, window.RECHENBLITZ_CONFIG || {});
 
 const $ = id => document.getElementById(id);
@@ -30,7 +34,7 @@ const EMOJIS = ['🦊', '🐼', '🦁', '🐯', '🐸', '🐙', '🦄', '🐧', 
 const PROFILE_DEFAULT = () => ({
   xp: 0, total: 0, best: {}, box: {}, days: { last: '', streak: 0 }, today: { date: '', solved: 0 },
   settings: { sound: true, speech: false, auto: true, theme: 'auto', klasse: 0 }, sel: { op: 'mul', lvl: 1 },
-  autoLvl: {}, facts: {}, stats: {}, hist: {}, badges: {}, star3: {}, played: {}, challenge: {}, assign: null, test: null, zenCount: 0,
+  autoLvl: {}, facts: {}, stats: {}, hist: {}, badges: {}, star3: {}, played: {}, challenge: {}, assign: null, test: null, zenCount: 0, advent: null, klasse: null, klassePending: [], promoDay: '',
 });
 let ROOT, S;
 function loadRoot() {
@@ -191,6 +195,9 @@ const BADGES = [
   ['teacher', '📝', 'Auftrag erledigt', 'Einen Auftrag der Lehrkraft erfüllt'],
   ['night', '🦉', 'Nachteule', 'Nach 20 Uhr geübt'],
   ['early', '🐦', 'Frühaufsteher', 'Vor 7:30 Uhr geübt'],
+  ['advent', '🎄', 'Adventsrechner', 'Ein Türchen im Adventskalender geöffnet'],
+  ['advent24', '🌟', 'Weihnachtsprofi', 'Alle 24 Türchen geschafft'],
+  ['klasse', '🏫', 'Teamplayer', 'Einer Klassen-Challenge beigetreten'],
 ].map(([id, icon, name, desc]) => ({ id, icon, name, desc }));
 let newBadges = [];
 function award(id) { if (!S.badges[id]) { S.badges[id] = todayStr(); newBadges.push(id); } }
@@ -260,6 +267,7 @@ function renderHome() {
   $('btnFehler').disabled = n === 0;
   $('fehlerText').textContent = n ? `${n} Aufgabe${n > 1 ? 'n' : ''} zum Wiederholen` : 'Leer – super gemacht!';
   $('testText').textContent = S.test ? `Zuletzt: Klasse ${S.test.k}, ${fmtDay(S.test.date)} – nochmal testen` : 'In 5 Minuten herausfinden, welche Stufen passen';
+  if (typeof renderExtrasHome === 'function') renderExtrasHome();
 }
 let homeShowAll = false;
 $('topics').addEventListener('click', e => {
@@ -357,6 +365,7 @@ const MODE_CFG = {
   challenge: { title: 'Tageschallenge', count: 10, points: true },
   test: { title: 'Einstufungstest', quiet: true },
   row: { title: 'Reihe üben', count: 20, steps: true, points: true },
+  advent: { title: 'Adventskalender', count: 5, steps: true, points: true },
 };
 let G = null, timerRaf = 0, lastAnswered = null;
 
@@ -375,7 +384,7 @@ function startGame(mode, opts = {}) {
   const lvl = opts.lvl ?? currentLevel(op);
   G = { mode, cfg, op, lvl, adapt, win: [], idx: 0, correct: 0, wrong: 0, streak: 0, bestStreak: 0, score: 0, input: '', task: null, locked: true,
     mistakes: [], results: [], times: [], recent: [], queue: opts.queue || null, gen: opts.gen || null, title: opts.title, assign: !!opts.assign,
-    testPlan: opts.testPlan, klasse: opts.klasse, endAt: 0, lastTick: 99, over: false, paused: false, waiting: false, started: Date.now() };
+    testPlan: opts.testPlan, klasse: opts.klasse, door: opts.door, endAt: 0, lastTick: 99, over: false, paused: false, waiting: false, started: Date.now() };
   if (mode === 'fehler') G.queue = shuffle(Object.values(S.box)).slice(0, 15).map(x => ({ ...x }));
   G.total = G.queue ? (cfg.timed ? Infinity : G.queue.length) : cfg.timed ? Infinity : cfg.count;
   $('game').classList.toggle('calm', !!(cfg.calm || cfg.quiet));
@@ -427,7 +436,7 @@ function nextTask() {
   $('unit').textContent = t.unit || '';
   $('pre').textContent = t.pre || '';
   if (G.op === 'mix' || G.queue) $('winTitle').textContent = `${G.mode === 'training' || G.mode === 'blitz' ? '' : G.cfg.title + ' · '}${TOPICS[t.topic].name}`;
-  $('winTag').textContent = G.mode === 'challenge' || G.mode === 'test' ? `Aufgabe ${G.idx + 1}/${G.total}` : `Stufe ${t.lvl + 1}${G.adapt ? ' · Auto' : ''}`;
+  $('winTag').textContent = ['challenge', 'test', 'advent'].includes(G.mode) ? `Aufgabe ${G.idx + 1}/${G.total}` : `Stufe ${t.lvl + 1}${G.adapt ? ' · Auto' : ''}`;
   $('feedback').textContent = ''; $('feedback').className = 'feedback';
   renderAnswer(); updateHud(); fitExpr();
   speak(t.story ? t.e[0].v : taskSpeech(t));
@@ -622,6 +631,7 @@ function finish() {
     if (done >= a.r) award('teacher');
     extra += `<div class="card assign-note">📝 Auftrag: <b>${done}/${a.r}</b> Runden geschafft${ok ? '' : ` – diese Runde zählt nicht (mind. ${a.min} % nötig)`}${done >= a.r ? '<br><button class="btn primary block" id="rSendAssign" style="margin-top:10px">Ergebnis an Lehrkraft senden</button>' : ''}</div>`;
   }
+  extra += extrasAfterGame(acc);
   checkGlobalBadges();
   save();
   renderResult({ stars, acc, xp, lvBefore, newBest, goalBefore, extra, badges: announceBadges() });
@@ -644,13 +654,15 @@ function renderResult(r) {
     ${r.badges.length ? `<div class="card newbadges">${r.badges.map(id => { const b = BADGES.find(x => x.id === id); return `<div class="nb"><span>${b.icon}</span><div><b>${esc(b.name)}</b><small>${esc(b.desc)}</small></div></div>`; }).join('')}</div>` : ''}
     ${G.mistakes.length && G.mode !== 'test' ? `<div class="card mistakes"><b>Das üben wir nochmal:</b><ul>${G.mistakes.slice(0, 10).map((m, i) => `<li><details><summary><span class="m">${esc(m.task.replace(/ [=≈] \?$/, ''))} = <b>${esc(m.expected)}</b> <span class="muted">(du: <s>${esc(m.given)}</s>)</span></span></summary><ol class="steps">${(m._task.w || []).map(s => `<li>${esc(s)}</li>`).join('')}</ol><button class="linkbtn" data-i="${i}">Glaubst du, die Lösung ist falsch? Melden</button></details></li>`).join('')}</ul></div>` : ''}
     <div class="muted small">${xpText}</div>
-    <a class="promo-line" href="${esc(siteLink(CONFIG.trialUrl, 'ergebnis'))}" target="_blank" rel="noopener">🎓 <span>Mehr Hilfe gewünscht? <b>Kostenlose Probestunde bei Nachhilfe – online</b></span> ↗</a>
+    ${resultExtrasHtml(r)}
+    ${resultPromo()}
     <div class="btns"><button class="btn" id="btnMenu">Menü</button><button class="btn primary" id="btnAgain">${G.mode === 'test' ? 'Weiter üben' : 'Nochmal'}</button></div>`;
   show('result');
   $('btnMenu').onclick = () => { Sound.click(); goHome(); };
   $('btnAgain').onclick = () => {
     if (G.mode === 'test') return goHome();
     if (G.mode === 'fehler' && !Object.keys(S.box).length) return goHome();
+    if (G.mode === 'advent') return startAdventDoor(G.door);
     if (G.mode === 'challenge') return startGame('challenge', { queue: challengeTasks(), op: 'mix', lvl: 0 });
     if (G.assign && S.assign) return S.assign.runs.filter(x => x.ok).length >= S.assign.r ? goHome() : startAssignment();
     if (G.gen) return startGame(G.mode, { gen: G.gen, op: G.op, lvl: G.lvl, title: G.title });
@@ -658,6 +670,7 @@ function renderResult(r) {
   };
   $('rShare') && ($('rShare').onclick = shareChallenge);
   $('rSendAssign') && ($('rSendAssign').onclick = shareAssignResult);
+  bindResultExtras(r);
   $('result').querySelectorAll('.mistakes .linkbtn').forEach(b => b.onclick = () => openSheet('report', { type: 'aufgabe', ctx: G.mistakes[+b.dataset.i] }));
   $('result').querySelectorAll('[data-go]').forEach(b => b.onclick = () => openSheet(b.dataset.go));
   if (r.stars != null) {
