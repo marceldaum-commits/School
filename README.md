@@ -22,13 +22,19 @@ Figuren: *Ultimate Animated Character Pack* von Quaternius (https://quaternius.c
 
 # Rechenblitz – Kopfrechnen üben (`kopfrechnen/`)
 
-Web-App im Design von mathenachhilfe-online.com. Läuft im Browser und lässt sich als App installieren (PWA, offline nutzbar).
-Für Installation/Offline über einen Webserver ausliefern (z. B. als Unterordner der Website); direkt als Datei geöffnet funktioniert das Üben ebenfalls.
+Web-App im Design von mathenachhilfe-online.com, für Handy, Tablet und PC (eigenes PC-Layout). Läuft im Browser und lässt sich als App installieren (PWA, offline nutzbar). Für Installation/Offline über einen Webserver ausliefern (z. B. als Unterordner der Website).
 
-- **Themen (je 5 Stufen, alle Aufgaben zufällig erzeugt):** Plus, Minus, Mal, Geteilt, Brüche, Dezimalzahlen, Prozent, negative Zahlen, Potenzen & Wurzeln, Mix aus allem
-- **Eingabe:** Ziffernfeld mit Bruchstrich, Komma und Vorzeichen (oder Tastatur: Ziffern, `/`, `,`, `-`, ⌫, Enter). Ungekürzte, aber richtige Brüche → Hinweis „kürze noch“ statt Fehler
-- **Modi:** Training (20 Aufgaben), Blitzrunde (60 s), Fehlerkiste (falsche Aufgaben kommen wieder, bis sie zweimal richtig sind)
-- **Motivation:** Punkte mit Serienbonus, Sterne, Rekorde, XP & Ränge, Tagesziel, Tage-Serie, Konfetti, Sound (Web Audio), optional Vorlesen
-- **Schwebender Button unten rechts:** Fehler melden (mit angehängter Aufgabe), Idee/Feedback, Einstellungen (Ton, Vorlesen, automatisch prüfen, Hell/Dunkel, Fortschritt zurücksetzen), App installieren, Probestunde
-- **Fehlermeldungen:** werden per POST an `reportEndpoint` in `kopfrechnen/config.js` geschickt (Format: `kopfrechnen/MELDUNGEN-API.md`). Ohne Endpunkt oder offline bleiben sie im Postausgang auf dem Gerät und werden später übertragen.
-- Schriften (Inter, Source Serif 4, Caveat; SIL Open Font License) sind lokal eingebunden – kein Abruf bei Google.
+**Aufbau:** `index.html` (Gerüst), `app.css` (Design), `js/engine.js` (Aufgaben-Generatoren mit Lösungswegen), `js/app.js` (Spiel, Profile, Statistik, Abzeichen, Duell), `js/panels.js` (Menü & Panels), `config.js` (Meldungs-Adresse), `sw.js` (Offline).
+
+- **17 Themen, je 5 Stufen, alles zufällig erzeugt:** Plus, Minus, Mal, Geteilt, Lücken · Brüche, Dezimalzahlen, Prozent, negative Zahlen, Potenzen & Wurzeln · Klammern/Punkt vor Strich, Runden & Überschlag, Einheiten, Teiler (Rest, Quersumme, ggT, kgV, Primfaktoren), Gleichungen · Textaufgaben · Alles gemischt
+- **Lösungsweg** bei jedem Fehler (Schritt für Schritt), auch im Ergebnis nachlesbar
+- **Stufe „Auto“:** passt sich beim Üben an; **Einstufungstest** je Klassenstufe stellt die Stufen ein; **Klassenmodus** zeigt nur passende Themen
+- **Modi:** Training, Blitzrunde, Ruhig üben (ohne Zeit/Punkte), Duell zu zweit an einem Gerät, Fehlerkiste, Tageschallenge (für alle gleich, teilbar)
+- **Einmaleins-Übersicht** (sichere/unsichere Aufgaben, Reihen gezielt üben; unsichere kommen öfter dran)
+- **Motivation:** Punkte, Sterne, Rekorde, XP & Ränge, 29 Abzeichen, Tagesziel, Tage-Serie, Sound (Web Audio), Vorlesen
+- **Profile** für mehrere Kinder auf einem Gerät · **Wochenbericht** für Eltern (teilen/drucken)
+- **Für Lehrkräfte:** Auftrag als Link verschicken (Thema, Stufe, Runden, Mindest-Treffer, Termin, gleiche Aufgaben für alle) – Schüler schicken einen Ergebnis-Link zurück; **Arbeitsblätter** mit Lösungsblatt drucken
+- **Website-Werbung:** Button „Zur Website“, wechselnde Werbekarte, Probestunden-Hinweise (Links mit `utm_source=rechenblitz`)
+- **Schwebender Button unten rechts:** Fehler melden (mit Aufgabe), Idee, Einstellungen, Profile, Fortschritt, Lehrkräfte, Website
+- **Fehlermeldungen:** POST an `reportEndpoint` in `kopfrechnen/config.js` (Format: `kopfrechnen/MELDUNGEN-API.md`); ohne Endpunkt/offline Postausgang auf dem Gerät
+- Schriften (Inter, Source Serif 4, Caveat; SIL Open Font License) lokal eingebunden – kein Abruf bei Google

@@ -1,6 +1,6 @@
 // Rechenblitz Service Worker: App läuft nach dem ersten Besuch auch offline.
-const CACHE = 'rechenblitz-2.0.0';
-const FILES = ['./', 'index.html', 'config.js', 'manifest.webmanifest', 'icons/logo.svg', 'icons/icon-192.png', 'icons/icon-512.png',
+const CACHE = 'rechenblitz-3.0.0';
+const FILES = ['./', 'index.html', 'app.css', 'config.js', 'js/engine.js', 'js/app.js', 'js/panels.js', 'manifest.webmanifest', 'icons/logo.svg', 'icons/icon-192.png', 'icons/icon-512.png',
   'icons/apple-touch-icon.png', 'fonts/Inter.woff2', 'fonts/SourceSerif4-italic.woff2', 'fonts/Caveat.woff2'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => {
@@ -9,7 +9,7 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   const req = e.request, url = new URL(req.url);
   if (req.method !== 'GET' || url.origin !== location.origin) return;   // Meldungen (POST) und fremde Adressen nie cachen
-  const fresh = req.mode === 'navigate' || url.pathname.endsWith('config.js');
+  const fresh = req.mode === 'navigate' || /\.(js|css)$/.test(url.pathname);
   if (fresh) {   // Seite & Konfiguration: erst Netz, sonst Cache
     e.respondWith(fetch(req).then(r => { const c = r.clone(); caches.open(CACHE).then(x => x.put(req, c)); return r; }).catch(() => caches.match(req).then(r => r || caches.match('index.html'))));
   } else {

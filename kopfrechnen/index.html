@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#101b43">
-<meta name="description" content="Rechenblitz von Nachhilfe – online: Kopfrechnen üben mit zufälligen Aufgaben – Einmaleins, Brüche, Dezimalzahlen, Prozent und mehr.">
+<meta name="description" content="Rechenblitz von Nachhilfe – online: Kopfrechnen üben mit zufälligen Aufgaben – Einmaleins, Brüche, Dezimalzahlen, Prozent, Gleichungen, Textaufgaben und mehr.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Rechenblitz">
@@ -12,246 +12,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<style>
-/* Schriften lokal eingebunden (kein Abruf bei Google) */
-@font-face{font-family:'Inter';font-style:normal;font-weight:400 800;font-display:swap;src:url(fonts/Inter.woff2) format('woff2')}
-@font-face{font-family:'Source Serif 4';font-style:italic;font-weight:500 600;font-display:swap;src:url(fonts/SourceSerif4-italic.woff2) format('woff2')}
-@font-face{font-family:'Caveat';font-style:normal;font-weight:500 700;font-display:swap;src:url(fonts/Caveat.woff2) format('woff2')}
-
-/* Design-Tokens nach mathenachhilfe-online.com */
-:root{
-  --navy:#101b43; --blue:#173a74; --orange:#ff7418; --orange-d:#df5e0c;
-  --bg:#f7f9fd; --surface:#fff; --text:#1f2b3e; --head:#101b43; --muted:#61718a; --border:#dbe4ef;
-  --paper:#fdfdfb; --grid:rgba(16,27,67,.055); --pen:#2447b5; --good:#1f9d55; --bad:#d93a2b;
-  --chip:#eef3fa;
-  --r-card:20px; --r-ctrl:12px;
-  --sh-card:0 14px 34px rgba(16,27,67,.075); --sh-act:0 9px 22px rgba(16,27,67,.12); --sh-orange:0 10px 24px rgba(255,116,24,.32);
-  --sans:'Inter',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
-  --serif:'Source Serif 4',Georgia,serif; --hand:'Caveat','Segoe Print','Bradley Hand',cursive;
-  color-scheme:light;
-}
-:root[data-theme=dark]{
-  --bg:#0a1029; --surface:#121a3f; --text:#e6ebf6; --head:#fff; --muted:#9aa7c3; --border:#253064;
-  --paper:#0f1738; --grid:rgba(255,255,255,.045); --pen:#9db7ff; --chip:#1a2452;
-  --sh-card:0 14px 34px rgba(0,0,0,.35); --sh-act:0 9px 22px rgba(0,0,0,.4); color-scheme:dark;
-}
-@media (prefers-color-scheme:dark){:root[data-theme=auto]{
-  --bg:#0a1029; --surface:#121a3f; --text:#e6ebf6; --head:#fff; --muted:#9aa7c3; --border:#253064;
-  --paper:#0f1738; --grid:rgba(255,255,255,.045); --pen:#9db7ff; --chip:#1a2452;
-  --sh-card:0 14px 34px rgba(0,0,0,.35); --sh-act:0 9px 22px rgba(0,0,0,.4); color-scheme:dark;
-}}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-[hidden]{display:none!important}
-html,body{margin:0;min-height:100%}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.45;overscroll-behavior:none;
-  background-image:radial-gradient(900px 420px at 100% -5%,rgba(255,116,24,.12),transparent 60%),
-    linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
-  background-size:auto,32px 32px,32px 32px;background-attachment:fixed}
-button,input,textarea{font:inherit;color:inherit}
-button{cursor:pointer;border:0;background:none;padding:0}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
-h1,h2,h3{color:var(--head);margin:0;letter-spacing:-.02em}
-.muted{color:var(--muted)}
-.app{max-width:560px;margin:0 auto;min-height:100dvh;padding:max(12px,env(safe-area-inset-top)) 16px calc(88px + env(safe-area-inset-bottom));display:flex;flex-direction:column}
-.screen{display:flex;flex-direction:column;gap:16px;flex:1}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:16px;box-shadow:var(--sh-card)}
-
-/* Kopfzeile */
-.brand{display:flex;align-items:center;gap:10px;padding:4px 0 6px}
-.brand img{width:40px;height:40px}
-:root[data-theme=dark] .brand img{filter:invert(1)}
-@media (prefers-color-scheme:dark){:root[data-theme=auto] .brand img{filter:invert(1)}}
-.brand b{display:block;font-size:20px;font-weight:700;color:var(--head);letter-spacing:-.02em;line-height:1.1}
-.brand small{font-size:11.5px;color:var(--muted);font-weight:500}
-.spacer{flex:1}
-.round{width:44px;height:44px;border-radius:50%;background:var(--surface);border:1px solid var(--border);display:grid;place-items:center;flex:none}
-.round svg{width:20px;height:20px}
-.round:active{transform:scale(.94)}
-
-/* Hero */
-.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange-d)}
-.hero h1{font-size:clamp(34px,9.5vw,46px);line-height:1.02;font-weight:800;letter-spacing:-.04em;margin-top:6px}
-.hero em{font-family:var(--serif);font-weight:500;font-style:italic;letter-spacing:-.02em;background:linear-gradient(90deg,#ff8a3d,var(--orange-d));-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.06em}
-.hero p{margin:10px 0 0;color:var(--muted);font-size:16.5px}
-
-/* Profil */
-.profile{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center}
-.lvbadge{grid-row:span 2;width:56px;height:56px;border-radius:16px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:22px;font-weight:800;position:relative}
-.lvbadge::after{content:'';position:absolute;right:-4px;top:-4px;width:14px;height:14px;border-radius:50%;background:var(--orange);border:3px solid var(--surface)}
-.rank{font-weight:700;color:var(--head)}
-.bar{height:10px;border-radius:99px;background:var(--chip);overflow:hidden}
-.bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff9a52,var(--orange));border-radius:99px;transition:width .5s}
-.xpline{font-size:12px;color:var(--muted);margin-top:4px}
-.stats{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
-.stat{background:var(--chip);border-radius:14px;padding:8px 6px;text-align:center}
-.stat b{display:block;font-size:20px;font-weight:800;color:var(--head);letter-spacing:-.02em}
-.stat span{font-size:12px;color:var(--muted)}
-
-.label{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:4px 2px -6px}
-.topics{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-.topic{border-radius:16px;background:var(--surface);border:1px solid var(--border);padding:10px 2px 8px;text-align:center;box-shadow:0 4px 12px rgba(16,27,67,.04);transition:transform .12s}
-.topic[data-op=mul] .g{font-size:40px;line-height:.72}
-.topic .g{display:block;font-size:24px;font-weight:800;color:var(--head);line-height:1.15;letter-spacing:-.03em}
-.topic small{display:block;font-size:11px;color:var(--muted);font-weight:600;margin-top:2px}
-.topic.sel{background:var(--navy);border-color:var(--navy);box-shadow:var(--sh-act);transform:translateY(-2px)}
-.topic.sel .g{color:var(--orange)}
-.topic.sel small{color:#c9d3ea}
-.levels{display:flex;gap:8px}
-.lvl{flex:1;height:44px;border-radius:999px;background:var(--surface);border:1px solid var(--border);font-weight:700;font-size:16px}
-.lvl.sel{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:var(--sh-orange)}
-.lvldesc{text-align:center;font-size:14px;color:var(--muted);margin-top:-6px}
-
-.modes{display:grid;gap:10px}
-.mode{display:flex;align-items:center;gap:14px;text-align:left;padding:14px 16px;border-radius:var(--r-card);background:var(--surface);border:1px solid var(--border);box-shadow:var(--sh-card);transition:transform .1s}
-.mode:active{transform:scale(.985)}
-.mode .ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px;flex:none;background:var(--chip)}
-.mode b{font-size:17px;font-weight:700;color:var(--head);display:block}
-.mode span{font-size:13.5px;color:var(--muted)}
-.mode .best{margin-left:auto;text-align:right;font-size:11.5px;color:var(--muted);flex:none}
-.mode .best b{font-size:17px}
-.mode.dark{background:var(--navy);border-color:var(--navy)}
-.mode.dark b{color:#fff}.mode.dark span,.mode.dark .best{color:#b8c3de}
-.mode.dark .ico{background:rgba(255,116,24,.18)}
-.mode:disabled{opacity:.55;cursor:default}
-.foot{text-align:center;font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:center;gap:4px 14px;margin-top:6px}
-.foot a{text-decoration:none}.foot a:hover{text-decoration:underline}
-.cta{display:flex;align-items:center;gap:12px;padding:14px 16px}
-.cta p{margin:0;font-size:14px;color:var(--muted)}
-.cta p b{color:var(--head)}
-
-/* Buttons */
-.btn{height:50px;padding:0 22px;border-radius:999px;font-weight:700;font-size:16px;background:var(--surface);border:1px solid var(--border);display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;white-space:nowrap}
-.btn.primary{background:var(--orange);border-color:var(--orange);color:#fff;box-shadow:var(--sh-orange)}
-.btn.dark{background:var(--navy);border-color:var(--navy);color:#fff}
-.btn.small{height:40px;padding:0 16px;font-size:14px}
-.btn.block{width:100%}
-.btn:active{transform:translateY(1px)}
-.btn:disabled{opacity:.6}
-
-/* Spiel: passt immer genau in den Bildschirm, damit der schwebende Button nichts verdeckt */
-body.ingame .app{height:100dvh;min-height:0;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
-#game{gap:10px;min-height:0}
-.gtop{display:flex;align-items:center;gap:12px}
-.gtop .bar{flex:1;height:12px}
-.gtop .bar>i{transition:width .25s linear}
-.pill{font-weight:800;font-size:15px;min-width:54px;text-align:right;color:var(--head)}
-.hud{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:15px;color:var(--head);padding:0 2px;margin-top:-4px}
-.streak{display:inline-flex;align-items:center;gap:4px;transition:transform .2s}
-.streak.hot{transform:scale(1.2);color:var(--orange-d)}
-.win{background:var(--navy);border-radius:22px;padding:0 8px 8px;box-shadow:var(--sh-act);flex:1 1 0;display:flex;flex-direction:column;min-height:0}
-.win-bar{display:flex;align-items:center;gap:6px;height:38px;padding:0 6px;color:#c9d3ea;font-size:13px;font-weight:600}
-.win-bar i{width:10px;height:10px;border-radius:50%;background:#ff5f57}.win-bar i:nth-child(2){background:#febc2e}.win-bar i:nth-child(3){background:#28c840;margin-right:6px}
-.win-bar .tag{margin-left:auto;background:rgba(255,116,24,.18);color:#ffb27d;border-radius:8px;padding:2px 8px;font-size:12px}
-.paper{flex:1;border-radius:14px;background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:22px 22px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:12px 12px 36px;position:relative;overflow:hidden;min-height:0}
-.expr{font-weight:800;color:var(--head);font-size:56px;letter-spacing:-.03em;white-space:nowrap;line-height:1.1;max-width:100%;display:flex;align-items:center;justify-content:center;flex-wrap:nowrap}
-.expr .o{color:var(--orange);margin:0 .14em;font-weight:700}
-.expr .eq{color:var(--muted);margin-left:.14em;font-weight:600}
-.expr .tx{font-weight:600;font-size:.6em;color:var(--muted);margin:0 .25em;letter-spacing:0}
-.expr sup{font-size:.55em;margin-left:.02em;position:relative;top:-.15em}
-.frac{display:inline-flex;flex-direction:column;align-items:center;font-size:.68em;line-height:1.08;margin:0 .06em;vertical-align:middle}
-.frac>span:first-child{border-bottom:.075em solid currentColor;padding:0 .12em .02em}
-.frac>span:last-child{padding-top:.04em}
-.root{display:inline-flex;align-items:flex-start}.root .rad{border-top:.07em solid currentColor;padding:0 .04em;margin-top:.12em}
-.hint{font-size:14px;font-weight:600;color:var(--muted);text-align:center}
-.hint:empty{display:none}
-.ansrow{display:flex;align-items:center;gap:8px}
-.answer{min-width:150px;height:76px;padding:0 18px;border-radius:16px;border:2px dashed var(--border);background:color-mix(in srgb,var(--surface) 70%,transparent);display:grid;place-items:center;font-family:var(--hand);font-weight:700;font-size:60px;color:var(--pen);line-height:1;transition:background .15s,border-color .15s}
-.answer.typing{border-style:solid;border-color:var(--pen)}
-.answer.ok{background:var(--good);border:2px solid var(--good);color:#fff;animation:pop .3s}
-.answer.no{background:var(--bad);border:2px solid var(--bad);color:#fff;animation:shake .4s}
-.answer .caret{display:inline-block;width:3px;height:42px;border-radius:2px;background:var(--pen);animation:blink 1s steps(1) infinite}
-.unit{font-weight:800;font-size:32px;color:var(--head)}
-.feedback{position:absolute;left:8px;right:8px;bottom:8px;min-height:24px;font-weight:700;font-size:17px;text-align:center;line-height:1.2}
-.feedback.no{color:var(--bad)}.feedback.ok{color:var(--good)}.feedback.info{color:var(--orange-d)}
-.feedback .fx{font-family:var(--hand);font-size:26px;color:var(--pen);font-weight:700}
-.float{position:absolute;top:22%;font-weight:800;font-size:24px;color:var(--good);pointer-events:none;animation:floatup .8s forwards}
-.pad{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.key{height:58px;border-radius:14px;background:var(--surface);border:1px solid var(--border);font-weight:700;font-size:26px;color:var(--head);box-shadow:0 3px 0 var(--border);user-select:none;touch-action:manipulation}
-.key:active,.key.down{transform:translateY(2px);box-shadow:none;background:var(--chip)}
-.key.fn{font-size:20px;color:var(--muted);background:var(--chip)}
-.key.ok{grid-column:span 2;background:var(--orange);border-color:var(--orange);color:#fff;font-size:20px;box-shadow:0 3px 0 var(--orange-d)}
-
-.overlay{position:fixed;inset:0;display:grid;place-items:center;pointer-events:none;z-index:30}
-.count{font-size:120px;font-weight:800;color:var(--orange);animation:zoom .7s ease-out;letter-spacing:-.05em}
-.toast{position:fixed;left:50%;top:16%;transform:translateX(-50%);background:var(--navy);color:#fff;font-weight:700;font-size:19px;padding:12px 22px;border-radius:999px;box-shadow:var(--sh-act);z-index:31;animation:toast 1.4s forwards;pointer-events:none;white-space:nowrap}
-.toast b{color:var(--orange)}
-
-/* Ergebnis */
-.result{text-align:center}
-.result h2{font-size:34px;font-weight:800;margin-top:8px}
-.result h2 em{font-family:var(--serif);font-weight:500;color:var(--orange-d)}
-.stars{display:flex;justify-content:center;gap:10px;margin:2px 0}
-.stars svg{width:58px;height:58px;fill:var(--chip);stroke:var(--border);stroke-width:1;transform:scale(.7);transition:all .45s cubic-bezier(.3,1.8,.5,1)}
-.stars svg.on{fill:var(--orange);stroke:var(--orange-d);transform:scale(1)}
-.big{font-size:52px;font-weight:800;line-height:1;color:var(--head);letter-spacing:-.04em}
-.newbest{display:inline-block;background:var(--orange);color:#fff;font-weight:700;font-size:14px;padding:4px 12px;border-radius:999px;margin-top:8px}
-.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.mistakes{text-align:left;font-size:15px}
-.mistakes ul{list-style:none;margin:8px 0 0;padding:0}
-.mistakes li{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid var(--border)}
-.mistakes li .m{flex:1}
-.mistakes s{color:var(--bad)}
-.linkbtn{font-size:12.5px;font-weight:700;color:var(--orange-d);padding:4px 6px;border-radius:8px}
-.btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
-
-/* Schwebender Button + Menü */
-.fab{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;box-shadow:0 12px 28px rgba(16,27,67,.35);z-index:20;transition:transform .15s}
-.fab:active{transform:scale(.92)}
-.fab svg{width:26px;height:26px}
-.fab::after{content:'';position:absolute;right:2px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--orange);border:2px solid var(--navy)}
-:root[data-theme=dark] .fab{background:#fff;color:var(--navy)}
-.sheet-bg{position:fixed;inset:0;background:rgba(10,16,41,.45);backdrop-filter:blur(3px);z-index:40;display:flex;align-items:flex-end;justify-content:center;animation:fade .2s}
-.sheet{width:100%;max-width:560px;max-height:92dvh;overflow:auto;background:var(--bg);border-radius:24px 24px 0 0;padding:8px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(0,0,0,.2);animation:up .25s ease-out}
-@media (min-width:640px){.sheet-bg{align-items:center}.sheet{border-radius:24px}}
-.sheet-grip{width:44px;height:5px;border-radius:9px;background:var(--border);margin:2px auto 8px}
-.sheet-head{display:flex;align-items:center;gap:8px;margin-bottom:12px}
-.sheet-head h3{flex:1;font-size:20px;font-weight:800}
-.sheet-head .round{width:40px;height:40px}
-.menu{display:grid;gap:8px}
-.mi{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:13px 14px;border-radius:16px;background:var(--surface);border:1px solid var(--border);text-decoration:none}
-.mi .ico{width:40px;height:40px;border-radius:12px;background:var(--chip);display:grid;place-items:center;font-size:19px;flex:none}
-.mi b{display:block;color:var(--head);font-weight:700}
-.mi span{font-size:13px;color:var(--muted)}
-.mi.accent .ico{background:rgba(255,116,24,.15)}
-.mi .chev{margin-left:auto;color:var(--muted)}
-.small{font-size:12.5px}
-.seg{display:flex;background:var(--chip);border-radius:999px;padding:4px;gap:4px}
-.seg button{flex:1;height:38px;border-radius:999px;font-size:13.5px;font-weight:700;color:var(--muted)}
-.seg button.sel{background:var(--surface);color:var(--head);box-shadow:0 2px 8px rgba(16,27,67,.1)}
-.form{display:grid;gap:12px}
-.field{display:grid;gap:5px;font-size:13px;font-weight:700;color:var(--head)}
-.field input,.field textarea{width:100%;border:1px solid var(--border);background:var(--surface);border-radius:var(--r-ctrl);padding:12px 14px;font-size:16px;font-weight:400;resize:vertical}
-.field input:focus,.field textarea:focus{outline:none;border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,116,24,.18)}
-.attach{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:12px;cursor:pointer}
-.attach input{width:20px;height:20px;accent-color:var(--orange);margin-top:2px;flex:none}
-.attach b{display:block;font-size:14px;color:var(--head)}
-.attach span{font-size:13.5px;color:var(--muted)}
-.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
-.status{font-size:14px;font-weight:600;text-align:center;min-height:20px}
-.status.ok{color:var(--good)}.status.err{color:var(--bad)}
-.setrow{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--surface);border:1px solid var(--border);border-radius:14px}
-.setrow div{flex:1}.setrow b{display:block;color:var(--head);font-size:15px}.setrow span{font-size:12.5px;color:var(--muted)}
-.switch{width:50px;height:30px;border-radius:99px;background:var(--border);position:relative;flex:none;transition:background .2s}
-.switch::after{content:'';position:absolute;left:3px;top:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:transform .2s}
-.switch.on{background:var(--orange)}.switch.on::after{transform:translateX(20px)}
-.thanks{text-align:center;padding:10px 0 4px}
-.thanks .ok{width:64px;height:64px;border-radius:50%;background:rgba(31,157,85,.12);color:var(--good);display:grid;place-items:center;margin:0 auto 10px;font-size:32px}
-
-#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:35}
-@keyframes pop{50%{transform:scale(1.1)}}
-@keyframes shake{20%,60%{transform:translateX(-9px)}40%,80%{transform:translateX(9px)}}
-@keyframes blink{50%{opacity:0}}
-@keyframes floatup{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-56px)}}
-@keyframes zoom{from{transform:scale(2.2);opacity:0}to{transform:scale(1);opacity:1}}
-@keyframes toast{0%{opacity:0;transform:translate(-50%,10px) scale(.85)}15%{opacity:1;transform:translate(-50%,0) scale(1.04)}25%{transform:translate(-50%,0) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-14px)}}
-@keyframes fade{from{opacity:0}}
-@keyframes up{from{transform:translateY(40px);opacity:.4}}
-@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition:none!important}}
-@media (max-height:760px){.key{height:50px}.answer{height:62px;font-size:50px}.paper{gap:6px;padding:6px 8px 28px}.feedback{font-size:15px;bottom:4px}.hint{font-size:13px}}
-@media (max-height:620px){.key{height:40px;font-size:21px;box-shadow:0 2px 0 var(--border)}.pad{gap:6px}.answer{height:48px;font-size:38px;min-width:120px}.win-bar{height:28px}.hud{font-size:14px}.gtop .round{width:38px;height:38px}}
-</style>
+<link rel="stylesheet" href="app.css">
 </head>
 <body>
 <div class="app">
@@ -262,15 +23,21 @@ body.ingame .app{height:100dvh;min-height:0;padding-bottom:calc(84px + env(safe-
     <img src="icons/logo.svg" alt="" width="40" height="40">
     <div><b>Rechenblitz</b><small>by Nachhilfe – online</small></div>
     <div class="spacer"></div>
+    <button class="chip" id="btnProfile" aria-label="Profil wechseln"></button>
     <button class="round" id="btnSound" aria-label="Ton an/aus"></button>
     <button class="round" id="btnTheme" aria-label="Hell/Dunkel umschalten"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
   </header>
+  <div class="topbar"><span class="muted">Persönliche Online-Nachhilfe 1:1</span><a class="sitebtn" id="btnSite" target="_blank" rel="noopener">Zur Website ↗</a></div>
 
+  <div class="home-grid">
+  <div class="col-left">
   <div class="hero">
     <div class="eyebrow">Kopfrechen-Trainer</div>
     <h1>Aus Üben wird <em>Können.</em></h1>
-    <p>Jede Aufgabe wird zufällig erzeugt – vom Einmaleins bis zu Brüchen, Dezimalzahlen und Prozent.</p>
+    <p>Jede Aufgabe wird zufällig erzeugt – vom Einmaleins bis zu Brüchen, Prozent und Gleichungen.</p>
   </div>
+
+  <div class="card assign" id="assignCard" hidden></div>
 
   <div class="card profile">
     <div class="lvbadge" id="pLevel">1</div>
@@ -281,33 +48,42 @@ body.ingame .app{height:100dvh;min-height:0;padding-bottom:calc(84px + env(safe-
       <div class="stat"><b id="sToday">0/50</b><span>🎯 Tagesziel</span></div>
       <div class="stat"><b id="sTotal">0</b><span>✔ gelöst</span></div>
     </div>
+    <div class="quick"><button data-open="badges" id="qBadges">🏅 Abzeichen</button><button data-open="facts">✖️ 1×1-Übersicht</button><button data-open="week">📊 Wochenbericht</button></div>
   </div>
 
+  <div class="card challenge" id="challengeCard"></div>
+  <div class="card promo" id="promo"></div>
+  </div>
+  <div class="col-right">
+
   <div class="label">Thema</div>
-  <div class="topics" id="topics"></div>
+  <div id="classNote"></div>
+  <div id="topics"></div>
   <div class="label">Schwierigkeit</div>
   <div class="levels" id="levels"></div>
   <div class="lvldesc" id="lvlDesc"></div>
 
-  <div class="modes">
-    <button class="mode" data-mode="training"><div class="ico">📝</div><div><b>Training</b><span>20 Aufgaben in deinem Tempo</span></div><div class="best" id="best-training"></div></button>
+  <div class="modes" id="modes">
+    <button class="mode" data-mode="training"><div class="ico">📝</div><div><b>Training</b><span>20 Aufgaben, mit Lösungsweg bei Fehlern</span></div><div class="best" id="best-training"></div></button>
     <button class="mode dark" data-mode="blitz"><div class="ico">⚡</div><div><b>Blitzrunde</b><span>60 Sekunden – so viele wie möglich</span></div><div class="best" id="best-blitz"></div></button>
+    <button class="mode" data-mode="zen"><div class="ico">🍃</div><div><b>Ruhig üben</b><span>Ohne Zeit und Punkte – in deinem Tempo</span></div></button>
+    <button class="mode" data-mode="duel"><div class="ico">⚔️</div><div><b>Duell</b><span>Zu zweit an einem Gerät – wer ist schneller?</span></div></button>
     <button class="mode" data-mode="fehler" id="btnFehler"><div class="ico">📦</div><div><b>Fehlerkiste</b><span id="fehlerText"></span></div></button>
+    <button class="mode" data-mode="test"><div class="ico">🧪</div><div><b>Einstufungstest</b><span id="testText"></span></div></button>
   </div>
-
-  <a class="card cta" id="ctaLink" target="_blank" rel="noopener" style="text-decoration:none">
-    <div style="font-size:26px">🎓</div>
-    <p><b>Mehr Unterstützung gewünscht?</b><br>Persönliche Online-Nachhilfe 1:1 – die erste Probestunde ist kostenlos.</p>
-  </a>
+  </div>
+  </div>
   <div class="foot"><a id="lnkSite" target="_blank" rel="noopener">mathenachhilfe-online.com</a><a id="lnkImp" target="_blank" rel="noopener">Impressum</a><a id="lnkPriv" target="_blank" rel="noopener">Datenschutz</a><span id="verText"></span></div>
 </section>
 
 <!-- ===== Spiel ===== -->
 <section class="screen" id="game" hidden>
   <div class="gtop">
-    <button class="round" id="btnQuit" aria-label="Zurück zum Menü"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <button class="round" id="btnQuit" aria-label="Beenden"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     <div class="bar"><i id="gBarFill"></i></div>
     <div class="pill" id="gInfo">0/20</div>
+    <button class="round" id="btnSoundG" aria-label="Ton an/aus"></button>
+    <button class="round" id="btnThemeG" aria-label="Hell/Dunkel umschalten"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
   </div>
   <div class="hud"><span class="streak" id="gStreak">🔥 0</span><span id="gScore">0 Punkte</span></div>
   <div class="win">
@@ -315,33 +91,19 @@ body.ingame .app{height:100dvh;min-height:0;padding-bottom:calc(84px + env(safe-
     <div class="paper" id="taskBox">
       <div class="expr" id="expr"></div>
       <div class="hint" id="hint"></div>
-      <div class="ansrow"><div class="answer" id="answer"></div><span class="unit" id="unit"></span></div>
+      <div class="ansrow"><span class="pre" id="pre"></span><div class="answer" id="answer"></div><span class="unit" id="unit"></span></div>
       <div class="feedback" id="feedback"></div>
     </div>
+    <div class="solution" id="solution" hidden></div>
   </div>
   <div class="pad" id="pad"></div>
 </section>
 
 <!-- ===== Ergebnis ===== -->
-<section class="screen result" id="result" hidden>
-  <h2 id="rTitle">Geschafft!</h2>
-  <div class="stars" id="rStars"></div>
-  <div class="card">
-    <div class="big" id="rScore">0</div><div class="muted">Punkte</div>
-    <div id="rNewBest" hidden><span class="newbest">Neuer Rekord!</span></div>
-  </div>
-  <div class="rgrid">
-    <div class="stat card"><b id="rCorrect">0</b><span>richtig</span></div>
-    <div class="stat card"><b id="rAcc">0%</b><span>Treffer</span></div>
-    <div class="stat card"><b id="rTime">–</b><span>pro Aufgabe</span></div>
-  </div>
-  <div class="card mistakes" id="rMistakes" hidden><b>Das üben wir nochmal:</b><ul id="rMistakeList"></ul></div>
-  <div class="muted" id="rXp"></div>
-  <div class="btns">
-    <button class="btn" id="btnMenu">Menü</button>
-    <button class="btn primary" id="btnAgain">Nochmal</button>
-  </div>
-</section>
+<section class="screen result" id="result" hidden></section>
+
+<!-- ===== Duell ===== -->
+<section id="duel" hidden></section>
 </div>
 
 <button class="fab" id="fab" aria-label="Menü: Hilfe, Fehler melden, Einstellungen" aria-haspopup="dialog">
@@ -351,7 +113,7 @@ body.ingame .app{height:100dvh;min-height:0;padding-bottom:calc(84px + env(safe-
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
     <div class="sheet-grip"></div>
     <div class="sheet-head">
-      <button class="round" id="sheetBack" aria-label="Zurück"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="round" id="sheetBack" aria-label="Zurück" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
       <h3 id="sheetTitle">Menü</h3>
       <button class="round" id="sheetClose" aria-label="Schließen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
     </div>
@@ -361,812 +123,12 @@ body.ingame .app{height:100dvh;min-height:0;padding-bottom:calc(84px + env(safe-
 
 <div class="overlay" id="overlay"></div>
 <canvas id="confetti"></canvas>
+<div id="print"></div>
 
 <script src="config.js"></script>
-<script>
-'use strict';
-const APP_VERSION = '2.0.0';
-const CONFIG = Object.assign({
-  reportEndpoint: '',                                   // URL, die Meldungen per POST (JSON) annimmt – siehe MELDUNGEN-API.md
-  fallbackMail: 'website@mathenachhilfe-online.com',    // nur falls kein Endpunkt eingerichtet ist
-  websiteUrl: 'https://www.mathenachhilfe-online.com/',
-  trialUrl: 'https://www.mathenachhilfe-online.com/probestunde/',
-  imprintUrl: 'https://www.mathenachhilfe-online.com/impressum/',
-  privacyUrl: 'https://www.mathenachhilfe-online.com/datenschutz/',
-}, window.RECHENBLITZ_CONFIG || {});
-
-/* ================= Hilfen ================= */
-const $ = id => document.getElementById(id);
-const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
-const pick = arr => arr[Math.floor(Math.random() * arr.length)];
-const coin = () => Math.random() < .5;
-const sign = () => coin() ? 1 : -1;
-const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const todayStr = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a || 1; };
-const lcm = (a, b) => a / gcd(a, b) * b;
-const Q = (n, d = 1) => { if (d < 0) { n = -n; d = -d; } const g = gcd(n, d); return { n: n / g, d: d / g }; };
-
-/* ================= Zahlen & Darstellung ================= */
-const fmtInt = v => (v < 0 ? '−' : '') + (Math.abs(v) >= 10000 ? Math.abs(v).toLocaleString('de-DE') : Math.abs(v));
-function fmtDec(i, k) {
-  if (!k) return fmtInt(i);
-  const s = String(Math.abs(i)).padStart(k + 1, '0');
-  const frac = s.slice(-k).replace(/0+$/, '');
-  return (i < 0 ? '−' : '') + s.slice(0, -k) + (frac ? ',' + frac : '');
-}
-function decOfQ(q) { for (let k = 0; k <= 8; k++) { const p = 10 ** k; if (p % q.d === 0) return fmtDec(q.n * (p / q.d), k); } return `${q.n}/${q.d}`; }
-// Lösung → Text, wie man sie eintippen würde
-function canon(a) {
-  const { n, d } = a.q;
-  let s = a.kind === 'dec' ? decOfQ(a.q) : d === 1 ? String(n) : `${n}/${d}`;
-  return s.replace('−', '-').replace(/\./g, '');
-}
-const showAns = a => canon(a).replace('-', '−');
-
-// Bausteine für Aufgaben
-const N = (v, paren) => ({ t: 'n', v, paren });
-const D = (i, k) => ({ t: 'd', i, k });
-const F = (n, d) => ({ t: 'f', n, d });
-const O = v => ({ t: 'o', v });
-const T = v => ({ t: 'x', v });
-const P = (b, e) => ({ t: 'p', b, e });
-const W = v => ({ t: 'r', v });
-const I = v => ({ q: Q(v), kind: 'int' });
-const Fr = (n, d) => ({ q: Q(n, d), kind: 'frac' });
-const De = (n, d) => ({ q: Q(n, d), kind: 'dec' });
-const SUPS = '⁰¹²³⁴⁵⁶⁷⁸⁹';
-const numHtml = (v, paren) => paren && v < 0 ? `(${fmtInt(v)})` : fmtInt(v);
-
-function tokHtml(t) {
-  switch (t.t) {
-    case 'n': return `<span>${numHtml(t.v, t.paren)}</span>`;
-    case 'd': return `<span>${fmtDec(t.i, t.k)}</span>`;
-    case 'f': return `<span class="frac"><span>${t.n}</span><span>${t.d}</span></span>`;
-    case 'o': return `<span class="o">${t.v}</span>`;
-    case 'x': return `<span class="tx">${esc(t.v)}</span>`;
-    case 'p': return `<span>${numHtml(t.b, true)}<sup>${t.e}</sup></span>`;
-    case 'r': return `<span class="root">√<span class="rad">${t.v}</span></span>`;
-  }
-}
-function tokText(t) {
-  switch (t.t) {
-    case 'n': return numHtml(t.v, t.paren);
-    case 'd': return fmtDec(t.i, t.k);
-    case 'f': return `${t.n}/${t.d}`;
-    case 'o': case 'x': return t.v;
-    case 'p': return numHtml(t.b, true) + String(t.e).split('').map(c => SUPS[c]).join('');
-    case 'r': return `√${t.v}`;
-  }
-}
-const FRAC_NAMES = { 2: 'Halbe', 3: 'Drittel', 4: 'Viertel', 5: 'Fünftel', 6: 'Sechstel', 7: 'Siebtel', 8: 'Achtel', 9: 'Neuntel', 10: 'Zehntel', 11: 'Elftel', 12: 'Zwölftel', 20: 'Zwanzigstel', 25: 'Fünfundzwanzigstel', 100: 'Hundertstel' };
-function tokSpeech(t) {
-  switch (t.t) {
-    case 'n': return (t.v < 0 ? 'minus ' : '') + Math.abs(t.v);
-    case 'd': return fmtDec(t.i, t.k).replace('−', 'minus ');
-    case 'f': return t.n === 1 && t.d === 2 ? 'ein Halb' : FRAC_NAMES[t.d] ? `${t.n} ${FRAC_NAMES[t.d]}` : `${t.n} durch ${t.d}`;
-    case 'o': return { '+': 'plus', '−': 'minus', '·': 'mal', ':': 'geteilt durch' }[t.v];
-    case 'x': return t.v.replace('%', ' Prozent').replace('€', ' Euro');
-    case 'p': return t.e === 2 ? `${tokSpeech(N(t.b))} zum Quadrat` : `${tokSpeech(N(t.b))} hoch ${t.e}`;
-    case 'r': return `Wurzel aus ${t.v}`;
-  }
-}
-const taskText = t => t.e.map(tokText).join(' ').replace(/ ([%€])/g, '$1');
-
-/* ================= Themen & Stufen ================= */
-const TOPICS = {
-  add: { g: '+', name: 'Plus' }, sub: { g: '−', name: 'Minus' }, mul: { g: '·', name: 'Mal' }, div: { g: ':', name: 'Geteilt' },
-  frac: { g: '½', name: 'Brüche' }, dec: { g: '0,5', name: 'Dezimal' }, pct: { g: '%', name: 'Prozent' },
-  neg: { g: '−3', name: 'Negativ' }, pow: { g: 'x²', name: 'Potenzen' }, mix: { g: '★', name: 'Mix' },
-};
-const LEVEL_DESC = {
-  add: ['Zahlenraum 10', 'Zahlenraum 20 mit Zehnerübergang', 'Bis 100: zweistellig + einstellig', 'Bis 100: zweistellig + zweistellig', 'Zahlenraum 1000'],
-  sub: ['Zahlenraum 10', 'Zahlenraum 20 mit Zehnerübergang', 'Bis 100: zweistellig − einstellig', 'Bis 100: zweistellig − zweistellig', 'Zahlenraum 1000'],
-  mul: ['Kernaufgaben (·1, ·2, ·5, ·10)', 'Kleines Einmaleins', 'Großes Einmaleins (11–19)', 'Zweistellig · einstellig', 'Zweistellig · zweistellig'],
-  div: ['Kernaufgaben (:1, :2, :5, :10)', 'Kleines Einmaleins rückwärts', 'Großes Einmaleins rückwärts', 'Bis 900 : einstellig', 'Bis 625 : zweistellig'],
-  frac: ['Gleichnamige Brüche addieren & subtrahieren', 'Kürzen und Bruchteile von Zahlen', 'Ungleichnamige Brüche addieren & subtrahieren', 'Brüche multiplizieren & dividieren', 'Brüche und ganze Zahlen gemischt'],
-  dec: ['Eine Nachkommastelle: plus & minus', 'Zwei Nachkommastellen: plus & minus', 'Mal & geteilt durch 10, 100, 1000', 'Dezimalzahlen multiplizieren', 'Dezimalzahlen dividieren & Brüche umwandeln'],
-  pct: ['50 %, 25 % und 10 % von …', 'Weitere Prozentsätze von …', 'Prozentsatz gesucht', 'Grundwert gesucht', 'Preise erhöhen & reduzieren'],
-  neg: ['Plus mit negativen Zahlen bis 10', 'Minus ins Negative', 'Plus & minus mit Klammern bis 20', 'Mal & geteilt mit Vorzeichen', 'Drei Zahlen & größere Zahlen'],
-  pow: ['Quadratzahlen bis 10²', 'Quadratzahlen & Wurzeln bis 12', 'Quadratzahlen & Wurzeln bis 20', 'Zweier-, Zehner- & Kubikpotenzen', 'Potenzen & Wurzeln kombinieren'],
-  mix: [1, 2, 3, 4, 5].map(n => `Alle Themen zufällig gemischt – Stufe ${n}`),
-};
-
-const ADD = [
-  () => { const a = rnd(0, 10); return [a, rnd(0, 10 - a)]; },
-  () => { const a = rnd(2, 9); return [a, rnd(11 - a, 9)]; },
-  () => { const a = rnd(11, 89); return [a, rnd(2, Math.min(9, 100 - a))]; },
-  () => { const a = rnd(11, 89); return [a, rnd(11, 100 - a)]; },
-  () => { const a = rnd(100, 899); return [a, rnd(11, 999 - a)]; },
-];
-const MUL = [
-  () => [rnd(1, 10), pick([1, 2, 5, 10])],
-  () => [rnd(2, 10), rnd(2, 10)],
-  () => [rnd(11, 19), rnd(2, 9)],
-  () => [rnd(12, 99), rnd(2, 9)],
-  () => [rnd(11, 25), rnd(11, 25)],
-];
-const properFrac = d => { let n; do n = rnd(1, d - 1); while (gcd(n, d) !== 1); return n; };
-const noTrail = (lo, hi) => { let v; do v = rnd(lo, hi); while (v % 10 === 0); return v; };
-
-const GEN = {
-  add(l) { const [a, b] = ADD[l](); return { e: [N(a), O('+'), N(b)], a: I(a + b) }; },
-  sub(l) { const [x, y] = ADD[l](); return { e: [N(x + y), O('−'), N(x)], a: I(y) }; },
-  mul(l) { let [a, b] = MUL[l](); if (coin()) [a, b] = [b, a]; return { e: [N(a), O('·'), N(b)], a: I(a * b) }; },
-  div(l) { const [x, y] = MUL[l](); return { e: [N(x * y), O(':'), N(y)], a: I(x) }; },
-
-  frac(l) {
-    const H = 'als gekürzter Bruch';
-    if (l === 0) {
-      const d = rnd(3, 12);
-      if (coin()) { const a = rnd(1, d - 1), b = rnd(1, d - 1); return { e: [F(a, d), O('+'), F(b, d)], a: Fr(a + b, d), hint: H }; }
-      const a = rnd(2, d - 1), b = rnd(1, a - 1); return { e: [F(a, d), O('−'), F(b, d)], a: Fr(a - b, d), hint: H };
-    }
-    if (l === 1) {
-      if (coin()) { const d = rnd(2, 9), n = properFrac(d), k = rnd(2, 6); return { e: [T('Kürze'), F(n * k, d * k)], a: Fr(n, d), hint: 'so weit wie möglich' }; }
-      const d = pick([2, 3, 4, 5, 6, 8, 10]), n = properFrac(d), m = d * rnd(1, 10);
-      return { e: [F(n, d), T('von'), N(m)], a: I(n * m / d) };
-    }
-    if (l === 2) {
-      let d1, d2;
-      do { d1 = pick([2, 3, 4, 5, 6, 8, 10, 12]); d2 = pick([2, 3, 4, 5, 6, 8, 10, 12]); } while (d1 === d2 || lcm(d1, d2) > 24);
-      let n1 = properFrac(d1), n2 = properFrac(d2);
-      if (coin() && n1 * d2 !== n2 * d1) {
-        if (n1 * d2 < n2 * d1) { [n1, n2] = [n2, n1]; [d1, d2] = [d2, d1]; }
-        return { e: [F(n1, d1), O('−'), F(n2, d2)], a: Fr(n1 * d2 - n2 * d1, d1 * d2), hint: H };
-      }
-      return { e: [F(n1, d1), O('+'), F(n2, d2)], a: Fr(n1 * d2 + n2 * d1, d1 * d2), hint: H };
-    }
-    if (l === 3) {
-      const d1 = rnd(2, 9), d2 = rnd(2, 9), n1 = properFrac(d1), n2 = properFrac(d2);
-      return coin() ? { e: [F(n1, d1), O('·'), F(n2, d2)], a: Fr(n1 * n2, d1 * d2), hint: H }
-        : { e: [F(n1, d1), O(':'), F(n2, d2)], a: Fr(n1 * d2, d1 * n2), hint: H };
-    }
-    const d = rnd(2, 9), n = properFrac(d), k = rnd(2, 9);
-    switch (rnd(0, 3)) {
-      case 0: return { e: [N(k), O('·'), F(n, d)], a: Fr(k * n, d), hint: H };
-      case 1: { const g = rnd(1, 5); return { e: [N(g), O('−'), F(n, d)], a: Fr(g * d - n, d), hint: H }; }
-      case 2: return { e: [F(n, d), O(':'), N(k)], a: Fr(n, d * k), hint: H };
-      default: {
-        let d1, d2; do { d1 = rnd(2, 12); d2 = rnd(2, 12); } while (d1 === d2 || lcm(d1, d2) > 60);
-        const n1 = properFrac(d1), n2 = properFrac(d2);
-        return { e: [F(n1, d1), O('+'), F(n2, d2)], a: Fr(n1 * d2 + n2 * d1, d1 * d2), hint: H };
-      }
-    }
-  },
-
-  dec(l) {
-    if (l === 0) {
-      let a = noTrail(11, 99), b = noTrail(11, 99);
-      if (coin()) return { e: [D(a, 1), O('+'), D(b, 1)], a: De(a + b, 10) };
-      if (a === b) a += 1; if (a < b) [a, b] = [b, a];
-      return { e: [D(a, 1), O('−'), D(b, 1)], a: De(a - b, 10) };
-    }
-    if (l === 1) {
-      let x = D(noTrail(101, 999), 2), y = D(noTrail(11, 99), 1);
-      const vx = x.i, vy = y.i * 10;
-      if (coin()) { const e = coin() ? [x, O('+'), y] : [y, O('+'), x]; return { e, a: De(vx + vy, 100) }; }
-      if (vx === vy) return { e: [x, O('+'), y], a: De(vx + vy, 100) };
-      return vx > vy ? { e: [x, O('−'), y], a: De(vx - vy, 100) } : { e: [y, O('−'), x], a: De(vy - vx, 100) };
-    }
-    if (l === 2) {
-      const k = rnd(1, 2), xi = noTrail(11, 999), f = pick([10, 100, 1000]);
-      return coin() ? { e: [D(xi, k), O('·'), N(f)], a: De(xi * f, 10 ** k) } : { e: [D(xi, k), O(':'), N(f)], a: De(xi, 10 ** k * f) };
-    }
-    if (l === 3) {
-      if (Math.random() < .3) { const a = rnd(1, 9), b = rnd(1, 9); return { e: [D(a, 1), O('·'), D(b, 1)], a: De(a * b, 100) }; }
-      const a = noTrail(11, 99), b = rnd(2, 9); return { e: [D(a, 1), O('·'), N(b)], a: De(a * b, 10) };
-    }
-    switch (rnd(0, 2)) {
-      case 0: { const q = noTrail(11, 99), b = rnd(2, 9); return { e: [D(q * b, 1), O(':'), N(b)], a: De(q, 10) }; }
-      case 1: { const b = rnd(2, 9), q = rnd(2, 12); return { e: [D(q * b, 1), O(':'), D(b, 1)], a: I(q) }; }
-      default: { const d = pick([2, 4, 5, 8, 10, 20, 25]), n = properFrac(d); return { e: [F(n, d)], a: De(n, d), hint: 'als Dezimalzahl' }; }
-    }
-  },
-
-  pct(l) {
-    const mult = (p, max) => { const step = 100 / gcd(p, 100); return step * rnd(1, Math.max(1, Math.floor(max / step))); };
-    if (l === 0) { const p = pick([50, 25, 10]), m = mult(p, 200); return { e: [N(p), T('% von'), N(m)], a: I(p * m / 100) }; }
-    if (l === 1) { const p = pick([1, 5, 20, 75, 30, 40, 15, 60]), m = mult(p, 400); return { e: [N(p), T('% von'), N(m)], a: I(p * m / 100) }; }
-    const p = pick([10, 20, 25, 50, 75, 5, 40, 30]), m = mult(p, 300), part = p * m / 100;
-    if (l === 2) return { e: [N(part), T('von'), N(m)], a: I(p), unit: '%', hint: 'Wie viel Prozent sind das?' };
-    if (l === 3) return { e: [N(p), T('% sind'), N(part)], a: I(m), hint: 'Wie viel sind 100 %?' };
-    const up = coin(), q = pick([10, 20, 25, 50, 5, 15, 30]), price = mult(q, 400);
-    return { e: [N(price), T('€'), O(up ? '+' : '−'), N(q), T('%')], a: I(price * (100 + (up ? q : -q)) / 100), unit: '€', hint: up ? 'Preis wird erhöht' : 'Preis wird reduziert' };
-  },
-
-  neg(l) {
-    if (l === 0) { let a, b; do { a = rnd(-10, 10); b = rnd(-10, 10); } while (a >= 0 && b >= 0); return { e: [N(a), O('+'), N(b, true)], a: I(a + b) }; }
-    if (l === 1) { const a = rnd(-10, 10), b = rnd(2, 15); return { e: [N(a), O('−'), N(b)], a: I(a - b) }; }
-    if (l === 2) { const a = rnd(-20, 20), b = rnd(-20, -1); return coin() ? { e: [N(a), O('+'), N(b, true)], a: I(a + b) } : { e: [N(a), O('−'), N(b, true)], a: I(a - b) }; }
-    if (l === 3) {
-      let a, b; do { a = rnd(1, 10) * sign(); b = rnd(1, 10) * sign(); } while (a > 0 && b > 0);
-      return coin() ? { e: [N(a), O('·'), N(b, true)], a: I(a * b) } : { e: [N(a * b), O(':'), N(b, true)], a: I(a) };
-    }
-    switch (rnd(0, 2)) {
-      case 0: { const a = rnd(-60, 60), b = rnd(-60, 60); return { e: [N(a), O('−'), N(b, true)], a: I(a - b) }; }
-      case 1: { const a = rnd(2, 15) * sign(), b = rnd(2, 9) * sign(); return { e: [N(a), O('·'), N(b, true)], a: I(a * b) }; }
-      default: { const a = rnd(-20, 20), b = rnd(-20, 20), c = rnd(-20, 20); return { e: [N(a), O('−'), N(b, true), O('+'), N(c, true)], a: I(a - b + c) }; }
-    }
-  },
-
-  pow(l) {
-    const sq = (lo, hi) => { const n = rnd(lo, hi); return { e: [P(n, 2)], a: I(n * n) }; };
-    const rt = (lo, hi) => { const n = rnd(lo, hi); return { e: [W(n * n)], a: I(n) }; };
-    if (l === 0) return sq(1, 10);
-    if (l === 1) return coin() ? sq(1, 12) : rt(1, 12);
-    if (l === 2) return coin() ? sq(11, 20) : rt(11, 20);
-    if (l === 3) {
-      const [b, e] = pick([[2, rnd(0, 10)], [10, rnd(0, 6)], [rnd(1, 6), 3], [3, rnd(0, 5)], [5, rnd(0, 4)]]);
-      return { e: [P(b, e)], a: I(b ** e) };
-    }
-    switch (rnd(0, 3)) {
-      case 0: { const a = rnd(1, 12), b = rnd(1, 12); return { e: [P(a, 2), O('+'), P(b, 2)], a: I(a * a + b * b) }; }
-      case 1: { const a = rnd(3, 15), b = rnd(1, a - 1); return { e: [P(a, 2), O('−'), P(b, 2)], a: I(a * a - b * b) }; }
-      case 2: { const x = rnd(1, 15), y = rnd(1, 15); return { e: [W(x * x), O('+'), W(y * y)], a: I(x + y) }; }
-      default: { const x = rnd(2, 12), b = rnd(2, 9); return { e: [W(x * x), O('·'), N(b)], a: I(x * b) }; }
-    }
-  },
-};
-const REAL_TOPICS = Object.keys(GEN);
-function makeTask(topic, lvl) {
-  const tp = topic === 'mix' ? pick(REAL_TOPICS) : topic;
-  const t = GEN[tp](lvl);
-  t.topic = tp; t.lvl = lvl;
-  return t;
-}
-const keyOf = t => `${t.topic}|${taskText(t)}`;
-
-/* Eingabe auswerten: ganze Zahl, Dezimalzahl (Komma) oder Bruch (a/b) */
-function parseInput(s) {
-  const neg = s.startsWith('-'), b = neg ? s.slice(1) : s, sg = neg ? -1 : 1;
-  if (!b) return null;
-  if (b.includes('/')) {
-    const [x, y] = b.split('/');
-    if (!/^\d+$/.test(x) || !/^\d+$/.test(y) || +y === 0) return null;
-    return { q: Q(sg * +x, +y), frac: true, reduced: gcd(+x, +y) === 1 && +y !== 1 };
-  }
-  if (!/^\d*,?\d*$/.test(b) || b === ',') return null;
-  const [ip, fp = ''] = b.split(',');
-  return { q: Q(sg * parseInt((ip || '0') + fp, 10), 10 ** fp.length) };
-}
-
-/* ================= Speicher ================= */
-const DEFAULT = { xp: 0, total: 0, best: {}, box: {}, days: { last: '', streak: 0 }, today: { date: '', solved: 0 },
-  settings: { sound: true, speech: false, auto: true, theme: 'auto' }, sel: { op: 'mul', lvl: 1 }, reporter: { name: '', email: '' }, outbox: [] };
-let S;
-try {
-  const raw = JSON.parse(localStorage.getItem('rechenblitz') || '{}');
-  S = Object.assign(structuredClone(DEFAULT), raw);
-  S.settings = Object.assign(structuredClone(DEFAULT.settings), raw.settings || {});
-} catch { S = structuredClone(DEFAULT); }
-for (const [k, v] of Object.entries(S.box)) if (!v.e) delete S.box[k];        // alte Version 1 aufräumen
-if (!TOPICS[S.sel.op]) S.sel.op = 'mul';
-const save = () => { try { localStorage.setItem('rechenblitz', JSON.stringify(S)); } catch {} };
-const DAILY_GOAL = 50;
-
-/* ================= Sound (Web Audio, synthetisch) ================= */
-const Sound = {
-  ctx: null, master: null,
-  init() {
-    if (!this.ctx) {
-      const AC = window.AudioContext || window.webkitAudioContext;
-      if (!AC) return;
-      this.ctx = new AC();
-      const comp = this.ctx.createDynamicsCompressor();
-      this.master = this.ctx.createGain(); this.master.gain.value = .6;
-      this.master.connect(comp).connect(this.ctx.destination);
-    }
-    if (this.ctx.state === 'suspended') this.ctx.resume();
-  },
-  tone(midi, at, dur, type = 'sine', vol = .2, slideTo) {
-    if (!S.settings.sound || !this.ctx) return;
-    const c = this.ctx, t = c.currentTime + at, o = c.createOscillator(), g = c.createGain();
-    o.type = type; o.frequency.setValueAtTime(440 * 2 ** ((midi - 69) / 12), t);
-    if (slideTo) o.frequency.exponentialRampToValueAtTime(440 * 2 ** ((slideTo - 69) / 12), t + dur);
-    g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .012); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
-    o.connect(g).connect(this.master); o.start(t); o.stop(t + dur + .05);
-  },
-  click() { this.tone(96, 0, .04, 'triangle', .05); },
-  correct(streak) { const b = 72 + Math.min(streak - 1, 12); [0, 4, 7].forEach((n, i) => { this.tone(b + n, i * .06, .22, 'sine', .18); this.tone(b + n + 12, i * .06, .12, 'triangle', .04); }); },
-  wrong() { this.tone(57, 0, .16, 'triangle', .2); this.tone(52, .13, .32, 'triangle', .2, 50); },
-  hint() { this.tone(76, 0, .12, 'sine', .12); this.tone(79, .1, .16, 'sine', .12); },
-  milestone() { [72, 76, 79, 84, 88].forEach((n, i) => this.tone(n, i * .07, .3, 'square', .06)); this.tone(96, .38, .5, 'sine', .1); },
-  tick(high) { this.tone(high ? 84 : 79, 0, .07, 'square', .05); },
-  go() { this.tone(84, 0, .35, 'square', .08); this.tone(91, 0, .35, 'sine', .12); },
-  fanfare(stars) {
-    [60, 64, 67, 72].forEach((n, i) => this.tone(n, i * .12, .25, 'square', .07));
-    (stars >= 2 ? [72, 76, 79, 84] : [67, 72, 76]).forEach(n => { this.tone(n, .5, 1.1, 'triangle', .12); this.tone(n, .5, 1.1, 'sine', .08); });
-  },
-};
-function speak(t) {
-  if (!S.settings.speech || !('speechSynthesis' in window)) return;
-  speechSynthesis.cancel();
-  let s = t.e.map(tokSpeech).join(' ');
-  if (t.hint) s += '. ' + t.hint;
-  const u = new SpeechSynthesisUtterance(s); u.lang = 'de-DE'; u.rate = 1.0;
-  speechSynthesis.speak(u);
-}
-const vibrate = ms => { try { navigator.vibrate && navigator.vibrate(ms); } catch {} };
-
-/* ================= Konfetti ================= */
-const Confetti = (() => {
-  const cv = $('confetti'), cx = cv.getContext('2d');
-  let parts = [], running = false;
-  const colors = ['#ff7418', '#ffb27d', '#101b43', '#173a74', '#2447b5', '#1f9d55', '#febc2e'];
-  function resize() { const r = devicePixelRatio || 1; cv.width = innerWidth * r; cv.height = innerHeight * r; cx.setTransform(r, 0, 0, r, 0, 0); }
-  addEventListener('resize', resize); resize();
-  function loop() {
-    cx.clearRect(0, 0, innerWidth, innerHeight);
-    parts = parts.filter(p => p.y < innerHeight + 20 && p.life > 0);
-    for (const p of parts) {
-      p.vy += .25; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life--;
-      cx.save(); cx.translate(p.x, p.y); cx.rotate(p.rot); cx.fillStyle = p.c;
-      cx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.rot * 2))); cx.restore();
-    }
-    if (parts.length) requestAnimationFrame(loop); else running = false;
-  }
-  return {
-    burst(n = 80, x = innerWidth / 2, y = innerHeight / 3) {
-      if (reduceMotion) return;
-      for (let i = 0; i < n; i++) {
-        const a = Math.random() * Math.PI * 2, s = 4 + Math.random() * 9;
-        parts.push({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 6, rot: Math.random() * 6, vr: (Math.random() - .5) * .3, w: 6 + Math.random() * 6, h: 8 + Math.random() * 8, c: pick(colors), life: 180 });
-      }
-      if (!running) { running = true; requestAnimationFrame(loop); }
-    },
-  };
-})();
-
-/* ================= Startseite ================= */
-const RANKS = ['Rechen-Starter', 'Zahlenfuchs', 'Rechenprofi', 'Kopfrechen-Ass', 'Mathe-Meister', 'Zahlen-Genie', 'Rechenblitz-Legende'];
-const levelFromXp = xp => Math.floor(Math.sqrt(xp / 40)) + 1;
-const xpForLevel = l => 40 * (l - 1) ** 2;
-const ICON_SOUND_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>';
-const ICON_SOUND_OFF = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg>';
-
-function applyTheme() { document.documentElement.dataset.theme = S.settings.theme; }
-function isDark() { return S.settings.theme === 'dark' || (S.settings.theme === 'auto' && matchMedia('(prefers-color-scheme: dark)').matches); }
-
-function renderHome() {
-  const lv = levelFromXp(S.xp), cur = xpForLevel(lv), nxt = xpForLevel(lv + 1);
-  $('pLevel').textContent = lv;
-  $('pRank').textContent = RANKS[Math.min(RANKS.length - 1, Math.floor((lv - 1) / 3))];
-  $('pXpBar').style.width = ((S.xp - cur) / (nxt - cur) * 100) + '%';
-  $('pXpText').textContent = `${S.xp - cur} / ${nxt - cur} XP bis Stufe ${lv + 1}`;
-  const t = todayStr(), y = todayStr(new Date(Date.now() - 864e5));
-  $('sDays').textContent = (S.days.last === t || S.days.last === y) ? S.days.streak : 0;
-  $('sToday').textContent = `${S.today.date === t ? S.today.solved : 0}/${DAILY_GOAL}`;
-  $('sTotal').textContent = S.total;
-  $('topics').innerHTML = Object.entries(TOPICS).map(([k, o]) =>
-    `<button class="topic ${S.sel.op === k ? 'sel' : ''}" data-op="${k}" aria-pressed="${S.sel.op === k}"><span class="g">${o.g}</span><small>${o.name}</small></button>`).join('');
-  $('levels').innerHTML = [0, 1, 2, 3, 4].map(i => `<button class="lvl ${S.sel.lvl === i ? 'sel' : ''}" data-lvl="${i}" aria-pressed="${S.sel.lvl === i}">${i + 1}</button>`).join('');
-  $('lvlDesc').textContent = LEVEL_DESC[S.sel.op][S.sel.lvl];
-  for (const m of ['training', 'blitz']) {
-    const b = S.best[`${m}|${S.sel.op}|${S.sel.lvl}`];
-    $('best-' + m).innerHTML = b ? `Rekord<br><b>${b}</b>` : '';
-  }
-  const n = Object.keys(S.box).length;
-  $('btnFehler').disabled = n === 0;
-  $('fehlerText').textContent = n ? `${n} Aufgabe${n > 1 ? 'n' : ''} zum Wiederholen` : 'Leer – super gemacht!';
-  $('btnSound').innerHTML = S.settings.sound ? ICON_SOUND_ON : ICON_SOUND_OFF;
-}
-$('topics').addEventListener('click', e => { const b = e.target.closest('.topic'); if (!b) return; Sound.init(); Sound.click(); S.sel.op = b.dataset.op; save(); renderHome(); });
-$('levels').addEventListener('click', e => { const b = e.target.closest('.lvl'); if (!b) return; Sound.init(); Sound.click(); S.sel.lvl = +b.dataset.lvl; save(); renderHome(); });
-$('btnSound').onclick = () => { S.settings.sound = !S.settings.sound; save(); Sound.init(); Sound.click(); renderHome(); };
-$('btnTheme').onclick = () => { S.settings.theme = isDark() ? 'light' : 'dark'; save(); applyTheme(); };
-document.querySelectorAll('.mode').forEach(b => b.onclick = () => startGame(b.dataset.mode));
-$('ctaLink').href = CONFIG.trialUrl; $('lnkSite').href = CONFIG.websiteUrl; $('lnkImp').href = CONFIG.imprintUrl; $('lnkPriv').href = CONFIG.privacyUrl;
-$('verText').textContent = 'Version ' + APP_VERSION;
-
-function show(id) { for (const s of ['home', 'game', 'result']) $(s).hidden = s !== id; document.body.classList.toggle('ingame', id === 'game'); scrollTo(0, 0); }
-const currentScreen = () => ['home', 'game', 'result'].find(s => !$(s).hidden);
-
-/* ================= Spiel ================= */
-const TRAINING_COUNT = 20, BLITZ_MS = 60000;
-let G = null, timerRaf = 0, lastAnswered = null;
-
-const PAD = ['7', '8', '9', 'del', '4', '5', '6', '/', '1', '2', '3', ',', 'neg', '0', 'ok'];
-const PAD_LABEL = { del: '⌫', '/': '<span style="font-size:15px">a/b</span>', ',': ',', neg: '±', ok: 'OK' };
-const PAD_ARIA = { del: 'Löschen', '/': 'Bruchstrich', ',': 'Komma', neg: 'Vorzeichen', ok: 'Prüfen' };
-$('pad').innerHTML = PAD.map(k => `<button class="key ${k === 'ok' ? 'ok' : /\d/.test(k) ? '' : 'fn'}" data-k="${k}" aria-label="${PAD_ARIA[k] || k}">${PAD_LABEL[k] || k}</button>`).join('');
-$('pad').addEventListener('pointerdown', e => { const b = e.target.closest('.key'); if (!b) return; e.preventDefault(); press(b.dataset.k); });
-$('pad').addEventListener('click', e => { if (e.detail === 0) { const b = e.target.closest('.key'); if (b) press(b.dataset.k); } }); // Tastatur/Screenreader
-
-function startGame(mode) {
-  Sound.init();
-  const { op, lvl } = S.sel;
-  G = { mode, op, lvl, idx: 0, correct: 0, wrong: 0, streak: 0, bestStreak: 0, score: 0, input: '', task: null,
-    locked: true, mistakes: [], times: [], recent: [], queue: null, endAt: 0, lastTick: 99, over: false, paused: false };
-  if (mode === 'fehler') {
-    G.queue = Object.values(S.box).sort(() => Math.random() - .5).slice(0, 15).map(x => ({ ...x }));
-    G.total = G.queue.length;
-  } else G.total = mode === 'blitz' ? Infinity : TRAINING_COUNT;
-  $('gBarFill').style.width = mode === 'blitz' ? '100%' : '0%';
-  $('expr').innerHTML = ''; $('hint').textContent = ''; $('unit').textContent = '';
-  $('answer').className = 'answer'; $('answer').textContent = ''; $('feedback').textContent = '';
-  $('winTitle').textContent = mode === 'fehler' ? 'Fehlerkiste' : `${TOPICS[op].name}`;
-  $('winTag').textContent = mode === 'blitz' ? 'Blitzrunde' : `Stufe ${lvl + 1}`;
-  updateHud(); show('game');
-  countdown(() => {
-    if (!G || G.over) return;
-    G.locked = false;
-    if (mode === 'blitz') G.endAt = performance.now() + BLITZ_MS;
-    if (Sheet.open) pauseGame(true);
-    cancelAnimationFrame(timerRaf); timerRaf = requestAnimationFrame(timerLoop);
-    nextTask();
-  });
-}
-
-function countdown(done) {
-  const ov = $('overlay'); let n = 3;
-  const step = () => {
-    if (!G || G.over) { ov.innerHTML = ''; return; }
-    if (n === 0) { ov.innerHTML = '<div class="count">Los!</div>'; Sound.go(); setTimeout(() => { ov.innerHTML = ''; }, 500); done(); return; }
-    ov.innerHTML = `<div class="count">${n}</div>`; Sound.tick(false); n--; setTimeout(step, 650);
-  };
-  step();
-}
-
-function fitExpr() {
-  const el = $('expr'), box = $('taskBox');
-  let size = innerHeight < 620 ? 40 : innerHeight < 760 ? 48 : 56;
-  el.style.fontSize = size + 'px';
-  // zu breit oder zu hoch → Schrift verkleinern
-  while ((el.scrollWidth > box.clientWidth - 20 || box.scrollHeight > box.clientHeight + 1) && size > 28) { size -= 3; el.style.fontSize = size + 'px'; }
-}
-
-function nextTask() {
-  if (G.mode !== 'blitz' && G.idx >= G.total) return finish();
-  let t;
-  if (G.queue) t = G.queue[G.idx];
-  else { for (let i = 0; i < 25; i++) { t = makeTask(G.op, G.lvl); if (!G.recent.includes(keyOf(t))) break; } G.recent.push(keyOf(t)); if (G.recent.length > 10) G.recent.shift(); }
-  G.task = t; G.input = ''; G.t0 = performance.now(); G.hinted = false;
-  $('expr').innerHTML = t.e.map(tokHtml).join('') + '<span class="eq">=</span>';
-  $('hint').textContent = t.hint || '';
-  $('unit').textContent = t.unit || '';
-  if (G.op === 'mix' || G.mode === 'fehler') $('winTitle').textContent = `${G.mode === 'fehler' ? 'Fehlerkiste · ' : ''}${TOPICS[t.topic].name}`;
-  if (G.mode === 'fehler') $('winTag').textContent = `Stufe ${t.lvl + 1}`;
-  $('feedback').textContent = ''; $('feedback').className = 'feedback';
-  renderAnswer(); updateHud(); fitExpr(); speak(t);
-}
-
-function renderAnswer(state) {
-  const el = $('answer'), txt = G.input.replace('-', '−');
-  el.className = 'answer' + (state ? ' ' + state : G.input ? ' typing' : '');
-  if (state) el.textContent = txt || '–';
-  else el.innerHTML = txt ? esc(txt) : '<span class="caret"></span>';
-}
-
-function press(k) {
-  if (!G || G.locked || G.paused || Sheet.open) return;
-  const s = G.input;
-  if (k === 'ok') return submit();
-  if (k === 'del') { G.input = s.slice(0, -1); Sound.click(); return renderAnswer(); }
-  if (k === 'neg') { G.input = s.startsWith('-') ? s.slice(1) : '-' + s; Sound.click(); renderAnswer(); return maybeAuto(); }
-  if (s.length >= 9) return;
-  if (k === ',') { const part = s.split('/').pop(); if (s.includes('/') || part.includes(',')) return; G.input = s + (/\d$/.test(s) ? ',' : (s.endsWith('-') ? '' : '') + '0,'); }
-  else if (k === '/') { if (s.includes('/') || s.includes(',') || !/\d$/.test(s)) return; G.input = s + '/'; }
-  else { G.input = (s === '0' ? '' : s === '-0' ? '-' : s) + k; }
-  Sound.click(); renderAnswer(); maybeAuto();
-}
-// Automatisch prüfen, sobald die Eingabe so lang ist wie die Lösung
-function maybeAuto() { if (S.settings.auto && G.input.length >= canon(G.task.a).length && parseInput(G.input) && !G.input.endsWith(',')) submit(); }
-
-function submit() {
-  if (!G || G.locked || G.input === '') return;
-  const p = parseInput(G.input), t = G.task, a = t.a;
-  if (!p) { $('feedback').className = 'feedback info'; $('feedback').textContent = 'Diese Eingabe verstehe ich nicht.'; return; }
-  const equal = p.q.n === a.q.n && p.q.d === a.q.d;
-  if (equal && p.frac && !p.reduced && !G.hinted) {           // richtig, aber nicht gekürzt → zweite Chance
-    G.hinted = true; Sound.hint();
-    $('feedback').className = 'feedback info'; $('feedback').textContent = a.q.d === 1 ? 'Stimmt – schreib es als ganze Zahl!' : 'Stimmt – aber kürze noch vollständig!';
-    G.input = ''; renderAnswer(); return;
-  }
-  const dt = performance.now() - G.t0, key = keyOf(t);
-  G.locked = true; G.idx++;
-  lastAnswered = { task: taskText(t) + ' = ?', given: G.input.replace('-', '−'), expected: showAns(a), correct: equal, topic: TOPICS[t.topic].name, level: t.lvl + 1, mode: G.mode, _task: t };
-  if (equal) {
-    G.correct++; G.streak++; G.bestStreak = Math.max(G.bestStreak, G.streak); G.times.push(dt);
-    const pts = Math.round((10 + Math.min(G.streak, 10) * 2 + (dt < 4000 ? 5 : 0)) * (1 + t.lvl * .5));
-    G.score += pts; Sound.correct(G.streak); renderAnswer('ok');
-    const f = document.createElement('div'); f.className = 'float'; f.textContent = '+' + pts; $('taskBox').appendChild(f); setTimeout(() => f.remove(), 800);
-    if (S.box[key] && --S.box[key].need <= 0) delete S.box[key];
-    if (G.streak % 5 === 0) {
-      setTimeout(() => Sound.milestone(), 150);
-      toast(G.streak >= 15 ? `<b>${G.streak}</b> richtig in Folge – Wahnsinn!` : G.streak >= 10 ? `<b>${G.streak}</b> richtig in Folge – stark!` : '<b>5</b> richtig in Folge!');
-      Confetti.burst(40 + G.streak * 2);
-    }
-    updateHud();
-    setTimeout(() => { if (!G.over) { G.locked = false; nextTask(); } }, 400);
-  } else {
-    G.wrong++; G.streak = 0;
-    G.mistakes.push({ ...lastAnswered });
-    S.box[key] = { topic: t.topic, lvl: t.lvl, e: t.e, a: t.a, hint: t.hint, unit: t.unit, need: 2 };
-    Sound.wrong(); vibrate(60); renderAnswer('no');
-    $('feedback').className = 'feedback no';
-    $('feedback').innerHTML = `Richtig ist: <span class="fx">${esc(showAns(a))}${t.unit ? ' ' + t.unit : ''}</span>`;
-    updateHud();
-    setTimeout(() => { if (!G.over) { G.locked = false; nextTask(); } }, G.mode === 'blitz' ? 1200 : 1800);
-  }
-  save();
-}
-
-function updateHud() {
-  $('gStreak').textContent = `🔥 ${G.streak}`;
-  $('gStreak').classList.toggle('hot', G.streak >= 5);
-  $('gScore').textContent = `${G.score} Punkte`;
-  if (G.mode !== 'blitz') {
-    $('gInfo').textContent = `${Math.min(G.idx + 1, G.total)}/${G.total}`;
-    $('gBarFill').style.width = (G.idx / G.total * 100) + '%';
-  }
-}
-
-function timerLoop() {
-  if (!G || G.over) return;
-  if (G.mode === 'blitz' && !G.paused && G.endAt) {
-    const left = Math.max(0, G.endAt - performance.now()), sec = Math.ceil(left / 1000);
-    $('gBarFill').style.width = (left / BLITZ_MS * 100) + '%';
-    $('gInfo').textContent = sec + ' s';
-    if (sec <= 5 && sec < G.lastTick && sec > 0) Sound.tick(true);
-    G.lastTick = sec;
-    if (left <= 0) return finish();
-  }
-  timerRaf = requestAnimationFrame(timerLoop);
-}
-
-function pauseGame(on) {
-  if (!G || G.over || currentScreen() !== 'game') return;
-  const now = performance.now();
-  if (on && !G.paused) { G.paused = true; G.pausedAt = now; }
-  else if (!on && G.paused) { const d = now - G.pausedAt; G.paused = false; if (G.endAt) G.endAt += d; if (G.t0) G.t0 += d; }
-}
-
-function toast(html) { const d = document.createElement('div'); d.className = 'toast'; d.innerHTML = html; document.body.appendChild(d); setTimeout(() => d.remove(), 1400); }
-
-function quitGame() { if (G) G.over = true; cancelAnimationFrame(timerRaf); $('overlay').innerHTML = ''; if ('speechSynthesis' in window) speechSynthesis.cancel(); show('home'); renderHome(); }
-$('btnQuit').onclick = () => { Sound.click(); quitGame(); };
-
-/* ================= Ergebnis ================= */
-const STAR = '<svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" stroke-linejoin="round"/></svg>';
-$('rStars').innerHTML = STAR + STAR + STAR;
-
-function finish() {
-  if (G.over) return;
-  G.over = true; G.locked = true; cancelAnimationFrame(timerRaf);
-  const answered = G.correct + G.wrong, acc = answered ? G.correct / answered : 0;
-  let stars;
-  if (G.mode === 'blitz') {
-    const f = [1, .8, .6, .45, .3][G.lvl] * (['add', 'sub', 'mul', 'div'].includes(G.op) ? 1 : .7);
-    stars = acc < .7 ? (G.correct >= 8 * f ? 1 : 0) : G.correct >= 26 * f ? 3 : G.correct >= 17 * f ? 2 : G.correct >= 8 * f ? 1 : 0;
-  } else stars = acc >= .95 ? 3 : acc >= .8 ? 2 : acc >= .6 ? 1 : 0;
-
-  let newBest = false;
-  if (G.mode !== 'fehler') {
-    const bk = `${G.mode}|${G.op}|${G.lvl}`;
-    if (G.score > 0 && G.score > (S.best[bk] || 0)) { newBest = !!S.best[bk]; S.best[bk] = G.score; }
-  }
-  const xp = G.correct * (G.lvl + 1) + stars * 10, lvBefore = levelFromXp(S.xp);
-  S.xp += xp; S.total += G.correct;
-  const t = todayStr(), y = todayStr(new Date(Date.now() - 864e5));
-  if (S.today.date !== t) S.today = { date: t, solved: 0 };
-  const goalBefore = S.today.solved < DAILY_GOAL;
-  S.today.solved += G.correct;
-  if (G.correct > 0 && S.days.last !== t) { S.days.streak = S.days.last === y ? S.days.streak + 1 : 1; S.days.last = t; }
-  save();
-
-  $('rTitle').innerHTML = ['Weiter <em>üben!</em>', 'Gut <em>gemacht!</em>', '<em>Super!</em>', '<em>Perfekt!</em>'][stars];
-  $('rScore').textContent = G.score;
-  $('rNewBest').hidden = !newBest;
-  $('rCorrect').textContent = G.correct;
-  $('rAcc').textContent = Math.round(acc * 100) + '%';
-  const avg = G.times.length ? G.times.reduce((a, b) => a + b, 0) / G.times.length / 1000 : 0;
-  $('rTime').textContent = avg ? avg.toFixed(1).replace('.', ',') + ' s' : '–';
-  $('rMistakes').hidden = !G.mistakes.length;
-  $('rMistakeList').innerHTML = G.mistakes.slice(0, 8).map((m, i) =>
-    `<li><span class="m">${esc(m.task.replace(' = ?', ''))} = <b>${esc(m.expected)}</b> <span class="muted">(du: <s>${esc(m.given)}</s>)</span></span><button class="linkbtn" data-i="${i}" title="Glaubst du, die Lösung ist falsch? Melde es uns.">Melden</button></li>`).join('');
-  let xpText = `+${xp} XP · beste Serie: ${G.bestStreak}`;
-  if (levelFromXp(S.xp) > lvBefore) xpText += ` · Stufe ${levelFromXp(S.xp)} erreicht!`;
-  if (goalBefore && S.today.solved >= DAILY_GOAL) xpText += ' · Tagesziel geschafft! 🎯';
-  $('rXp').textContent = xpText;
-  const starEls = $('rStars').children;
-  for (const s of starEls) s.classList.remove('on');
-  show('result'); Sound.fanfare(stars);
-  for (let i = 0; i < stars; i++) setTimeout(() => { starEls[i].classList.add('on'); Sound.tone(84 + i * 4, 0, .2, 'triangle', .1); }, 500 + i * 300);
-  if (stars >= 2 || newBest) setTimeout(() => Confetti.burst(140), 500 + stars * 300);
-}
-$('rMistakeList').addEventListener('click', e => { const b = e.target.closest('.linkbtn'); if (b) openSheet('report', { type: 'aufgabe', ctx: G.mistakes[+b.dataset.i] }); });
-$('btnMenu').onclick = () => { Sound.click(); show('home'); renderHome(); };
-$('btnAgain').onclick = () => { if (G.mode === 'fehler' && !Object.keys(S.box).length) { show('home'); renderHome(); return; } startGame(G.mode); };
-
-/* ================= Menü (schwebender Button) ================= */
-const Sheet = { open: false, panel: null };
-let installPrompt = null;
-addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; });
-const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
-const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-
-function contextNow() {
-  if (G && currentScreen() === 'game' && G.task && !G.locked)
-    return { task: taskText(G.task) + ' = ?', given: G.input.replace('-', '−'), expected: showAns(G.task.a), correct: null, topic: TOPICS[G.task.topic].name, level: G.task.lvl + 1, mode: G.mode, _task: G.task };
-  return lastAnswered;
-}
-
-const PANELS = {
-  menu() {
-    const n = S.outbox.length;
-    return { title: 'Wie können wir helfen?', html: `<div class="menu">
-      <button class="mi accent" data-go="report" data-type="aufgabe"><div class="ico">🐞</div><div><b>Fehler melden</b><span>Falsche Lösung oder Problem in der App</span></div><span class="chev">›</span></button>
-      <button class="mi" data-go="report" data-type="idee"><div class="ico">💡</div><div><b>Idee oder Feedback</b><span>Was sollen wir verbessern?</span></div><span class="chev">›</span></button>
-      <button class="mi" data-go="settings"><div class="ico">⚙️</div><div><b>Einstellungen</b><span>Ton, Vorlesen, Design, Fortschritt</span></div><span class="chev">›</span></button>
-      ${!isStandalone() && (installPrompt || isIOS()) ? '<button class="mi" data-go="install"><div class="ico">📱</div><div><b>Als App installieren</b><span>Auf den Startbildschirm – läuft auch offline</span></div><span class="chev">›</span></button>' : ''}
-      <a class="mi" href="${esc(CONFIG.trialUrl)}" target="_blank" rel="noopener"><div class="ico">🎓</div><div><b>Kostenlose Probestunde</b><span>Online-Nachhilfe 1:1 bei Nachhilfe – online</span></div><span class="chev">↗</span></a>
-      </div><p class="small muted" style="text-align:center;margin:14px 0 0">Rechenblitz ${APP_VERSION}${n ? ` · ${n} Meldung${n > 1 ? 'en' : ''} wartet auf Versand` : ''}</p>` };
-  },
-  report(o = {}) {
-    const type = o.type || 'aufgabe', ctx = o.ctx !== undefined ? o.ctx : contextNow();
-    Sheet.report = { type, ctx };
-    const ctxLine = ctx ? `${esc(ctx.task)}${ctx.given ? ` · deine Antwort: <b>${esc(ctx.given)}</b>` : ''} · Lösung der App: <b>${esc(ctx.expected)}</b>` : '';
-    return { title: type === 'idee' ? 'Idee oder Feedback' : 'Fehler melden', html: `<form class="form" id="rForm" novalidate>
-      <div class="seg" id="rType">${[['aufgabe', 'Aufgabe'], ['app', 'App-Problem'], ['idee', 'Idee']].map(([v, l]) => `<button type="button" data-v="${v}" class="${v === type ? 'sel' : ''}">${l}</button>`).join('')}</div>
-      ${ctx ? `<label class="attach"><input type="checkbox" id="rAttach" ${type === 'idee' ? '' : 'checked'}><div><b>Aufgabe anhängen</b><span>${ctxLine}</span></div></label>` : ''}
-      <label class="field"><span id="rMsgLabel"></span><textarea id="rMsg" rows="4" maxlength="2000" required></textarea></label>
-      <label class="field"><span>Name (optional)</span><input id="rName" maxlength="80" autocomplete="name" value="${esc(S.reporter.name)}"></label>
-      <label class="field"><span>E-Mail für Rückfragen (optional)</span><input id="rMail" type="email" maxlength="120" autocomplete="email" inputmode="email" value="${esc(S.reporter.email)}"></label>
-      <input id="rHp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <p class="small muted" style="margin:0">Mitgeschickt werden deine Nachricht, ggf. die Aufgabe und technische Angaben (App-Version, Browser, Bildschirmgröße). <a href="${esc(CONFIG.privacyUrl)}" target="_blank" rel="noopener">Datenschutz</a></p>
-      <button class="btn primary block" id="rSend" type="submit">Meldung senden</button>
-      <div class="status" id="rStatus" role="status"></div></form>`, init: initReport };
-  },
-  settings() {
-    const sw = (id, on, t, d) => `<button class="setrow" data-set="${id}" role="switch" aria-checked="${on}"><div><b>${t}</b><span>${d}</span></div><span class="switch ${on ? 'on' : ''}"></span></button>`;
-    return { title: 'Einstellungen', html: `<div class="menu">
-      ${sw('sound', S.settings.sound, 'Ton', 'Klänge bei richtig, falsch und Serien')}
-      ${sw('speech', S.settings.speech, 'Aufgaben vorlesen', 'Der Browser liest jede Aufgabe vor')}
-      ${sw('auto', S.settings.auto, 'Automatisch prüfen', 'Prüfen, sobald genug Stellen eingegeben sind')}
-      <div class="setrow"><div><b>Design</b><span>Hell, dunkel oder wie das Gerät</span></div></div>
-      <div class="seg" id="themeSeg">${[['auto', 'Automatisch'], ['light', 'Hell'], ['dark', 'Dunkel']].map(([v, l]) => `<button data-v="${v}" class="${S.settings.theme === v ? 'sel' : ''}">${l}</button>`).join('')}</div>
-      <button class="mi" id="btnReset" style="margin-top:8px"><div class="ico">↺</div><div><b>Fortschritt zurücksetzen</b><span>Punkte, Rekorde und Fehlerkiste löschen</span></div></button>
-      </div>`, init: initSettings };
-  },
-  install() {
-    return { title: 'Als App installieren', html: installPrompt
-      ? `<p>Installiere Rechenblitz auf deinem Gerät. Dann startet es wie eine App vom Startbildschirm und funktioniert auch ohne Internet.</p><button class="btn primary block" id="btnInstall">Jetzt installieren</button>`
-      : `<p>So kommt Rechenblitz auf deinen Startbildschirm:</p><ol style="padding-left:20px;line-height:1.8"><li>Tippe in Safari unten auf <b>Teilen</b> (□↑).</li><li>Wähle <b>Zum Home-Bildschirm</b>.</li><li>Tippe auf <b>Hinzufügen</b>.</li></ol>`,
-      init() { const b = $('btnInstall'); if (b) b.onclick = async () => { installPrompt.prompt(); await installPrompt.userChoice.catch(() => {}); installPrompt = null; closeSheet(); }; } };
-  },
-};
-
-function openSheet(panel = 'menu', opts) {
-  Sound.init();
-  if (!Sheet.open) { Sheet.open = true; $('sheetBg').hidden = false; pauseGame(true); Sheet.lastFocus = document.activeElement; }
-  showPanel(panel, opts);
-}
-function showPanel(panel, opts) {
-  const p = PANELS[panel](opts);
-  Sheet.panel = panel;
-  $('sheetTitle').textContent = p.title;
-  $('sheetBody').innerHTML = p.html;
-  $('sheetBack').hidden = panel === 'menu';
-  p.init && p.init();
-  ($('sheetBody').querySelector('textarea') || $('sheetClose')).focus({ preventScroll: true });
-}
-function closeSheet() { Sheet.open = false; $('sheetBg').hidden = true; pauseGame(false); Sheet.lastFocus?.focus?.(); }
-$('fab').onclick = () => { Sound.click(); Sheet.open ? closeSheet() : openSheet('menu'); };
-$('sheetClose').onclick = closeSheet;
-$('sheetBack').onclick = () => showPanel('menu');
-$('sheetBg').addEventListener('click', e => { if (e.target === $('sheetBg')) closeSheet(); });
-$('sheetBody').addEventListener('click', e => { const b = e.target.closest('[data-go]'); if (b) showPanel(b.dataset.go, { type: b.dataset.type }); });
-
-function initSettings() {
-  $('sheetBody').querySelectorAll('[data-set]').forEach(b => b.onclick = () => {
-    const k = b.dataset.set; S.settings[k] = !S.settings[k]; save(); Sound.init(); Sound.click();
-    b.setAttribute('aria-checked', S.settings[k]); b.querySelector('.switch').classList.toggle('on', S.settings[k]);
-    if (k === 'speech' && S.settings.speech) speak({ e: [N(3), O('·'), N(4)] });
-    renderHome();
-  });
-  $('themeSeg').onclick = e => { const b = e.target.closest('button'); if (!b) return; S.settings.theme = b.dataset.v; save(); applyTheme(); $('themeSeg').querySelectorAll('button').forEach(x => x.classList.toggle('sel', x === b)); };
-  $('btnReset').onclick = () => {
-    if (!confirm('Wirklich den gesamten Fortschritt löschen? Das kann nicht rückgängig gemacht werden.')) return;
-    S = Object.assign(structuredClone(DEFAULT), { settings: S.settings, reporter: S.reporter, outbox: S.outbox, sel: S.sel });
-    save(); renderHome(); closeSheet(); toast('Fortschritt zurückgesetzt');
-  };
-}
-
-const MSG_LABEL = { aufgabe: ['Was stimmt nicht?', 'z. B. „Bei 3/4 + 1/8 müsste 7/8 herauskommen.“'], app: ['Was ist passiert?', 'z. B. „Auf meinem iPad kommt kein Ton.“'], idee: ['Deine Idee', 'Was würdest du dir wünschen?'] };
-function initReport() {
-  const setType = v => {
-    Sheet.report.type = v;
-    $('rType').querySelectorAll('button').forEach(b => b.classList.toggle('sel', b.dataset.v === v));
-    $('rMsgLabel').textContent = MSG_LABEL[v][0]; $('rMsg').placeholder = MSG_LABEL[v][1];
-    $('sheetTitle').textContent = v === 'idee' ? 'Idee oder Feedback' : 'Fehler melden';
-  };
-  setType(Sheet.report.type);
-  $('rType').onclick = e => { const b = e.target.closest('button'); if (b) setType(b.dataset.v); };
-  $('rForm').onsubmit = async e => {
-    e.preventDefault();
-    const msg = $('rMsg').value.trim(), st = $('rStatus');
-    if (msg.length < 3) { st.className = 'status err'; st.textContent = 'Bitte beschreibe kurz, worum es geht.'; $('rMsg').focus(); return; }
-    const mail = $('rMail').value.trim();
-    if (mail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) { st.className = 'status err'; st.textContent = 'Die E-Mail-Adresse sieht nicht richtig aus.'; return; }
-    if (Date.now() - (S.lastReportAt || 0) < 15000) { st.className = 'status err'; st.textContent = 'Bitte warte einen Moment, bevor du noch etwas sendest.'; return; }
-    S.reporter = { name: $('rName').value.trim(), email: mail };
-    const attach = $('rAttach')?.checked ? Sheet.report.ctx : null;
-    const payload = buildReport(Sheet.report.type, msg, attach);
-    $('rSend').disabled = true; st.className = 'status'; st.textContent = 'Wird gesendet …';
-    if ($('rHp').value) { reportDone('sent'); return; }       // Spam-Falle
-    S.lastReportAt = Date.now(); save();
-    reportDone(await deliver(payload), payload);
-  };
-}
-function buildReport(type, message, ctx) {
-  let task = null;
-  if (ctx) { const { _task, ...rest } = ctx; task = rest; if (_task) task.raw = { topic: _task.topic, level: _task.lvl + 1, expr: _task.e, answer: _task.a }; }
-  return {
-    id: (crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2)),
-    createdAt: new Date().toISOString(), type, message, name: S.reporter.name, email: S.reporter.email, task,
-    app: { name: 'Rechenblitz', version: APP_VERSION, url: location.href, screen: currentScreen(), standalone: isStandalone(), userAgent: navigator.userAgent,
-      language: navigator.language, viewport: `${innerWidth}x${innerHeight}`, theme: isDark() ? 'dark' : 'light',
-      settings: { ...S.settings }, selection: { topic: S.sel.op, level: S.sel.lvl + 1 } },
-  };
-}
-async function postReport(p) {
-  const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 12000);
-  try {
-    const r = await fetch(CONFIG.reportEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(p), signal: ctl.signal });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-  } finally { clearTimeout(to); }
-}
-// Versand; klappt es nicht, bleibt die Meldung im Postausgang und wird später erneut versucht
-async function deliver(p) {
-  if (!CONFIG.reportEndpoint) { S.outbox.push(p); save(); return 'noendpoint'; }
-  try { await postReport(p); return 'sent'; }
-  catch { S.outbox.push(p); save(); return 'queued'; }
-}
-async function flushOutbox() {
-  if (!CONFIG.reportEndpoint || !S.outbox.length || !navigator.onLine) return;
-  const rest = [];
-  for (const p of S.outbox) { try { await postReport(p); } catch { rest.push(p); } }
-  S.outbox = rest; save();
-}
-function reportDone(res, payload) {
-  if (res === 'sent') {
-    $('sheetBody').innerHTML = `<div class="thanks"><div class="ok">✓</div><h3>Danke für deine Meldung!</h3><p class="muted">Wir schauen sie uns an${S.reporter.email ? ' und melden uns bei Bedarf per E-Mail' : ''}.</p><button class="btn dark block" id="thxClose">Weiter</button></div>`;
-  } else if (res === 'queued') {
-    $('sheetBody').innerHTML = `<div class="thanks"><div class="ok" style="color:var(--orange-d);background:rgba(255,116,24,.12)">⏳</div><h3>Gespeichert</h3><p class="muted">Gerade gibt es keine Verbindung. Deine Meldung wird automatisch gesendet, sobald du wieder online bist.</p><button class="btn dark block" id="thxClose">Weiter</button></div>`;
-  } else {
-    const body = `${payload.message}\n\n${payload.task ? `Aufgabe: ${payload.task.task}\nAntwort: ${payload.task.given || '–'}\nLösung der App: ${payload.task.expected}\n` : ''}\nRechenblitz ${APP_VERSION} · ${navigator.userAgent}`;
-    const href = `mailto:${CONFIG.fallbackMail}?subject=${encodeURIComponent('Rechenblitz: ' + (payload.type === 'idee' ? 'Idee' : 'Fehlermeldung'))}&body=${encodeURIComponent(body)}`;
-    $('sheetBody').innerHTML = `<div class="thanks"><div class="ok" style="color:var(--orange-d);background:rgba(255,116,24,.12)">✉️</div><h3>Fast geschafft</h3><p class="muted">Der direkte Versand ist hier noch nicht eingerichtet. Deine Meldung ist gespeichert und wird später automatisch übertragen – oder du schickst sie gleich per E-Mail.</p><a class="btn primary block" href="${href}">Per E-Mail senden</a><button class="btn block" id="thxClose" style="margin-top:8px">Schließen</button></div>`;
-  }
-  $('thxClose').onclick = closeSheet;
-}
-addEventListener('online', flushOutbox);
-
-/* ================= Tastatur ================= */
-addEventListener('keydown', e => {
-  if (Sheet.open) { if (e.key === 'Escape') closeSheet(); return; }
-  if (currentScreen() === 'game') {
-    const map = { Backspace: 'del', Enter: 'ok', ',': ',', '.': ',', '/': '/', '-': 'neg' };
-    const k = /^[0-9]$/.test(e.key) ? e.key : map[e.key];
-    if (e.key === 'Escape') return quitGame();
-    if (k) {
-      e.preventDefault(); press(k);
-      const b = document.querySelector(`.key[data-k="${CSS.escape(k)}"]`); b?.classList.add('down'); setTimeout(() => b?.classList.remove('down'), 100);
-    }
-  } else if (currentScreen() === 'result') {
-    if (e.key === 'Enter' && document.activeElement === document.body) { e.preventDefault(); $('btnAgain').click(); }
-    if (e.key === 'Escape') $('btnMenu').click();
-  }
-});
-addEventListener('resize', () => { if (currentScreen() === 'game' && G?.task) fitExpr(); });
-
-/* ================= Start ================= */
-applyTheme();
-renderHome();
-flushOutbox();
-if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
-</script>
+<script src="js/engine.js"></script>
+<script src="js/app.js"></script>
+<script src="js/panels.js"></script>
+<script>init();</script>
 </body>
 </html>
