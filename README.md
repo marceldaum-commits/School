@@ -22,12 +22,13 @@ Figuren: *Ultimate Animated Character Pack* von Quaternius (https://quaternius.c
 
 # Rechenblitz – Kopfrechnen üben (`kopfrechnen/`)
 
-Eine einzelne HTML-Datei ohne Installation: `kopfrechnen/index.html` im Browser öffnen (auch direkt als Datei, auf Handy, Tablet und PC).
+Web-App im Design von mathenachhilfe-online.com. Läuft im Browser und lässt sich als App installieren (PWA, offline nutzbar).
+Für Installation/Offline über einen Webserver ausliefern (z. B. als Unterordner der Website); direkt als Datei geöffnet funktioniert das Üben ebenfalls.
 
-- **Rechenarten:** Plus, Minus, Mal, Geteilt und Mix, je 5 Schwierigkeitsstufen (Zahlenraum 10 bis 1000, Kernaufgaben bis zweistellig · zweistellig)
-- **Modi:** Training (20 Aufgaben), Blitzrunde (60 Sekunden), Fehlerkiste (falsche Aufgaben werden wiederholt, bis sie zweimal richtig gelöst sind)
-- **Motivation:** Punkte mit Serienbonus, 3 Sterne, Rekorde je Stufe, XP und Ränge, Tagesziel (50 Aufgaben), Tage-Serie, Konfetti
-- **Sound:** komplett im Browser erzeugt (Web Audio API), Ton steigt mit der Serie; optional Vorlesen der Aufgaben (Sprachausgabe)
-- **Bedienung:** großes Ziffernfeld oder Tastatur (Ziffern, ⌫, Enter, Esc); Antwort wird automatisch geprüft, sobald sie genug Stellen hat
-
-Fortschritt wird im Browser gespeichert (localStorage).
+- **Themen (je 5 Stufen, alle Aufgaben zufällig erzeugt):** Plus, Minus, Mal, Geteilt, Brüche, Dezimalzahlen, Prozent, negative Zahlen, Potenzen & Wurzeln, Mix aus allem
+- **Eingabe:** Ziffernfeld mit Bruchstrich, Komma und Vorzeichen (oder Tastatur: Ziffern, `/`, `,`, `-`, ⌫, Enter). Ungekürzte, aber richtige Brüche → Hinweis „kürze noch“ statt Fehler
+- **Modi:** Training (20 Aufgaben), Blitzrunde (60 s), Fehlerkiste (falsche Aufgaben kommen wieder, bis sie zweimal richtig sind)
+- **Motivation:** Punkte mit Serienbonus, Sterne, Rekorde, XP & Ränge, Tagesziel, Tage-Serie, Konfetti, Sound (Web Audio), optional Vorlesen
+- **Schwebender Button unten rechts:** Fehler melden (mit angehängter Aufgabe), Idee/Feedback, Einstellungen (Ton, Vorlesen, automatisch prüfen, Hell/Dunkel, Fortschritt zurücksetzen), App installieren, Probestunde
+- **Fehlermeldungen:** werden per POST an `reportEndpoint` in `kopfrechnen/config.js` geschickt (Format: `kopfrechnen/MELDUNGEN-API.md`). Ohne Endpunkt oder offline bleiben sie im Postausgang auf dem Gerät und werden später übertragen.
+- Schriften (Inter, Source Serif 4, Caveat; SIL Open Font License) sind lokal eingebunden – kein Abruf bei Google.
