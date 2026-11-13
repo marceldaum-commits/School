@@ -8,9 +8,9 @@ Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erl
 1. Eintrag des Tages umsetzen (ist er schon erledigt oder blockiert, den nächsten offenen nehmen; Umfang sinnvoll anpassen und notieren).
 2. Alle neuen Texte auch in `i18n/uebersetzungen.tsv` (Englisch, Ukrainisch) eintragen und `node i18n/build.js` ausführen.
 3. Version erhöhen in `kopfrechnen/js/changelog.js` (`APP_VERSION`, `APP_DATE` = heutiges Datum, neuer Eintrag in `CHANGELOG` – kurz und kindgerecht) und Cache-Name in `kopfrechnen/sw.js`.
-4. Testen: Rechen-Engine (alle Themen/Stufen korrekt), Browser-Durchlauf Handy + PC, Deutsch/Englisch/Ukrainisch ohne fehlende Übersetzungen, kein Überlauf auf 320 px, keine Fehler in der Konsole, keine fremden Abrufe.
+4. Testen: Rechen-Engine (alle Themen/Stufen korrekt), Browser-Durchlauf Handy + PC, Deutsch/Englisch/Ukrainisch ohne fehlende Übersetzungen, kein Überlauf auf 320 px (Seitenbreite = Bildschirmbreite, nichts ragt hinaus), keine Fehler in der Konsole, keine fremden Abrufe; zusätzlich in der **installierten Ansicht** (standalone/TWA) prüfen (Leitstand 39).
 5. Nur erlaubte Dateiarten in `kopfrechnen/` (html, css, js, json, webmanifest, svg, png, jpg, webp, ico, woff2, txt). Keine Personendaten, keine Geheimnisse, keine externen Dienste.
-6. Commit auf den Arbeits-Branch, auf `rechenblitz-test` schieben (nie `rechenblitz-live` – das setzt der Leitstand), Meldung oben in `MELDUNG_RECHENBLITZ.md`, Status hier abhaken.
+6. Commit auf den Arbeits-Branch, auf `rechenblitz-test` schieben (nie `rechenblitz-live` – das setzt der Leitstand), Meldung oben in `MELDUNG_RECHENBLITZ.md` – immer mit der Zeile **„Neue APK nötig: ja/nein“** (nur ja, wenn sich die Hülle ändert: Manifest-Start/Scope, Symbole, Paket, Benachrichtigungen; Web-App und APK haben immer denselben Stand) –, Status hier abhaken.
 7. Braucht etwas einen Server oder eine Entscheidung von Marcel: App-Seite bauen und hinter einem Schalter in `config.js` verstecken, Frage als „OFFEN“ in die Meldung.
 
 ## Leitlinien (Marcel 13.11., Markt 2025/26)
