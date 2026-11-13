@@ -31,6 +31,7 @@ const PANELS = {
       ${miLink(siteLink(CONFIG.websiteUrl, 'menu'), '🌐', 'Zu Nachhilfe – online', 'Online-Nachhilfe 1:1 in Mathe & mehr', 'accent')}
       ${miLink(siteLink(CONFIG.trialUrl, 'menu-probestunde'), '🎓', 'Kostenlose Probestunde', 'Unverbindlich ausprobieren')}
       ${CONFIG.lernraumUrl ? `<a class="mi" href="${esc(siteLink(CONFIG.lernraumUrl, 'menu-lernraum'))}"><div class="ico">📚</div><div><b>Zurück zum Lernraum</b><span>Weitere Lernspiele und Übungen</span></div><span class="chev">←</span></a>` : ''}
+      ${mi('news', '🆕', 'Was ist neu?', `Version ${versionLabel()}`)}
       ${mi('invite', '💌', 'Freunde einladen', 'Rechenblitz ist kostenlos – teile es!')}
       ${adventPhase() !== 'off' ? mi('advent', '🎄', 'Rechen-Adventskalender', 'Jeden Tag ein Türchen') : ''}
       ${CONFIG.classApi ? mi('klasse', '🏫', 'Klassen-Challenge', S.klasse ? 'Rangliste deiner Klasse' : 'Mit Klassencode beitreten') : ''}
@@ -43,7 +44,7 @@ const PANELS = {
       ${mi('teacher', '👩‍🏫', 'Für Lehrkräfte', 'Aufträge verschicken, Arbeitsblätter drucken')}
       ${mi('settings', '⚙️', 'Einstellungen', 'Ton, Vorlesen, Klassenstufe, Design')}
       ${!isStandalone() && (installPrompt || isIOS()) ? mi('install', '📱', 'Als App installieren', 'Auf den Startbildschirm – läuft auch offline') : ''}
-      </div><p class="small muted" style="text-align:center;margin:14px 0 0">Rechenblitz ${APP_VERSION}${n ? ` · ${n} Meldung${n > 1 ? 'en' : ''} wartet auf Versand` : ''}</p>` };
+      </div><p class="small muted" style="text-align:center;margin:14px 0 0">Rechenblitz ${versionLabel()}${n ? ` · ${n} Meldung${n > 1 ? 'en' : ''} wartet auf Versand` : ''}</p>` };
   },
 
   /* ---------- Fehler melden / Idee ---------- */
@@ -63,6 +64,10 @@ const PANELS = {
       <p class="small muted" style="margin:0">Mitgeschickt werden deine Nachricht, ggf. die Aufgabe und technische Angaben (App-Version, Browser, Bildschirmgröße). <a href="${esc(CONFIG.privacyUrl)}" target="_blank" rel="noopener">Datenschutz</a></p>
       <button class="btn primary block" id="rSend" type="submit">Meldung senden</button>
       <div class="status" id="rStatus" role="status"></div></form>`, init: initReport, focus: 'rMsg' };
+  },
+
+  news() {
+    return { title: 'Was ist neu?', html: `<div class="news">${CHANGELOG.map(([v, d, items]) => `<div class="nv"><div class="nv-head"><b translate="no">Version ${v}</b><span>${fmtDateShort(d)}</span></div><ul>${items.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>`).join('')}</div>` };
   },
 
   /* ---------- Einstellungen ---------- */
@@ -365,7 +370,7 @@ function buildReport(type, message, ctx) {
   return {
     id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2),
     createdAt: new Date().toISOString(), type, message, name: ROOT.reporter.name, email: ROOT.reporter.email, task,
-    app: { name: 'Rechenblitz', version: APP_VERSION, url: location.href.split('#')[0], screen: currentScreen(), standalone: isStandalone(), userAgent: navigator.userAgent,
+    app: { name: 'Rechenblitz', version: APP_VERSION, versionDate: APP_DATE, url: location.href.split('#')[0], screen: currentScreen(), standalone: isStandalone(), userAgent: navigator.userAgent,
       language: navigator.language, viewport: `${innerWidth}x${innerHeight}`, theme: isDark() ? 'dark' : 'light',
       settings: { ...S.settings }, selection: { topic: S.sel.op, level: S.sel.lvl === 'auto' ? 'auto' : S.sel.lvl + 1 } },
   };
@@ -452,10 +457,12 @@ function init() {
   I18N.lang = detectLang();
   loadRoot(); applyTheme();
   for (const [id, url, place] of [['lnkSite', CONFIG.websiteUrl, 'footer'], ['lnkImp', CONFIG.imprintUrl], ['lnkPriv', CONFIG.privacyUrl], ['btnSite', CONFIG.websiteUrl, 'header'], ['resultSite', CONFIG.websiteUrl, 'result']]) { const el = $(id); if (el) el.href = place ? siteLink(url, place) : url; }
-  $('verText').textContent = 'Version ' + APP_VERSION; $('verText').setAttribute('translate', 'no');
+  $('verText').innerHTML = `<button class="linkbtn" data-open="news">${esc(tr('Version'))} ${versionLabel()}</button>`; $('verText').setAttribute('translate', 'no');
   $('brandLink').href = siteLink(CONFIG.websiteUrl, 'logo');
   if (CONFIG.lernraumUrl) { $('btnLernraum').href = siteLink(CONFIG.lernraumUrl, 'lernraum'); $('btnLernraum').hidden = false; $('topbarText').hidden = true; }
   $('btnProfile').onclick = () => openSheet('profiles');
+  if (ROOT.seenVersion && ROOT.seenVersion !== APP_VERSION) setTimeout(() => toast(`<span translate="no">✨ ${esc(tr('Neu in Version'))} ${APP_VERSION}: ${esc(tr(CHANGELOG[0][2][0]))}</span>`, 3200), 1200);
+  ROOT.seenVersion = APP_VERSION; save();
   renderPromo(); renderHome(); handleHash(); handleParams(); flushOutbox(); submitClassPoints(); if (S.advent && S.advent.voucherPending) fetchVoucher();
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
 }

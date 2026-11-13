@@ -4,6 +4,12 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 13.11.2026 (15) – Version mit Datum, „Was ist neu?“, 3-Wochen-Plan (3.5.0)
+
+- **Marcel 13.11.:** „Für die nächsten 3 Wochen täglich ordentlich neue Dinge entwickeln. Bei der Version das Datum dazuschreiben.“
+- **3.5.0:** Version jetzt mit Datum („Version 3.5.0 · 13.11.2026“, Fußzeile + Menü), neue Datei `kopfrechnen/js/changelog.js` (`APP_VERSION`, `APP_DATE`, `CHANGELOG`), Menüpunkt **„Was ist neu?“**, einmaliger Hinweis nach einem Update. Meldungen tragen zusätzlich `app.versionDate`. Neuer Speicherwert `localStorage['rechenblitz'].seenVersion` (zuletzt gesehene Version).
+- **Plan:** `ROADMAP_RECHENBLITZ.md` im Repo-Stamm – ab 14.11. täglich ein neues Paket (u. a. Thema Uhr & Zeit, Trick des Tages, Zahlenmauern, Sterne-Shop, Lernpfad, Barrierefreiheit, Geometrie, Eltern-Bereich, Klassenzimmer-Quiz, Winterdesign, Statistik), jeweils getestet, übersetzt (EN/UK) und auf **`rechenblitz-test`** – Freigabe live wie bisher durch den Leitstand. Jede Lieferung bekommt eine eigene Meldung hier.
+
 ## 13.11.2026 (14) – Gutschein: persönlicher Code vom Server statt festem Code (3.4.2)
 
 - **Korrektur Leitstand umgesetzt:** `ADVENT2026` ist wieder entfernt (stand nur auf `rechenblitz-test`, nie live; steht aber in der öffentlichen Git-Historie – bitte im Shop deaktivieren, falls angelegt).

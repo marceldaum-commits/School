@@ -3,7 +3,6 @@
    Rechenblitz – App: Speicher & Profile, Sound, Statistik, Abzeichen,
    Startseite, Spielmodi, Ergebnis, Duell, Tageschallenge, Einstufung
    ===================================================================== */
-const APP_VERSION = '3.4.2';
 const CONFIG = Object.assign({
   reportEndpoint: '',                                   // URL, die Meldungen per POST (JSON) annimmt – siehe MELDUNGEN-API.md
   fallbackMail: 'website@mathenachhilfe-online.com',    // nur falls kein Endpunkt eingerichtet ist
