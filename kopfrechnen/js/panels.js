@@ -52,8 +52,9 @@ const PANELS = {
       <div class="seg" id="rType">${[['aufgabe', 'Aufgabe'], ['app', 'App-Problem'], ['idee', 'Idee']].map(([v, l]) => `<button type="button" data-v="${v}" class="${v === type ? 'sel' : ''}">${l}</button>`).join('')}</div>
       ${ctx ? `<label class="attach"><input type="checkbox" id="rAttach" ${type === 'idee' ? '' : 'checked'}><div><b>Aufgabe anhängen</b><span>${ctxLine}</span></div></label>` : ''}
       <label class="field"><span id="rMsgLabel"></span><textarea id="rMsg" rows="4" maxlength="2000" required></textarea></label>
-      <label class="field"><span>Name (optional)</span><input id="rName" maxlength="80" autocomplete="name" value="${esc(ROOT.reporter.name)}"></label>
-      <label class="field"><span>E-Mail für Rückfragen (optional)</span><input id="rMail" type="email" maxlength="120" autocomplete="email" inputmode="email" value="${esc(ROOT.reporter.email)}"></label>
+      <p class="small muted" style="margin:0">Name und E-Mail sind <b>freiwillig</b> und werden nur für Rückfragen zu deiner Meldung genutzt. Ein echter Name ist nicht nötig – ein Spitzname reicht.</p>
+      <label class="field"><span>Name oder Spitzname (freiwillig)</span><input id="rName" maxlength="80" autocomplete="name" value="${esc(ROOT.reporter.name)}"></label>
+      <label class="field"><span>E-Mail für Rückfragen (freiwillig)</span><input id="rMail" type="email" maxlength="120" autocomplete="email" inputmode="email" value="${esc(ROOT.reporter.email)}"></label>
       <input id="rHp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <p class="small muted" style="margin:0">Mitgeschickt werden deine Nachricht, ggf. die Aufgabe und technische Angaben (App-Version, Browser, Bildschirmgröße). <a href="${esc(CONFIG.privacyUrl)}" target="_blank" rel="noopener">Datenschutz</a></p>
       <button class="btn primary block" id="rSend" type="submit">Meldung senden</button>
@@ -342,7 +343,7 @@ function initReport() {
     if (mail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) { st.className = 'status err'; st.textContent = 'Die E-Mail-Adresse sieht nicht richtig aus.'; return; }
     if (Date.now() - (ROOT.lastReportAt || 0) < 15000) { st.className = 'status err'; st.textContent = 'Bitte warte einen Moment, bevor du noch etwas sendest.'; return; }
     ROOT.reporter = { name: $('rName').value.trim(), email: mail };
-    const payload = buildReport(Sheet.report.type, msg, $('rAttach')?.checked ? Sheet.report.ctx : null);
+    const payload = fitSize(buildReport(Sheet.report.type, msg, $('rAttach')?.checked ? Sheet.report.ctx : null));
     $('rSend').disabled = true; st.className = 'status'; st.textContent = 'Wird gesendet …';
     if ($('rHp').value) { reportDone('sent'); return; }       // Spam-Falle
     ROOT.lastReportAt = Date.now(); save();
@@ -364,22 +365,38 @@ async function postReport(p) {
   const ctl = new AbortController(), to = setTimeout(() => ctl.abort(), 12000);
   try {
     const r = await fetch(CONFIG.reportEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(p), signal: ctl.signal });
-    if (!r.ok) throw new Error('HTTP ' + r.status);
+    if (!r.ok) { const e = new Error('HTTP ' + r.status); e.status = r.status; throw e; }
   } finally { clearTimeout(to); }
 }
 async function deliver(p) {   // klappt der Versand nicht, bleibt die Meldung im Postausgang
   if (!CONFIG.reportEndpoint) { ROOT.outbox.push(p); save(); return 'noendpoint'; }
-  try { await postReport(p); return 'sent'; } catch { ROOT.outbox.push(p); save(); return 'queued'; }
+  try { await postReport(p); return 'sent'; }
+  catch (e) {
+    if (e.status === 400) return 'invalid';                    // vom Server abgelehnt – nicht erneut senden
+    ROOT.outbox.push(p); save();
+    return e.status === 429 ? 'ratelimit' : 'queued';
+  }
 }
 async function flushOutbox() {
   if (!CONFIG.reportEndpoint || !ROOT.outbox.length || !navigator.onLine) return;
-  const rest = [];
-  for (const p of ROOT.outbox) { try { await postReport(p); } catch { rest.push(p); } }
+  const queue = ROOT.outbox.slice(), rest = [];
+  for (let i = 0; i < queue.length; i++) {
+    try { await postReport(queue[i]); }
+    catch (e) {
+      if (e.status === 400) continue;                          // abgelehnt → verwerfen
+      if (e.status === 429) { rest.push(...queue.slice(i)); break; }   // Ratenbremse → später weiter
+      rest.push(queue[i]);
+    }
+  }
   ROOT.outbox = rest; save();
 }
+// Meldungen dürfen höchstens 16 KB groß sein – zur Not die Rohdaten der Aufgabe weglassen
+function fitSize(p) { if (JSON.stringify(p).length > 15000 && p.task) delete p.task.raw; if (JSON.stringify(p).length > 15000) p.app.userAgent = p.app.userAgent.slice(0, 200); return p; }
 function reportDone(res, payload) {
   const box = (icon, color, title, text, extra = '') => `<div class="thanks"><div class="ok" ${color ? `style="color:var(--orange-d);background:rgba(255,116,24,.12)"` : ''}>${icon}</div><h3>${title}</h3><p class="muted">${text}</p>${extra}<button class="btn ${extra ? '' : 'dark'} block" id="thxClose" style="margin-top:8px">${extra ? 'Schließen' : 'Weiter'}</button></div>`;
   if (res === 'sent') $('sheetBody').innerHTML = box('✓', false, 'Danke für deine Meldung!', `Wir schauen sie uns an${ROOT.reporter.email ? ' und melden uns bei Bedarf per E-Mail' : ''}.`);
+  else if (res === 'ratelimit') $('sheetBody').innerHTML = box('⏳', true, 'Gespeichert', 'Gerade wurden sehr viele Meldungen gesendet. Deine Meldung ist gespeichert und wird später automatisch übertragen.');
+  else if (res === 'invalid') $('sheetBody').innerHTML = box('⚠️', true, 'Das hat nicht geklappt', 'Die Meldung konnte nicht angenommen werden. Bitte versuche es noch einmal mit einer etwas ausführlicheren Beschreibung.');
   else if (res === 'queued') $('sheetBody').innerHTML = box('⏳', true, 'Gespeichert', 'Gerade gibt es keine Verbindung. Deine Meldung wird automatisch gesendet, sobald du wieder online bist.');
   else {
     const body = `${payload.message}\n\n${payload.task ? `Aufgabe: ${payload.task.task}\nAntwort: ${payload.task.given || '–'}\nLösung der App: ${payload.task.expected}\n` : ''}\nRechenblitz ${APP_VERSION} · ${navigator.userAgent}`;

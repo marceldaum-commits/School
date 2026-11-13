@@ -1,6 +1,6 @@
 # Rechenblitz – Schnittstelle für Fehlermeldungen
 
-Die App schickt Meldungen aus dem Menü (schwebender Button unten rechts) per `POST` an die URL in `config.js` (`reportEndpoint`).
+Rechenblitz (Ordner `kopfrechnen/`) schickt Meldungen aus dem Menü (schwebender Button unten rechts) per `POST` an die URL in `config.js` (`reportEndpoint`, derzeit `/api/meldung`).
 
 - Methode: `POST`, Header `Content-Type: application/json`
 - Erfolg: beliebige Antwort mit Status 2xx. Alles andere (oder keine Verbindung) → die App legt die Meldung in einen Postausgang auf dem Gerät und versucht es beim nächsten Start bzw. sobald das Gerät wieder online ist erneut.
@@ -27,7 +27,7 @@ Die App schickt Meldungen aus dem Menü (schwebender Button unten rechts) per `P
     "raw": { "topic": "frac", "level": 3, "expr": [ … ], "answer": { "q": { "n": 7, "d": 8 }, "kind": "frac" } }
   },
   "app": {
-    "name": "Rechenblitz", "version": "2.0.0", "url": "https://…/rechenblitz/",
+    "name": "Rechenblitz", "version": "3.0.1", "url": "https://…/rechenblitz/",
     "screen": "game", "standalone": false, "userAgent": "Mozilla/5.0 …",
     "language": "de-DE", "viewport": "390x844", "theme": "light",
     "settings": { "sound": true, "speech": false, "auto": true, "theme": "auto" },

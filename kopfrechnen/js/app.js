@@ -3,14 +3,14 @@
    Rechenblitz – App: Speicher & Profile, Sound, Statistik, Abzeichen,
    Startseite, Spielmodi, Ergebnis, Duell, Tageschallenge, Einstufung
    ===================================================================== */
-const APP_VERSION = '3.0.0';
+const APP_VERSION = '3.0.1';
 const CONFIG = Object.assign({
   reportEndpoint: '',                                   // URL, die Meldungen per POST (JSON) annimmt – siehe MELDUNGEN-API.md
   fallbackMail: 'website@mathenachhilfe-online.com',    // nur falls kein Endpunkt eingerichtet ist
   websiteUrl: 'https://www.mathenachhilfe-online.com/',
   trialUrl: 'https://www.mathenachhilfe-online.com/probestunde/',
   imprintUrl: 'https://www.mathenachhilfe-online.com/impressum/',
-  privacyUrl: 'https://www.mathenachhilfe-online.com/datenschutz/',
+  privacyUrl: 'https://www.mathenachhilfe-online.com/datenschutz/#rechenblitz',
   appUrl: '',                                           // öffentliche Adresse der App (für geteilte Links); leer = aktuelle Adresse
 }, window.RECHENBLITZ_CONFIG || {});
 
