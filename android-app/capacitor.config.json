@@ -1,0 +1,10 @@
+{
+  "appId": "com.mathenachhilfeonline.rechenblitz",
+  "appName": "Rechenblitz",
+  "webDir": "www",
+  "android": { "backgroundColor": "#f7f9fd" },
+  "plugins": {
+    "CapacitorHttp": { "enabled": true },
+    "LocalNotifications": { "smallIcon": "ic_stat_rechenblitz", "iconColor": "#ff7418" }
+  }
+}

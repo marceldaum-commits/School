@@ -7,7 +7,7 @@
 const Sheet = { open: false, stack: [] };
 let installPrompt = null;
 addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; });
-const isStandalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+const isStandalone = () => IS_NATIVE || matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
 const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 // Links zur Website mit Kennung, damit man in der Statistik sieht, dass Besucher aus der App kommen
 const siteLink = (url, place) => { if (!CONFIG.utm) return url; try { const u = new URL(url); u.searchParams.set('utm_source', 'rechenblitz'); u.searchParams.set('utm_medium', 'app'); u.searchParams.set('utm_campaign', place); return u.toString(); } catch { return url; } };
@@ -466,5 +466,6 @@ function init() {
   if (ROOT.seenVersion && ROOT.seenVersion !== APP_VERSION) setTimeout(() => toast(`<span translate="no">✨ ${esc(tr('Neu in Version'))} ${APP_VERSION}: ${esc(tr(CHANGELOG[0][2][0]))}</span>`, 3200), 1200);
   ROOT.seenVersion = APP_VERSION; save();
   renderPromo(); renderHome(); handleHash(); handleParams(); flushOutbox(); submitClassPoints(); if (S.advent && S.advent.voucherPending) fetchVoucher();
-  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').then(() => Reminder.startup()).catch(() => {});
+  if (IS_NATIVE) Reminder.startup().catch(() => {});   // APK: alle Dateien liegen im Paket, kein Service Worker nötig
+  else if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').then(() => Reminder.startup()).catch(() => {});
 }

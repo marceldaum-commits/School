@@ -89,7 +89,7 @@ async function renderReminder() {
   else body = `<button class="setrow sw-inner" id="remSw" role="switch" aria-checked="${s.on}" ${s.mode === 'denied' ? 'disabled' : ''}><div><b>${s.on ? 'An' : 'Aus'}</b><span>${s.on ? `Jeden Tag um ${esc(st.zeit)} Uhr` : 'Tippe, um die Erinnerung einzuschalten'}</span></div><span class="switch ${s.on ? 'on' : ''}"></span></button>
     ${s.on ? `<label class="rem-time"><span>Uhrzeit</span><input type="time" id="remTime" step="300" value="${esc(st.zeit)}"></label>` : ''}
     ${s.mode === 'denied' ? `<div class="rem-denied"><b>Mitteilungen sind gesperrt.</b> So erlaubst du sie:<ol>${steps.map(x => `<li>${x}</li>`).join('')}</ol></div>` : ''}
-    <p class="small muted" style="margin:0">Gespeichert wird nur die Push-Adresse dieses Geräts und die Uhrzeit – kein Name, kein Lernstand. <a href="${esc(CONFIG.privacyUrl)}" target="_blank" rel="noopener">Datenschutz</a></p>
+    <p class="small muted" style="margin:0">${IS_NATIVE ? 'Die Erinnerung wird nur auf diesem Gerät geplant – es geht nichts an einen Server.' : 'Gespeichert wird nur die Push-Adresse dieses Geräts und die Uhrzeit – kein Name, kein Lernstand.'} <a href="${esc(CONFIG.privacyUrl)}" target="_blank" rel="noopener">Datenschutz</a></p>
     <div class="status" id="remStatus" role="status"></div>`;
   box.innerHTML = `<div><b>🔔 Erinnerung aufs Handy</b><span>Einmal am Tag zu deiner Uhrzeit</span></div>${body}${install}`;
   const msg = (t, ok) => { const el = $('remStatus'); if (el) { el.textContent = t; el.className = 'status ' + (ok ? 'ok' : 'err'); } };
@@ -112,3 +112,37 @@ async function renderReminder() {
     catch { msg('Das hat nicht geklappt – bitte später noch einmal.', false); }
   };
 }
+
+/* ---------- APK: Erinnerung lokal auf dem Gerät (Capacitor LocalNotifications), funktioniert offline ---------- */
+const LocalNote = () => window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.LocalNotifications;
+if (IS_NATIVE) Object.assign(Reminder, {
+  ID: 1,
+  supported: () => !!(LocalNote() && CONFIG.push),
+  async state() {
+    const p = (await LocalNote().checkPermissions()).display;
+    if (p === 'denied') return { mode: 'denied', on: false };
+    const pend = p === 'granted' ? (await LocalNote().getPending()).notifications || [] : [];
+    return { mode: 'ok', on: pend.some(n => +n.id === Reminder.ID) };
+  },
+  async plan() {
+    const [hour, minute] = Reminder.st().zeit.split(':').map(Number);
+    await LocalNote().cancel({ notifications: [{ id: Reminder.ID }] }).catch(() => {});
+    await LocalNote().schedule({ notifications: [{ id: Reminder.ID, title: tr('Rechenblitz ⚡'), body: tr('Zeit für 3 Minuten Kopfrechnen! Dein Gehirn freut sich.'),
+      schedule: { on: { hour, minute }, allowWhileIdle: true } }] });
+  },
+  async on() {
+    let p = (await LocalNote().checkPermissions()).display;
+    if (p !== 'granted') p = (await LocalNote().requestPermissions()).display;
+    if (p !== 'granted') { const e = new Error(p); e.code = p === 'denied' ? 'denied' : 'default'; throw e; }
+    await Reminder.plan(); Reminder.st().on = true; save();
+  },
+  async sub() { return (await Reminder.state()).on ? {} : null; },
+  async send() { await Reminder.plan(); },
+  async off() { await LocalNote().cancel({ notifications: [{ id: Reminder.ID }] }).catch(() => {}); Reminder.st().on = false; save(); },
+  /** Beim Start: Text in der aktuellen Sprache neu planen */
+  async startup() {
+    if (!Reminder.supported()) return;
+    const s = await Reminder.state(), st = Reminder.st();
+    if (s.on) await Reminder.plan(); else if (st.on) { st.on = false; save(); }
+  },
+});

@@ -22,7 +22,7 @@ window.RECHENBLITZ_CONFIG = {
   adventRaffleUrl: '',
   adventRaffleMin: 12,
   // Gutschein für alle 24 Türchen: jeder Code wird vom Server frisch erzeugt und gilt nur einmal (Leitstand 13.11.):
-  // POST /api/gutschein { klasse, tueren } → { code, prozent, bis, gilt }. 10 % auf ein Einzelnachhilfe-Paket, einmal je Familie,
+  // POST /api/gutschein { klasse, tueren } → { code, prozent, bis, gilt }. 10 % auf jedes Stundenpaket, einmal je Familie,
   // bis 15.01.2027, nur bei zutreffender Klassenstufe. Leer lassen (endpoint: '') = Gutschein und Werbung dafür ausgeblendet.
-  adventVoucher: { endpoint: '/api/gutschein', percent: 10, text: 'auf ein Einzelnachhilfe-Paket', until: '2027-01-15' }
+  adventVoucher: { endpoint: '/api/gutschein', percent: 10, text: 'auf jedes Stundenpaket', until: '2027-01-15' }
 };

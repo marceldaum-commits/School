@@ -4,6 +4,33 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 14.11.2026 (17) – Marcel: Gutschein für jedes Stundenpaket, APK offline, Web + APK parallel (3.5.2)
+
+- **Gutschein (Marcel 13.11.: „Jedes“):** 10 % gelten für **jedes Stundenpaket**, nicht nur für Einzelnachhilfe. App-Texte DE/EN/UK angepasst („10 % auf jedes Stundenpaket“), `config.js` → `text: 'auf jedes Stundenpaket'`. **Bitte Leitstand:** In `ops/trainer-api` beim Gutschein `gilt: 'jedes Stundenpaket'` statt `'ein Einzelnachhilfe-Paket'` setzen und im Shop die Gutschein-Codes für alle Pakete freigeben. Die App zeigt `gilt` derzeit nicht an, also ist das nur für Shop und Mail wichtig.
+- **Datenschutz (Marcel: „Ok“):** Bitte vor der Live-Freigabe den Abschnitt Rechenblitz ergänzen:
+  - Web-Erinnerung: Push-Adresse + Uhrzeit auf dem Server, freiwillig, löschbar durch Ausschalten.
+  - APK-Erinnerung: nur lokal auf dem Gerät.
+  - Abschnitt zur Android-App.
+- **APK offline – ersetzt den TWA-Weg aus (16)/(38)/(39):** Marcel: „Die App muss, wenn APK, auch offline spielbar sein. Wer erwirbt eine Rechenapp mit Internetzwang … daher muss zukünftig die WebApp und die APK parallel gepflegt werden.“
+  - Die APK liefert jetzt **alle Dateien im Paket mit** (Capacitor 7, Ordner `android-app/` im Repo-Stamm) und läuft ab dem ersten Start ohne Internet. Eine reine TWA würde beim ersten Start das Netz brauchen.
+  - Eine Quelle (`kopfrechnen/`). `android-app/build.sh` baut daraus die APK, mit Version = Web-Version.
+  - Unterschiede nur in der neuen Datei `kopfrechnen/js/native.js`, die nur in der APK greift:
+    - Server-Aufrufe absolut an `https://rechenblitz.mathenachhilfe-online.com/api/…` über natives HTTP, also ohne CORS. Kommen die Aufrufe dort mit `X-NHO-App: rechenblitz` an? Das setzt nginx nach Host und sollte passen.
+    - Die Erinnerung ist eine **lokale Mitteilung** ohne Server.
+    - Kein Service Worker, keine Test-Vorschau.
+  - **`assetlinks.json` wird nicht mehr gebraucht.**
+  - Paketname-Vorschlag `com.mathenachhilfeonline.rechenblitz` bleibt **OFFEN** zur Bestätigung.
+  - Anleitung und Store-Punkte stehen in `PLAYSTORE_RECHENBLITZ.md`.
+- **Test-APK 3.5.2** (versionCode 30502, 5,5 MB, debug-signiert) ist gebaut, liegt aber nicht im Repo. Eine Kopie geht an Marcel in Google Drive. Der Web-Modus ist unverändert. Getestet:
+  - Web-App komplett offline nach dem ersten Besuch: 4 Themen gespielt, Panels geöffnet, Meldung landet im Postausgang.
+  - APK-Modus im Browser mit nachgebildetem Capacitor ohne Netz: keine einzige Netzanfrage, Erinnerung planen, Uhrzeit ändern und ausschalten in DE/EN/UK, keine Fehler.
+  - Seitenbreite 320 px in allen Ansichten.
+  - EN/UK ohne fehlende Übersetzungen.
+  - **Auf echtem Android-Gerät noch nicht getestet** (hier kein Emulator): bitte Marcel.
+- Service Worker: `icons/icon-maskable-512.png` und `js/native.js` werden jetzt auch offline vorgehalten.
+- **Neue APK nötig: ja.** Das ist die erste APK, und ab jetzt gibt es zu jeder Web-Version eine APK mit derselben Nummer.
+- Bitte 3.5.2 prüfen und live freigeben, mit der Datenschutz-Ergänzung vorher.
+
 ## 13.11.2026 (16) – Antwort auf Übergabe (38): Erinnerung aufs Handy, „Zur Website“, Play Store (3.5.1)
 
 - **(1) Erinnerung aufs Handy – fertig (3.5.1):** Einstellungen → „🔔 Erinnerung aufs Handy“, Bedienung wie beim Trainer: echter Schalter (`role=switch`) An/Aus, Uhrzeitfeld (frei, 5-Minuten-Schritte, Vorschlag 17:00) nur bei „An“. Zustand beim Öffnen aus `Notification.permission` + `pushManager.getSubscription()` (nicht aus dem Speicher). Einschalten = Erlaubnis + `GET /api/push/schluessel` + `subscribe` + `POST /api/push {abo, zeit}`; Uhrzeit ändern = erneut `POST /api/push`; Ausschalten = `POST /api/push/aus {endpoint}` + `unsubscribe`. Bei **gesperrt**: Schalter aus + Anleitung (Android-Browser / installierte App / iPhone). Nicht installiert: Hinweis „Am besten als App installieren …“ mit Installieren-Knopf. iPhone im Browser: Hinweis „nur als Home-Bildschirm-App“. Einmal am Tag meldet die App sich still erneut an (hält das Abo frisch, max. 1 Anfrage/Tag).

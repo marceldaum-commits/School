@@ -10,7 +10,8 @@ Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erl
 3. Version erhöhen in `kopfrechnen/js/changelog.js` (`APP_VERSION`, `APP_DATE` = heutiges Datum, neuer Eintrag in `CHANGELOG` – kurz und kindgerecht) und Cache-Name in `kopfrechnen/sw.js`.
 4. Testen: Rechen-Engine (alle Themen/Stufen korrekt), Browser-Durchlauf Handy + PC, Deutsch/Englisch/Ukrainisch ohne fehlende Übersetzungen, kein Überlauf auf 320 px (Seitenbreite = Bildschirmbreite, nichts ragt hinaus), keine Fehler in der Konsole, keine fremden Abrufe; zusätzlich in der **installierten Ansicht** (standalone/TWA) prüfen (Leitstand 39).
 5. Nur erlaubte Dateiarten in `kopfrechnen/` (html, css, js, json, webmanifest, svg, png, jpg, webp, ico, woff2, txt). Keine Personendaten, keine Geheimnisse, keine externen Dienste.
-6. Commit auf den Arbeits-Branch, auf `rechenblitz-test` schieben (nie `rechenblitz-live` – das setzt der Leitstand), Meldung oben in `MELDUNG_RECHENBLITZ.md` – immer mit der Zeile **„Neue APK nötig: ja/nein“** (nur ja, wenn sich die Hülle ändert: Manifest-Start/Scope, Symbole, Paket, Benachrichtigungen; Web-App und APK haben immer denselben Stand) –, Status hier abhaken.
+6. Commit auf den Arbeits-Branch, auf `rechenblitz-test` schieben (nie `rechenblitz-live` – das setzt der Leitstand), Meldung oben in `MELDUNG_RECHENBLITZ.md`, Status hier abhaken.
+8. **Web-App und APK parallel (Marcel 13.11.):** Die APK liefert alle Dateien mit und muss offline spielbar sein. Zu jeder Version `cd android-app && bash build.sh` (Version kommt automatisch aus `changelog.js`), APK-Modus testen (nachgebildetes Capacitor, keine Netzanfrage), APK-Inhalt prüfen. APK-eigene Anpassungen nur in `kopfrechnen/js/native.js`. In der Meldung steht immer die Zeile „Neue APK: 3.x.y gebaut“. Die APK kommt nicht ins Repo, sondern nach Google Drive (Ordner „Rechenblitz“).
 7. Braucht etwas einen Server oder eine Entscheidung von Marcel: App-Seite bauen und hinter einem Schalter in `config.js` verstecken, Frage als „OFFEN“ in die Meldung.
 
 ## Leitlinien (Marcel 13.11., Markt 2025/26)
@@ -46,7 +47,7 @@ Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erl
 | 17 | Mo 30.11. | **Eltern-Bereich + Statistik** | PIN, Fortschritt je Kind, Verlauf je Thema, Übungszeit-Grenze |
 | 18 | Di 01.12. | **Adventskalender-Start** | Start-Check, Feinschliff, erste Rückmeldungen |
 | 19 | Mi 02.12. | **Geometrie im Kopf** | Umfang, Fläche, Winkel mit eigenen Skizzen |
-| 20 | Do 03.12. | **Android-Vorbereitung 2027** | App-Verknüpfungen (Manifest „shortcuts“), Zahl am App-Symbol (Badging-API: „X zu wiederholen“), Store-Screenshots; Konzept für native App mit Widgets, Sperrbildschirm, Wear OS, Farben aus dem Hintergrundbild |
+| 20 | Do 03.12. | **Android-App 2027** | Store-Texte/Bilder, App-Verknüpfungen, Zahl am App-Symbol („X zu wiederholen“), Signier-Ablauf; Konzept Widgets, Sperrbildschirm, Wear OS, Farben aus dem Hintergrundbild (in der Capacitor-App jetzt machbar) |
 | 21 | Fr 04.12. | **Abschluss** | Ladezeit, Barrierefreiheit-Check, alle Sprachen, Rückblick + offene Ideen für Marcel/Leitstand |
 
 **Ideen-Speicher (wenn Zeit bleibt):** Schätz-Blitz, Hör-Rechnen, Fehler-Detektiv (typische Fehlermuster), Gleichungs-Waage, Einkaufsspiel, Wochenziele mit Kalender-Erinnerung.
@@ -55,3 +56,4 @@ Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erl
 
 - 13.11. – 3.5.0: Versionsnummer mit Datum, „Was ist neu?“ im Menü
 - 13.11. – 3.5.1: Erinnerung aufs Handy (Leitstand-Übergabe 38), Play-Store-Vorbereitung, schmale Handys ohne Verkleinern
+- 14.11. – 3.5.2: Gutschein für jedes Stundenpaket; Android-App (APK) mit allen Dateien im Paket, komplett offline, Erinnerung lokal; Web + APK parallel

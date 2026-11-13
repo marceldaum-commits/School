@@ -1,0 +1,16 @@
+{
+  "name": "rechenblitz-android",
+  "private": true,
+  "description": "Rechenblitz als Android-App (APK) – baut aus denselben Dateien wie die Web-App (../kopfrechnen), läuft komplett offline.",
+  "scripts": {
+    "apk": "bash build.sh"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/core": "^7.0.0",
+    "@capacitor/local-notifications": "^7.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.0.0"
+  }
+}

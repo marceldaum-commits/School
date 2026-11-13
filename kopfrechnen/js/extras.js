@@ -5,7 +5,7 @@
    passende Probestunden-Hinweise, Klassen-Challenge (Server), Direktlinks
    ===================================================================== */
 const publicUrl = () => CONFIG.publicUrl || appUrl();
-const isTestHost = () => /(^|[.-])test\.|-test\.|localhost|127\.0\.0\.1/.test(location.hostname);
+const isTestHost = () => !IS_NATIVE && /(^|[.-])test\.|-test\.|localhost|127\.0\.0\.1/.test(location.hostname);
 const longDate = (d = new Date()) => d.toLocaleDateString(locale(), { day: 'numeric', month: 'long', year: 'numeric' });
 
 /* ---------- QR-Code (lokal, js/vendor/qrcode.js) ---------- */
@@ -121,7 +121,7 @@ function voucherHtml() {
   if (!mine) return `<div class="voucher" id="voucherBox">${head}<p class="small" style="margin:8px 0 0">${navigator.onLine && !st.voucherPending ? '⏳ Dein persönlicher Code wird abgeholt …' : '📶 Sobald du wieder online bist, holen wir deinen persönlichen Code ab.'}</p></div>`;
   return `<div class="voucher" id="voucherBox">${head}
     <div class="v-code"><code id="vCode" translate="no">${esc(mine.code)}</code><button class="btn small" id="vCopy">Kopieren</button></div>
-    <p class="v-cond">Gilt für ${esc(adventClassName(st.klasse || 0))}: 10 % auf ein Einzelnachhilfe-Paket, einmal je Familie, nur bei zutreffender Klassenstufe (Prüfung bei der Buchung). Nicht mit anderen Gutscheinen kombinierbar.</p>
+    <p class="v-cond">Gilt für ${esc(adventClassName(st.klasse || 0))}: 10 % auf jedes Stundenpaket, einmal je Familie, nur bei zutreffender Klassenstufe (Prüfung bei der Buchung). Nicht mit anderen Gutscheinen kombinierbar.</p>
     <p class="small muted" style="margin:6px 0 10px">Zeig den Code deinen Eltern – sie geben ihn bei der Buchung zusammen mit der Klassenstufe an. Dieser Code gilt nur einmal.</p>
     <a class="btn primary block" href="${esc(siteLink(v.url || CONFIG.packagesUrl, 'advent-gutschein'))}" target="_blank" rel="noopener">Zu den Stundenpaketen ↗</a></div>`;
 }
