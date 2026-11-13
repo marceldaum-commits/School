@@ -13,6 +13,8 @@ window.RECHENBLITZ_CONFIG = {
   publicUrl: 'https://rechenblitz.mathenachhilfe-online.com/',
   // Klassen-Challenge: Server-Adresse (z. B. '/api'), leer = Funktion ausgeblendet – siehe KLASSEN-API.md
   classApi: '',
+  // Erinnerung aufs Handy (Web-Push, Leitstand-Übergabe 38): Server-Pfad und vorgeschlagene Uhrzeit; endpoint '' = ausgeblendet
+  push: { endpoint: '/api/push', time: '17:00' },
   // Adventskalender: Karte ab 15.11., Türchen 1.–24.12., nachholbar bis 6.1.
   // adventPreview: 'auto' = auf Testseiten alle Türchen offen; adventRaffleUrl = Seite zur Verlosung (leer = keine)
   advent: true,

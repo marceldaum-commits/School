@@ -4,6 +4,19 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 13.11.2026 (16) – Antwort auf Übergabe (38): Erinnerung aufs Handy, „Zur Website“, Play Store (3.5.1)
+
+- **(1) Erinnerung aufs Handy – fertig (3.5.1):** Einstellungen → „🔔 Erinnerung aufs Handy“, Bedienung wie beim Trainer: echter Schalter (`role=switch`) An/Aus, Uhrzeitfeld (frei, 5-Minuten-Schritte, Vorschlag 17:00) nur bei „An“. Zustand beim Öffnen aus `Notification.permission` + `pushManager.getSubscription()` (nicht aus dem Speicher). Einschalten = Erlaubnis + `GET /api/push/schluessel` + `subscribe` + `POST /api/push {abo, zeit}`; Uhrzeit ändern = erneut `POST /api/push`; Ausschalten = `POST /api/push/aus {endpoint}` + `unsubscribe`. Bei **gesperrt**: Schalter aus + Anleitung (Android-Browser / installierte App / iPhone). Nicht installiert: Hinweis „Am besten als App installieren …“ mit Installieren-Knopf. iPhone im Browser: Hinweis „nur als Home-Bildschirm-App“. Einmal am Tag meldet die App sich still erneut an (hält das Abo frisch, max. 1 Anfrage/Tag).
+  - **Service Worker:** `push` zeigt den Text, den die App in der jeweiligen Sprache im Cache `rechenblitz-push` ablegt (DE/EN/UK; Rückfall Deutsch), `tag: rechenblitz-erinnerung`; `notificationclick` öffnet/fokussiert die App; `pushsubscriptionchange` meldet die neue Adresse mit gleicher Uhrzeit an und die alte ab.
+  - `config.js`: `push: { endpoint: '/api/push', time: '17:00' }` (leer = Bereich ausgeblendet).
+  - **Datenschutz – bitte vor Live-Freigabe:** Abschnitt Rechenblitz (10b) um die Erinnerung ergänzen (freiwillig; gespeichert nur Push-Adresse + Uhrzeit; Löschen durch Ausschalten bzw. nach 6 Monaten ohne Zustellung). In der App steht ein kurzer Satz dazu mit Link.
+  - Getestet: alle Zustände (aus, an, Uhrzeit ändern, gesperrt, Server-Fehler, ohne Push) in DE/EN/UK, iPhone- und Android-Ansicht, 320 px; Push-Ereignis im echten Service Worker (Text kommt an, Cache bleibt bei Updates). Eine echte Zustellung über FCM bitte auf der Testseite mit einem Handy prüfen.
+- **(2) „Zur Website“:** vorhanden – Knopf „Zur Website ↗“ oben rechts, Logo, Fußzeile, Menüpunkt „Zu Nachhilfe – online“, Werbekarte. Alle führen zu `https://www.mathenachhilfe-online.com/`.
+- **(3) Play Store:** vorbereitet in `PLAYSTORE_RECHENBLITZ.md` (TWA mit Benachrichtigungs-Delegation, Paketname-Vorschlag `com.mathenachhilfeonline.rechenblitz`, `assetlinks.json`-Inhalt für den Leitstand, Store-Texte/Bilder am 03.12.). Manifest um `id` und `categories` ergänzt. Veröffentlichung laut Marcel frühestens 2027. **OFFEN Leitstand:** Paketname-Schema wie beim Trainer bestätigen; später `/.well-known/assetlinks.json` auf rechenblitz.….
+- **Nebenbei behoben:** Auf sehr schmalen Handys (320–360 px, z. B. iPhone SE) war die Seite 354 px breit und wurde verkleinert dargestellt (Kopfzeile, Themenraster, Profil-, Abzeichen-, Arbeitsblatt-, Flyer-Ansicht). Jetzt passt alles ohne Verkleinern. Fehlende Übersetzungen beim Gutschein (EN/UK) ergänzt.
+- **Zu 3.4.2:** Auf `rechenblitz-test` liegt bereits **3.5.0** (enthält 3.4.2), ab jetzt **3.5.1**. Bitte 3.5.1 prüfen und live freigeben (vor dem 15.11. wegen Advents-Hinweis) – Datenschutz-Ergänzung zur Erinnerung vorher.
+- Lern-Apps-Tabelle (LERN-APPS-PARALLEL.md): Rechenblitz → Erinnerung ✅ 3.5.1 (test), Zur Website ✅, Als-App-Hinweis ✅, Play Store vorbereitet, Was-ist-neu ✅ 3.5.0, mehrsprachig ✅.
+
 ## 13.11.2026 (15) – Version mit Datum, „Was ist neu?“, 3-Wochen-Plan (3.5.0)
 
 - **Marcel 13.11.:** „Für die nächsten 3 Wochen täglich ordentlich neue Dinge entwickeln. Bei der Version das Datum dazuschreiben.“

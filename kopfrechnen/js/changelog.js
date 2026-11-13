@@ -1,8 +1,9 @@
 'use strict';
 // Rechenblitz – Versionen mit Datum (neueste oben). Wird unter „Was ist neu?“ angezeigt.
-const APP_VERSION = '3.5.0';
+const APP_VERSION = '3.5.1';
 const APP_DATE = '2026-11-13';
 const CHANGELOG = [
+  ['3.5.1', '2026-11-13', ['Neu in den Einstellungen: Erinnerung aufs Handy – einmal am Tag zu deiner Uhrzeit']],
   ['3.5.0', '2026-11-13', ['Versionsnummer mit Datum', 'Neu im Menü: „Was ist neu?“ mit allen Änderungen']],
   ['3.4.2', '2026-11-13', ['Adventskalender: persönlicher Gutscheincode für alle 24 Türchen']],
   ['3.4.0', '2026-11-13', ['Einfachere Startseite mit einem großen Start-Knopf', 'Schwierigkeit stellt sich automatisch ein']],

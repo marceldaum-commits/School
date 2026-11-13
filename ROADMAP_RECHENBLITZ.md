@@ -54,3 +54,4 @@ Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erl
 ## Erledigt
 
 - 13.11. – 3.5.0: Versionsnummer mit Datum, „Was ist neu?“ im Menü
+- 13.11. – 3.5.1: Erinnerung aufs Handy (Leitstand-Übergabe 38), Play-Store-Vorbereitung, schmale Handys ohne Verkleinern

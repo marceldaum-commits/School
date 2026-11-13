@@ -42,7 +42,7 @@ const PANELS = {
       <div class="mlabel">Mehr</div>
       ${mi('profiles', profile().emoji, 'Wer übt?', 'Profile für Geschwister & Freunde')}
       ${mi('teacher', '👩‍🏫', 'Für Lehrkräfte', 'Aufträge verschicken, Arbeitsblätter drucken')}
-      ${mi('settings', '⚙️', 'Einstellungen', 'Ton, Vorlesen, Klassenstufe, Design')}
+      ${mi('settings', '⚙️', 'Einstellungen', 'Ton, Erinnerung, Klassenstufe, Design')}
       ${!isStandalone() && (installPrompt || isIOS()) ? mi('install', '📱', 'Als App installieren', 'Auf den Startbildschirm – läuft auch offline') : ''}
       </div><p class="small muted" style="text-align:center;margin:14px 0 0">Rechenblitz ${versionLabel()}${n ? ` · ${n} Meldung${n > 1 ? 'en' : ''} wartet auf Versand` : ''}</p>` };
   },
@@ -77,6 +77,7 @@ const PANELS = {
       ${sw('sound', S.settings.sound, 'Ton', 'Klänge bei richtig, falsch und Serien')}
       ${sw('speech', S.settings.speech, 'Aufgaben vorlesen', 'Der Browser liest jede Aufgabe vor')}
       ${sw('auto', S.settings.auto, 'Automatisch prüfen', 'Prüfen, sobald genug Stellen eingegeben sind')}
+      ${Reminder.supported() || isIOS() ? reminderHtml() : ''}
       <div class="setrow col"><div><b>Klassenstufe</b><span>Zeigt passende Themen und schlägt Stufen vor</span></div>
         <div class="chips" id="klSeg">${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(k => `<button data-v="${k}" class="${S.settings.klasse === k ? 'sel' : ''}">${k || 'Alle'}</button>`).join('')}</div></div>
       <div class="setrow col"><div><b>Sprache</b><span>Folgt der Sprache des Geräts – oder fest einstellen</span></div>
@@ -223,6 +224,7 @@ document.addEventListener('click', e => { const b = e.target.closest('[data-open
 
 /* ---------- Einstellungen ---------- */
 function initSettings() {
+  renderReminder();
   $('sheetBody').querySelectorAll('[data-set]').forEach(b => b.onclick = () => {
     const k = b.dataset.set; S.settings[k] = !S.settings[k]; save(); Sound.init(); Sound.click();
     b.setAttribute('aria-checked', S.settings[k]); b.querySelector('.switch').classList.toggle('on', S.settings[k]);
@@ -464,5 +466,5 @@ function init() {
   if (ROOT.seenVersion && ROOT.seenVersion !== APP_VERSION) setTimeout(() => toast(`<span translate="no">✨ ${esc(tr('Neu in Version'))} ${APP_VERSION}: ${esc(tr(CHANGELOG[0][2][0]))}</span>`, 3200), 1200);
   ROOT.seenVersion = APP_VERSION; save();
   renderPromo(); renderHome(); handleHash(); handleParams(); flushOutbox(); submitClassPoints(); if (S.advent && S.advent.voucherPending) fetchVoucher();
-  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').catch(() => {});
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').then(() => Reminder.startup()).catch(() => {});
 }
