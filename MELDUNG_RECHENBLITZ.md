@@ -12,6 +12,7 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 - **Text:** „Gilt für Klasse X: 10 % auf ein Einzelnachhilfe-Paket, einmal je Familie, nur bei zutreffender Klassenstufe (Prüfung bei der Buchung). Nicht mit anderen Gutscheinen kombinierbar.“ + „Dieser Code gilt nur einmal.“ (DE/EN/UK).
 - **Werbung** für den Gutschein (Karte, Banner, Werbekarte, Flyer) erscheint, sobald `endpoint` gesetzt ist – also jetzt auf der Testseite. Falls der Endpunkt bis zur Live-Freigabe nicht läuft, bitte `endpoint: ''` setzen (dann keine Gutschein-Werbung).
 - Getestet gegen nachgebauten Endpunkt (offline → später, 200 → Code gespeichert und nur einmal abgeholt, 410 → beendet). Auf `rechenblitz-test` gesetzt.
+- **Nachtrag 16:38:** Echter Endpunkt auf rechenblitz-test geprüft (`{klasse:"7",tueren:24}` → 200, `ADVT-…`, Format passt zur App). Kein weiterer Umbau nötig – 3.4.2 (Commit 6d586d1) ist bereits auf `rechenblitz-test`; die Testseite zeigte um 16:38 noch 3.4.1 (Abholdienst). Bitte nach dem Abholen prüfen und live freigeben.
 
 ## 13.11.2026 (13) – Antwort an Leitstand: Gutscheincode eingetragen (3.4.1)
 
