@@ -90,20 +90,47 @@ function adventTasks(d) {
 }
 function startAdventDoor(d) { if (!adventState().klasse) return openSheet('advent'); closeSheet(); startGame('advent', { queue: adventTasks(d), op: 'mix', lvl: 0, title: `Türchen ${d}`, door: d }); }
 
-/* ---------- Gutschein für alle 24 Türchen ---------- */
-const voucher = () => CONFIG.adventVoucher && CONFIG.adventVoucher.code ? CONFIG.adventVoucher : null;
+/* ---------- Gutschein für alle 24 Türchen ----------
+   Jeder Code wird vom Server frisch erzeugt (POST adventVoucher.endpoint), einmal abgeholt und im Gerät gespeichert.
+   Ohne Verbindung wird später nachgeholt. */
+const voucher = () => { const v = CONFIG.adventVoucher; return v && (v.endpoint || v.code) ? v : null; };
+const myVoucher = () => adventState().voucher || (voucher() && voucher().code ? { code: voucher().code } : null);
+let voucherBusy = false;
+async function fetchVoucher() {
+  const v = voucher(), st = adventState();
+  if (!v || !v.endpoint || st.voucher || st.voucherEnded || voucherBusy || Object.keys(st.doors).length < 24 || !st.klasse) return;
+  if (!navigator.onLine) { st.voucherPending = true; save(); return; }
+  voucherBusy = true;
+  try {
+    const r = await fetch(v.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ klasse: st.klasse >= 11 ? 'OS' : String(st.klasse), tueren: 24 }) });
+    let j = {}; try { j = await r.json(); } catch {}
+    if (r.ok && j.code) { st.voucher = { code: String(j.code), prozent: j.prozent, bis: j.bis, gilt: j.gilt, date: todayStr() }; st.voucherPending = false; }
+    else if (r.status === 410) { st.voucherEnded = true; st.voucherPending = false; }
+    else st.voucherPending = true;                     // 429/400/5xx → später nochmal
+  } catch { st.voucherPending = true; }
+  voucherBusy = false; save();
+  if ($('voucherBox')) { $('voucherBox').outerHTML = voucherHtml(); const b = $('vCopy'); if (b) bindVoucher(); }
+  if (currentScreen() === 'home') renderHome();
+}
 function voucherHtml() {
   const v = voucher(); if (!v) return '';
-  return `<div class="voucher"><div class="v-top"><span class="v-pct">${v.percent || 10} %</span><div><b>Dein Gutschein für Nachhilfe – online</b><small>${esc(v.text || 'auf ein Stundenpaket')}${v.until ? ` · gültig bis ${fmtDay(v.until)}` : ''}</small></div></div>
-    <div class="v-code"><code id="vCode">${esc(v.code)}</code><button class="btn small" id="vCopy">Kopieren</button></div>
-    <p class="v-cond">Gilt für ${esc(adventClassName(adventState().klasse || 0))} – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft. Einmal je Familie einlösbar, nicht mit anderen Gutscheinen kombinierbar.</p>
-    <p class="small muted" style="margin:6px 0 10px">Zeig den Code deinen Eltern – sie geben ihn bei der Buchung eines Stundenpakets zusammen mit der Klassenstufe an.</p>
+  const st = adventState(), mine = myVoucher();
+  const pct = (mine && mine.prozent) || v.percent || 10, until = (mine && mine.bis) || v.until;
+  if (st.voucherEnded) return `<div class="voucher" id="voucherBox"><b>Die Adventsaktion ist beendet.</b><p class="small muted" style="margin:6px 0 0">Danke fürs Mitrechnen! Deine Urkunde kannst du trotzdem holen.</p></div>`;
+  const head = `<div class="v-top"><span class="v-pct">${pct} %</span><div><b>Dein Gutschein für Nachhilfe – online</b><small>${esc(v.text || 'auf ein Stundenpaket')}${until ? ` · gültig bis ${fmtDay(until)}` : ''}</small></div></div>`;
+  if (!mine) return `<div class="voucher" id="voucherBox">${head}<p class="small" style="margin:8px 0 0">${navigator.onLine && !st.voucherPending ? '⏳ Dein persönlicher Code wird abgeholt …' : '📶 Sobald du wieder online bist, holen wir deinen persönlichen Code ab.'}</p></div>`;
+  return `<div class="voucher" id="voucherBox">${head}
+    <div class="v-code"><code id="vCode" translate="no">${esc(mine.code)}</code><button class="btn small" id="vCopy">Kopieren</button></div>
+    <p class="v-cond">Gilt für ${esc(adventClassName(st.klasse || 0))}: 10 % auf ein Einzelnachhilfe-Paket, einmal je Familie, nur bei zutreffender Klassenstufe (Prüfung bei der Buchung). Nicht mit anderen Gutscheinen kombinierbar.</p>
+    <p class="small muted" style="margin:6px 0 10px">Zeig den Code deinen Eltern – sie geben ihn bei der Buchung zusammen mit der Klassenstufe an. Dieser Code gilt nur einmal.</p>
     <a class="btn primary block" href="${esc(siteLink(v.url || CONFIG.packagesUrl, 'advent-gutschein'))}" target="_blank" rel="noopener">Zu den Stundenpaketen ↗</a></div>`;
 }
 function bindVoucher() {
+  fetchVoucher();
   const b = $('vCopy'); if (!b) return;
-  b.onclick = async () => { try { await navigator.clipboard.writeText(voucher().code); toast('Gutscheincode kopiert ✓'); } catch { const r = document.createRange(); r.selectNodeContents($('vCode')); getSelection().removeAllRanges(); getSelection().addRange(r); } };
+  b.onclick = async () => { try { await navigator.clipboard.writeText(myVoucher().code); toast('Gutscheincode kopiert ✓'); } catch { const r = document.createRange(); r.selectNodeContents($('vCode')); getSelection().removeAllRanges(); getSelection().addRange(r); } };
 }
+addEventListener('online', () => { if (S && S.advent && S.advent.voucherPending) fetchVoucher(); });
 
 /* ================= Urkunde ================= */
 const loadImg = src => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = src; });

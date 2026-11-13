@@ -19,8 +19,8 @@ window.RECHENBLITZ_CONFIG = {
   adventPreview: 'auto',
   adventRaffleUrl: '',
   adventRaffleMin: 12,
-  // Gutschein für alle 24 Türchen (Leitstand 13.11.: im Shop angelegt; 10 % auf Einzelnachhilfe – Neukundenpaket und Bestandskunden,
-  // nicht auf Gruppe/Fragenflat/Video; bis 15.01.2027; einmal je Kunde; nicht mit anderen Gutscheinen kombinierbar).
-  // Den Code bitte im Shop anlegen (Leitstand) und hier eintragen. Hinweis: Der Code ist im Quelltext der App lesbar.
-  adventVoucher: { code: 'ADVENT2026', percent: 10, text: 'auf ein Einzelnachhilfe-Paket', until: '2027-01-15' }
+  // Gutschein für alle 24 Türchen: jeder Code wird vom Server frisch erzeugt und gilt nur einmal (Leitstand 13.11.):
+  // POST /api/gutschein { klasse, tueren } → { code, prozent, bis, gilt }. 10 % auf ein Einzelnachhilfe-Paket, einmal je Familie,
+  // bis 15.01.2027, nur bei zutreffender Klassenstufe. Leer lassen (endpoint: '') = Gutschein und Werbung dafür ausgeblendet.
+  adventVoucher: { endpoint: '/api/gutschein', percent: 10, text: 'auf ein Einzelnachhilfe-Paket', until: '2027-01-15' }
 };

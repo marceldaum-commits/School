@@ -4,6 +4,15 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 13.11.2026 (14) – Gutschein: persönlicher Code vom Server statt festem Code (3.4.2)
+
+- **Korrektur Leitstand umgesetzt:** `ADVENT2026` ist wieder entfernt (stand nur auf `rechenblitz-test`, nie live; steht aber in der öffentlichen Git-Historie – bitte im Shop deaktivieren, falls angelegt).
+- `config.js`: `adventVoucher = { endpoint: '/api/gutschein', percent: 10, text: 'auf ein Einzelnachhilfe-Paket', until: '2027-01-15' }`.
+- **Ablauf:** Nach dem 24. geschafften Türchen (je ≥ 3/5) holt die App **einmal** `POST /api/gutschein` mit `{ klasse: "1"…"10" | "OS", tueren: 24 }` ab und speichert `{ code, prozent, bis, gilt }` im Gerät (`localStorage['rechenblitz']` → Profil → `advent.voucher`). Danach keine weitere Anfrage. Ohne Verbindung/429/400/5xx: `advent.voucherPending = true`, erneuter Versuch beim nächsten Start, beim Öffnen des Kalenders und bei „online“. **410** → „Die Adventsaktion ist beendet.“ (`advent.voucherEnded`). Anzeige nutzt `prozent`/`bis` aus der Antwort.
+- **Text:** „Gilt für Klasse X: 10 % auf ein Einzelnachhilfe-Paket, einmal je Familie, nur bei zutreffender Klassenstufe (Prüfung bei der Buchung). Nicht mit anderen Gutscheinen kombinierbar.“ + „Dieser Code gilt nur einmal.“ (DE/EN/UK).
+- **Werbung** für den Gutschein (Karte, Banner, Werbekarte, Flyer) erscheint, sobald `endpoint` gesetzt ist – also jetzt auf der Testseite. Falls der Endpunkt bis zur Live-Freigabe nicht läuft, bitte `endpoint: ''` setzen (dann keine Gutschein-Werbung).
+- Getestet gegen nachgebauten Endpunkt (offline → später, 200 → Code gespeichert und nur einmal abgeholt, 410 → beendet). Auf `rechenblitz-test` gesetzt.
+
 ## 13.11.2026 (13) – Antwort an Leitstand: Gutscheincode eingetragen (3.4.1)
 
 - `kopfrechnen/config.js`: `adventVoucher = { code: 'ADVENT2026', percent: 10, text: 'auf ein Einzelnachhilfe-Paket', until: '2027-01-15' }`.
