@@ -30,48 +30,34 @@
 
   <div class="home-grid">
   <div class="col-left">
-  <div class="hero">
-    <div class="eyebrow">Kopfrechen-Trainer</div>
-    <h1>Aus Üben wird <em>Können.</em></h1>
-    <p>Jede Aufgabe wird zufällig erzeugt – vom Einmaleins bis zu Brüchen, Prozent und Gleichungen.</p>
-  </div>
-
+  <button class="card statusbar" data-open="badges" aria-label="Mein Fortschritt">
+    <span class="lvbadge" id="pLevel">1</span>
+    <span class="sb-main"><b id="pRank">Rechen-Starter</b><span class="bar"><i id="pXpBar"></i></span></span>
+    <span class="sb-stat" title="Tage in Folge">🔥 <b id="sDays">0</b></span>
+    <span class="sb-stat" title="Tagesziel">🎯 <b id="sToday">0/50</b></span>
+  </button>
   <div class="card assign" id="assignCard" hidden></div>
-
-  <div class="card profile">
-    <div class="lvbadge" id="pLevel">1</div>
-    <div class="rank" id="pRank">Rechen-Starter</div>
-    <div><div class="bar"><i id="pXpBar"></i></div><div class="xpline" id="pXpText"></div></div>
-    <div class="stats">
-      <div class="stat"><b id="sDays">0</b><span>🔥 Tage-Serie</span></div>
-      <div class="stat"><b id="sToday">0/50</b><span>🎯 Tagesziel</span></div>
-      <div class="stat"><b id="sTotal">0</b><span>✔ gelöst</span></div>
-    </div>
-    <div class="quick"><button data-open="badges" id="qBadges">🏅 Abzeichen</button><button data-open="facts">✖️ 1×1-Übersicht</button><button data-open="week">📊 Wochenbericht</button><button data-open="invite">💌 Einladen</button></div>
-  </div>
-
   <div class="card challenge advent-card" id="adventCard" hidden></div>
   <div class="card challenge" id="challengeCard"></div>
   <div class="card challenge" id="classCard" hidden></div>
-  <div class="card promo" id="promo"></div>
+  <div class="card promo desk-only" id="promo"></div>
   </div>
   <div class="col-right">
-
-  <div class="label">Thema</div>
+  <h2 class="ask">Was willst du üben?</h2>
   <div id="classNote"></div>
-  <div id="topics"></div>
-  <div class="label">Schwierigkeit</div>
-  <div class="levels" id="levels"></div>
-  <div class="lvldesc" id="lvlDesc"></div>
-
-  <div class="modes" id="modes">
-    <button class="mode" data-mode="training"><div class="ico">📝</div><div><b>Training</b><span>20 Aufgaben, mit Lösungsweg bei Fehlern</span></div><div class="best" id="best-training"></div></button>
-    <button class="mode dark" data-mode="blitz"><div class="ico">⚡</div><div><b>Blitzrunde</b><span>60 Sekunden – so viele wie möglich</span></div><div class="best" id="best-blitz"></div></button>
-    <button class="mode" data-mode="zen"><div class="ico">🍃</div><div><b>Ruhig üben</b><span>Ohne Zeit und Punkte – in deinem Tempo</span></div></button>
-    <button class="mode" data-mode="duel"><div class="ico">⚔️</div><div><b>Duell</b><span>Zu zweit an einem Gerät – wer ist schneller?</span></div></button>
-    <button class="mode" data-mode="fehler" id="btnFehler"><div class="ico">📦</div><div><b>Fehlerkiste</b><span id="fehlerText"></span></div></button>
-    <button class="mode" data-mode="test"><div class="ico">🧪</div><div><b>Einstufungstest</b><span id="testText"></span></div></button>
+  <div class="topics" id="topics"></div>
+  <div class="levelline"><span id="lvlLine"></span> <button class="linkbtn" id="lvlToggle">ändern</button></div>
+  <div class="levelbox" id="levelBox" hidden><div class="levels" id="levels"></div><div class="lvldesc" id="lvlDesc"></div></div>
+  <button class="btn primary startbtn" id="btnStart">▶ Los geht’s</button>
+  <div class="bestline muted small" id="bestLine"></div>
+  <div class="modechips" id="modes">
+    <button data-mode="blitz">⚡ Blitzrunde</button>
+    <button data-mode="zen">🍃 Ruhig üben</button>
+    <button data-mode="duel">⚔️ Duell</button>
+    <button data-mode="fehler" id="btnFehler">📦 Fehlerkiste</button>
+    <button data-mode="test">🧪 Einstufungstest</button>
   </div>
+  <div class="card promo mobile-only" id="promo2"></div>
   </div>
   </div>
   <div class="foot"><a id="lnkSite" target="_blank" rel="noopener">mathenachhilfe-online.com</a><a id="lnkImp" target="_blank" rel="noopener">Impressum</a><a id="lnkPriv" target="_blank" rel="noopener">Datenschutz</a><span id="verText"></span></div>

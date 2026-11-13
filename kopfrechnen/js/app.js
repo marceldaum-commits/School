@@ -3,7 +3,7 @@
    Rechenblitz – App: Speicher & Profile, Sound, Statistik, Abzeichen,
    Startseite, Spielmodi, Ergebnis, Duell, Tageschallenge, Einstufung
    ===================================================================== */
-const APP_VERSION = '3.3.0';
+const APP_VERSION = '3.4.0';
 const CONFIG = Object.assign({
   reportEndpoint: '',                                   // URL, die Meldungen per POST (JSON) annimmt – siehe MELDUNGEN-API.md
   fallbackMail: 'website@mathenachhilfe-online.com',    // nur falls kein Endpunkt eingerichtet ist
@@ -35,7 +35,7 @@ const EMOJIS = ['🦊', '🐼', '🦁', '🐯', '🐸', '🐙', '🦄', '🐧', 
 /* ================= Speicher & Profile ================= */
 const PROFILE_DEFAULT = () => ({
   xp: 0, total: 0, best: {}, box: {}, days: { last: '', streak: 0 }, today: { date: '', solved: 0 },
-  settings: { sound: true, speech: false, auto: true, theme: 'auto', klasse: 0 }, sel: { op: 'mul', lvl: 1 },
+  settings: { sound: true, speech: false, auto: true, theme: 'auto', klasse: 0 }, sel: { op: 'mul', lvl: 'auto' },
   autoLvl: {}, facts: {}, stats: {}, hist: {}, badges: {}, star3: {}, played: {}, challenge: {}, assign: null, test: null, zenCount: 0, advent: null, klasse: null, klassePending: [], promoDay: '',
 });
 let ROOT, S;
@@ -232,6 +232,7 @@ const defaultLevel = op => (S.settings.klasse && classLevel(S.settings.klasse, o
 const currentLevel = op => S.sel.lvl === 'auto' ? (S.autoLvl[op] ?? defaultLevel(op)) : S.sel.lvl;
 const streakDays = () => (S.days.last === todayStr() || S.days.last === dayStr(1)) ? S.days.streak : 0;
 
+const MAIN_TOPICS = ['add', 'sub', 'mul', 'div', 'frac', 'dec', 'pct', 'word', 'mix'];
 function renderHome() {
   const p = profile();
   $('btnProfile').innerHTML = `<span class="av">${p.emoji}</span><span class="pn" translate="no">${esc(p.name === 'Ich' ? tr('Ich') : p.name)}</span>`;
@@ -239,41 +240,38 @@ function renderHome() {
   $('pLevel').textContent = lv;
   $('pRank').textContent = RANKS[Math.min(RANKS.length - 1, Math.floor((lv - 1) / 3))];
   $('pXpBar').style.width = ((S.xp - cur) / (nxt - cur) * 100) + '%';
-  $('pXpText').textContent = `${S.xp - cur} / ${nxt - cur} XP bis Stufe ${lv + 1}`;
   $('sDays').textContent = streakDays();
   $('sToday').textContent = `${S.today.date === todayStr() ? S.today.solved : 0}/${DAILY_GOAL}`;
-  $('sTotal').textContent = S.total;
-  $('qBadges').innerHTML = `🏅 Abzeichen <b>${Object.keys(S.badges).length}/${BADGES.length}</b>`;
   renderSoundIcons();
   renderAssignCard(); renderChallengeCard();
 
-  // Themen (im Klassenmodus nur passende)
+  // Themen: die wichtigsten 9 + „Mehr“; im Klassenmodus nur passende
   const k = S.settings.klasse, vis = k && !homeShowAll ? classTopicSet(k) : null;
   if (vis && !vis.has(S.sel.op)) S.sel.op = [...vis][1] || 'mix';
+  if (!vis && !MAIN_TOPICS.includes(S.sel.op)) homeMore = true;
   $('classNote').innerHTML = k ? `Themen für <b>Klasse ${k}</b> · <button class="linkbtn" id="toggleAll">${homeShowAll ? 'nur passende zeigen' : 'alle Themen zeigen'}</button>` : '';
-  $('topics').innerHTML = GROUPS.map((g, gi) => {
-    const items = Object.entries(TOPICS).filter(([tk, o]) => o.grp === gi && (!vis || vis.has(tk)));
-    if (!items.length) return '';
-    return `<div class="tgroup"><div class="tglabel">${g}</div><div class="topics ${gi === 3 ? 'wide' : ''}">${items.map(([tk, o]) =>
-      `<button class="topic ${S.sel.op === tk ? 'sel' : ''}" data-op="${tk}" aria-pressed="${S.sel.op === tk}"><span class="g">${o.g}</span><small>${o.name}</small></button>`).join('')}</div></div>`;
-  }).join('');
-  $('levels').innerHTML = [0, 1, 2, 3, 4].map(i => `<button class="lvl ${S.sel.lvl === i ? 'sel' : ''}" data-lvl="${i}">${i + 1}</button>`).join('')
-    + `<button class="lvl auto ${S.sel.lvl === 'auto' ? 'sel' : ''}" data-lvl="auto" title="Stufe passt sich automatisch an">Auto</button>`;
+  const list = vis ? Object.keys(TOPICS).filter(t => vis.has(t)) : homeMore ? Object.keys(TOPICS) : MAIN_TOPICS;
+  const tile = tk => `<button class="topic ${S.sel.op === tk ? 'sel' : ''}" data-op="${tk}" aria-pressed="${S.sel.op === tk}"><span class="g">${TOPICS[tk].g}</span><small>${TOPICS[tk].name}</small></button>`;
+  $('topics').innerHTML = list.map(tile).join('') + (vis ? '' : `<button class="topic more" data-more="1"><span class="g">${homeMore ? '−' : '＋'}</span><small>${homeMore ? 'Weniger' : 'Mehr'}</small></button>`);
+
+  // Schwierigkeit: standardmäßig automatisch, aufklappbar
   const L = currentLevel(S.sel.op);
-  $('lvlDesc').innerHTML = S.sel.lvl === 'auto' ? `<b>Automatisch</b> – gerade Stufe ${L + 1}: ${LEVEL_DESC[S.sel.op][L]}` : LEVEL_DESC[S.sel.op][S.sel.lvl];
-  for (const m of ['training', 'blitz']) {
-    const b = S.best[`${m}|${S.sel.op}|${S.sel.lvl === 'auto' ? 'A' : S.sel.lvl}`];
-    $('best-' + m).innerHTML = b ? `Rekord<br><b>${b}</b>` : '';
-  }
+  $('lvlLine').innerHTML = S.sel.lvl === 'auto' ? `Schwierigkeit: <b>Automatisch</b> <span class="muted">(gerade Stufe ${L + 1})</span>` : `Schwierigkeit: <b>Stufe ${S.sel.lvl + 1}</b>`;
+  $('levels').innerHTML = `<button class="lvl auto ${S.sel.lvl === 'auto' ? 'sel' : ''}" data-lvl="auto">Auto</button>` + [0, 1, 2, 3, 4].map(i => `<button class="lvl ${S.sel.lvl === i ? 'sel' : ''}" data-lvl="${i}">${i + 1}</button>`).join('');
+  $('lvlDesc').textContent = LEVEL_DESC[S.sel.op][L];
+  const best = S.best[`training|${S.sel.op}|${S.sel.lvl === 'auto' ? 'A' : S.sel.lvl}`];
+  $('bestLine').textContent = best ? `Rekord: ${best} Punkte` : '';
   const n = Object.keys(S.box).length;
   $('btnFehler').disabled = n === 0;
-  $('fehlerText').textContent = n ? `${n} Aufgabe${n > 1 ? 'n' : ''} zum Wiederholen` : 'Leer – super gemacht!';
-  $('testText').textContent = S.test ? `Zuletzt: Klasse ${S.test.k}, ${fmtDay(S.test.date)} – nochmal testen` : 'In 5 Minuten herausfinden, welche Stufen passen';
+  $('btnFehler').innerHTML = n ? `📦 Fehlerkiste <b>${n}</b>` : '📦 Fehlerkiste';
   if (typeof renderExtrasHome === 'function') renderExtrasHome();
+  $('promo2').innerHTML = $('promo').innerHTML;
 }
+let homeMore = false;
 let homeShowAll = false;
 $('topics').addEventListener('click', e => {
   const b = e.target.closest('.topic'); if (!b) return;
+  if (b.dataset.more) { Sound.init(); Sound.click(); homeMore = !homeMore; renderHome(); return; }
   Sound.init(); Sound.click(); S.sel.op = b.dataset.op;
   if (S.settings.klasse && S.sel.lvl !== 'auto') { const r = classLevel(S.settings.klasse, S.sel.op); if (r != null) S.sel.lvl = r; }
   save(); renderHome();
@@ -285,6 +283,8 @@ const toggleSound = () => { S.settings.sound = !S.settings.sound; save(); Sound.
 const toggleTheme = () => { S.settings.theme = isDark() ? 'light' : 'dark'; save(); applyTheme(); };
 $('btnSound').onclick = $('btnSoundG').onclick = toggleSound;
 $('btnTheme').onclick = $('btnThemeG').onclick = toggleTheme;
+$('btnStart').onclick = () => startGame('training');
+$('lvlToggle').onclick = () => { $('levelBox').hidden = !$('levelBox').hidden; };
 $('modes').addEventListener('click', e => {
   const b = e.target.closest('[data-mode]'); if (!b) return;
   const m = b.dataset.mode;

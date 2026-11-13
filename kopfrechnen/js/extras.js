@@ -358,6 +358,7 @@ function renderExtrasHome() {
     const v = voucher();
     $('promo').innerHTML = `<div class="pr-ico">🎁</div><div class="pr-txt"><span class="eyebrow">Adventsaktion</span><b>${v.percent || 10} % auf jedes Stundenpaket</b><p>Öffne alle 24 Türchen im Rechen-Adventskalender und hol dir deinen Gutschein für die Nachhilfe – online${v.until ? ` (gültig bis ${fmtDay(v.until)})` : ''}.</p></div><button class="btn primary small" data-open="advent">Zum Adventskalender</button>`;
   }
+  $('challengeCard').hidden = ph === 'on' || ph === 'after';
   const cc = $('classCard');
   if (cc) {
     cc.hidden = !CONFIG.classApi;

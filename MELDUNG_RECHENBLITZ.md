@@ -4,6 +4,10 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 13.11.2026 (12) – Vereinfachte Startseite (3.4.0)
+
+- **Marcel 13.11.:** Startseite zu komplex. **Neu:** schmale Fortschrittszeile (Stufe, Tage-Serie, Tagesziel; antippen → Abzeichen), eine „Heute“-Karte (Adventskalender im Dezember, sonst Tageschallenge; Auftrag nur wenn vorhanden), „Was willst du üben?“ mit 9 Hauptthemen + „Mehr“, Schwierigkeit standardmäßig **Automatisch** (aufklappbar), ein großer Knopf **„Los geht’s“** (Training), weitere Modi als kleine Knöpfe (Blitzrunde, Ruhig üben, Duell, Fehlerkiste, Einstufungstest), eine Werbekarte. Abzeichen, 1×1-Übersicht, Wochenbericht, Einladen weiterhin im Menü (schwebender Button). Keine Funktion entfernt, keine neuen Daten.
+
 ## 13.11.2026 (11) – Sprache folgt dem Gerät (Deutsch, Englisch, Ukrainisch), Logo führt zur Website (3.3.0)
 
 - **Marcel 13.11.:** App soll sich der Handy-Sprache anpassen – **Englisch und Ukrainisch** zusätzlich zu Deutsch; außerdem soll das **Logo oben links** zur Website führen (Knopf „Zur Website“ bleibt).
