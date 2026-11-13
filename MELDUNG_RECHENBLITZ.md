@@ -4,6 +4,13 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 13.11.2026 (11) – Sprache folgt dem Gerät (Deutsch, Englisch, Ukrainisch), Logo führt zur Website (3.3.0)
+
+- **Marcel 13.11.:** App soll sich der Handy-Sprache anpassen – **Englisch und Ukrainisch** zusätzlich zu Deutsch; außerdem soll das **Logo oben links** zur Website führen (Knopf „Zur Website“ bleibt).
+- **Umsetzung:** Sprache aus `navigator.languages` (de/en/uk, sonst Deutsch), in den Einstellungen fest wählbar (gespeichert in `localStorage['rechenblitz'].lang`). Neue Dateien `kopfrechnen/js/i18n.js`, `js/lang-en.js`, `js/lang-uk.js` (erzeugt aus `i18n/uebersetzungen.tsv` im Repo-Stamm mit `node i18n/build.js`). Alle sichtbaren Texte werden beim Anzeigen übersetzt (Menüs, Aufgaben, Lösungswege, Textaufgaben, Abzeichen, Adventskalender, Urkunde, Teilen-Texte, Vorlesen in der jeweiligen Sprache). Englisch mit `2.5`, `×`, `÷`; Datumsformat je Sprache. Eigene Eingaben (Profil-, Klassen-, Spitz-, Lehrkraft-Namen) werden nie übersetzt.
+- **Geprüft:** komplette App automatisch auf Englisch und Ukrainisch durchgespielt – keine fehlenden Übersetzungen außer Eigennamen (Rechenblitz, Nachhilfe – online, Webadressen); Layout aller Themen passt in allen drei Sprachen auch auf 320 px; keine fremden Abrufe.
+- **Hinweis Datenschutz/Prüfung:** keine neuen Daten, nur die gewählte Sprache im bestehenden Schlüssel. `<html lang>` und Seitentitel folgen der Sprache.
+
 ## 13.11.2026 (10) – Gutschein: einmal je Familie ist Regel
 
 - **Marcel 13.11.:** „Einmal je Familie“ ist **verbindliche Regel** (nicht nur Empfehlung). In der App steht jetzt auf Gutschein, Banner und Klassenabfrage: „… einmal je Familie einlösbar“. **Bitte im Shop technisch so einstellen** (Nutzung je Kunde = 1) und in den Gutschein-Bedingungen nennen.

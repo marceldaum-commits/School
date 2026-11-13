@@ -20,8 +20,7 @@
 <!-- ===== Startseite ===== -->
 <section class="screen" id="home">
   <header class="brand">
-    <img src="icons/logo.svg" alt="" width="40" height="40">
-    <div><b>Rechenblitz</b><small>by Nachhilfe – online</small></div>
+    <a class="brandlink" id="brandLink" target="_blank" rel="noopener" title="Zur Website mathenachhilfe-online.com"><img src="icons/logo.svg" alt="" width="40" height="40"><div><b>Rechenblitz</b><small>by Nachhilfe – online</small></div></a>
     <div class="spacer"></div>
     <button class="chip" id="btnProfile" aria-label="Profil wechseln"></button>
     <button class="round" id="btnSound" aria-label="Ton an/aus"></button>
@@ -128,11 +127,14 @@
 <div id="print"></div>
 
 <script src="config.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/lang-en.js"></script>
+<script src="js/lang-uk.js"></script>
 <script src="js/engine.js"></script>
 <script src="js/app.js"></script>
 <script src="js/panels.js"></script>
 <script src="js/vendor/qrcode.js"></script>
 <script src="js/extras.js"></script>
-<script>init();</script>
+<script>init(); i18nStart();</script>
 </body>
 </html>

@@ -6,7 +6,7 @@
    ===================================================================== */
 const publicUrl = () => CONFIG.publicUrl || appUrl();
 const isTestHost = () => /(^|[.-])test\.|-test\.|localhost|127\.0\.0\.1/.test(location.hostname);
-const longDate = (d = new Date()) => d.toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric' });
+const longDate = (d = new Date()) => d.toLocaleDateString(locale(), { day: 'numeric', month: 'long', year: 'numeric' });
 
 /* ---------- QR-Code (lokal, js/vendor/qrcode.js) ---------- */
 function qrMatrix(text) { const q = qrcode(0, 'M'); q.addData(text); q.make(); const n = q.getModuleCount(); return { n, dark: (r, c) => q.isDark(r, c) }; }
@@ -126,24 +126,24 @@ async function drawCertificate(o) {
   try { const logo = await loadImg('icons/logo.svg'); x.drawImage(logo, 120, 110, 96, 96); } catch {}
   x.textBaseline = 'alphabetic'; x.textAlign = 'left';
   x.fillStyle = '#101b43'; x.font = '800 42px Inter, Arial, sans-serif'; x.fillText('Rechenblitz', 232, 155);
-  x.fillStyle = '#61718a'; x.font = '500 24px Inter, Arial, sans-serif'; x.fillText('by Nachhilfe – online', 232, 192);
+  x.fillStyle = '#61718a'; x.font = '500 24px Inter, Arial, sans-serif'; x.fillText(tr('by Nachhilfe – online'), 232, 192);
   x.textAlign = 'center';
   const g = x.createLinearGradient(W / 2 - 260, 0, W / 2 + 260, 0); g.addColorStop(0, '#ff8a3d'); g.addColorStop(1, '#df5e0c');
-  x.fillStyle = g; x.font = 'italic 600 128px "Source Serif 4", Georgia, serif'; x.fillText('Urkunde', W / 2, 345);
-  x.fillStyle = '#61718a'; x.font = '500 32px Inter, Arial, sans-serif'; x.fillText(o.name ? 'für' : 'Für hervorragendes Rechnen', W / 2, 410);
+  x.fillStyle = g; x.font = 'italic 600 128px "Source Serif 4", Georgia, serif'; x.fillText(tr('Urkunde'), W / 2, 345);
+  x.fillStyle = '#61718a'; x.font = '500 32px Inter, Arial, sans-serif'; x.fillText(tr(o.name ? 'für' : 'Für hervorragendes Rechnen'), W / 2, 410);
   if (o.name) {
     x.fillStyle = '#2447b5'; x.font = '700 118px Caveat, "Segoe Print", cursive'; x.fillText(o.name, W / 2, 530);
     const w = Math.min(760, x.measureText(o.name).width + 120); x.strokeStyle = '#dbe4ef'; x.lineWidth = 3; x.beginPath(); x.moveTo(W / 2 - w / 2, 556); x.lineTo(W / 2 + w / 2, 556); x.stroke();
   }
   x.fillStyle = '#101b43'; x.font = '800 50px Inter, Arial, sans-serif';
-  const n1 = wrapText(x, o.line1, W / 2, o.name ? 650 : 560, 1150, 60);
+  const n1 = wrapText(x, tr(o.line1), W / 2, o.name ? 650 : 560, 1150, 60);
   x.fillStyle = '#61718a'; x.font = '500 32px Inter, Arial, sans-serif';
-  wrapText(x, o.line2 || '', W / 2, (o.name ? 650 : 560) + n1 * 60 + 14, 1100, 42);
+  wrapText(x, tr(o.line2 || ''), W / 2, (o.name ? 650 : 560) + n1 * 60 + 14, 1100, 42);
   x.font = '96px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; x.fillText(o.icon || '🏅', W / 2, 850);
   x.textAlign = 'left'; x.fillStyle = '#101b43'; x.font = '600 28px Inter, Arial, sans-serif'; x.fillText(longDate(), 130, 965);
-  x.fillStyle = '#61718a'; x.font = '500 22px Inter, Arial, sans-serif'; x.fillText('Datum', 130, 1000);
+  x.fillStyle = '#61718a'; x.font = '500 22px Inter, Arial, sans-serif'; x.fillText(tr('Datum'), 130, 1000);
   x.textAlign = 'right'; x.fillStyle = '#101b43'; x.font = '600 26px Inter, Arial, sans-serif';
-  x.fillText('Kostenlos Kopfrechnen üben:', W - 330, 945);
+  x.fillText(tr('Kostenlos Kopfrechnen üben:'), W - 330, 945);
   x.fillStyle = '#df5e0c'; x.fillText(publicUrl().replace(/^https?:\/\//, '').replace(/\/$/, ''), W - 330, 982);
   qrDraw(x, publicUrl(), W - 300, 850, 170);
   return c;
@@ -195,7 +195,7 @@ async function submitClassPoints(entry) {
 }
 function rankingHtml(d) {
   if (!d.eintraege || !d.eintraege.length) return '<p class="muted">Diese Woche hat noch niemand Punkte gesammelt. Sei die/der Erste!</p>';
-  return `<ol class="ranking">${d.eintraege.map((e, i) => `<li class="${e.ich ? 'me' : ''}"><span class="rk">${['🥇', '🥈', '🥉'][i] || i + 1}</span><b>${esc(e.spitzname)}</b><span class="pt">${e.punkte} P.</span></li>`).join('')}</ol>`;
+  return `<ol class="ranking">${d.eintraege.map((e, i) => `<li class="${e.ich ? 'me' : ''}"><span class="rk">${['🥇', '🥈', '🥉'][i] || i + 1}</span><b translate="no">${esc(e.spitzname)}</b><span class="pt">${e.punkte} P.</span></li>`).join('')}</ol>`;
 }
 
 /* ================= Panels ================= */
@@ -225,7 +225,7 @@ Object.assign(PANELS, {
       ${done >= 24 ? voucherHtml() : ''}
       ${raffle}`, init() {
         bindVoucher();
-        $('advChange') && ($('advChange').onclick = () => { if (!done || confirm('Klassenstufe ändern? Dein Fortschritt im Adventskalender beginnt dann wieder bei null.')) { S.advent = { year: adventYear(), doors: {} }; save(); renderHome(); showPanel('advent'); } });
+        $('advChange') && ($('advChange').onclick = () => { if (!done || confirm(tr('Klassenstufe ändern? Dein Fortschritt im Adventskalender beginnt dann wieder bei null.'))) { S.advent = { year: adventYear(), doors: {} }; save(); renderHome(); showPanel('advent'); } });
         $('sheetBody').querySelectorAll('[data-door]').forEach(b => b.onclick = () => showPanel('adventDoor', { d: +b.dataset.door }, true));
         $('advCert') && ($('advCert').onclick = () => showPanel('cert', { line1: 'Rechen-Adventskalender', line2: `${done} von 24 Türchen geschafft · ${adventClassName(st.klasse)}`, icon: '🎄' }, true));
       } };
@@ -277,14 +277,14 @@ Object.assign(PANELS, {
   },
   klasse(o = {}) {
     if (!CONFIG.classApi) return { title: 'Klassen-Challenge', html: '<p>Die Klassen-Challenge ist bald verfügbar.</p>' };
-    if (S.klasse) return { title: `Klasse ${esc(S.klasse.name || S.klasse.code)}`, html: `<p class="small muted" style="margin:0 0 8px">Du bist dabei als <b>${esc(S.klasse.spitzname)}</b>. Jede richtige Aufgabe bringt Punkte – je höher die Stufe, desto mehr. Die Wertung startet jeden Montag neu.</p>
+    if (S.klasse) return { title: `<span translate="no">${esc(S.klasse.name || S.klasse.code)}</span>`, html: `<p class="small muted" style="margin:0 0 8px">Du bist dabei als <b translate="no">${esc(S.klasse.spitzname)}</b>. Jede richtige Aufgabe bringt Punkte – je höher die Stufe, desto mehr. Die Wertung startet jeden Montag neu.</p>
       <div id="rankBox"><p class="muted">Rangliste wird geladen …</p></div>
       <div class="row2" style="margin-top:12px"><button class="btn" id="klRefresh">Aktualisieren</button><button class="btn" id="klLeave">Klasse verlassen</button></div>`,
       async init() {
         const load = async () => { try { await submitClassPoints(); const d = await classApi(`/klasse/${encodeURIComponent(S.klasse.code)}/rangliste?spieler=${encodeURIComponent(S.klasse.spieler)}`); $('rankBox').innerHTML = `${d.bis ? `<p class="small muted">Diese Woche bis ${fmtDay(d.bis)}</p>` : ''}${rankingHtml(d)}`; } catch (e) { $('rankBox').innerHTML = `<p class="status err">${esc(e.message)}</p>`; } };
         $('klRefresh').onclick = load; load();
         $('klLeave').onclick = async () => {
-          if (!confirm('Klasse wirklich verlassen? Dein Eintrag in der Rangliste wird gelöscht.')) return;
+          if (!confirm(tr('Klasse wirklich verlassen? Dein Eintrag in der Rangliste wird gelöscht.'))) return;
           try { await classApi('/klasse/verlassen', { code: S.klasse.code, spieler: S.klasse.spieler }); } catch (e) { if (e.status !== 404) { toast(esc(e.message)); return; } }
           S.klasse = null; S.klassePending = []; save(); renderHome(); closeSheet(); toast('Klasse verlassen');
         };
@@ -316,7 +316,7 @@ Object.assign(PANELS, {
           try {
             const r = await classApi('/klasse', { name }), link = `${publicUrl()}#klasse=${r.code}`;
             const mine = JSON.parse(localStorage.getItem('rb-classes') || '[]'); mine.unshift({ code: r.code, name }); try { localStorage.setItem('rb-classes', JSON.stringify(mine.slice(0, 20))); } catch {}
-            $('ccOut').innerHTML = `<div class="card" style="box-shadow:none;text-align:center"><div class="small muted">Klassencode</div><div class="bigcode">${esc(r.code)}</div><div class="qrbox">${qrSvg(link)}</div><textarea class="sharebox" readonly rows="2">${esc(link)}</textarea><div class="row2"><button type="button" class="btn primary" id="ccShare">Teilen</button><button type="button" class="btn" id="ccRank">Rangliste</button></div></div>`;
+            $('ccOut').innerHTML = `<div class="card" style="box-shadow:none;text-align:center"><div class="small muted">Klassencode</div><div class="bigcode" translate="no">${esc(r.code)}</div><div class="qrbox">${qrSvg(link)}</div><textarea class="sharebox" readonly rows="2">${esc(link)}</textarea><div class="row2"><button type="button" class="btn primary" id="ccShare">Teilen</button><button type="button" class="btn" id="ccRank">Rangliste</button></div></div>`;
             $('ccShare').onclick = () => shareText(`Klassen-Challenge „${name}“ bei Rechenblitz: Code ${r.code}\n${link}`, 'Rechenblitz Klassen-Challenge');
             $('ccRank').onclick = () => showPanel('rankingView', { code: r.code, name }, true);
           } catch (err) { $('ccErr').textContent = err.message; }
@@ -324,7 +324,7 @@ Object.assign(PANELS, {
       } };
   },
   rankingView(o) {
-    return { title: `Rangliste ${esc(o.name || o.code)}`, html: '<div id="rankBox"><p class="muted">Wird geladen …</p></div>',
+    return { title: `Rangliste <span translate="no">${esc(o.name || o.code)}</span>`, html: '<div id="rankBox"><p class="muted">Wird geladen …</p></div>',
       async init() { try { const d = await classApi(`/klasse/${encodeURIComponent(o.code)}/rangliste`); $('rankBox').innerHTML = rankingHtml(d); } catch (e) { $('rankBox').innerHTML = `<p class="status err">${esc(e.message)}</p>`; } } };
   },
 });
@@ -362,7 +362,7 @@ function renderExtrasHome() {
   if (cc) {
     cc.hidden = !CONFIG.classApi;
     if (CONFIG.classApi) cc.innerHTML = S.klasse
-      ? `<div class="ch-ico">🏫</div><div class="ch-txt"><b>Klassen-Challenge</b><span>${esc(S.klasse.name)} · du bist ${esc(S.klasse.spitzname)}</span></div><button class="btn small" data-open="klasse">Rangliste</button>`
+      ? `<div class="ch-ico">🏫</div><div class="ch-txt"><b>Klassen-Challenge</b><span><span translate="no">${esc(S.klasse.name)}</span> · du bist <span translate="no">${esc(S.klasse.spitzname)}</span></span></div><button class="btn small" data-open="klasse">Rangliste</button>`
       : `<div class="ch-ico">🏫</div><div class="ch-txt"><b>Klassen-Challenge</b><span>Code von deiner Lehrkraft? Rechnet gemeinsam um die Wette!</span></div><button class="btn small" data-open="klasse">Beitreten</button>`;
   }
 }
@@ -384,7 +384,7 @@ function extrasAfterGame(acc) {
   if (S.klasse && CONFIG.classApi && G.correct > 0 && G.mode !== 'test') {
     const punkte = G.correct * (G.lvl + 1);
     submitClassPoints({ id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2), punkte, aufgaben: G.correct + G.wrong, richtig: G.correct });
-    html += `<div class="card small" style="text-align:left">🏫 <b>+${punkte} Punkte</b> für die Klasse ${esc(S.klasse.name)}</div>`;
+    html += `<div class="card small" style="text-align:left">🏫 <b>+${punkte} Punkte</b> für die Klasse <span translate="no">${esc(S.klasse.name)}</span></div>`;
   }
   return html;
 }

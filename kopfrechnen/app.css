@@ -572,3 +572,6 @@ button.badge{font:inherit;cursor:pointer}
 .vbanner .v-pct{font-size:18px;padding:8px 10px}
 .vtag{display:inline-block;margin-top:4px;font-style:normal;font-size:12px;font-weight:700;color:var(--orange-d);background:rgba(255,116,24,.12);border-radius:999px;padding:2px 8px}
 .v-cond{margin:8px 0 0;font-size:13px;font-weight:700;color:var(--head);background:var(--surface);border-radius:10px;padding:6px 10px}
+.brandlink{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;border-radius:12px}
+.brandlink:hover b{color:var(--orange-d)}
+.setrow{text-align:left}

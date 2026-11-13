@@ -1,0 +1,867 @@
+# Rechenblitz – Übersetzungen. Spalten: Deutsch (Muster) <TAB> Englisch <TAB> Ukrainisch
+# {} = Platzhalter für Zahlen/Rechnungen/Namen/Daten in derselben Reihenfolge; {0}, {1} … für andere Reihenfolge.
+# Nach Änderungen: node i18n/build.js
+% sind	% are	% — це
+% von	% of	% від
+(Länge + Breite)	(length + width)	(довжина + ширина)
+(OK)	(OK)	(OK)
+(du:	(you:	(ти:
+(gegeben: {})	(given: {})	(відповідь: {})
+(so weit wie möglich)	(as far as possible)	(наскільки можливо)
++ {} auf beiden Seiten: x = {}	+ {} on both sides: x = {}	+ {} з обох боків: x = {}
++ {} auf beiden Seiten: {}x = {}	+ {} on both sides: {}x = {}	+ {} з обох боків: {}x = {}
++{} Punkte	+{} points	+{} балів
++{} XP	+{} XP	+{} XP
+. Jede richtige Aufgabe bringt Punkte – je höher die Stufe, desto mehr. Die Wertung startet jeden Montag neu.	. Every correct answer earns points – the higher the level, the more. The ranking restarts every Monday.	. Кожна правильна відповідь приносить бали – що вищий рівень, то більше. Рейтинг починається заново щопонеділка.
+: {} auf beiden Seiten: x + {}	÷ {} on both sides: x + {}	: {} з обох боків: x + {}
+: {} auf beiden Seiten: x = {}	÷ {} on both sides: x = {}	: {} з обох боків: x = {}
+Ab {} Türchen gibt es eine Advents-Urkunde.	From {} doors on you get an Advent certificate.	Від {} віконець – адвент-грамота.
+Abzeichen	Badges	Значки
+Abzeichen {}	Badges {}	Значки {}
+Adventsaktion	Advent offer	Адвент-акція
+Adventskalender	Advent calendar	Адвент-календар
+Adventsrechner	Advent calculator	Адвент-рахівник
+Aktualisieren	Refresh	Оновити
+Aktuelles bearbeiten	Edit current	Редагувати поточний
+Alle	All	Усі
+Alle Schüler bekommen dieselben Aufgaben (gut zum Besprechen).	All students get the same tasks (good for discussing them).	Усі учні отримують однакові завдання (зручно для обговорення).
+Alle Themen zufällig gemischt – Stufe {}	All topics randomly mixed – level {}	Усі теми впереміш – рівень {}
+Alle Ziffern addieren: {}	Add all digits: {}	Додай усі цифри: {}
+Alle {} Türchen geschafft	All {} doors done	Усі {} віконець пройдено
+Alles funktioniert über Links – ohne Anmeldung. Die Schüler brauchen nur Rechenblitz im Browser.	Everything works with links – no sign-up. Students only need Rechenblitz in their browser.	Усе працює через посилання – без реєстрації. Учням потрібен лише Rechenblitz у браузері.
+Alles gemischt	All mixed	Усе впереміш
+Alleskönner	All-rounder	Майстер на всі руки
+Als App installieren	Install as app	Встановити як застосунок
+Also {}	So {}	Отже, {}
+Also {} Rest {}	So {} remainder {}	Отже, {} остача {}
+Anlegen	Create	Створити
+Anteil als Bruch: {}	Part as a fraction: {}	Частка як дріб: {}
+Anteil: {}	Part: {}	Частка: {}
+Anwenden	Applying maths	Застосування
+Anzahl	Number	Кількість
+Anzahl der Teiler von	number of divisors of	кількість дільників числа
+Anzeigen	Show	Показати
+App-Problem	App problem	Проблема з застосунком
+Arbeit insgesamt: {}	Total work: {}	Загальна робота: {}
+Arbeitsblatt drucken	Print worksheet	Друкувати робочий аркуш
+Auf Hunderter runden	Round to hundreds	Округлення до сотень
+Auf Tausender oder Zehntel runden	Round to thousands or tenths	Округлення до тисяч або десятих
+Auf Zehner runden	Round to tens	Округлення до десятків
+Auf beiden Seiten {} abziehen:	Subtract {} on both sides:	Відніми {} з обох боків:
+Auf beiden Seiten {} addieren:	Add {} on both sides:	Додай {} з обох боків:
+Auf den Startbildschirm – läuft auch offline	On your home screen – works offline too	На головний екран – працює й офлайн
+Aufgabe	Task	Завдання
+Aufgabe {}	Task {}	Завдання {}
+Aufgaben	Tasks	Завдання
+Aufgaben vorlesen	Read tasks aloud	Читати завдання вголос
+Aufgeräumt	Tidied up	Прибрано
+Auftrag erledigt	Assignment done	Завдання виконано
+Auftrag erstellen	Create assignment	Створити завдання
+Aufträge verschicken, Arbeitsblätter drucken	Send assignments, print worksheets	Надсилати завдання, друкувати аркуші
+Aus Üben wird	Practice makes	Практика робить
+Aussteigen heißt minus: {}	Getting off means minus: {}	Вийти – це мінус: {}
+Auto	Auto	Авто
+Auto-Stufe jetzt {}	auto level now {}	авто-рівень тепер {}
+Automatisch	Automatic	Автоматично
+Automatisch prüfen	Check automatically	Перевіряти автоматично
+Beenden	Quit	Завершити
+Bei {} °C friert alles. Wird es {} Grad wärmer, sind es +{} °C.	At {} °C everything freezes. If it gets {} degrees warmer, it's +{} °C.	При {} °C усе замерзає. Якщо потеплішає на {} градусів, буде +{} °C.
+Beide Klammern zuerst: {} und {}	Both brackets first: {} and {}	Спочатку обидві дужки: {} і {}
+Beide Seiten durch {} teilen:	Divide both sides by {}:	Поділи обидві частини на {}:
+Beide Seiten mal {} nehmen:	Multiply both sides by {}:	Помнож обидві частини на {}:
+Beide Zahlen mal {} – das Ergebnis bleibt gleich:	Multiply both numbers by {} – the result stays the same:	Помнож обидва числа на {} – результат не зміниться:
+Beitreten	Join	Приєднатися
+Bessere Noten, weniger Stress	Better grades, less stress	Кращі оцінки, менше стресу
+Bis (optional)	Due (optional)	До (необов'язково)
+Bis {} : einstellig	Up to {} ÷ one digit	До {} : одноцифрове
+Bis {} : zweistellig	Up to {} ÷ two digits	До {} : двоцифрове
+Bis {}: zweistellig + einstellig	Up to {}: two digits + one digit	До {}: двоцифрове + одноцифрове
+Bis {}: zweistellig + zweistellig	Up to {}: two digits + two digits	До {}: двоцифрове + двоцифрове
+Bis {}: zweistellig − einstellig	Up to {}: two digits − one digit	До {}: двоцифрове − одноцифрове
+Bis {}: zweistellig − zweistellig	Up to {}: two digits − two digits	До {}: двоцифрове − двоцифрове
+Bitte beschreibe kurz, worum es geht.	Please describe briefly what it's about.	Будь ласка, коротко опиши, у чому справа.
+Bitte warte einen Moment, bevor du noch etwas sendest.	Please wait a moment before sending something else.	Зачекай трохи, перш ніж надсилати ще щось.
+Blitzrunde	Speed round	Бліц-раунд
+Blitzrunde ({} s)	Speed round ({} s)	Бліц-раунд ({} с)
+Blitzschnell	Lightning fast	Блискавичний
+Breite	width	ширина
+Bruch-Profi	Fraction pro	Профі з дробів
+Bruchstrich	Fraction bar	Дробова риска
+Brüche	Fractions	Дроби
+Brüche & Co.	Fractions & more	Дроби та інше
+Brüche ab Stufe {} mit {} Sternen	Fractions from level {} with {} stars	Дроби від рівня {} з {} зірками
+Brüche multiplizieren & dividieren	Multiply & divide fractions	Множення й ділення дробів
+Brüche teilen gerecht: {} Kuchen für {} Kinder – jedes bekommt {} Kuchen.	Fractions share fairly: {} cakes for {} children – each gets {} of a cake.	Дроби ділять чесно: {} пироги на {} дітей – кожному {} пирога.
+Brüche und ganze Zahlen gemischt	Fractions and whole numbers mixed	Дроби й цілі числа разом
+Code von deiner Lehrkraft? Rechnet gemeinsam um die Wette!	Got a code from your teacher? Race each other at maths!	Маєш код від учителя? Змагайтеся в рахунку!
+Damit die Aufgaben zu dir passen. Die Klassenstufe gilt für den ganzen Kalender – wer sie später ändert, fängt wieder bei Türchen {} an.	So the tasks suit you. Your grade applies to the whole calendar – if you change it later, you start again at door {}.	Щоб завдання тобі підходили. Клас діє для всього календаря – хто змінить його пізніше, почне знову з віконця {}.
+Danke für deine Meldung!	Thanks for your report!	Дякуємо за повідомлення!
+Dann Punkt vor Strich: {}	Then × and ÷ before + and −: {}	Потім множення й ділення перед додаванням: {}
+Das Tagesziel geschafft	Reached the daily goal	Денну мету досягнуто
+Das ganze kleine Einmaleins sicher	The whole times table mastered	Уся таблиця множення засвоєна
+Das hat nicht geklappt	That didn't work	Не вдалося
+Das kleinste gemeinsame Vielfache ist {}.	The lowest common multiple is {}.	Найменше спільне кратне – {}.
+Das sind {} Teiler.	That's {} divisors.	Це {} дільників.
+Das üben wir nochmal:	Let's practise these again:	Це потренуємо ще раз:
+Datenschutz	Privacy	Конфіденційність
+Datum	Date	Дата
+Datum: ____________	Date: ____________	Дата: ____________
+Dazubekommen heißt plus: {}	Getting more means plus: {}	Отримати ще – це плюс: {}
+Dein Gutschein für Nachhilfe – online	Your voucher for Nachhilfe – online	Твій ваучер на Nachhilfe – online
+Dein Name (wird angezeigt)	Your name (shown to students)	Твоє ім'я (буде показано)
+Deine Idee	Your idea	Твоя ідея
+Deine Lehrkraft gibt dir einen Klassencode. Dann sammelt ihr eine Woche lang Punkte – wer rechnet am meisten?	Your teacher gives you a class code. Then you collect points for a week – who calculates the most?	Учитель дає тобі код класу. Потім ви тиждень збираєте бали – хто нарахує найбільше?
+Den Einstufungstest gemacht	Took the placement test	Пройдено тест рівня
+Der Browser liest jede Aufgabe vor	The browser reads every task aloud	Браузер читає кожне завдання вголос
+Der direkte Versand ist hier noch nicht eingerichtet. Deine Meldung ist gespeichert und wird später automatisch übertragen – oder du schickst sie gleich per E-Mail.	Direct sending isn't set up here yet. Your report is saved and will be sent automatically later – or send it by email now.	Пряме надсилання тут ще не налаштовано. Твоє повідомлення збережено й буде надіслано пізніше автоматично – або надішли його зараз електронною поштою.
+Der größte gemeinsame Teiler ist {}.	The greatest common divisor is {}.	Найбільший спільний дільник – {}.
+Der kleinste Primfaktor ist {}.	The smallest prime factor is {}.	Найменший простий множник – {}.
+Der {}-%-Gutschein für alle {} Türchen gilt nur, wenn die Klassenstufe stimmt (Prüfung bei der Buchung) und ist einmal je Familie einlösbar.	The {}% voucher for all {} doors is only valid if the grade is correct (checked when booking) and can be redeemed once per family.	Ваучер на {}% за всі {} віконець дійсний, лише якщо клас указано правильно (перевірка під час бронювання), і його можна використати один раз на сім'ю.
+Der {}. Dezember ist der kürzeste Tag des Jahres – ab jetzt werden die Tage wieder länger!	{} December is the shortest day of the year – from now on the days get longer again!	{} грудня – найкоротший день року – відтепер дні знову довшають!
+Design	Appearance	Вигляд
+Dezimal	Decimals	Десяткові
+Dezimalzahlen ab Stufe {} mit {} Sternen	Decimals from level {} with {} stars	Десяткові від рівня {} з {} зірками
+Dezimalzahlen dividieren & Brüche umwandeln	Divide decimals & convert fractions	Ділення десяткових і перетворення дробів
+Dezimalzahlen multiplizieren	Multiply decimals	Множення десяткових дробів
+Die E-Mail-Adresse sieht nicht richtig aus.	The email address doesn't look right.	Адреса електронної пошти виглядає неправильно.
+Die Fehlerkiste geleert	Emptied the mistake box	Скриньку помилок спорожнено
+Die Meldung konnte nicht angenommen werden. Bitte versuche es noch einmal mit einer etwas ausführlicheren Beschreibung.	The report couldn't be accepted. Please try again with a slightly more detailed description.	Повідомлення не прийнято. Спробуй ще раз із трохи детальнішим описом.
+Die erste Runde gespielt	Played the first round	Зіграно перший раунд
+Diese Woche bis {}	This week until {}	Цей тиждень до {}
+Diese Woche wurde noch nicht geübt.	No practice yet this week.	Цього тижня ще не тренувалися.
+Division mit Rest	Division with remainder	Ділення з остачею
+Dranbleiber	Keeps going	Наполегливий
+Drei Zahlen & größere Zahlen	Three numbers & bigger numbers	Три числа й більші числа
+Dreisatz: erst den Preis für {} Heft	Rule of three: first the price for {} exercise book	Пропорція: спочатку ціна за {} зошит
+Drucken	Print	Друкувати
+Drucken / als PDF speichern	Print / save as PDF	Друкувати / зберегти як PDF
+Du bist dabei als	You're taking part as	Ти береш участь як
+Duell	Duel	Дуель
+Duell beenden	End duel	Завершити дуель
+Duellant	Duellist	Дуелянт
+Dunkel	Dark	Темний
+Durch {} teilen heißt zweimal halbieren: {}.	Dividing by {} means halving twice: {}.	Поділити на {} – це двічі поділити навпіл: {}.
+Durch {} teilen heißt: Nenner mal {}.	Dividing by {} means: denominator times {}.	Поділити на {} – це помножити знаменник на {}.
+E-Mail für Rückfragen (freiwillig)	Email for questions (optional)	Ел. пошта для уточнень (за бажанням)
+Eigener Hinweis (optional)	Your own note (optional)	Власна примітка (необов'язково)
+Ein Auto verbraucht {} Liter auf {} km. Wie viele Liter braucht es für {} km?	A car uses {} litres per {} km. How many litres does it need for {} km?	Автомобіль витрачає {} л на {} км. Скільки літрів потрібно на {} км?
+Ein Duell gespielt	Played a duel	Зіграно дуель
+Ein Eis kostet {} €. {} bezahlt mit {} €. Wie viel Geld bekommt {} zurück?	An ice cream costs {} €. {} pays with {} €. How much change does {} get?	Морозиво коштує {} €. {} платить {} €. Скільки решти отримає {}?
+Ein Fahrrad kostet {} €. Zuerst wird es um {} % teurer, dann um {} € billiger. Was kostet es am Ende?	A bike costs {} €. First it gets {}% more expensive, then {} € cheaper. What does it cost in the end?	Велосипед коштує {} €. Спочатку він дорожчає на {} %, потім дешевшає на {} €. Скільки він коштує в кінці?
+Ein Garten ist {} m lang und {} m breit. Wie lang wird ein Zaun rundherum?	A garden is {} m long and {} m wide. How long is a fence all around it?	Сад має довжину {} м і ширину {} м. Якої довжини буде паркан довкола?
+Ein Heft kostet {} €. {} kauft {} Hefte. Wie viel muss {} bezahlen?	An exercise book costs {} €. {} buys {} books. How much does {} have to pay?	Зошит коштує {} €. {} купує {} зошитів. Скільки має заплатити {}?
+Ein Liter Milch kostet {} €. Wie viel kosten {} Liter?	A litre of milk costs {} €. How much do {} litres cost?	Літр молока коштує {} €. Скільки коштують {} л?
+Ein Rechteck ist {} cm lang und {} cm breit. Wie groß ist seine Fläche?	A rectangle is {} cm long and {} cm wide. What is its area?	Прямокутник має довжину {} см і ширину {} см. Яка його площа?
+Ein Training mit {} % beendet	Finished a training round with {}%	Тренування завершено на {}%
+Ein Türchen im Adventskalender geöffnet	Opened a door in the Advent calendar	Відкрито віконце в адвент-календарі
+Ein Zug fährt {} km pro Stunde. Wie weit kommt er in {} Stunden?	A train travels {} km per hour. How far does it get in {} hours?	Потяг їде {} км за годину. Скільки він проїде за {} год?
+Eine Jacke kostet {} € und wird um {} % reduziert. Was kostet sie jetzt?	A jacket costs {} € and is reduced by {}%. What does it cost now?	Куртка коштує {} € і дешевшає на {} %. Скільки вона коштує тепер?
+Eine Nachkommastelle zurück: {}	Move back one decimal place: {}	Повернути один знак після коми: {}
+Eine Nachkommastelle: plus & minus	One decimal place: plus & minus	Один знак після коми: плюс і мінус
+Eine Pizza wird in {} gleich große Stücke geschnitten. {} isst {} Stücke. Welcher Bruchteil der Pizza ist übrig?	A pizza is cut into {} equal slices. {} eats {} slices. What fraction of the pizza is left?	Піцу розрізали на {} однакових шматків. {} з'їдає {} шматки. Яка частина піци залишилася?
+Eine Schulstunde dauert {} Minuten. Wie viele Minuten dauern {} Schulstunden?	A lesson lasts {} minutes. How many minutes do {} lessons last?	Урок триває {} хвилин. Скільки хвилин тривають {} уроки?
+Eine Tageschallenge gespielt	Played a daily challenge	Зіграно щоденний виклик
+Eine Woche Wettrechnen mit Rangliste	A week of maths racing with a leaderboard	Тиждень змагань із рейтингом
+Eine Zahl ist durch {} teilbar, wenn ihre Quersumme durch {} teilbar ist: {} ✓	A number is divisible by {} if its digit sum is divisible by {}: {} ✓	Число ділиться на {}, якщо сума його цифр ділиться на {}: {} ✓
+Einen Auftrag der Lehrkraft erfüllt	Completed a teacher's assignment	Виконано завдання вчителя
+Einer Klassen-Challenge beigetreten	Joined a class challenge	Приєднався до класного змагання
+Einheiten	Units	Одиниці
+Einmaleins-König	Times-table king	Король таблиці множення
+Einmaleins-Übersicht	Times-table overview	Огляд таблиці множення
+Einstellungen	Settings	Налаштування
+Einstufungstest	Placement test	Тест рівня
+Empfehlen Sie Nachhilfe – online weiter: Bucht die empfohlene Familie ein Paket ab {} Stunden, schenken wir Ihnen eine Unterrichtsstunde.	Recommend Nachhilfe – online: if the family you recommend books a package of {} hours or more, we'll give you a free lesson.	Порекомендуйте Nachhilfe – online: якщо рекомендована родина забронює пакет від {} годин, ми подаруємо вам урок.
+Entdecker	Explorer	Дослідник
+Entfernen	Remove	Видалити
+Entscheidend ist die Einerstelle: {}	The ones digit decides: {}	Вирішує розряд одиниць: {}
+Entscheidend ist die Hunderterstelle: {}	The hundreds digit decides: {}	Вирішує розряд сотень: {}
+Entscheidend ist die Hundertstelstelle: {}	The hundredths digit decides: {}	Вирішує розряд сотих: {}
+Entscheidend ist die Zehnerstelle: {}	The tens digit decides: {}	Вирішує розряд десятків: {}
+Ergebnis	Result	Результат
+Ergebnis an Lehrkraft senden	Send result to teacher	Надіслати результат учителю
+Ergebnis ansehen	View result	Переглянути результат
+Ergebnis senden	Send result	Надіслати результат
+Ergebnis teilen	Share result	Поділитися результатом
+Ergebnis: {}	Result: {}	Результат: {}
+Erst die Potenzen: {}	Powers first: {}	Спочатку степені: {}
+Erweitern auf {}	Expand to {}	Розширити до {}
+Erweitern auf {} %	Expand to {}%	Розширити до {} %
+Falsche Lösung oder Problem in der App	Wrong answer or problem in the app	Неправильна відповідь або проблема в застосунку
+Fast geschafft	Almost done	Майже готово
+Fehler	Mistakes	Помилки
+Fehler melden	Report a problem	Повідомити про помилку
+Fehlerfrei	Flawless	Без помилок
+Fehlerkiste	Mistake box	Скринька помилок
+Feste Lehrkraft, die passt	A regular tutor who fits	Постійний учитель, який підходить
+Flyer & Poster	Flyers & posters	Флаєри й плакати
+Fläche = Länge	area = length	площа = довжина
+Flächen und Rauminhalte	Areas and volumes	Площі та об'єми
+Folgt der Sprache des Geräts – oder fest einstellen	Follows the device language – or choose one	Відповідає мові пристрою – або вибери сам
+Fortschritt zurücksetzen	Reset progress	Скинути прогрес
+Freunde einladen	Invite friends	Запросити друзів
+Frohe Weihnachten! Du hast gerechnet wie ein Profi. 🎉	Merry Christmas! You calculated like a pro. 🎉	Веселого Різдва! Ти рахував як профі. 🎉
+Frühaufsteher	Early bird	Ранній птах
+Fünfhundert	Five hundred	П'ятсот
+Für Eltern: Freunde werben	For parents: refer a friend	Для батьків: порекомендуйте друзям
+Für Eltern: was geübt wurde, wo es hakt	For parents: what was practised, where it's tricky	Для батьків: що тренували, де складно
+Für Lehrkräfte	For teachers	Для вчителів
+Für Lehrkräfte: Aufträge & Arbeitsblätter	For teachers: assignments & worksheets	Для вчителів: завдання й робочі аркуші
+Für hervorragendes Rechnen	For excellent calculating	За чудовий рахунок
+Für {} km: {}	For {} km: {}	На {} км: {}
+Für {} km: {} Liter	For {} km: {} litres	На {} км: {} л
+Gemeinsamer Nenner: {}	Common denominator: {}	Спільний знаменник: {}
+Gemischt	Mixed	Змішане
+Gemischte Angaben ({} h {} min …)	Mixed units ({} h {} min …)	Змішані величини ({} год {} хв …)
+Gerade gibt es keine Verbindung. Deine Meldung wird automatisch gesendet, sobald du wieder online bist.	No connection right now. Your report will be sent automatically as soon as you're online again.	Зараз немає з'єднання. Твоє повідомлення буде надіслано автоматично, щойно ти знову будеш онлайн.
+Gerade wurden sehr viele Meldungen gesendet. Deine Meldung ist gespeichert und wird später automatisch übertragen.	A lot of reports were just sent. Yours is saved and will be sent automatically later.	Щойно надіслано дуже багато повідомлень. Твоє збережено й буде надіслано пізніше автоматично.
+Gerecht verteilen heißt teilen: {}	Sharing fairly means dividing: {}	Поділити порівну – це ділення: {}
+Geschafft! Schick deiner Lehrkraft jetzt dein Ergebnis.	Done! Now send your result to your teacher.	Готово! Тепер надішли результат учителю.
+Gespeichert	Saved	Збережено
+Geteilt	Divide	Ділення
+Geteilt durch {}: Komma um eine Stelle nach links	Divided by {}: move the decimal point one place left	Ділення на {}: кома на один знак ліворуч
+Geteilt durch {}: Komma um {} Stellen nach links	Divided by {}: move the decimal point {} places left	Ділення на {}: кома на {} знаки ліворуч
+Geteilt-Lücken im Einmaleins	Division gaps in the times table	Пропуски в діленні з таблиці множення
+Gewonnen!	You won!	Перемога!
+Gezielte Hilfe genau bei den Themen, die noch haken.	Targeted help with exactly the topics that are still tricky.	Цільова допомога саме з темами, які ще складні.
+Gilt für Klasse {} – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft. Einmal je Familie einlösbar.	Valid for grade {} – only if the grade is correct. It is checked when booking. Can be redeemed once per family.	Дійсний для {} класу – лише якщо клас указано правильно. Перевіряється під час бронювання. Один раз на сім'ю.
+Glaubst du, die Lösung ist falsch? Melden	Think the answer is wrong? Report it	Думаєш, відповідь неправильна? Повідом
+Gleiche Aufgaben für alle	Same tasks for everyone	Однакові завдання для всіх
+Gleicher Nenner – nur die Zähler addieren:	Same denominator – just add the numerators:	Однаковий знаменник – додаємо лише чисельники:
+Gleicher Nenner – nur die Zähler subtrahieren:	Same denominator – just subtract the numerators:	Однаковий знаменник – віднімаємо лише чисельники:
+Gleichnamige Brüche addieren & subtrahieren	Add & subtract like fractions	Додавання й віднімання дробів з однаковим знаменником
+Gleichung	Equations	Рівняння
+Gleichungen ab Stufe {} mit {} Sternen	Equations from level {} with {} stars	Рівняння від рівня {} з {} зірками
+Gleichungen sind wie eine Waage: Was du links machst, musst du auch rechts machen.	Equations are like a balance: whatever you do on the left, you must also do on the right.	Рівняння – як терези: що робиш ліворуч, те роби й праворуч.
+Gleichungs-Löser	Equation solver	Розв'язувач рівнянь
+Großes Einmaleins rückwärts	Big times table backwards	Велика таблиця множення навпаки
+Großes Einmaleins ({}–{})	Big times table ({}–{})	Велика таблиця множення ({}–{})
+Grundrechnen	Basic arithmetic	Основні дії
+Grundwert gesucht	Find the whole	Знайди ціле
+Größter gemeinsamer Teiler	Greatest common divisor	Найбільший спільний дільник
+Gut	Well	Гарно
+Handy, Tablet und PC – auch offline	Phone, tablet and PC – offline too	Телефон, планшет і ПК – навіть офлайн
+Heiße Serie	Hot streak	Гаряча серія
+Hell	Light	Світлий
+Hell, dunkel oder wie das Gerät	Light, dark or like the device	Світлий, темний або як на пристрої
+Hell/Dunkel umschalten	Toggle light/dark	Перемкнути світлий/темний
+Herausforderer	Challenger	Претендент
+Heute geschafft! {} Türchen	Done today! {} doors	Сьогодні готово! {} віконець
+Hinweis: Ergebnis-Links werden auf dem Gerät des Schülers erzeugt und sind nicht fälschungssicher.	Note: result links are created on the student's device and cannot be fully verified.	Примітка: посилання з результатами створюються на пристрої учня й не захищені від підробки.
+Hinzufügen	Add	Додати
+Hoch {} ändert nichts: {}	To the power of {} changes nothing: {}	Степінь {} нічого не змінює: {}
+Hundert	One hundred	Сотня
+Ich	Me	Я
+Idee	Idea	Ідея
+Idee oder Feedback	Idea or feedback	Ідея або відгук
+Ihre Klasse rechnet eine Woche lang um die Wette. Die Kinder treten mit einem Code bei und nutzen nur Spitznamen.	Your class races at maths for a week. Children join with a code and only use nicknames.	Ваш клас тиждень змагається в рахунку. Діти приєднуються за кодом і використовують лише псевдоніми.
+Im Advent: Rechen-Adventskalender mit {}-%-Gutschein	In Advent: maths Advent calendar with a {}% voucher	В адвент: математичний адвент-календар із ваучером {}%
+Im Bus sitzen {} Kinder. An der Haltestelle steigen {} aus. Wie viele Kinder sitzen noch im Bus?	There are {} children on the bus. At the stop, {} get off. How many children are still on the bus?	В автобусі {} дітей. На зупинці {} виходять. Скільки дітей залишилося в автобусі?
+Im Klassenzimmer stehen {} Reihen mit je {} Stühlen. Wie viele Stühle sind es zusammen?	The classroom has {} rows of {} chairs each. How many chairs are there altogether?	У класі {} рядів по {} стільців. Скільки всього стільців?
+Impressum	Legal notice	Вихідні дані
+In Cent rechnen: {}	Calculate in cents: {}	Рахуй у центах: {}
+In Zehnteln rechnen: {} Zehntel	Calculate in tenths: {} tenths	Рахуй у десятих: {} десятих
+In Zehnteln rechnen: {} Zehntel : {} Zehntel	Calculate in tenths: {} tenths ÷ {} tenths	Рахуй у десятих: {} десятих : {} десятих
+In der Rangliste sehen alle aus der Klasse nur deinen Spitznamen und deine Punkte.	In the leaderboard, your class only sees your nickname and your points.	У рейтингу клас бачить лише твій псевдонім і бали.
+In welche Klasse gehst du?	Which grade are you in?	У якому ти класі?
+In welche Klasse gehst du? Danach bekommst du etwa {} Aufgaben aus den wichtigsten Themen deiner Klassenstufe – ohne Zeitdruck. Am Ende siehst du, was schon sitzt und welche Stufe zu dir passt.	Which grade are you in? Then you'll get about {} tasks from the main topics of your grade – no time pressure. At the end you'll see what you already know and which level suits you.	У якому ти класі? Потім отримаєш близько {} завдань з головних тем твого класу – без поспіху. Наприкінці побачиш, що вже вмієш і який рівень тобі підходить.
+In {} Jahren: {}	In {} years: {}	Через {} років: {}
+In {} Minuten herausfinden, welche Stufen passen	Find out in {} minutes which levels suit you	За {} хвилин дізнайся, які рівні тобі підходять
+In {} Themen {} Sterne geholt	{} stars in {} topics	{} зірки в {} темах
+Ist jede Schneemann-Kugel doppelt so breit wie die darüber, ist die unterste {}-mal so breit wie der Kopf.	If each snowman ball is twice as wide as the one above, the bottom one is {} times as wide as the head.	Якщо кожна куля сніговика вдвічі ширша за верхню, то нижня в {} рази ширша за голову.
+Jahre	years	років
+Jede Aufgabe aus Mal, Geteilt und Lücken zählt mit. Tippe auf eine Zahl links, um die Reihe gezielt zu üben.	Every multiplication, division and gap task counts. Tap a number on the left to practise that row.	Враховується кожне завдання на множення, ділення та пропуски. Торкнися числа ліворуч, щоб потренувати цей ряд.
+Jede Aufgabe wird zufällig erzeugt – vom Einmaleins bis zu Brüchen, Prozent und Gleichungen.	Every task is randomly generated – from times tables to fractions, percentages and equations.	Кожне завдання створюється випадково – від таблиці множення до дробів, відсотків і рівнянь.
+Jede Schneeflocke hat {} Arme – und trotzdem gleicht keine der anderen.	Every snowflake has {} arms – and still no two are alike.	Кожна сніжинка має {} променів – і все ж жодна не схожа на іншу.
+Jede Zahl hoch {} ergibt {}.	Any number to the power of {} is {}.	Будь-яке число в степені {} дорівнює {}.
+Jeden Tag ein Türchen	A door every day	Щодня віконце
+Jeden Tag ein Türchen: {} Aufgaben für	A door every day: {} tasks for	Щодня віконце: {} завдань для
+Jetzt üben	Practise now	Тренуватися зараз
+Kernaufgaben (:{}, :{}, :{}, :{})	Key facts (÷{}, ÷{}, ÷{}, ÷{})	Основні приклади (:{}, :{}, :{}, :{})
+Kernaufgaben (·{}, ·{}, ·{}, ·{})	Key facts (×{}, ×{}, ×{}, ×{})	Основні приклади (·{}, ·{}, ·{}, ·{})
+Klammer zuerst: {}	Brackets first: {}	Спочатку дужки: {}
+Klammern	Brackets	Дужки
+Klammern und Punkt vor Strich	Brackets and order of operations	Дужки й порядок дій
+Klammern zuerst	Brackets first	Спочатку дужки
+Klasse anlegen	Create class	Створити клас
+Klasse verlassen	Leave class	Вийти з класу
+Klasse {}	Grade {}	{} клас
+Klasse {}–{}: Komma, Brüche, Flächen	Grades {}–{}: decimals, fractions, areas	{}–{} класи: десяткові, дроби, площі
+Klasse {}–{}: Prozent, Dreisatz, Tempo	Grades {}–{}: percentages, proportions, speed	{}–{} класи: відсотки, пропорції, швидкість
+Klasse {}–{}: mal, geteilt, Geld	Grades {}–{}: times, divide, money	{}–{} класи: множення, ділення, гроші
+Klasse {}–{}: plus & minus	Grades {}–{}: plus & minus	{}–{} класи: плюс і мінус
+Klasse ändern	Change grade	Змінити клас
+Klassen-Challenge	Class challenge	Класне змагання
+Klassen-Challenge anlegen	Create class challenge	Створити класне змагання
+Klassencode	Class code	Код класу
+Klassenstufe	Grade	Клас
+Kleines Einmaleins	Times tables	Таблиця множення
+Kleines Einmaleins rückwärts	Times tables backwards	Таблиця множення навпаки
+Kleinstes gemeinsames Vielfaches	Lowest common multiple	Найменше спільне кратне
+Klänge bei richtig, falsch und Serien	Sounds for right, wrong and streaks	Звуки для правильних, неправильних відповідей і серій
+Knapp daneben!	So close!	Майже!
+Komma	Decimal point	Кома
+Komma unter Komma – in Hundertsteln rechnen:	Line up the decimal points – calculate in hundredths:	Кома під комою – рахуй у сотих:
+Komma-Profi	Decimal pro	Профі з десяткових
+Kopfrechen-Ass	Mental maths ace	Ас усного рахунку
+Kopfrechen-Trainer	Mental maths trainer	Тренажер усного рахунку
+Kopfrechen-Trick: Mal {} heißt mal {} und dann halbieren. {}	Mental maths trick: times {} means times {} and then halve. {}	Трюк: помножити на {} – це помножити на {} і поділити навпіл. {}
+Kopfrechnen	Mental maths	Усний рахунок
+Kopfrechnen üben mit	Practise mental maths with	Тренуй усний рахунок з
+Kopiere den Text und schicke ihn z. B. per WhatsApp oder E-Mail.	Copy the text and send it e.g. via WhatsApp or email.	Скопіюй текст і надішли, наприклад, у WhatsApp або поштою.
+Kopieren	Copy	Копіювати
+Kostenlos	Free	Безкоштовно
+Kostenlos Kopfrechnen üben:	Practise mental maths for free:	Тренуй усний рахунок безкоштовно:
+Kostenlose Probestunde	Free trial lesson	Безкоштовний пробний урок
+Kostenlose Probestunde bei Nachhilfe – online	Free trial lesson with Nachhilfe – online	Безкоштовний пробний урок у Nachhilfe – online
+Kostenlose Probestunde: mathenachhilfe-online.com/probestunde	Free trial lesson: mathenachhilfe-online.com/probestunde	Безкоштовний пробний урок: mathenachhilfe-online.com/probestunde
+Können.	perfect.	досконалим.
+Kürze	Simplify	Скороти
+Kürzen mit {}	Simplify by {}	Скорочуємо на {}
+Kürzen und Bruchteile von Zahlen	Simplifying and fractions of numbers	Скорочення та частини від числа
+Lange Rechenketten	Long calculation chains	Довгі ланцюжки обчислень
+Leer – super gemacht!	Empty – well done!	Порожньо – чудово!
+Link erstellen	Create link	Створити посилання
+Link für die Schüler	Link for students	Посилання для учнів
+Link oder Code eines Schülers öffnen	Open a student's link or code	Відкрити посилання або код учня
+Link oder Code einfügen	Paste link or code	Встав посилання або код
+Link teilen	Share link	Поділитися посиланням
+Los	Go	Почати
+Los geht’s	Here we go	Почнімо
+Los!	Go!	Старт!
+Löschen	Delete	Стерти
+Lösungen – Kopfrechnen	Answers – mental maths	Відповіді – усний рахунок
+Lösungsblatt	Answer sheet	Аркуш відповідей
+Lücke	Gaps	Пропуски
+Lücken bis {} und zweistellig mal	Gaps up to {} and two-digit times	Пропуски до {} і множення двоцифрових
+Mal	Times	Множення
+Mal & geteilt durch {}	Times & divided by {}	Множення й ділення на {}
+Mal & geteilt mit Vorzeichen	Times & divide with signs	Множення й ділення зі знаками
+Mal {} ist das Doppelte: {}	Times {} is double: {}	Помножити на {} – це подвоїти: {}
+Mal {} mit den Fingern: Für {}	Times {} on your fingers: for {}	Множення на {} на пальцях: для {}
+Mal {} ändert nichts: {}	Times {} changes nothing: {}	Множення на {} нічого не змінює: {}
+Mal {}: Komma um eine Stelle nach rechts	Times {}: move the decimal point one place right	Множення на {}: кома на один знак праворуч
+Mal {}: Komma um {} Stellen nach rechts	Times {}: move the decimal point {} places right	Множення на {}: кома на {} знаки праворуч
+Mal {}: eine Null anhängen → {}	Times {}: add a zero → {}	Множення на {}: допиши нуль → {}
+Mal-Lücken im Einmaleins	Multiplication gaps in the times table	Пропуски в множенні з таблиці
+Mathe, Deutsch, Englisch, Physik & mehr – von der Grundschule bis zum Abschluss.	Maths, German, English, physics & more – from primary school to final exams.	Математика, німецька, англійська, фізика та інше – від початкової школи до випускних іспитів.
+Mathe-Meister	Maths master	Майстер математики
+Mehr	More	Більше
+Mehr Hilfe gewünscht?	Want more help?	Потрібна допомога?
+Mehr Personen – weniger Tage (antiproportional).	More people – fewer days (inverse proportion).	Більше людей – менше днів (обернена пропорційність).
+Mehrere Schritte	Several steps	Кілька кроків
+Mein Fortschritt	My progress	Мій прогрес
+Meldung senden	Send report	Надіслати повідомлення
+Menü	Menu	Меню
+Menü: Hilfe, Fehler melden, Einstellungen	Menu: help, report a problem, settings	Меню: допомога, повідомити про помилку, налаштування
+Mindestens richtig	At least correct	Мінімум правильних
+Minus	Minus	Віднімання
+Minus eine negative Zahl heißt plus: {}	Minus a negative number means plus: {}	Мінус від'ємне число – це плюс: {}
+Minus ins Negative	Subtracting below zero	Віднімання до від'ємних
+Minus mal Minus ergibt Plus: {}.	Minus times minus is plus: {}.	Мінус на мінус дає плюс: {}.
+Mit Klassencode beitreten	Join with class code	Приєднатися за кодом класу
+Mit Kommazahlen umrechnen	Converting with decimals	Перетворення з десятковими
+Mit QR-Code zum Aushängen und Verteilen	With QR code to put up and hand out	З QR-кодом – щоб повісити чи роздати
+Mit dem Kehrwert von {} malnehmen:	Multiply by the reciprocal of {}:	Помнож на обернений до {} дріб:
+Mit mindestens {} von {} richtig je Türchen gibt es einen {}-%-Gutschein auf jedes Stundenpaket von Nachhilfe – online (gültig bis {}). Gilt nur, wenn die Klassenstufe (Klasse {}) stimmt, einmal je Familie. Noch {} Türchen.	With at least {} of {} correct per door you get a {}% voucher on any lesson package from Nachhilfe – online (valid until {}). Only valid if the grade (grade {}) is correct, once per family. {} doors to go.	Маючи щонайменше {} з {} правильних у кожному віконці, отримаєш ваучер на {}% на будь-який пакет уроків Nachhilfe – online (дійсний до {}). Лише якщо клас ({} клас) правильний, один раз на сім'ю. Залишилося {} віконець.
+Mit negativen Zahlen & Klammern	With negative numbers & brackets	З від'ємними числами й дужками
+Mitgeschickt werden deine Nachricht, ggf. die Aufgabe und technische Angaben (App-Version, Browser, Bildschirmgröße).	We send your message, the task if attached, and technical details (app version, browser, screen size).	Надсилається твоє повідомлення, за потреби завдання та технічні дані (версія застосунку, браузер, розмір екрана).
+Modus	Mode	Режим
+Monats-Meister	Month master	Майстер місяця
+Mutter heute: {}	Mother today: {}	Мама зараз: {}
+Nach {} Uhr geübt	Practised after {} o'clock	Тренувався після {}:00
+Nachteule	Night owl	Нічна сова
+Name	Name	Ім'я
+Name auf der Urkunde (Spitzname reicht, oder leer lassen)	Name on the certificate (a nickname is fine, or leave empty)	Ім'я на грамоті (досить псевдоніма або залиш порожнім)
+Name der Klasse	Class name	Назва класу
+Name oder Spitzname (freiwillig)	Name or nickname (optional)	Ім'я або псевдонім (за бажанням)
+Name und E-Mail sind	Name and email are	Ім'я та ел. пошта –
+Name: ______________________	Name: ______________________	Ім'я: ______________________
+Negativ	Negative	Від'ємні
+Neues Profil	New profile	Новий профіль
+Nikolaus! {} ist eine „vollkommene Zahl“: Ihre Teiler {} ergeben genau {}.	St Nicholas Day! {} is a "perfect number": its divisors {} add up to exactly {}.	День святого Миколая! {} – «досконале число»: його дільники {} дають рівно {}.
+Nochmal	Again	Ще раз
+Nur den Zähler mal {} nehmen:	Only multiply the numerator by {}:	Множимо лише чисельник на {}:
+OK	OK	OK
+Oberstufe ({}–{})	Upper school ({}–{})	Старші класи ({}–{})
+Ohne Komma rechnen: {}	Calculate without the decimal point: {}	Рахуй без коми: {}
+Ohne Zeit und Punkte – in deinem Tempo	No timer, no points – at your own pace	Без часу й балів – у своєму темпі
+Online-Nachhilfe {} in Mathe & mehr	Online tutoring {} in maths & more	Онлайн-репетиторство {} з математики та інших предметів
+Per E-Mail senden	Send by email	Надіслати поштою
+Perfekt!	Perfect!	Ідеально!
+Perfekter Tag	Perfect day	Ідеальний день
+Persönliche Online-Nachhilfe {}	Personal online tutoring {}	Особисте онлайн-репетиторство {}
+Persönliche Online-Nachhilfe {} – die erste Stunde ist gratis.	Personal online tutoring {} – the first lesson is free.	Особисте онлайн-репетиторство {} – перший урок безкоштовний.
+Plus	Plus	Додавання
+Plus & minus mit Klammern bis {}	Plus & minus with brackets up to {}	Плюс і мінус з дужками до {}
+Plus eine negative Zahl heißt minus: {}	Plus a negative number means minus: {}	Плюс від'ємне число – це мінус: {}
+Plus mit negativen Zahlen bis {}	Adding negative numbers up to {}	Додавання з від'ємними до {}
+Plus- und Minus-Lücken bis {}	Plus and minus gaps up to {}	Пропуски в додаванні й відніманні до {}
+Plus-Lücken bis {}	Addition gaps up to {}	Пропуски в додаванні до {}
+Poster (A{})	Poster (A{})	Плакат (A{})
+Potenzen	Powers	Степені
+Potenzen & Wurzeln kombinieren	Combine powers & roots	Степені й корені разом
+Preis wird erhöht	Price goes up	Ціна зростає
+Preis wird reduziert	Price is reduced	Ціна знижується
+Preis: {}	Price: {}	Ціна: {}
+Preise erhöhen & reduzieren	Raise & reduce prices	Підвищення й зниження цін
+Primfaktoren & Anzahl der Teiler	Prime factors & number of divisors	Прості множники й кількість дільників
+Probe: {}	Check: {}	Перевірка: {}
+Profil wechseln	Switch profile	Змінити профіль
+Profile für Geschwister & Freunde	Profiles for siblings & friends	Профілі для братів, сестер і друзів
+Prozent	Percent	Відсотки
+Prozent ab Stufe {} mit {} Sternen	Percentages from level {} with {} stars	Відсотки від рівня {} з {} зірками
+Prozent heißt „von Hundert“: {} % ist ein Viertel, {} % die Hälfte.	Percent means "out of a hundred": {}% is a quarter, {}% is a half.	Відсоток означає «зі ста»: {} % – це чверть, {} % – половина.
+Prozent-Profi	Percentage pro	Профі з відсотків
+Prozentsatz gesucht	Find the percentage	Знайди відсоток
+Prüfen	Check	Перевірити
+Prüfen, sobald genug Stellen eingegeben sind	Check as soon as enough digits are entered	Перевіряти, щойно введено досить цифр
+Punkt vor Strich	Order of operations	Порядок дій
+Punkt vor Strich mit Geteilt	Order of operations with division	Порядок дій з діленням
+Punkt vor Strich: zuerst {}	× and ÷ first: {}	Спочатку множення й ділення: {}
+Punkt vor Strich: {}	× and ÷ first: {}	Спочатку множення й ділення: {}
+Punkte	Points	Бали
+Punkte, Rekorde, Abzeichen und Fehlerkiste dieses Profils löschen	Delete points, records, badges and mistake box of this profile	Видалити бали, рекорди, значки й скриньку помилок цього профілю
+Quadratzahlen & Wurzeln bis {}	Square numbers & roots up to {}	Квадрати й корені до {}
+Quadratzahlen bis {}	Square numbers up to {}	Квадрати чисел до {}
+Quersumme	Digit sum	Сума цифр
+Quersumme von	digit sum of	сума цифр числа
+Rangliste	Leaderboard	Рейтинг
+Rangliste wird geladen …	Loading leaderboard …	Завантаження рейтингу …
+Rechen-Adventskalender	Maths Advent calendar	Математичний адвент-календар
+Rechen-Starter	Maths beginner	Початківець
+Rechenblitz Tageschallenge	Rechenblitz daily challenge	Щоденний виклик Rechenblitz
+Rechenblitz ist	Rechenblitz is	Rechenblitz –
+Rechenblitz ist kostenlos – teile es!	Rechenblitz is free – share it!	Rechenblitz безкоштовний – поділися ним!
+Rechenblitz {}	Rechenblitz {}	Rechenblitz {}
+Rechenblitz – Kopfrechnen üben	Rechenblitz – practise mental maths	Rechenblitz – тренуй усний рахунок
+Rechenblitz – Tageschallenge {}	Rechenblitz – daily challenge {}	Rechenblitz – щоденний виклик {}
+Rechenblitz-Legende	Rechenblitz legend	Легенда Rechenblitz
+Rechenmaschine	Calculating machine	Рахувальна машина
+Rechenprofi	Maths pro	Профі рахунку
+Rechne rückwärts: {}	Work backwards: {}	Рахуй у зворотному напрямку: {}
+Rechne {} so: {}.	Calculate {} like this: {}.	Обчисли {} так: {}.
+Reihe üben	Practise a row	Тренувати ряд
+Rekord	Record	Рекорд
+Rest	remainder	остача
+Revanche	Rematch	Реванш
+Richtig	Correct	Правильно
+Richtig ist:	The answer is:	Правильно:
+Ruhepol	Calm mind	Спокій
+Ruhig üben	Calm practice	Спокійне тренування
+Runde	Round	Округли
+Runde beide Zahlen auf Hunderter	Round both numbers to hundreds	Округли обидва числа до сотень
+Runde beide Zahlen auf Zehner	Round both numbers to tens	Округли обидва числа до десятків
+Runden	Rounding	Округлення
+Runden geschafft	rounds done	раундів пройдено
+Runden: {} und {}. Ab der {} wird aufgerundet.	Rounding: {} and {}. From {} upwards you round up.	Округлення: {} і {}. Від {} округлюємо вгору.
+Rückgeld = bezahlt − Preis	change = paid − price	решта = сплачено − ціна
+Schaff alle {} Türchen!	Complete all {} doors!	Пройди всі {} віконець!
+Schließen	Close	Закрити
+Schwierigkeit	Difficulty	Складність
+Schön	Nicely	Гарно
+So geht’s	Here's how	Ось як
+So kommt Rechenblitz auf deinen Startbildschirm:	How to put Rechenblitz on your home screen:	Як додати Rechenblitz на головний екран:
+Speichern	Save	Зберегти
+Spitzname (kein echter Name nötig)	Nickname (no real name needed)	Псевдонім (справжнє ім'я не потрібне)
+Sprache	Language	Мова
+Stand dieses Geräts	Progress on this device	Стан на цьому пристрої
+Starte bei {} und gehe {} nach links.	Start at {} and go {} to the left.	Почни з {} і пройди {} ліворуч.
+Starte bei {} und gehe {} nach rechts.	Start at {} and go {} to the right.	Почни з {} і пройди {} праворуч.
+Stufe	Level	Рівень
+Stufe passt sich automatisch an	Level adapts automatically	Рівень підлаштовується автоматично
+Stufe {}	Level {}	Рівень {}
+Stufe {} erreicht!	level {} reached!	рівень {} досягнуто!
+Super!	Great!	Супер!
+Tage	days	днів
+Tage geübt	days practised	днів тренувань
+Tageschallenge	Daily challenge	Щоденний виклик
+Tageschallenge, Duell & Abzeichen	Daily challenge, duel & badges	Щоденний виклик, дуель і значки
+Tagesziel	Daily goal	Денна мета
+Tagesziel geschafft! 🎯	Daily goal reached! 🎯	Денну мету досягнуто! 🎯
+Teamplayer	Team player	Командний гравець
+Teilen	Share	Поділитися
+Teiler	Divisors	Дільники
+Teiler von {}	Divisors of {}	Дільники числа {}
+Textaufgaben	Word problems	Текстові задачі
+Textaufgaben ab Stufe {} mit {} Sternen	Word problems from level {} with {} stars	Текстові задачі від рівня {} з {} зірками
+Thema	Topic	Тема
+Themen für	Topics for	Теми для
+Tipp: {} ist durch {} teilbar – also auch {}.	Tip: {} is divisible by {} – so {} is too.	Підказка: {} ділиться на {} – отже, і {}.
+Tipp: {} ist nicht durch {} teilbar – also auch {} nicht.	Tip: {} is not divisible by {} – so {} isn't either.	Підказка: {} не ділиться на {} – отже, і {} не ділиться.
+Tippe auf	Tap	Натисни
+Tippe in Safari unten auf	In Safari, tap at the bottom	У Safari внизу натисни
+Titel (optional)	Title (optional)	Назва (необов'язково)
+Ton	Sound	Звук
+Ton an/aus	Sound on/off	Звук увімк./вимк.
+Ton aus	Sound off	Звук вимкнено
+Ton, Vorlesen, Klassenstufe, Design	Sound, read aloud, grade, appearance	Звук, читання вголос, клас, вигляд
+Training	Training	Тренування
+Training ({} Aufgaben)	Training ({} tasks)	Тренування ({} завдань)
+Treffer	Accuracy	Точність
+Trick für Quadratzahlen mit {} am Ende: {}	Trick for squares ending in {}: {}	Трюк для квадратів чисел, що закінчуються на {}: {}
+Türchen {}	Door {}	Віконце {}
+Türchen {} geöffnet!	Door {} opened!	Віконце {} відкрито!
+Türchen {} wartet auf dich	Door {} is waiting for you	Віконце {} чекає на тебе
+Türchen {}, geschafft	Door {}, done	Віконце {}, пройдено
+Umfang = {}	perimeter = {}	периметр = {}
+Umkehraufgabe: {}	Inverse task: {}	Обернена дія: {}
+Unaufhaltsam	Unstoppable	Нестримний
+Ungerade Zahlen ergeben Quadratzahlen: {}.	Odd numbers make square numbers: {}.	Непарні числа дають квадрати: {}.
+Ungleichnamige Brüche addieren & subtrahieren	Add & subtract unlike fractions	Додавання й віднімання дробів з різними знаменниками
+Unsichere Aufgaben gemischt üben	Practise unsure facts mixed	Тренувати непевні приклади впереміш
+Unterschied: {}	Difference: {}	Різниця: {}
+Unverbindlich ausprobieren	Try it with no obligation	Спробувати без зобов'язань
+Urkunde	Certificate	Грамота
+Vermessen	Measured up	Виміряно
+Versuche	Attempts	Спроби
+Vielfache von {}: …, {}	Multiples of {}: …, {}	Кратні {}: …, {}
+Vom Einmaleins bis zu Brüchen, Prozent und Gleichungen – mit Lösungsweg bei jedem Fehler.	From times tables to fractions, percentages and equations – with a worked solution for every mistake.	Від таблиці множення до дробів, відсотків і рівнянь – з розв'язанням до кожної помилки.
+Von links nach rechts rechnen:	Calculate from left to right:	Рахуй зліва направо:
+Von {} Schülerinnen und Schülern kommen {} mit dem Fahrrad. Wie viel Prozent sind das?	Of {} students, {} come by bike. What percentage is that?	Із {} учнів {} приїжджають на велосипеді. Скільки це відсотків?
+Vor {} Uhr geübt	Practised before {}	Тренувався до {}
+Vorschau-Modus (Testseite): alle Türchen sind offen.	Preview mode (test site): all doors are open.	Режим перегляду (тестова сторінка): усі віконця відкриті.
+Vorzeichen	Sign	Знак
+Vorzeichen: minus geteilt durch minus ergibt plus.	Signs: minus divided by minus gives plus.	Знаки: мінус поділити на мінус дає плюс.
+Vorzeichen: minus geteilt durch plus ergibt minus.	Signs: minus divided by plus gives minus.	Знаки: мінус поділити на плюс дає мінус.
+Vorzeichen: minus mal minus ergibt plus.	Signs: minus times minus gives plus.	Знаки: мінус на мінус дає плюс.
+Vorzeichen: minus mal plus ergibt minus.	Signs: minus times plus gives minus.	Знаки: мінус на плюс дає мінус.
+Vorzeichen: plus geteilt durch minus ergibt minus.	Signs: plus divided by minus gives minus.	Знаки: плюс поділити на мінус дає мінус.
+Vorzeichen: plus mal minus ergibt minus.	Signs: plus times minus gives minus.	Знаки: плюс на мінус дає мінус.
+Vorzeichen: plus mal plus ergibt plus.	Signs: plus times plus gives plus.	Знаки: плюс на плюс дає плюс.
+Was ist passiert?	What happened?	Що сталося?
+Was sollen wir verbessern?	What should we improve?	Що нам покращити?
+Was stimmt nicht?	What's wrong?	Що не так?
+Was würdest du dir wünschen?	What would you like to see?	Чого б ти хотів?
+Weg = Tempo	distance = speed	відстань = швидкість
+Weihnachtsprofi	Christmas pro	Різдвяний профі
+Weiter	Continue	Далі
+Weitere Lernspiele und Übungen	More learning games and exercises	Більше навчальних ігор і вправ
+Weitere Prozentsätze von …	More percentages of …	Інші відсотки від …
+Welche Reihen sitzen – und welche noch nicht	Which rows you know – and which not yet	Які ряди вже знаєш – а які ще ні
+Welche Zahl fehlt?	Which number is missing?	Якого числа бракує?
+Welche Zahl mal sich selbst ergibt {}?	Which number times itself is {}?	Яке число, помножене саме на себе, дає {}?
+Welche Zahl mal {} ergibt {}?	Which number times {} is {}?	Яке число, помножене на {}, дає {}?
+Wenn alle Runden geschafft sind, schicken die Schüler dir ein Ergebnis-Link zurück. Den öffnest du einfach – oder unter „Ergebnis ansehen“.	When all rounds are done, students send you a result link. Just open it – or use "View result".	Коли всі раунди пройдено, учні надсилають тобі посилання з результатом. Просто відкрий його – або в розділі «Переглянути результат».
+Wer zuerst {} schafft	First to {} wins	Хто перший набере {}
+Wer übt?	Who's practising?	Хто тренується?
+Wichtig:	Important:	Важливо:
+Wie groß ist der Rest?	What is the remainder?	Яка остача?
+Wie können wir helfen?	How can we help?	Чим допомогти?
+Wie oft?	How often?	Скільки разів?
+Wie viel Prozent sind das?	What percentage is that?	Скільки це відсотків?
+Wie viel fehlt von {} bis {}?	How much is missing from {} to {}?	Скільки бракує від {} до {}?
+Wie viel sind {} %?	How much is {}%?	Скільки становить {} %?
+Wir schauen sie uns an.	We'll take a look.	Ми її переглянемо.
+Wird geladen …	Loading …	Завантаження …
+Wochen-Held	Week hero	Герой тижня
+Wochenbericht	Weekly report	Тижневий звіт
+Wusstest du? {} + … + {}. So viele Zahlen stecken in allen Türchen zusammen!	Did you know? {} + … + {}. That's how many numbers are behind all the doors together!	А ти знав? {} + … + {}. Стільки чисел ховається за всіма віконцями разом!
+Wähle	Choose	Вибери
+Wähle deine Klassenstufe – dann geht’s los!	Choose your grade – then off you go!	Вибери свій клас – і вперед!
+Zahlen-Genie	Number genius	Геній чисел
+Zahlenfuchs	Number fox	Числовий лис
+Zahlenraum {}	Numbers up to {}	Числа до {}
+Zahlenraum {} mit Zehnerübergang	Numbers up to {} crossing ten	Числа до {} з переходом через десяток
+Zeig den Code deinen Eltern – sie geben ihn bei der Buchung eines Stundenpakets zusammen mit der Klassenstufe an.	Show the code to your parents – they enter it together with your grade when booking a lesson package.	Покажи код батькам – вони вкажуть його разом із класом під час бронювання пакета уроків.
+Zeigt passende Themen und schlägt Stufen vor	Shows suitable topics and suggests levels	Показує відповідні теми й пропонує рівні
+Zeit	time	час
+Zeit/Aufg.	Time/task	Час/завд.
+Zerlege {} in {}, um zum Zehner zu springen:	Split {} into {} to jump to the next ten:	Розклади {} на {}, щоб дійти до десятка:
+Zerlege {} in {}:	Split {} into {}:	Розклади {} на {}:
+Zu Nachhilfe – online	To Nachhilfe – online	До Nachhilfe – online
+Zu den Stundenpaketen ↗	To the lesson packages ↗	До пакетів уроків ↗
+Zu zweit an einem Gerät – wer ist schneller?	Two players, one device – who's faster?	Удвох на одному пристрої – хто швидший?
+Zu „Freunde werben“ ↗	To "Refer a friend" ↗	До «Порекомендуй друзям» ↗
+Zufällige Aufgaben mit Lösungsblatt	Random tasks with answer sheet	Випадкові завдання з відповідями
+Zum Adventskalender	To the Advent calendar	До адвент-календаря
+Zum Aushängen in Schule, Hort, Bibliothek oder Praxis – mit QR-Code direkt zu Rechenblitz.	To put up at school, after-school club, library or practice – with a QR code straight to Rechenblitz.	Для школи, продовженого дня, бібліотеки чи кабінету – з QR-кодом прямо до Rechenblitz.
+Zum Home-Bildschirm	Add to Home Screen	На початковий екран
+Zur Website mathenachhilfe-online.com	To the website mathenachhilfe-online.com	На сайт mathenachhilfe-online.com
+Zur Website ↗	To website ↗	На сайт ↗
+Zurück	Back	Назад
+Zurück zum Lernraum	Back to the learning room	Назад до навчальної кімнати
+Zusammen zwei Nachkommastellen: {}	Two decimal places altogether: {}	Разом два знаки після коми: {}
+Zwei Nachkommastellen: plus & minus	Two decimal places: plus & minus	Два знаки після коми: плюс і мінус
+Zwei Schritte: a · x + b = c	Two steps: a · x + b = c	Два кроки: a · x + b = c
+a · x = b und x : a = b	a · x = b and x ÷ a = b	a · x = b і x : a = b
+Zweier-, Zehner- & Kubikpotenzen	Powers of two and ten & cubes	Степені двійки, десятки й куби
+Zweistellig · einstellig	Two digits × one digit	Двоцифрове · одноцифрове
+Zweistellig · zweistellig	Two digits × two digits	Двоцифрове · двоцифрове
+Zähler mal Zähler, Nenner mal Nenner:	Numerator times numerator, denominator times denominator:	Чисельник на чисельник, знаменник на знаменник:
+Zähler und Nenner durch {} teilen: {}	Divide numerator and denominator by {}: {}	Поділи чисельник і знаменник на {}: {}
+alle Themen zeigen	show all topics	показати всі теми
+als Dezimalzahl	as a decimal	як десятковий дріб
+als gekürzter Bruch	as a simplified fraction	як нескоротний дріб
+auf Hunderter	to hundreds	до сотень
+auf Tausender	to thousands	до тисяч
+auf Zehner	to tens	до десятків
+auf Zehntel	to tenths	до десятих
+auf jedes Stundenpaket	on any lesson package	на будь-який пакет уроків
+beste Serie: {}	best streak: {}	найкраща серія: {}
+bis {}	until {}	до {}
+by Nachhilfe – online	by Nachhilfe – online	від Nachhilfe – online
+egal	any	будь-яка
+einstellig	one digit	одноцифрове
+fast	almost	майже
+freiwillig	optional	за бажанням
+gemacht!	done!	молодець!
+gerade Stufe	currently level	зараз рівень
+gerade Stufe {}	currently level {}	зараз рівень {}
+– gerade Stufe {}	– currently level {}	– зараз рівень {}
+geschafft	done	пройдено
+geübt!	practised!	потренувався!
+ggT({})	gcd({})	НСД({})
+gültig bis {}	valid until {}	дійсний до {}
+kgV({})	lcm({})	НСК({})
+kleinster Primfaktor von	smallest prime factor of	найменший простий множник числа
+km, Liter, Stunden, Minuten	km, litres, hours, minutes	км, літри, години, хвилини
+kostenlos	free	безкоштовний
+m, cm, kg, g, € und ct	m, cm, kg, g, € and ct	м, см, кг, г, € і ц
+mind. {} %	min. {}%	мін. {} %
+noch offen	not yet	ще ні
+nur passende zeigen	show suitable ones only	показати лише відповідні
+ohne Anmeldung	no sign-up	без реєстрації
+pro Aufgabe	per task	на завдання
+richtig	correct	правильно
+richtig in Folge – Wahnsinn!	correct in a row – amazing!	правильних поспіль – неймовірно!
+richtig in Folge – stark!	correct in a row – great!	правильних поспіль – сильно!
+richtig in Folge!	correct in a row!	правильних поспіль!
+sicher	sure	впевнено
+so weit wie möglich	as far as possible	наскільки можливо
+und braucht keine Anmeldung. Zeig den Code deinen Freunden oder schick ihnen den Link.	and needs no sign-up. Show the code to your friends or send them the link.	і не потребує реєстрації. Покажи код друзям або надішли їм посилання.
+und ein Rechen-Trick. Ein Türchen ist geschafft ab {} von {} richtig. Verpasste Türchen kannst du nachholen. Geschafft:	and a maths trick. A door counts as done from {} of {} correct. You can catch up on missed doors. Done:	і математичний трюк. Віконце пройдено, якщо {} з {} правильно. Пропущені віконця можна наздогнати. Пройдено:
+und werden nur für Rückfragen zu deiner Meldung genutzt. Ein echter Name ist nicht nötig – ein Spitzname reicht.	and are only used for questions about your report. No real name needed – a nickname is enough.	і використовуються лише для уточнень щодо твого повідомлення. Справжнє ім'я не потрібне – досить псевдоніма.
+von	of	від
+x auf beiden Seiten	x on both sides	x з обох боків
+x + a = b	x + a = b	x + a = b
+z. B. Zahlenfuchs	e.g. Numberfox	напр. Числовий лис
+z. B. „Auf meinem iPad kommt kein Ton.“	e.g. "There's no sound on my iPad."	напр. «На моєму iPad немає звуку.»
+z. B. „Bei {} müsste {} herauskommen.“	e.g. "{} should be {}."	напр. «{} має дорівнювати {}.»
+zweistellig	two digits	двоцифрове
+{} % = {} und {} % = {}	{}% = {} and {}% = {}	{} % = {} і {} % = {}
+{} % auf jedes Stundenpaket	{}% on any lesson package	{}% на будь-який пакет уроків
+{} % ist die Hälfte davon: {}	{}% is half of that: {}	{} % – це половина від цього: {}
+{} % ist die Hälfte:	{}% is a half:	{} % – це половина:
+{} % ist drei Viertel:	{}% is three quarters:	{} % – це три чверті:
+{} % ist ein Fünftel:	{}% is a fifth:	{} % – це п'ята частина:
+{} % ist ein Hundertstel:	{}% is a hundredth:	{} % – це сота частина:
+{} % ist ein Viertel:	{}% is a quarter:	{} % – це чверть:
+{} % ist ein Zehntel:	{}% is a tenth:	{} % – це десята частина:
+{} % passen {}-mal in {} %.	{}% fits {} times into {}%.	{} % вміщується {} разів у {} %.
+{} % von {}	{}% of {}	{} % від {}
+{} % von {} € = {} €	{}% of {} € = {} €	{} % від {} € = {} €
+{} %, {} % und {} % von …	{}%, {}% and {}% of …	{} %, {} % і {} % від …
+{} / {} XP bis Stufe {}	{} / {} XP to level {}	{} / {} XP до рівня {}
+{} Aufgaben für Klasse {} – ab {} richtigen ist das Türchen geschafft.	{} tasks for grade {} – {} correct answers open the door.	{} завдань для {} класу – від {} правильних віконце пройдено.
+{} Aufgaben gelöst	{} tasks solved	{} завдань розв'язано
+{} Aufgaben im ruhigen Modus	{} tasks in calm mode	{} завдань у спокійному режимі
+{} Aufgaben lösen	Solve {} tasks	Розв'язати {} завдань
+{} Aufgaben zum Wiederholen	{} tasks to repeat	{} завдань для повторення
+{} Aufgaben – heute für alle gleich (ab Klasse {})	{} tasks – the same for everyone today (grade {}+)	{} завдань – сьогодні однакові для всіх (від {} класу)
+{} Aufgaben, mit Lösungsweg bei Fehlern	{} tasks, with worked solutions for mistakes	{} завдань, з розв'язанням до помилок
+{} Bleche mit je {} Plätzchen sind {} Plätzchen. Malnehmen ist schnelles Plusrechnen!	{} trays with {} cookies each make {} cookies. Multiplying is fast adding!	{} деки по {} печива – це {} печива. Множення – це швидке додавання!
+{} Bonbons werden gerecht an {} Kinder verteilt. Wie viele Bonbons bekommt jedes Kind?	{} sweets are shared fairly among {} children. How many sweets does each child get?	{} цукерок порівну ділять між {} дітьми. Скільки цукерок отримає кожна дитина?
+{} Handzettel (A{})	{} flyers (A{})	{} листівки (A{})
+{} Hefte kosten {} €. Wie viel kosten {} Hefte?	{} exercise books cost {} €. How much do {} books cost?	{} зошити коштують {} €. Скільки коштують {} зошитів?
+{} Hefte zu je {} €: {}	{} books at {} € each: {}	{} зошитів по {} €: {}
+{} Hundertstel = {}	{} hundredths = {}	{} сотих = {}
+{} Hundertstel, {} Hundertstel	{} hundredths, {} hundredths	{} сотих, {} сотих
+{} Minuten sind {} Stunden und {} Minuten.	{} minutes are {} hours and {} minutes.	{} хвилин – це {} годин і {} хвилин.
+{} Personen brauchen {} Tage, um einen Zaun zu streichen. Wie viele Tage brauchen {} Personen?	{} people need {} days to paint a fence. How many days do {} people need?	{} людей фарбують паркан {} днів. Скільки днів потрібно {} людям?
+{} Personentage	{} person-days	{} людино-днів
+{} Punkte	{} points	{} балів
+{} Reihen mit je {}	{} rows of {}	{} рядів по {}
+{} Rentiere haben zusammen {} Beine – {}	{} reindeer have {} legs altogether – {}	{} північних оленів мають разом {} ніг – {}
+{} Sekunden – so viele wie möglich	{} seconds – as many as you can	{} секунд – якомога більше
+{} Sterne bei Google	{} stars on Google	{} зірок у Google
+{} Stück sind ein Dutzend. Ein Adventskalender hat genau {} Dutzend Türchen.	{} items make a dozen. An Advent calendar has exactly {} dozen doors.	{} штук – це дюжина. Адвент-календар має рівно {} дюжини віконець.
+{} Tage = {} h	{} days = {} h	{} дн. = {} год
+{} Tage in Folge geübt	Practised {} days in a row	{} днів поспіль тренувань
+{} Tage mit je {} Seiten: {}	{} days of {} pages each: {}	{} днів по {} сторінок: {}
+{} Themen, {} Stufen – passt sich automatisch an	{} topics, {} levels – adapts automatically	{} тем, {} рівнів – підлаштовується автоматично
+{} Zehntel = {}	{} tenths = {}	{} десятих = {}
+{} als Bruch: {}	{} as a fraction: {}	{} як дріб: {}
+{} bis {}	{} to {}	з {} до {}
+{} cm	{} cm	{} см
+{} cm = {} mm	{} cm = {} mm	{} см = {} мм
+{} cm²	{} cm²	{} см²
+{} cm³ = {} ml	{} cm³ = {} ml	{} см³ = {} мл
+{} ct	{} ct	{} ц
+{} ct = {} ct	{} ct = {} ct	{} ц = {} ц
+{} ct = {} €	{} ct = {} €	{} ц = {} €
+{} dm² = {} cm²	{} dm² = {} cm²	{} дм² = {} см²
+{} dm³ = {} l	{} dm³ = {} l	{} дм³ = {} л
+{} erledigt	{} done	{} виконано
+{} gelöst	{} solved	{} розв'язано
+{} geschafft	{} done	{} пройдено
+{} geteilt durch welche Zahl ergibt {}?	{} divided by which number is {}?	{} поділити на яке число дає {}?
+{} h = {} min	{} h = {} min	{} год = {} хв
+{} ha = {} m²	{} ha = {} m²	{} га = {} м²
+{} hat {} Murmeln und bekommt {} geschenkt. Wie viele Murmeln hat {} jetzt?	{} has {} marbles and gets {} more as a present. How many marbles does {} have now?	{} має {} кульок і отримує в подарунок ще {}. Скільки кульок тепер у {}?
+{} hat {} Sticker, {} hat {} Sticker. Wie viele Sticker hat {} mehr?	{} has {} stickers, {} has {} stickers. How many more stickers does {} have?	{} має {} наліпок, {} має {} наліпок. На скільки більше наліпок у {}?
+{} hoch {} ist eine {} mit {} Nullen: {}	{} to the power of {} is a {} with {} zeros: {}	{} у степені {} – це {} з {} нулями: {}
+{} ist die Hälfte von {}	{} is half of {}	{} – це половина від {}
+{} ist kleiner als {} → abrunden	{} is less than {} → round down	{} менше за {} → округлюємо вниз
+{} ist nicht durch {} teilbar.	{} is not divisible by {}.	{} не ділиться на {}.
+{} ist {} Jahre alt. Die Mutter ist {}-mal so alt. Wie alt ist die Mutter in {} Jahren?	{} is {} years old. Their mother is {} times as old. How old will the mother be in {} years?	{} має {} років. Мама в {} рази старша. Скільки років буде мамі через {} років?
+{} ist {} oder mehr → aufrunden	{} is {} or more → round up	{} – це {} або більше → округлюємо вгору
+{} kauft {} Brötchen zu je {} Cent und bezahlt mit {} €. Wie viel Cent Rückgeld bekommt {}?	{} buys {} rolls at {} cents each and pays with {} €. How many cents change does {} get?	{} купує {} булочок по {} центів і платить {} €. Скільки центів решти отримає {}?
+{} kg = {} g	{} kg = {} g	{} кг = {} г
+{} km = {} m	{} km = {} m	{} км = {} м
+{} knickst du den {}. Finger ein – links {}, rechts {}.	{} you fold down finger {} – {} on the left, {} on the right.	{} загни {}-й палець – ліворуч {}, праворуч {}.
+{} l = {} cm³	{} l = {} cm³	{} л = {} см³
+{} l = {} ml	{} l = {} ml	{} л = {} мл
+{} liest jeden Tag {} Seiten. Wie viele Seiten liest {} in {} Tagen?	{} reads {} pages every day. How many pages does {} read in {} days?	{} щодня читає {} сторінок. Скільки сторінок прочитає {} за {} днів?
+{} m = {} cm	{} m = {} cm	{} м = {} см
+{} m = {} dm	{} m = {} dm	{} м = {} дм
+{} min	{} min	{} хв
+{} min = {} h {} min	{} min = {} h {} min	{} хв = {} год {} хв
+{} min = {} h → {} h	{} min = {} h → {} h	{} хв = {} год → {} год
+{} min = {} s	{} min = {} s	{} хв = {} с
+{} m² = {} cm²	{} m² = {} cm²	{} м² = {} см²
+{} m² = {} dm²	{} m² = {} dm²	{} м² = {} дм²
+{} m³ = {} dm³	{} m³ = {} dm³	{} м³ = {} дм³
+{} richtig in Folge	{} correct in a row	{} правильних поспіль
+{} richtig in {} s	{} correct in {} s	{} правильних за {} с
+{} richtige in einer Blitzrunde	{} correct in a speed round	{} правильних у бліц-раунді
+{} t = {} kg	{} t = {} kg	{} т = {} кг
+{} und {}	{} and {}	{} і {}
+{} und {} sind beide durch {} teilbar.	{} and {} are both divisible by {}.	{} і {} обидва діляться на {}.
+{} verschiedene Themen geübt	Practised {} different topics	Опрацьовано {} різних тем
+{} von {}	{} of {}	{} з {}
+{} von {} gesammelt	{} of {} collected	{} з {} зібрано
+{} von {} in der Tageschallenge	{} of {} in the daily challenge	{} з {} у щоденному виклику
+{} von {}: erst durch {} teilen, dann mal {}.	{} of {}: first divide by {}, then multiply by {}.	{} від {}: спочатку поділи на {}, потім помнож на {}.
+{} {}-mal mit sich selbst malnehmen:	multiply {} by itself {} times:	помнож {} саме на себе {} разів:
+{} € = {} ct	{} € = {} ct	{} € = {} ц
+{}, also √{}	{}, so √{}	{}, отже, √{}
+{}, dann eine Null anhängen → {}	{}, then add a zero → {}	{}, потім допиши нуль → {}
+{}, dann {} anhängen: {}.	{}, then add {}: {}.	{}, потім допиши {}: {}.
+{}, die Hälfte ist {}	{}, half of it is {}	{}, половина – {}
+{}? Die Ziffern addieren und in die Mitte setzen: {} ({}) {}.	{}? Add the digits and put the sum in the middle: {} ({}) {}.	{}? Додай цифри й постав суму посередині: {} ({}) {}.
+{}er-Reihe üben	Practise the {} times table	Тренувати ряд {}
+{}× Training (mind. {} %)	{}× training (min. {}%)	{}× тренування (мін. {} %)
+· Persönliche Online-Nachhilfe {}	· Personal online tutoring {}	· Особисте онлайн-репетиторство {}
+Öffne alle {} Türchen im Rechen-Adventskalender und hol dir deinen Gutschein für die Nachhilfe – online (gültig bis {}).	Open all {} doors in the maths Advent calendar and get your voucher for Nachhilfe – online (valid until {}).	Відкрий усі {} віконець у математичному адвент-календарі й отримай ваучер для Nachhilfe – online (дійсний до {}).
+Öffnen	Open	Відкрити
+Über {} Familien bewerten Nachhilfe – online mit {} Sternen.	Over {} families rate Nachhilfe – online with {} stars.	Понад {} родин оцінюють Nachhilfe – online на {} зірок.
+Überschlag:	Estimate:	Оцінка:
+Überschlag: mal	Estimating: times	Оцінка: множення
+Überschlag: plus & minus	Estimating: plus & minus	Оцінка: плюс і мінус
+Überschrift	Heading	Заголовок
+Übrig sind {} von {} Stücken: {}	{} of {} slices are left: {}	Залишилося {} з {} шматків: {}
+Übung festlegen und als Link verschicken	Set an exercise and send it as a link	Задай вправу й надішли посиланням
+Übungszeit	practice time	час тренувань
+üben	practising	тренуйся
+üben!	practising!	тренуйся!
+← Lernraum	← Learning room	← Навчальна кімната
+− {} auf beiden Seiten: x = {}	− {} on both sides: x = {}	− {} з обох боків: x = {}
+− {} auf beiden Seiten: {}x = {}	− {} on both sides: {}x = {}	− {} з обох боків: {}x = {}
+− {}x auf beiden Seiten: x + {}	− {}x on both sides: x + {}	− {}x з обох боків: x + {}
+− {}x auf beiden Seiten: x = {}	− {}x on both sides: x = {}	− {}x з обох боків: x = {}
+− {}x auf beiden Seiten: x − {}	− {}x on both sides: x − {}	− {}x з обох боків: x − {}
+− {}x auf beiden Seiten: {}x + {}	− {}x on both sides: {}x + {}	− {}x з обох боків: {}x + {}
+− {}x auf beiden Seiten: {}x = {}	− {}x on both sides: {}x = {}	− {}x з обох боків: {}x = {}
+− {}x auf beiden Seiten: {}x − {}	− {}x on both sides: {}x − {}	− {}x з обох боків: {}x − {}
+√{} und √{}	√{} and √{}	√{} і √{}
+⚔️ Abzeichen:	⚔️ Badge:	⚔️ Значок:
+✔ gelöst	✔ solved	✔ розв'язано
+✖️ {}-Übersicht	✖️ {} overview	✖️ Огляд {}
+🌟 Abzeichen:	🌟 Badge:	🌟 Значок:
+🎁 {} % Gutschein bei {} Türchen	🎁 {}% voucher for {} doors	🎁 Ваучер {}% за {} віконець
+🎄 Abzeichen:	🎄 Badge:	🎄 Значок:
+🎄 Klasse {} – viel Spaß!	🎄 Grade {} – have fun!	🎄 {} клас – гарної гри!
+🎉 Alle {} Türchen geschafft!	🎉 All {} doors done!	🎉 Усі {} віконець пройдено!
+🎓 Hakt es irgendwo? Kostenlose Probestunde bei Nachhilfe – online	🎓 Stuck somewhere? Free trial lesson with Nachhilfe – online	🎓 Десь складно? Безкоштовний пробний урок у Nachhilfe – online
+🎯 Abzeichen:	🎯 Badge:	🎯 Значок:
+🎯 Tagesziel	🎯 Daily goal	🎯 Денна мета
+🏅 Abzeichen	🏅 Badges	🏅 Значки
+🏅 Advents-Urkunde holen	🏅 Get Advent certificate	🏅 Отримати адвент-грамоту
+🏅 Urkunde	🏅 Certificate	🏅 Грамота
+💌 Einladen	💌 Invite	💌 Запросити
+💌 Freunde einladen	💌 Invite friends	💌 Запросити друзів
+📆 Abzeichen:	📆 Badge:	📆 Значок:
+📊 Wochenbericht	📊 Weekly report	📊 Тижневий звіт
+📝 Abzeichen:	📝 Badge:	📝 Значок:
+📝 Auftrag:	📝 Assignment:	📝 Завдання:
+🔇 Ton aus	🔇 Sound off	🔇 Звук вимкнено
+🔊 Ton an	🔊 Sound on	🔊 Звук увімкнено
+🔥 Abzeichen:	🔥 Badge:	🔥 Значок:
+🔥 Tage-Serie	🔥 Day streak	🔥 Днів поспіль
+🔵 Spieler {}	🔵 Player {}	🔵 Гравець {}
+🚀 Abzeichen:	🚀 Badge:	🚀 Значок:
+🟠 Spieler {}	🟠 Player {}	🟠 Гравець {}
+🧭 Abzeichen:	🧭 Badge:	🧭 Значок:
+cm	cm	см
+cm²	cm²	см²
+cm³	cm³	см³
+ct	ct	ц
+dm	dm	дм
+dm²	dm²	дм²
+dm³	dm³	дм³
+ha	ha	га
+kg	kg	кг
+km	km	км
+min	min	хв
+ml	ml	мл
+mm	mm	мм
+m	m	м
+m²	m²	м²
+m³	m³	м³
+g	g	г
+l	l	л
+t	t	т
+h	h	год
+s	s	с
+a	a	а
+ggT	gcd	НСД
+Textaufgaben-Fuchs	Word-problem fox	Лис текстових задач
+z. B. Hausaufgabe Bruchrechnung	e.g. Homework: fractions	напр. Домашнє завдання: дроби
+z. B. Frau Müller	e.g. Ms Miller	напр. пані Мюллер
+z. B. Empfohlen von der Klasse 4b	e.g. Recommended by class {}b	напр. Рекомендує {}-Б клас
+z. B. 4b Lindenschule	e.g. {}b Linden School	напр. {}-Б, школа «Липа»
+z. B. K7R2QX	e.g. K{}R{}QX	напр. K{}R{}QX
+QR-Code	QR code	QR-код
+Auftrag	Assignment	Завдання
+Auftrag von	Assignment from	Завдання від
+für die Klasse	for the class	для класу
+du bist	you are	ти –
+Zweistellig	Two digits	Двоцифрове
+Schaffst du mehr? {}	Can you beat that? {}	Зможеш краще? {}
+Ich übe Kopfrechnen mit Rechenblitz – kostenlos und ohne Anmeldung. Probier's aus: {}	I'm practising mental maths with Rechenblitz – free and no sign-up. Try it: {}	Я тренуюся в усному рахунку з Rechenblitz – безкоштовно й без реєстрації. Спробуй: {}
+Alle Details: {}	All details: {}	Усі деталі: {}
+Heute	Today	Сьогодні
+Heute: {} in {} s	Today: {} in {} s	Сьогодні: {} за {} с
+Wiederholung (zählt nicht)	repeat (doesn't count)	повтор (не зараховується)
+Überschlag	Estimate	Оцінка
+{}er-Reihe	{} times table	Ряд на {}
+Sitzt sicher 💪	Solid 💪	Впевнено 💪
+Fast sicher	Almost there	Майже впевнено
+Hier lohnt sich Üben	Worth practising	Варто потренуватися
+empfohlen	recommended	рекомендовано
+{} von {} richtig	{} of {} correct	{} з {} правильно
+Die Stufen sind jetzt auf	The levels are now set to	Рівні тепер налаштовано на
+gestellt und passen sich beim Üben weiter an.	and keep adapting as you practise.	і далі підлаштовуватимуться під час тренувань.
+Bei ein paar Themen hakt es noch.	A few topics are still tricky.	Деякі теми ще складні.
+In einer kostenlosen Probestunde schauen wir gemeinsam drauf.	In a free trial lesson we'll look at them together.	На безкоштовному пробному уроці ми розберемо їх разом.
+klappt noch nicht ganz? In einer	isn't quite working yet? In a	ще не зовсім виходить? На
+kostenlosen Probestunde	free trial lesson	безкоштовному пробному уроці
+schauen wir gemeinsam drauf.	we'll look at it together.	ми розберемо це разом.
+Läuft gut	Going well	Виходить добре
+Neue Abzeichen	New badges	Нові значки
+– {} % richtig ({} Aufgaben)	– {}% correct ({} tasks)	– {} % правильно ({} завдань)
+📈 {} % mehr Aufgaben als in der Vorwoche.	📈 {}% more tasks than the week before.	📈 На {} % більше завдань, ніж минулого тижня.
+📉 {} % weniger Aufgaben als in der Vorwoche.	📉 {}% fewer tasks than the week before.	📉 На {} % менше завдань, ніж минулого тижня.
+• {} von {} Tagen geübt	• Practised on {} of {} days	• Тренувань: {} з {} днів
+• {} Aufgaben, {} % richtig	• {} tasks, {}% correct	• {} завдань, {} % правильно
+• {} Minuten Übungszeit	• {} minutes of practice	• {} хвилин тренувань
+Kostenlose Probestunde: {}	Free trial lesson: {}	Безкоштовний пробний урок: {}
+Rechenblitz – Wochenbericht für	Rechenblitz – weekly report for	Rechenblitz – тижневий звіт для
+Rechenblitz – Ergebnis von	Rechenblitz – result of	Rechenblitz – результат
+Runden geschafft	rounds done	раундів пройдено
+Kopfrechen-Trick	Mental maths trick	Трюк усного рахунку
+Mal {} heißt mal {} und dann halbieren. {}	Times {} means times {} and then halve. {}	Помножити на {} – це помножити на {} і поділити навпіл. {}
+Mal {} heißt mal {} und dann halbieren. {}.	Times {} means times {} and then halve. {}.	Помножити на {} – це помножити на {} і поділити навпіл. {}.
+· du bist	· you are	· ти –
+beste Serie	best streak	найкраща серія
+In Cent rechnen	Calculate in cents	Рахуй у центах

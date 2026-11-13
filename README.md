@@ -34,6 +34,7 @@ Web-App im Design von mathenachhilfe-online.com, für Handy, Tablet und PC (eige
 - **Motivation:** Punkte, Sterne, Rekorde, XP & Ränge, 29 Abzeichen, Tagesziel, Tage-Serie, Sound (Web Audio), Vorlesen
 - **Profile** für mehrere Kinder auf einem Gerät · **Wochenbericht** für Eltern (teilen/drucken)
 - **Für Lehrkräfte:** Auftrag als Link verschicken (Thema, Stufe, Runden, Mindest-Treffer, Termin, gleiche Aufgaben für alle) – Schüler schicken einen Ergebnis-Link zurück; **Arbeitsblätter** mit Lösungsblatt drucken
+- **Sprachen:** Deutsch, Englisch, Ukrainisch – automatisch nach Gerätesprache, in den Einstellungen wählbar (`js/i18n.js`; Übersetzungen in `i18n/uebersetzungen.tsv`, erzeugen mit `node i18n/build.js`)
 - **Reichweite:** Rechen-Adventskalender (1.–24.12.), Urkunden zum Teilen/Drucken, Flyer & Poster mit QR-Code, „Freunde einladen“, Klassen-Challenge mit Wochen-Rangliste (Server nach `KLASSEN-API.md`, sonst ausgeblendet), Direktlinks `?thema=…&stufe=…` für Themenseiten (`THEMENSEITEN.md`)
 - **Website-Werbung:** Button „Zur Website“, wechselnde Werbekarte, Probestunden-Hinweise (optional mit `utm_source=rechenblitz`, Schalter `utm` in `config.js`); Probestunden-Hinweis höchstens einmal am Tag, passend zum Lernstand
 - **Schwebender Button unten rechts:** Fehler melden (mit Aufgabe), Idee, Einstellungen, Profile, Fortschritt, Lehrkräfte, Website

@@ -3,7 +3,7 @@
    Rechenblitz – App: Speicher & Profile, Sound, Statistik, Abzeichen,
    Startseite, Spielmodi, Ergebnis, Duell, Tageschallenge, Einstufung
    ===================================================================== */
-const APP_VERSION = '3.2.0';
+const APP_VERSION = '3.3.0';
 const CONFIG = Object.assign({
   reportEndpoint: '',                                   // URL, die Meldungen per POST (JSON) annimmt – siehe MELDUNGEN-API.md
   fallbackMail: 'website@mathenachhilfe-online.com',    // nur falls kein Endpunkt eingerichtet ist
@@ -25,7 +25,7 @@ const CONFIG = Object.assign({
 const $ = id => document.getElementById(id);
 const todayStr = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 const dayStr = back => todayStr(new Date(Date.now() - back * 864e5));
-const fmtDay = s => new Date(s + 'T12:00').toLocaleDateString('de-DE', { weekday: 'short', day: 'numeric', month: 'numeric' });
+const fmtDay = s => new Date(s + 'T12:00').toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'numeric' });
 const fmtSec = ms => (ms / 1000).toFixed(1).replace('.', ',') + ' s';
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const appUrl = () => CONFIG.appUrl || location.href.split('#')[0].split('?')[0];
@@ -104,7 +104,7 @@ const Sound = {
 function speak(text) {
   if (!S.settings.speech || !('speechSynthesis' in window)) return;
   speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text); u.lang = 'de-DE'; u.rate = 1.0;
+  const u = new SpeechSynthesisUtterance(text); u.lang = locale(); u.rate = 1.0;
   speechSynthesis.speak(u);
 }
 const vibrate = ms => { try { navigator.vibrate && navigator.vibrate(ms); } catch {} };
@@ -234,7 +234,7 @@ const streakDays = () => (S.days.last === todayStr() || S.days.last === dayStr(1
 
 function renderHome() {
   const p = profile();
-  $('btnProfile').innerHTML = `<span class="av">${p.emoji}</span><span class="pn">${esc(p.name)}</span>`;
+  $('btnProfile').innerHTML = `<span class="av">${p.emoji}</span><span class="pn" translate="no">${esc(p.name === 'Ich' ? tr('Ich') : p.name)}</span>`;
   const lv = levelFromXp(S.xp), cur = xpForLevel(lv), nxt = xpForLevel(lv + 1);
   $('pLevel').textContent = lv;
   $('pRank').textContent = RANKS[Math.min(RANKS.length - 1, Math.floor((lv - 1) / 3))];
@@ -309,13 +309,13 @@ function renderAssignCard() {
   el.hidden = false;
   const done = a.runs.filter(r => r.ok).length, finished = done >= a.r;
   const what = `${TOPICS[a.op].name} · Stufe ${a.l + 1} · ${a.r}× ${a.m === 'blitz' ? 'Blitzrunde' : 'Training'}${a.min ? ` (mind. ${a.min} %)` : ''}`;
-  el.innerHTML = `<div class="ac-top"><div class="ac-ico">📝</div><div><div class="eyebrow">Auftrag${a.by ? ' von ' + esc(a.by) : ''}</div><b>${esc(a.t || what)}</b>${a.t ? `<div class="muted small">${what}</div>` : ''}</div></div>
+  el.innerHTML = `<div class="ac-top"><div class="ac-ico">📝</div><div><div class="eyebrow">Auftrag${a.by ? ` von <span translate="no">${esc(a.by)}</span>` : ''}</div><b>${esc(a.t || what)}</b>${a.t ? `<div class="muted small">${what}</div>` : ''}</div></div>
     <div class="dots">${Array.from({ length: a.r }, (_, i) => `<i class="${i < done ? 'on' : ''}"></i>`).join('')}<span class="muted small">${done}/${a.r} erledigt${a.due ? ` · bis ${fmtDay(a.due)}` : ''}</span></div>
     ${finished ? `<p class="small" style="margin:6px 0 10px">Geschafft! Schick deiner Lehrkraft jetzt dein Ergebnis.</p><div class="row2"><button class="btn primary" id="acSend">Ergebnis senden</button><button class="btn" id="acRemove">Entfernen</button></div>`
     : `<div class="row2"><button class="btn primary" id="acStart">Jetzt üben</button><button class="btn" id="acRemove">Entfernen</button></div>`}`;
   $('acStart') && ($('acStart').onclick = startAssignment);
   $('acSend') && ($('acSend').onclick = () => shareAssignResult());
-  $('acRemove').onclick = () => { if (confirm('Auftrag entfernen?')) { S.assign = null; save(); renderHome(); } };
+  $('acRemove').onclick = () => { if (confirm(tr('Auftrag entfernen?'))) { S.assign = null; save(); renderHome(); } };
 }
 function startAssignment() {
   const a = S.assign, i = a.runs.length, opts = { op: a.op, lvl: a.l, assign: true };
@@ -332,7 +332,8 @@ function shareAssignResult() {
 const b64e = obj => btoa(unescape(encodeURIComponent(JSON.stringify(obj)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 const b64d = s => JSON.parse(decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/')))));
 async function shareText(text, title, url) {
-  if (navigator.share) { try { await navigator.share({ title, text }); return; } catch (e) { if (e.name === 'AbortError') return; } }
+  if (navigator.share) { try { await navigator.share({ title: tr(title), text: String(text).split('\n').map(tr).join('\n') }); return; } catch (e) { if (e.name === 'AbortError') return; } }
+  text = String(text).split('\n').map(tr).join('\n'); title = tr(title);
   try { await navigator.clipboard.writeText(text); toast('In die Zwischenablage kopiert ✓'); }
   catch { openSheet('shareBox', { text, url }); }
 }
@@ -348,7 +349,7 @@ function challengeTasks(date = todayStr(), tier = challengeTier()) {
 }
 function renderChallengeCard() {
   const c = S.challenge, done = c.date === todayStr(), tierName = challengeTier() === 'A' ? 'Grundschule' : 'ab Klasse 5';
-  $('challengeCard').innerHTML = `<div class="ch-ico">📆</div><div class="ch-txt"><b>Tageschallenge</b><span>${done ? `Heute: ${c.correct}/10 in ${fmtSec(c.ms)} ${c.marks}` : `10 Aufgaben – heute für alle gleich (${tierName})`}</span></div>
+  $('challengeCard').innerHTML = `<div class="ch-ico">📆</div><div class="ch-txt"><b>Tageschallenge</b><span>${done ? `Heute: ${c.correct}/10 in ${fmtSec(c.ms)} <span translate="no">${c.marks}</span>` : `10 Aufgaben – heute für alle gleich (${tierName})`}</span></div>
     ${done ? '<button class="btn small" id="chShare">Teilen</button>' : '<button class="btn small primary" id="chStart">Los</button>'}`;
   $('chStart') && ($('chStart').onclick = () => startGame('challenge', { queue: challengeTasks(), op: 'mix', lvl: 0 }));
   $('chShare') && ($('chShare').onclick = shareChallenge);
@@ -418,6 +419,7 @@ function countdown(done) {
 
 function fitExpr() {
   const el = $('expr'), box = $('taskBox');
+  if (I18N.lang !== 'de') i18nTree(box);   // erst übersetzen, dann messen
   const story = !!G.task.story;
   const desk = innerWidth >= 1000 && innerHeight >= 640;
   let size = story ? (desk ? 26 : innerHeight < 620 ? 16 : 19) : desk ? 84 : innerHeight < 620 ? 40 : innerHeight < 760 ? 48 : 56;
@@ -441,7 +443,7 @@ function nextTask() {
   $('winTag').textContent = ['challenge', 'test', 'advent'].includes(G.mode) ? `Aufgabe ${G.idx + 1}/${G.total}` : `Stufe ${t.lvl + 1}${G.adapt ? ' · Auto' : ''}`;
   $('feedback').textContent = ''; $('feedback').className = 'feedback';
   renderAnswer(); updateHud(); fitExpr();
-  speak(t.story ? t.e[0].v : taskSpeech(t));
+  speak(I18N.lang === 'de' ? (t.story ? t.e[0].v : taskSpeech(t)) : (t.story ? tr(t.e[0].v) : i18nSpeech(t)));
 }
 
 function renderAnswer(state) {

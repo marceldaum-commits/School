@@ -74,6 +74,8 @@ const PANELS = {
       ${sw('auto', S.settings.auto, 'Automatisch prüfen', 'Prüfen, sobald genug Stellen eingegeben sind')}
       <div class="setrow col"><div><b>Klassenstufe</b><span>Zeigt passende Themen und schlägt Stufen vor</span></div>
         <div class="chips" id="klSeg">${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(k => `<button data-v="${k}" class="${S.settings.klasse === k ? 'sel' : ''}">${k || 'Alle'}</button>`).join('')}</div></div>
+      <div class="setrow col"><div><b>Sprache</b><span>Folgt der Sprache des Geräts – oder fest einstellen</span></div>
+        <div class="chips" id="langSeg"><button data-v="auto" class="${(ROOT.lang || 'auto') === 'auto' ? 'sel' : ''}">Automatisch</button>${Object.entries(I18N.langs).map(([k, n]) => `<button data-v="${k}" translate="no" class="${ROOT.lang === k ? 'sel' : ''}">${n}</button>`).join('')}</div></div>
       <div class="setrow col"><div><b>Design</b><span>Hell, dunkel oder wie das Gerät</span></div>
         <div class="seg" id="themeSeg">${[['auto', 'Automatisch'], ['light', 'Hell'], ['dark', 'Dunkel']].map(([v, l]) => `<button data-v="${v}" class="${S.settings.theme === v ? 'sel' : ''}">${l}</button>`).join('')}</div></div>
       <button class="mi" id="btnReset"><div class="ico">↺</div><div><b>Fortschritt zurücksetzen</b><span>Punkte, Rekorde, Abzeichen und Fehlerkiste dieses Profils löschen</span></div></button>
@@ -84,7 +86,7 @@ const PANELS = {
   profiles() {
     const list = Object.values(ROOT.profiles);
     return { title: 'Wer übt?', html: `<div class="menu">
-      ${list.map(p => `<button class="mi ${p.id === ROOT.cur ? 'cur' : ''}" data-prof="${p.id}"><div class="ico big">${p.emoji}</div><div><b>${esc(p.name)}</b><span>Stufe ${levelFromXp(p.data.xp || 0)} · ${p.data.total || 0} gelöst</span></div><span class="chev">${p.id === ROOT.cur ? '✓' : '›'}</span></button>`).join('')}
+      ${list.map(p => `<button class="mi ${p.id === ROOT.cur ? 'cur' : ''}" data-prof="${p.id}"><div class="ico big">${p.emoji}</div><div><b translate="no">${esc(p.name)}</b><span>Stufe ${levelFromXp(p.data.xp || 0)} · ${p.data.total || 0} gelöst</span></div><span class="chev">${p.id === ROOT.cur ? '✓' : '›'}</span></button>`).join('')}
       <form class="card form" id="profForm" style="box-shadow:none">
         <b id="profFormTitle">Neues Profil</b>
         <label class="field"><span>Name</span><input id="profName" maxlength="20" required placeholder="z. B. Lena"></label>
@@ -118,7 +120,7 @@ const PANELS = {
   week() {
     const w = weekData(0), prev = weekData(1);
     const trend = prev.n ? Math.round((w.n - prev.n) / prev.n * 100) : null;
-    const days = Array.from({ length: 7 }, (_, i) => dayStr(6 - i)).map(d => { const h = S.hist[d]; return `<div class="wday ${h ? 'on' : ''}"><i style="height:${h ? Math.max(8, Math.min(100, h.n * 2)) : 4}%"></i><span>${new Date(d + 'T12:00').toLocaleDateString('de-DE', { weekday: 'narrow' })}</span></div>`; }).join('');
+    const days = Array.from({ length: 7 }, (_, i) => dayStr(6 - i)).map(d => { const h = S.hist[d]; return `<div class="wday ${h ? 'on' : ''}"><i style="height:${h ? Math.max(8, Math.min(100, h.n * 2)) : 4}%"></i><span>${new Date(d + 'T12:00').toLocaleDateString(locale(), { weekday: 'narrow' })}</span></div>`; }).join('');
     const tl = arr => arr.map(([tp, s]) => `<li><b>${TOPICS[tp].name}</b> – ${Math.round(s.acc * 100)} % richtig (${s.n} Aufgaben)</li>`).join('');
     const newB = BADGES.filter(b => S.badges[b.id] && S.badges[b.id] >= dayStr(6));
     return { title: `Wochenbericht · ${esc(profile().name)}`, html: `<div class="report" id="weekReport">
@@ -223,9 +225,10 @@ function initSettings() {
     renderHome();
   });
   $('klSeg').onclick = e => { const b = e.target.closest('button'); if (!b) return; S.settings.klasse = +b.dataset.v; homeShowAll = false; save(); $('klSeg').querySelectorAll('button').forEach(x => x.classList.toggle('sel', x === b)); renderHome(); };
+  $('langSeg').onclick = e => { const b = e.target.closest('button'); if (b) setLanguage(b.dataset.v); };
   $('themeSeg').onclick = e => { const b = e.target.closest('button'); if (!b) return; S.settings.theme = b.dataset.v; save(); applyTheme(); $('themeSeg').querySelectorAll('button').forEach(x => x.classList.toggle('sel', x === b)); };
   $('btnReset').onclick = () => {
-    if (!confirm(`Wirklich den gesamten Fortschritt von „${profile().name}“ löschen? Das kann nicht rückgängig gemacht werden.`)) return;
+    if (!confirm(tr(`Wirklich den gesamten Fortschritt von „${profile().name}“ löschen? Das kann nicht rückgängig gemacht werden.`))) return;
     const keep = { settings: S.settings, sel: S.sel };
     ROOT.profiles[ROOT.cur].data = Object.assign(PROFILE_DEFAULT(), keep); useProfile(ROOT.cur);
     save(); renderHome(); closeSheet(); toast('Fortschritt zurückgesetzt');
@@ -248,7 +251,7 @@ function initProfiles() {
     save(); applyTheme(); renderHome(); closeSheet(); toast(`${emoji} ${esc(name)}`);
   };
   $('profDel') && ($('profDel').onclick = () => {
-    if (!confirm(`Profil „${profile().name}“ mit allen Daten löschen?`)) return;
+    if (!confirm(tr(`Profil „${profile().name}“ mit allen Daten löschen?`))) return;
     delete ROOT.profiles[ROOT.cur]; useProfile(Object.keys(ROOT.profiles)[0]); save(); applyTheme(); renderHome(); showPanel('profiles');
   });
 }
@@ -302,7 +305,7 @@ function initAssignCreate() {
 function resultHtml(d) {
   const done = d.runs.filter(r => r.ok).length;
   return `<div class="report"><p style="margin:0"><b>${esc(d.n || 'Unbekannt')}</b> · ${esc(d.t || TOPICS[d.op]?.name + ' Stufe ' + (d.l + 1))}</p>
-    <p class="muted small" style="margin:2px 0 10px">${esc(TOPICS[d.op]?.name || d.op)} · Stufe ${d.l + 1} · ${d.m === 'blitz' ? 'Blitzrunde' : 'Training'}${d.min ? ` · mind. ${d.min} %` : ''}${d.by ? ` · Auftrag von ${esc(d.by)}` : ''}</p>
+    <p class="muted small" style="margin:2px 0 10px">${esc(TOPICS[d.op]?.name || d.op)} · Stufe ${d.l + 1} · ${d.m === 'blitz' ? 'Blitzrunde' : 'Training'}${d.min ? ` · mind. ${d.min} %` : ''}${d.by ? ` · Auftrag von <span translate="no">${esc(d.by)}</span>` : ''}</p>
     <div class="wgrid"><div class="stat"><b>${done}/${d.r}</b><span>geschafft</span></div><div class="stat"><b>${d.runs.length}</b><span>Versuche</span></div><div class="stat"><b>${d.runs.length ? Math.round(d.runs.reduce((s, r) => s + r.c, 0) / Math.max(1, d.runs.reduce((s, r) => s + r.c + r.w, 0)) * 100) : 0} %</b><span>richtig</span></div></div>
     <table class="rtable"><tr><th>Datum</th><th>Richtig</th><th>Zeit/Aufg.</th><th>Punkte</th></tr>${d.runs.map(r => `<tr class="${r.ok ? '' : 'no'}"><td>${fmtDay(r.d)}</td><td>${r.c}/${r.c + r.w}${r.ok ? ' ✓' : ''}</td><td>${r.ms ? fmtSec(r.ms) : '–'}</td><td>${r.sc}</td></tr>`).join('')}</table>
     ${d.runs.some(r => r.mi.length) ? `<h4>Fehler</h4><ul>${d.runs.flatMap(r => r.mi).slice(0, 20).map(([t, g, e]) => `<li>${esc(t)} → <b>${esc(e)}</b> <span class="muted">(gegeben: ${esc(g)})</span></li>`).join('')}</ul>` : ''}
@@ -446,9 +449,11 @@ addEventListener('hashchange', handleHash);
 
 /* ================= Start ================= */
 function init() {
+  I18N.lang = detectLang();
   loadRoot(); applyTheme();
   for (const [id, url, place] of [['lnkSite', CONFIG.websiteUrl, 'footer'], ['lnkImp', CONFIG.imprintUrl], ['lnkPriv', CONFIG.privacyUrl], ['btnSite', CONFIG.websiteUrl, 'header'], ['resultSite', CONFIG.websiteUrl, 'result']]) { const el = $(id); if (el) el.href = place ? siteLink(url, place) : url; }
-  $('verText').textContent = 'Version ' + APP_VERSION;
+  $('verText').textContent = 'Version ' + APP_VERSION; $('verText').setAttribute('translate', 'no');
+  $('brandLink').href = siteLink(CONFIG.websiteUrl, 'logo');
   if (CONFIG.lernraumUrl) { $('btnLernraum').href = siteLink(CONFIG.lernraumUrl, 'lernraum'); $('btnLernraum').hidden = false; $('topbarText').hidden = true; }
   $('btnProfile').onclick = () => openSheet('profiles');
   renderPromo(); renderHome(); handleHash(); handleParams(); flushOutbox(); submitClassPoints();
