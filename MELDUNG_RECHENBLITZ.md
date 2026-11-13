@@ -4,6 +4,10 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 13.11.2026 (10) – Gutschein: einmal je Familie ist Regel
+
+- **Marcel 13.11.:** „Einmal je Familie“ ist **verbindliche Regel** (nicht nur Empfehlung). In der App steht jetzt auf Gutschein, Banner und Klassenabfrage: „… einmal je Familie einlösbar“. **Bitte im Shop technisch so einstellen** (Nutzung je Kunde = 1) und in den Gutschein-Bedingungen nennen.
+
 ## 13.11.2026 (9) – Adventskalender nach Klassenstufe, Gutschein an die Klassenstufe gebunden (3.2.0)
 
 - **Marcel 13.11.:** Der Kalender muss zur Klassenstufe passen („Klasse 5 keine Oberstufe, Oberstufe keine Klasse 5“), damit nicht z. B. Abiturienten Stufe 1 rechnen und reihenweise Gutscheine bekommen. **Die Korrektheit der Klassenangabe ist Bedingung für den Gutschein.**
@@ -12,7 +16,7 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
   2. Aufgaben je Türchen aus den Themen dieser Klasse (doppelt gewichtet) plus Wiederholung aus dem Vorjahr; ab Türchen 9 teils, ab 17 ganz eine Stufe schwerer. Oberstufe: nur Stufe 4–5 (Gleichungen, Potenzen, Prozent, Brüche, Dezimal, Negativ, Terme, Teiler, Textaufgaben …). Geprüft: Klasse 1 nur Plus/Minus/Lücke Stufe 1–2; Klasse 5 ohne Prozent/Gleichungen/Potenzen; Oberstufe ohne Grundschulaufgaben.
   3. Ein Türchen zählt erst ab **3 von 5 richtig**, sonst „Fast! … nochmal versuchen“.
   4. Gutschein-Anzeige trägt die Bedingung: **„Gilt für Klasse X – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft.“** Hinweis auch bei der Klassenabfrage und im Banner; Eltern sollen den Code zusammen mit der Klassenstufe angeben. Die Advents-Urkunde nennt die Klassenstufe.
-- **OFFEN (Leitstand/Marcel):** Gutschein-Bedingungen im Shop/auf der Paketseite festhalten (10 % auf jedes Stundenpaket, gültig bis 15.01.2027, nur bei zutreffender Klassenstufe des Kindes, Prüfung bei Buchung, möglichst einmal je Familie). Die App kann die Klassenstufe nicht selbst prüfen.
+- **OFFEN (Leitstand/Marcel):** Gutschein-Bedingungen im Shop/auf der Paketseite festhalten (10 % auf jedes Stundenpaket, gültig bis 15.01.2027, nur bei zutreffender Klassenstufe des Kindes, Prüfung bei Buchung, **einmal je Familie – Regel laut Marcel 13.11.**, bitte im Shop so einstellen). Die App kann die Klassenstufe nicht selbst prüfen.
 
 ## 13.11.2026 (8) – Gutschein wird in der App beworben (3.1.2)
 

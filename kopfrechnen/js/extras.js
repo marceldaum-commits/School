@@ -96,7 +96,7 @@ function voucherHtml() {
   const v = voucher(); if (!v) return '';
   return `<div class="voucher"><div class="v-top"><span class="v-pct">${v.percent || 10} %</span><div><b>Dein Gutschein für Nachhilfe – online</b><small>${esc(v.text || 'auf ein Stundenpaket')}${v.until ? ` · gültig bis ${fmtDay(v.until)}` : ''}</small></div></div>
     <div class="v-code"><code id="vCode">${esc(v.code)}</code><button class="btn small" id="vCopy">Kopieren</button></div>
-    <p class="v-cond">Gilt für ${esc(adventClassName(adventState().klasse || 0))} – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft.</p>
+    <p class="v-cond">Gilt für ${esc(adventClassName(adventState().klasse || 0))} – nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft. Einmal je Familie einlösbar.</p>
     <p class="small muted" style="margin:6px 0 10px">Zeig den Code deinen Eltern – sie geben ihn bei der Buchung eines Stundenpakets zusammen mit der Klassenstufe an.</p>
     <a class="btn primary block" href="${esc(siteLink(v.url || CONFIG.packagesUrl, 'advent-gutschein'))}" target="_blank" rel="noopener">Zu den Stundenpaketen ↗</a></div>`;
 }
@@ -206,7 +206,7 @@ Object.assign(PANELS, {
       const pre = S.settings.klasse || 0;
       return { title: 'Rechen-Adventskalender', html: `<p style="margin:0 0 6px"><b>In welche Klasse gehst du?</b></p>
         <p class="small muted" style="margin:0 0 8px">Damit die Aufgaben zu dir passen. Die Klassenstufe gilt für den ganzen Kalender – wer sie später ändert, fängt wieder bei Türchen 1 an.</p>
-        ${voucher() ? `<p class="note">🎁 <b>Wichtig:</b> Der ${voucher().percent || 10}-%-Gutschein für alle 24 Türchen gilt nur, wenn die Klassenstufe stimmt. Sie wird bei der Buchung geprüft.</p>` : ''}
+        ${voucher() ? `<p class="note">🎁 <b>Wichtig:</b> Der ${voucher().percent || 10}-%-Gutschein für alle 24 Türchen gilt nur, wenn die Klassenstufe stimmt (Prüfung bei der Buchung) und ist einmal je Familie einlösbar.</p>` : ''}
         <div class="chips big" id="advK">${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => `<button data-v="${n}" class="${pre === n ? 'sel' : ''}">${n}</button>`).join('')}<button data-v="11" style="flex-basis:100%">Oberstufe (11–13)</button></div>`,
         init() { $('advK').onclick = e => { const b = e.target.closest('button'); if (!b) return; const k = +b.dataset.v; st.klasse = k; if (k <= 10 && !S.settings.klasse) S.settings.klasse = k; save(); renderHome(); showPanel('advent'); toast(`🎄 ${adventClassName(k)} – viel Spaß!`); }; } };
     }
@@ -217,7 +217,7 @@ Object.assign(PANELS, {
     const raffle = CONFIG.adventRaffleUrl && done >= (CONFIG.adventRaffleMin || 12)
       ? `<a class="btn primary block" href="${esc(siteLink(CONFIG.adventRaffleUrl, 'advent-verlosung'))}" target="_blank" rel="noopener">🎁 Bei der Verlosung mitmachen ↗</a>` : CONFIG.adventRaffleUrl ? `<p class="small muted" style="margin:0">Ab ${CONFIG.adventRaffleMin || 12} geöffneten Türchen kannst du bei unserer Verlosung mitmachen.</p>` : '';
     return { title: 'Rechen-Adventskalender', html: `
-      ${voucher() && done < 24 ? `<div class="vbanner"><span class="v-pct">${voucher().percent || 10} %</span><div><b>Schaff alle 24 Türchen!</b><small>Mit mindestens ${ADVENT_MIN_OK} von 5 richtig je Türchen gibt es einen ${voucher().percent || 10}-%-Gutschein ${esc(voucher().text || 'auf ein Stundenpaket')} von Nachhilfe – online${voucher().until ? ` (gültig bis ${fmtDay(voucher().until)})` : ''}. Gilt nur, wenn die Klassenstufe (${adventClassName(st.klasse)}) stimmt. Noch ${24 - done} Türchen.</small></div></div>` : ''}
+      ${voucher() && done < 24 ? `<div class="vbanner"><span class="v-pct">${voucher().percent || 10} %</span><div><b>Schaff alle 24 Türchen!</b><small>Mit mindestens ${ADVENT_MIN_OK} von 5 richtig je Türchen gibt es einen ${voucher().percent || 10}-%-Gutschein ${esc(voucher().text || 'auf ein Stundenpaket')} von Nachhilfe – online${voucher().until ? ` (gültig bis ${fmtDay(voucher().until)})` : ''}. Gilt nur, wenn die Klassenstufe (${adventClassName(st.klasse)}) stimmt, einmal je Familie. Noch ${24 - done} Türchen.</small></div></div>` : ''}
       ${phase === 'teaser' ? '<p class="note">Ab dem <b>1. Dezember</b> öffnet sich jeden Tag ein Türchen mit 5 Aufgaben und einem Rechen-Trick. Verpasste Türchen kannst du nachholen.</p>' : `<p class="small muted" style="margin:0 0 10px">Jeden Tag ein Türchen: 5 Aufgaben für <b>${adventClassName(st.klasse)}</b> und ein Rechen-Trick. Ein Türchen ist geschafft ab ${ADVENT_MIN_OK} von 5 richtig. Verpasste Türchen kannst du nachholen. Geschafft: <b>${done}/24</b> · <button class="linkbtn" id="advChange">Klasse ändern</button></p>`}
       ${adventPreview() && phase === 'on' && !(new Date().getMonth() === 11) ? '<p class="note">Vorschau-Modus (Testseite): alle Türchen sind offen.</p>' : ''}
       <div class="advent">${doors}</div>
