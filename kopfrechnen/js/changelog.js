@@ -1,8 +1,9 @@
 'use strict';
 // Rechenblitz – Versionen mit Datum (neueste oben). Wird unter „Was ist neu?“ angezeigt.
-const APP_VERSION = '3.5.2';
+const APP_VERSION = '3.6.0';
 const APP_DATE = '2026-11-14';
 const CHANGELOG = [
+  ['3.6.0', '2026-11-14', ['Neu: Merk-Training 🧠 – was wackelt, kommt öfter dran, was sitzt, seltener', 'Jeden Tag „Heute wiederholen“ in 3 Minuten', 'Passend zur Klasse: Plus bis 20, Einmaleins, Quadratzahlen, Brüche als Dezimalzahl und Prozent', 'Neues Abzeichen: Gedächtnis-Profi']],
   ['3.5.2', '2026-11-14', ['Der Adventsgutschein gilt jetzt für jedes Stundenpaket', 'Rechenblitz gibt es bald auch als Android-App – komplett ohne Internet spielbar']],
   ['3.5.1', '2026-11-13', ['Neu in den Einstellungen: Erinnerung aufs Handy – einmal am Tag zu deiner Uhrzeit']],
   ['3.5.0', '2026-11-13', ['Versionsnummer mit Datum', 'Neu im Menü: „Was ist neu?“ mit allen Änderungen']],

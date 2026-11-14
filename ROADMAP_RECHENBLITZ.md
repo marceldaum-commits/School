@@ -28,7 +28,7 @@ Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erl
 
 | Tag | Datum | Thema | Inhalt |
 |---|---|---|---|
-| 1 | Sa 14.11. | **Merk-Training** | Verteilte Wiederholung (Leitner/Intervalle) für Einmaleins, Kernaufgaben, Brüche usw.: jede Aufgabe hat eine Merkstärke, „Heute wiederholen“ als 3-Minuten-Runde, Anzeige „X Aufgaben sitzen fest“ |
+| 1 ✅ | Sa 14.11. | **Merk-Training** (3.6.0) | Verteilte Wiederholung (Leitner/Intervalle) für Einmaleins, Kernaufgaben, Brüche usw.: jede Aufgabe hat eine Merkstärke, „Heute wiederholen“ als 3-Minuten-Runde, Anzeige „X Aufgaben sitzen fest“ |
 | 2 | So 15.11. | **3-Minuten-Runden + Maskottchen „Blitz“** | Eigenes, gezeichnetes SVG-Maskottchen (Fuchs/Blitz) mit Stimmungen (freut sich, denkt nach, tröstet); Standard-Runde 3–5 Minuten; Texte kürzen, mehr Symbole |
 | 3 | Mo 16.11. | **Rechen-Reise (Kapitel 1–3)** | Story-Karte statt Liste: Etappen à 3–5 Min., kleine Geschichte je Kapitel, passend zur Klassenstufe |
 | 4 | Di 17.11. | **Rechen-Reise (Kapitel 4–6)** | Weitere Kapitel, Belohnungsbilder, Urkunde je Kapitel |
@@ -57,3 +57,4 @@ Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erl
 - 13.11. – 3.5.0: Versionsnummer mit Datum, „Was ist neu?“ im Menü
 - 13.11. – 3.5.1: Erinnerung aufs Handy (Leitstand-Übergabe 38), Play-Store-Vorbereitung, schmale Handys ohne Verkleinern
 - 14.11. – 3.5.2: Gutschein für jedes Stundenpaket; Android-App (APK) mit allen Dateien im Paket, komplett offline, Erinnerung lokal; Web + APK parallel
+- 14.11. – 3.6.0: Merk-Training (verteilte Wiederholung, 185 Kernaufgaben in 6 Stapeln, „Heute wiederholen“ in 3 Minuten)

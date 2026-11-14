@@ -200,6 +200,7 @@ const BADGES = [
   ['advent', '🎄', 'Adventsrechner', 'Ein Türchen im Adventskalender geöffnet'],
   ['advent24', '🌟', 'Weihnachtsprofi', 'Alle 24 Türchen geschafft'],
   ['klasse', '🏫', 'Teamplayer', 'Einer Klassen-Challenge beigetreten'],
+  ['merk25', '🧠', 'Gedächtnis-Profi', '25 Aufgaben sitzen fest im Merk-Training'],
 ].map(([id, icon, name, desc]) => ({ id, icon, name, desc }));
 let newBadges = [];
 function award(id) { if (!S.badges[id]) { S.badges[id] = todayStr(); newBadges.push(id); } }
@@ -215,7 +216,7 @@ function checkGlobalBadges() {
   if (h >= 20) award('night'); if (h < 7.5) award('early');
 }
 function announceBadges() {
-  newBadges.forEach((id, i) => { const b = BADGES.find(x => x.id === id); setTimeout(() => toast(`${b.icon} Abzeichen: <b>${esc(b.name)}</b>`, 2200), 1200 + i * 2300); });
+  newBadges.forEach((id, i) => { const b = BADGES.find(x => x.id === id); setTimeout(() => toast(`${b.icon} <span>Abzeichen:</span> <b>${esc(b.name)}</b>`, 2200), 1200 + i * 2300); });
   if (newBadges.length) Sound.badge();
   const out = newBadges; newBadges = []; return out;
 }
@@ -243,7 +244,7 @@ function renderHome() {
   $('sDays').textContent = streakDays();
   $('sToday').textContent = `${S.today.date === todayStr() ? S.today.solved : 0}/${DAILY_GOAL}`;
   renderSoundIcons();
-  renderAssignCard(); renderChallengeCard();
+  renderAssignCard(); renderChallengeCard(); renderMerkCard();
 
   // Themen: die wichtigsten 9 + „Mehr“; im Klassenmodus nur passende
   const k = S.settings.klasse, vis = k && !homeShowAll ? classTopicSet(k) : null;
@@ -369,6 +370,7 @@ const MODE_CFG = {
   test: { title: 'Einstufungstest', quiet: true },
   row: { title: 'Reihe üben', count: 20, steps: true, points: true },
   advent: { title: 'Adventskalender', count: 5, steps: true, points: true },
+  merk: { title: 'Merk-Training', count: 20, steps: true, points: true },
 };
 let G = null, timerRaf = 0, lastAnswered = null;
 
@@ -431,7 +433,7 @@ function nextTask() {
   if (G.total !== Infinity && G.idx >= G.total) return finish();
   let t;
   if (G.queue) { t = G.queue[G.idx]; if (!t) return finish(); }
-  else if (G.gen) t = G.gen();
+  else if (G.gen) { t = G.gen(); if (!t) return finish(); }
   else { for (let i = 0; i < 25; i++) { t = makeTask(G.op, G.lvl); if (!G.recent.includes(keyOf(t))) break; } G.recent.push(keyOf(t)); if (G.recent.length > 10) G.recent.shift(); }
   G.task = t; G.input = ''; G.t0 = performance.now(); G.hinted = false;
   $('expr').className = 'expr' + (t.story ? ' storymode' : '');
@@ -439,8 +441,8 @@ function nextTask() {
   $('hint').textContent = t.hint || '';
   $('unit').textContent = t.unit || '';
   $('pre').textContent = t.pre || '';
-  if (G.op === 'mix' || G.queue) $('winTitle').textContent = `${G.mode === 'training' || G.mode === 'blitz' ? '' : G.cfg.title + ' · '}${TOPICS[t.topic].name}`;
-  $('winTag').textContent = ['challenge', 'test', 'advent'].includes(G.mode) ? `Aufgabe ${G.idx + 1}/${G.total}` : `Stufe ${t.lvl + 1}${G.adapt ? ' · Auto' : ''}`;
+  if (G.op === 'mix' || G.queue) $('winTitle').textContent = G.mode === 'merk' ? `🧠 ${TOPICS[t.topic].name}` : `${G.mode === 'training' || G.mode === 'blitz' ? '' : G.cfg.title + ' · '}${TOPICS[t.topic].name}`;
+  $('winTag').textContent = G.mode === 'merk' ? merkTag(t.card) : ['challenge', 'test', 'advent'].includes(G.mode) ? `Aufgabe ${G.idx + 1}/${G.total}` : `Stufe ${t.lvl + 1}${G.adapt ? ' · Auto' : ''}`;
   $('feedback').textContent = ''; $('feedback').className = 'feedback';
   renderAnswer(); updateHud(); fitExpr();
   speak(I18N.lang === 'de' ? (t.story ? t.e[0].v : taskSpeech(t)) : (t.story ? tr(t.e[0].v) : i18nSpeech(t)));
@@ -476,6 +478,7 @@ function submit() {
   if (!G || G.locked || G.input === '') return;
   const p = parseInput(G.input), t = G.task, a = t.a;
   if (!p) { $('feedback').className = 'feedback info'; $('feedback').textContent = 'Diese Eingabe verstehe ich nicht.'; return; }
+  if (t.form === 'dec' && p.frac) { $('feedback').className = 'feedback info'; $('feedback').textContent = 'Schreib es als Dezimalzahl, z. B. 0,5'; G.input = ''; renderAnswer(); return; }
   const equal = p.q.n === a.q.n && p.q.d === a.q.d;
   if (equal && p.frac && !p.reduced && !G.hinted) {           // richtig, aber nicht gekürzt → zweite Chance
     G.hinted = true; Sound.hint();
@@ -486,6 +489,7 @@ function submit() {
   G.locked = true; G.idx++;
   lastAnswered = { task: taskText(t) + (t.noEq ? '' : ` ${t.eqSign || '='} ?`), given: G.input.replace('-', '−'), expected: showAns(a) + (t.unit ? ' ' + t.unit : ''), correct: equal, topic: TOPICS[t.topic].name, level: t.lvl + 1, mode: G.mode, _task: t };
   recordAnswer(t, equal, dt);
+  if (t.card) { merkAnswer(t.card, equal, dt); if (!equal && G.gen && G.gen.requeue) G.gen.requeue(t.card); } else merkFromPlay(t, equal);
   G.results.push({ ok: equal, topic: t.topic, lvl: t.lvl });
   if (equal) {
     G.correct++; G.streak++; G.bestStreak = Math.max(G.bestStreak, G.streak); G.times.push(dt);
@@ -628,6 +632,7 @@ function finish() {
     extra = `<div class="card"><div class="marks">${marks}</div><p class="muted" style="margin:6px 0 10px">${G.correct}/10 richtig in ${fmtSec(ms)}${first ? '' : ' · Wiederholung (zählt nicht)'}</p><button class="btn primary block" id="rShare">Ergebnis teilen</button></div>`;
   }
   if (G.mode === 'test') extra = finishTest();
+  if (G.mode === 'merk') extra = merkResultHtml();
   if (G.assign && S.assign) {
     const a = S.assign, ok = Math.round(acc * 100) >= (a.min || 0) && answered > 0;
     a.runs.push({ d: today, sc: G.score, c: G.correct, w: G.wrong, ms: G.times.length ? Math.round(G.times.reduce((x, y) => x + y, 0) / G.times.length) : 0, ok, mi: G.mistakes.slice(0, 8).map(m => [m.task, m.given, m.expected]) });
@@ -668,6 +673,7 @@ function renderResult(r) {
     if (G.mode === 'fehler' && !Object.keys(S.box).length) return goHome();
     if (G.mode === 'advent') return startAdventDoor(G.door);
     if (G.mode === 'challenge') return startGame('challenge', { queue: challengeTasks(), op: 'mix', lvl: 0 });
+    if (G.mode === 'merk') return merkStats().todo ? startMerk() : (goHome(), openSheet('merk'));
     if (G.assign && S.assign) return S.assign.runs.filter(x => x.ok).length >= S.assign.r ? goHome() : startAssignment();
     if (G.gen) return startGame(G.mode, { gen: G.gen, op: G.op, lvl: G.lvl, title: G.title });
     startGame(G.mode);

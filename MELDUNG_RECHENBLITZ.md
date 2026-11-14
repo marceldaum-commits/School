@@ -4,6 +4,28 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 14.11.2026 (18) – Entwicklungstag 1: Merk-Training (3.6.0)
+
+- **Neu: Merk-Training 🧠** (verteilte Wiederholung, Roadmap Tag 1). Neue Datei `kopfrechnen/js/memory.js`.
+  - **Stapel nach Klassenstufe:** Plus bis 20 (Kl. 1–2), Einmaleins (2–5), Geteilt (3–6), Quadratzahlen 11–20 (6–10), Brüche als Dezimalzahl (6–10), Brüche als Prozent (7–10). Zusammen 185 Kernaufgaben. Die Stapel sind im Menü umschaltbar.
+  - **Merkstärke 0–6:** Die Aufgabe kommt nach 0/1/2/4/8/16/32 Tagen wieder. Richtig und flott: eine Stufe höher. Richtig, aber langsam: bleibt. Falsch: zurück auf heute, und die Aufgabe kommt in derselben Runde noch einmal. Ab Stufe 4 „sitzt fest“.
+  - **„Heute wiederholen“:** eine Runde mit höchstens 20 Aufgaben, die nach etwa 3 Minuten endet. Fällige und schwächste Aufgaben kommen zuerst, dazu höchstens 6 neue pro Tag, gemischt aus den Stapeln.
+  - **Fehler aus normalen Runden** (Einmaleins und Geteilt) setzen die Aufgabe im Merk-Training wieder auf „heute“.
+  - **Oberfläche:** Startseite mit Karte „Merk-Training · X Aufgaben · ca. 3 Minuten · Y sitzen fest“. Im Menü eine Übersicht mit fest/heute/morgen und einem Balken je Stapel. Im Spiel stehen oben „Neu ✨“ bzw. „Merkstärke x/6“, im Ergebnis „X Aufgaben sitzen fest (+n)“. Neues Abzeichen „Gedächtnis-Profi“ (25 fest).
+  - Wer bei „Als Dezimalzahl“ einen Bruch eingibt, bekommt einen Hinweis. Das wird nicht als falsch gezählt.
+  - **Daten:** nur auf dem Gerät, `localStorage['rechenblitz']` → Profil → `merk` (Stufe und Fälligkeit je Aufgabe). Keine neuen Server-Daten.
+- **Nebenbei:**
+  - Abzeichen-Hinweise sind jetzt in EN/UK für alle Abzeichen übersetzt (vorher fehlten einige).
+  - Lange Fenstertitel enden auf schmalen Handys mit „…“.
+  - Ein fehlender Rundungs-Text in EN/UK ist ergänzt.
+- **Getestet:**
+  - Alle 185 Karten: Lösung, Eingabe-Prüfung, Lösungsweg.
+  - Abstände und Rundenaufbau.
+  - Durchlauf auf Handy (320 px) und PC in DE/EN/UK ohne fehlende Übersetzungen, ohne Konsolenfehler, ohne fremde Abrufe.
+  - Regression: alle Ansichten 320 px, offline, APK-Modus, Erinnerung.
+- **Neue APK: 3.6.0 gebaut** (versionCode 30600, 2,4 MB, gleicher Test-Schlüssel wie 3.5.2 → installiert sich als Update). Sie liegt in Marcels Drive. Die GitHub-Release-Seite folgt, sobald das Geheimnis `RECHENBLITZ_TEST_KEYSTORE` hinterlegt ist. Bis dahin überspringt der Ablauf das Veröffentlichen nur mit einem Hinweis, ohne Fehler-Mail.
+- Bitte 3.6.0 prüfen und live freigeben (Datenschutz-Ergänzung zur Erinnerung aus (16)/(17) vorher).
+
 ## 14.11.2026 (17) – Marcel: Gutschein für jedes Stundenpaket, APK offline, Web + APK parallel (3.5.2)
 
 - **Gutschein (Marcel 13.11.: „Jedes“):** 10 % gelten für **jedes Stundenpaket**, nicht nur für Einzelnachhilfe. App-Texte DE/EN/UK angepasst („10 % auf jedes Stundenpaket“), `config.js` → `text: 'auf jedes Stundenpaket'`. **Bitte Leitstand:** In `ops/trainer-api` beim Gutschein `gilt: 'jedes Stundenpaket'` statt `'ein Einzelnachhilfe-Paket'` setzen und im Shop die Gutschein-Codes für alle Pakete freigeben. Die App zeigt `gilt` derzeit nicht an, also ist das nur für Shop und Mail wichtig.

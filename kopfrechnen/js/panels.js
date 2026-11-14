@@ -36,6 +36,7 @@ const PANELS = {
       ${adventPhase() !== 'off' ? mi('advent', '🎄', 'Rechen-Adventskalender', 'Jeden Tag ein Türchen') : ''}
       ${CONFIG.classApi ? mi('klasse', '🏫', 'Klassen-Challenge', S.klasse ? 'Rangliste deiner Klasse' : 'Mit Klassencode beitreten') : ''}
       <div class="mlabel">Mein Fortschritt</div>
+      ${mi('merk', '🧠', 'Merk-Training', `${merkSolidAll()} Aufgaben sitzen fest`)}
       ${mi('badges', '🏅', 'Abzeichen', `${Object.keys(S.badges).length} von ${BADGES.length} gesammelt`)}
       ${mi('facts', '✖️', 'Einmaleins-Übersicht', 'Welche Reihen sitzen – und welche noch nicht')}
       ${mi('week', '📊', 'Wochenbericht', 'Für Eltern: was geübt wurde, wo es hakt')}
