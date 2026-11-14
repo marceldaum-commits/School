@@ -1,6 +1,12 @@
 # Meldung Raum „Kopfrechnen“ (Rechenblitz) → Leitstand
 
-Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kopfrechnen/` (Startdatei `index.html`).
+Neueste Meldung oben.
+
+> **AKTUELLER STAND (14.11.2026, 16:20) – für den Leitstand:** Auf `rechenblitz-test` liegt **3.8.0** (Branch-Kopf siehe Meldung (26)).
+> - **Startbild Merk-Training ist ERLEDIGT** seit 3.7.1: Mondsichel und goldenes Sternbild statt des dunklen Rechtecks, siehe (22) und (25).
+> - 3.8.0 bringt zusätzlich: Maskottchen Blitz, Merksätze, Sternbilder-Album, „Was ist neu?“-Karte und keinen roten Dauer-Punkt mehr am Menü-Knopf, siehe (26).
+> - **Bitte 3.8.0 testen und live freigeben.** Jeder weitere Stand wird hier gemeldet.
+ Repo `marceldaum-commits/School`, Auslieferungsordner `kopfrechnen/` (Startdatei `index.html`).
 
 ---
 
