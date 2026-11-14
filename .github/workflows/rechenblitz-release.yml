@@ -1,0 +1,81 @@
+# Rechenblitz: baut bei jeder neuen Version auf rechenblitz-test die Android-App (APK) und legt sie
+# zusammen mit der Web-App (ZIP) dauerhaft auf eine Release-Seite „Rechenblitz X.Y.Z“ (Marcel 14.11.2026, Variante 1).
+# Signiert wird mit dem festen Test-Schlüssel aus dem Repo-Geheimnis RECHENBLITZ_TEST_KEYSTORE,
+# damit jede neue APK als Update über die alte installiert werden kann (Lernstand bleibt erhalten).
+name: Rechenblitz Release
+
+on:
+  push:
+    branches: [rechenblitz-test]
+    paths: ['kopfrechnen/**', 'android-app/**', '.github/workflows/rechenblitz-release.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rechenblitz-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Test-Schlüssel einrichten
+        env:
+          KEYSTORE: ${{ secrets.RECHENBLITZ_TEST_KEYSTORE }}
+        run: |
+          if [ -z "$KEYSTORE" ]; then
+            echo "::error::Geheimnis RECHENBLITZ_TEST_KEYSTORE fehlt – ohne festen Schlüssel ließe sich die APK nicht als Update installieren. Siehe PLAYSTORE_RECHENBLITZ.md."
+            exit 1
+          fi
+          mkdir -p ~/.android
+          echo "$KEYSTORE" | base64 -d > ~/.android/debug.keystore
+
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: '21' }
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+
+      - name: Version lesen
+        id: v
+        run: |
+          echo "version=$(grep -oP "APP_VERSION = '\K[0-9.]+" kopfrechnen/js/changelog.js)" >> "$GITHUB_OUTPUT"
+          echo "date=$(grep -oP "APP_DATE = '\K[0-9-]+" kopfrechnen/js/changelog.js)" >> "$GITHUB_OUTPUT"
+
+      - name: APK bauen (dieselben Dateien wie die Web-App)
+        working-directory: android-app
+        run: |
+          npm ci --no-audit --no-fund
+          bash build.sh
+          cp android/app/build/outputs/apk/debug/app-debug.apk "$RUNNER_TEMP/Rechenblitz-${{ steps.v.outputs.version }}.apk"
+
+      - name: Web-App als ZIP
+        run: git archive --format=zip --prefix="rechenblitz-webapp-${{ steps.v.outputs.version }}/" -o "$RUNNER_TEMP/Rechenblitz-WebApp-${{ steps.v.outputs.version }}.zip" HEAD kopfrechnen
+
+      - name: Release-Seite anlegen oder aktualisieren
+        env:
+          GH_TOKEN: ${{ github.token }}
+          V: ${{ steps.v.outputs.version }}
+          D: ${{ steps.v.outputs.date }}
+        run: |
+          node -e '
+            const src = require("fs").readFileSync("kopfrechnen/js/changelog.js", "utf8");
+            const log = new Function(src + "; return CHANGELOG;")();
+            const e = log.find(x => x[0] === process.env.V) || [process.env.V, process.env.D, []];
+            const [y, m, d] = e[1].split("-");
+            const lines = [`**Rechenblitz ${e[0]} · ${d}.${m}.${y}**`, "", ...e[2].map(i => `- ${i}`), "",
+              "**Android:** `Rechenblitz-" + e[0] + ".apk` herunterladen und installieren. Das ist eine Testfassung mit Test-Signatur, deshalb kann Play Protect warnen. Sie installiert sich als Update über ältere Testfassungen, der Lernstand bleibt. Die App läuft komplett ohne Internet.",
+              "**Web:** `Rechenblitz-WebApp-" + e[0] + ".zip` enthält den Ordner `kopfrechnen/`, also genau das, was auf rechenblitz.mathenachhilfe-online.com läuft."];
+            require("fs").writeFileSync(process.env.RUNNER_TEMP + "/notes.md", lines.join("\n"));'
+          TAG="rechenblitz-$V"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$RUNNER_TEMP/Rechenblitz-$V.apk" "$RUNNER_TEMP/Rechenblitz-WebApp-$V.zip" --clobber
+            gh release edit "$TAG" --notes-file "$RUNNER_TEMP/notes.md"
+          else
+            gh release create "$TAG" --target "$GITHUB_SHA" --title "Rechenblitz $V" --notes-file "$RUNNER_TEMP/notes.md" \
+              "$RUNNER_TEMP/Rechenblitz-$V.apk" "$RUNNER_TEMP/Rechenblitz-WebApp-$V.zip"
+          fi

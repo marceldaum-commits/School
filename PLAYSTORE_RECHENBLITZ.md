@@ -46,6 +46,21 @@ Meldet Maven Central „429 Too Many Requests“, eine Minute warten und neu sta
 
 **Signieren:** Der Upload-Schlüssel liegt nur bei Marcel (Bitwarden), nie im Repo (`*.jks`/`*.keystore` stehen in `.gitignore`). Für `release` die Signier-Angaben in `android/app/build.gradle` (`signingConfigs`) über Umgebungsvariablen eintragen, oder in Android Studio „Generate Signed Bundle“ nutzen. Google verwaltet den eigentlichen App-Signaturschlüssel (Play App Signing).
 
+## Release-Seiten auf GitHub (Marcel 14.11.2026, Variante 1)
+
+Bei jedem Push auf `rechenblitz-test`, der `kopfrechnen/` oder `android-app/` ändert, baut GitHub (`.github/workflows/rechenblitz-release.yml`) automatisch:
+- die APK,
+- die Web-App als ZIP.
+
+Beides legt GitHub **dauerhaft** auf die Release-Seite `rechenblitz-X.Y.Z` (Titel „Rechenblitz X.Y.Z“, Text aus `CHANGELOG`). Wird dieselbe Version erneut gepusht, ersetzt der Ablauf die Dateien. Starten lässt sich der Ablauf auch von Hand („Run workflow“). Die APK dort hat keine Größengrenze. Drive („AndroidApps/Rechenblitz“) wird zusätzlich befüllt, solange die APK unter ca. 3 MB bleibt.
+
+**Fester Test-Schlüssel:**
+- Er liegt im Repo-Geheimnis `RECHENBLITZ_TEST_KEYSTORE` (Base64 eines Android-Debug-Keystores, Passwort `android`, Alias `androiddebugkey`).
+- Er ist derselbe Schlüssel wie bei der ersten Drive-APK 3.5.2 (SHA-256 `C8:E0:E9:77:…:52:FF:6D`). Deshalb installiert sich jede neue Test-APK als Update, und der Lernstand bleibt.
+- Fehlt das Geheimnis, bricht der Ablauf bewusst ab.
+- Eine Kopie gehört in Bitwarden.
+- Der Schlüssel ist nur für Testfassungen. Der Play Store bekommt Marcels eigenen Upload-Schlüssel.
+
 ## Test je Version (Pflicht, siehe ROADMAP-Regeln)
 
 1. Web-App im Browser testen (Handy/PC, DE/EN/UK, 320 px, offline nach dem ersten Besuch).
