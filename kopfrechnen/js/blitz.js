@@ -55,14 +55,14 @@ function blitzSvg(mood = 'happy', size = 64) {
 const blitzSay = (mood, text, size = 64) => `<div class="blitz-say"><div class="bz-fig">${blitzSvg(mood, size)}</div><div class="bz-bubble">${text}</div></div>`;
 
 /** kurzer Auftritt im Spiel (Serie, Comeback) – oben rechts am Aufgabenfenster */
-let bzPopT = 0;
+let bzPopT = 0, bzPopT2 = 0;
 function blitzPop(mood, text) {
   if (!bzOn()) return;
   const win = document.querySelector('#game .win'); if (!win) return;
-  $('bzPop')?.remove(); clearTimeout(bzPopT);
-  win.insertAdjacentHTML('beforeend', `<div class="bz-pop" id="bzPop"><div class="bz-bubble">${text}</div>${blitzSvg(mood, 58)}</div>`);
+  $('bzPop')?.remove(); clearTimeout(bzPopT); clearTimeout(bzPopT2);
+  win.insertAdjacentHTML('beforeend', `<div class="bz-pop" id="bzPop" role="status"><div class="bz-bubble">${text}</div>${blitzSvg(mood, 58)}</div>`);
   bzPopT = setTimeout(() => $('bzPop')?.classList.add('out'), 1700);
-  setTimeout(() => $('bzPop')?.remove(), 2200);
+  bzPopT2 = setTimeout(() => $('bzPop')?.remove(), 2200);
 }
 /* Sprüche */
 const BZ_STREAK = { 3: 'Stark!', 5: 'Super Serie!', 10: 'Wahnsinn!', 15: 'Du bist ein echter Blitz!', 20: 'Unglaublich!' };

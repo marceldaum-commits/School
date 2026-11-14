@@ -2,13 +2,58 @@
 
 Neueste Meldung oben.
 
-> **AKTUELLER STAND (14.11.2026, 16:20) – für den Leitstand:** Auf `rechenblitz-test` liegt **3.8.0** (Branch-Kopf siehe Meldung (26)).
-> - **Startbild Merk-Training ist ERLEDIGT** seit 3.7.1: Mondsichel und goldenes Sternbild statt des dunklen Rechtecks, siehe (22) und (25).
-> - 3.8.0 bringt zusätzlich: Maskottchen Blitz, Merksätze, Sternbilder-Album, „Was ist neu?“-Karte und keinen roten Dauer-Punkt mehr am Menü-Knopf, siehe (26).
-> - **Bitte 3.8.0 testen und live freigeben.** Jeder weitere Stand wird hier gemeldet.
- Repo `marceldaum-commits/School`, Auslieferungsordner `kopfrechnen/` (Startdatei `index.html`).
-
+> **AKTUELLER STAND (14.11.2026, 18:00) – für den Leitstand:** Auf `rechenblitz-test` liegt **3.9.0** (Rechen-Reise + 20 Fehlerbehebungen), siehe Meldung (27).
+> - Startbild Merk-Training ist seit 3.7.1 erledigt.
+> - **Bitte 3.9.0 testen und live freigeben** – sie enthält Sicherheitskorrekturen (Auftrags- und Ergebnis-Links).
 ---
+
+## 14.11.2026 (27) – Rechen-Reise (Kapitel 1–3) + großer Fehler-Check (3.9.0)
+
+- **Marcel 14.11.:** „Mach jetzt gern weiter mit dem nächsten Paket … prüfe das Ganze mal auf Bugs und Verbesserungen.“
+- **Neu: Rechen-Reise** (`js/reise.js`, Roadmap Tag 3):
+  - **Geschichte:** Ein Sturm hat Blitz' Funken verstreut, das Kind sammelt sie wieder ein.
+  - **Kapitel 1–3:** Zahlenwald 🌲, Rechenfluss 🌊, Funkenhöhle 🕯️. Jedes Kapitel hat eine gezeichnete Karte mit Weg und 5 Etappen plus Boss-Etappe. Blitz steht an der aktuellen Etappe, jede Etappe beginnt mit einem Story-Satz.
+  - **Aufgaben:** Sie passen zur Klassenstufe, die einmal abgefragt wird: Kapitel 1 wärmt auf, Kapitel 3 eine Stufe höher. Etappen haben 8 Aufgaben aus 2 Themen, die Boss-Etappe 10 gemischte.
+  - **Bewertung:** Sterne ab 60/80/95 %, unter 60 % „Nochmal versuchen“ mit Blitz-Trost.
+  - **Kapitelende:** Sticker 🦉/🐟/💎, Urkunde, Abzeichen „Waldläufer“, „Flussspringer“, „Höhlenforscher“. Das nächste Kapitel wird freigeschaltet.
+  - **Einstieg:** Startseiten-Karte „Rechen-Reise“ und Menüpunkt. Kapitel 4–6 (Wolkenstadt, Feuerberg, Sternenschloss) folgen an Tag 4.
+- **Fehler-Check:** Ein unabhängiger Prüf-Durchgang über den ganzen Code fand 22 Punkte, davon 12 nachgestellt. Behoben:
+  - **Sicherheit (hoch):**
+    - Auftrags- und Ergebnis-Links hätten Schadcode einschleusen können, beim Auftrag sogar dauerhaft gespeichert. Kaputte Links (z. B. Stufe 7, fehlende Daten) haben die App blockiert.
+    - Jetzt werden alle Link-Daten streng geprüft (bekannte Themen, Zahlenbereiche, Textlängen) und überall escaped. Bereits gespeicherte Altdaten werden beim Laden bereinigt.
+    - Die Klassen-Rangliste nimmt nur noch Zahlen an.
+  - **Timing:**
+    - Alte Timer greifen nicht mehr in die nächste Runde ein. Vorher konnte „Nochmal“ während des Countdowns schon eine Aufgabe zeigen.
+    - Kein doppelter Countdown nach Abbruch und Neustart.
+    - Enter auf der Ergebnisseite startet erst nach 0,9 s neu.
+    - Der Bild-Tipp ist nach dem Antworten gesperrt.
+  - **Fortschritt:**
+    - Ein Profilwechsel oder Zurücksetzen mitten im Spiel beendet erst die Runde. Vorher bekam das falsche Profil die Punkte.
+    - Richtige Antworten zählen sofort für Tagesziel, Tage-Serie und Gesamtzahl, auch bei Abbruch.
+    - Die Tageschallenge zählt den ersten *gestarteten* Versuch, damit man sie nicht ausspähen kann.
+    - Die Fehlerkiste merkt sich „Als Dezimalzahl“.
+  - **Versand:**
+    - Der Postausgang für Fehlermeldungen verliert keine Meldungen mehr, wenn gleichzeitig gesendet wird.
+    - Klassenpunkte werden nicht mehr doppelt gesendet, und das Profil wird festgehalten.
+  - **Offline-Cache:** Der Service Worker speichert nur noch erfolgreiche Antworten, also keine Fehler- oder WLAN-Portalseiten. Bei schlechtem Netz nimmt er nach 3 s die gespeicherte Fassung.
+  - **Sonstiges:**
+    - Datumsrechnung sommerzeitsicher (Tage-Serie, Merk-Fälligkeiten).
+    - Blitzrunde pausiert, wenn die App in den Hintergrund geht.
+    - Hinweis, wenn das Speichern scheitert (Gerätespeicher voll).
+    - Timer-Anzeige zeichnet nur bei Änderung neu (spart Rechenzeit in EN/UK).
+    - Lange Hinweise brechen um, Rückmeldung richtig/falsch für Bildschirmleser (`aria-live`), Fokus in der Merk-Karte.
+    - Blitz-Einblendung verschwindet nicht mehr zu früh.
+  - **Bewusst gelassen:**
+    - Startstufe ohne Klassenangabe = Stufe 1 (gewollt).
+    - APK-Update per `location.href`: Capacitor öffnet fremde Adressen von sich aus im System-Browser, der die APK lädt. Auf einem echten Gerät ist das noch zu bestätigen.
+- **Getestet:**
+  - Die Nachstell-Skripte des Prüf-Durchgangs zeigen die Fehler nicht mehr.
+  - Zufalls-Stresstest der Oberfläche (über 800 Aktionen in DE/EN): 0 Fehler.
+  - Engine-Fuzz (20 000 Aufgaben je Thema/Stufe): sauber.
+  - Komplette Regression: 320 px, offline, APK-Modus, Updater, Merk, Blitz, Reise.
+  - DE/EN/UK ohne fehlende Übersetzungen, dazu fehlende Einheiten-Übersetzungen (dm, kg, l …) ergänzt.
+- **Neue APK: 3.9.0** – GitHub baut die Release-Seite `rechenblitz-3.9.0` beim Push selbst.
+- Bitte prüfen und live freigeben.
 
 ## 14.11.2026 (26) – Maskottchen Blitz, Merksätze, Sternbilder, „Was ist neu?“ (3.8.0)
 

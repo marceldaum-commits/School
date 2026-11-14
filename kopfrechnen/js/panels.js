@@ -36,6 +36,7 @@ const PANELS = {
       ${adventPhase() !== 'off' ? mi('advent', '🎄', 'Rechen-Adventskalender', 'Jeden Tag ein Türchen') : ''}
       ${CONFIG.classApi ? mi('klasse', '🏫', 'Klassen-Challenge', S.klasse ? 'Rangliste deiner Klasse' : 'Mit Klassencode beitreten') : ''}
       <div class="mlabel">Mein Fortschritt</div>
+      ${mi('reise', '🗺️', 'Rechen-Reise', `${reiseTotalStars()} Sterne gesammelt`)}
       ${mi('merk', '🧠', 'Merk-Training', `${merkSolidAll()} Aufgaben sitzen fest`)}
       ${mi('badges', '🏅', 'Abzeichen', `${Object.keys(S.badges).length} von ${BADGES.length} gesammelt`)}
       ${mi('facts', '✖️', 'Einmaleins-Übersicht', 'Welche Reihen sitzen – und welche noch nicht')}
@@ -260,6 +261,7 @@ function initSettings() {
   });
   $('btnReset').onclick = () => {
     if (!confirm(tr(`Wirklich den gesamten Fortschritt von „${profile().name}“ löschen? Das kann nicht rückgängig gemacht werden.`))) return;
+    if (G && !G.over) quitGame();
     const keep = { settings: S.settings, sel: S.sel };
     ROOT.profiles[ROOT.cur].data = Object.assign(PROFILE_DEFAULT(), keep); useProfile(ROOT.cur);
     save(); renderHome(); closeSheet(); toast('Fortschritt zurückgesetzt');
@@ -270,7 +272,7 @@ function initSettings() {
 function initProfiles() {
   let emoji = EMOJIS[1], editing = false;
   $('profEmoji').onclick = e => { const b = e.target.closest('button'); if (!b) return; emoji = b.dataset.e; $('profEmoji').querySelectorAll('button').forEach(x => x.classList.toggle('sel', x === b)); };
-  $('sheetBody').querySelectorAll('[data-prof]').forEach(b => b.onclick = () => { useProfile(b.dataset.prof); save(); applyTheme(); renderHome(); closeSheet(); toast(`Hallo ${esc(profile().name)}! ${profile().emoji}`); });
+  $('sheetBody').querySelectorAll('[data-prof]').forEach(b => b.onclick = () => { if (G && !G.over) quitGame(); useProfile(b.dataset.prof); save(); applyTheme(); renderHome(); closeSheet(); toast(`Hallo ${esc(profile().name)}! ${profile().emoji}`); });
   $('profEdit').onclick = () => {
     editing = true; const p = profile(); $('profFormTitle').textContent = 'Profil bearbeiten'; $('profName').value = p.name; $('profSave').textContent = 'Speichern';
     emoji = p.emoji; $('profEmoji').querySelectorAll('button').forEach(x => x.classList.toggle('sel', x.dataset.e === emoji)); $('profName').focus();
@@ -278,7 +280,7 @@ function initProfiles() {
   $('profForm').onsubmit = e => {
     e.preventDefault(); const name = $('profName').value.trim(); if (!name) return $('profName').focus();
     if (editing) Object.assign(profile(), { name, emoji });
-    else { const id = 'p' + Date.now().toString(36); ROOT.profiles[id] = { id, name, emoji, data: PROFILE_DEFAULT() }; useProfile(id); }
+    else { if (G && !G.over) quitGame(); const id = 'p' + Date.now().toString(36); ROOT.profiles[id] = { id, name, emoji, data: PROFILE_DEFAULT() }; useProfile(id); }
     save(); applyTheme(); renderHome(); closeSheet(); toast(`${emoji} ${esc(name)}`);
   };
   $('profDel') && ($('profDel').onclick = () => {
@@ -334,6 +336,8 @@ function initAssignCreate() {
   };
 }
 function resultHtml(d) {
+  d = cleanResult(d);
+  if (!d) return '<p>Dieser Ergebnis-Link ist leider beschädigt.</p>';
   const done = d.runs.filter(r => r.ok).length;
   return `<div class="report"><p style="margin:0"><b>${esc(d.n || 'Unbekannt')}</b> · ${esc(d.t || TOPICS[d.op]?.name + ' Stufe ' + (d.l + 1))}</p>
     <p class="muted small" style="margin:2px 0 10px">${esc(TOPICS[d.op]?.name || d.op)} · Stufe ${d.l + 1} · ${d.m === 'blitz' ? 'Blitzrunde' : 'Training'}${d.min ? ` · mind. ${d.min} %` : ''}${d.by ? ` · Auftrag von <span translate="no">${esc(d.by)}</span>` : ''}</p>
@@ -417,22 +421,28 @@ async function deliver(p) {   // klappt der Versand nicht, bleibt die Meldung im
     return e.status === 429 ? 'ratelimit' : 'queued';
   }
 }
+let flushing = false;
 async function flushOutbox() {
-  if (!CONFIG.reportEndpoint || !ROOT.outbox.length || !navigator.onLine) return;
-  const queue = ROOT.outbox.slice(), rest = [];
-  for (let i = 0; i < queue.length; i++) {
-    try { await postReport(queue[i]); }
-    catch (e) {
-      if (e.status === 400) continue;                          // abgelehnt → verwerfen
-      if (e.status === 429) { rest.push(...queue.slice(i)); break; }   // Ratenbremse → später weiter
-      rest.push(queue[i]);
+  if (flushing || !CONFIG.reportEndpoint || !ROOT.outbox.length || !navigator.onLine) return;
+  flushing = true;
+  const queue = ROOT.outbox.slice(), drop = new Set();
+  try {
+    for (let i = 0; i < queue.length; i++) {
+      try { await postReport(queue[i]); drop.add(queue[i]); }
+      catch (e) {
+        if (e.status === 400) { drop.add(queue[i]); continue; }   // abgelehnt → verwerfen
+        if (e.status === 429) break;                               // Ratenbremse → später weiter
+      }
     }
+  } finally {
+    ROOT.outbox = ROOT.outbox.filter(p => !drop.has(p)); save();   // währenddessen neu hinzugekommene Meldungen bleiben erhalten
+    flushing = false;
   }
-  ROOT.outbox = rest; save();
 }
 // Meldungen dürfen höchstens 16 KB groß sein – zur Not die Rohdaten der Aufgabe weglassen
 function fitSize(p) { if (JSON.stringify(p).length > 15000 && p.task) delete p.task.raw; if (JSON.stringify(p).length > 15000) p.app.userAgent = p.app.userAgent.slice(0, 200); return p; }
 function reportDone(res, payload) {
+  if (!Sheet.open || !$('rForm')) { if (res === 'sent') toast('Danke für deine Meldung! ✓'); return; }   // Panel inzwischen gewechselt/geschlossen
   const box = (icon, color, title, text, extra = '') => `<div class="thanks"><div class="ok" ${color ? `style="color:var(--orange-d);background:rgba(255,116,24,.12)"` : ''}>${icon}</div><h3>${title}</h3><p class="muted">${text}</p>${extra}<button class="btn ${extra ? '' : 'dark'} block" id="thxClose" style="margin-top:8px">${extra ? 'Schließen' : 'Weiter'}</button></div>`;
   if (res === 'sent') $('sheetBody').innerHTML = box('✓', false, 'Danke für deine Meldung!', `Wir schauen sie uns an${ROOT.reporter.email ? ' und melden uns bei Bedarf per E-Mail' : ''}.`);
   else if (res === 'ratelimit') $('sheetBody').innerHTML = box('⏳', true, 'Gespeichert', 'Gerade wurden sehr viele Meldungen gesendet. Deine Meldung ist gespeichert und wird später automatisch übertragen.');
@@ -460,16 +470,33 @@ function renderPromo() {
 }
 
 /* ---------- Links (#auftrag=… / #ergebnis=…) ---------- */
+// Link-Daten kommen von außen: nur bekannte Werte in gültigen Bereichen übernehmen (Schutz vor Schadcode und Abstürzen)
+const clampInt = (v, lo, hi, d) => { v = Math.round(+v); return Number.isFinite(v) ? Math.min(hi, Math.max(lo, v)) : d; };
+const cleanStr = (v, n) => typeof v === 'string' ? v.slice(0, n) : '';
+const cleanDate = v => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : '';
+function cleanAssign(d) {
+  if (!d || typeof d !== 'object' || typeof d.op !== 'string' || !TOPICS[d.op]) return null;
+  const s = Math.round(+d.s);
+  return { i: cleanStr(d.i, 40), t: cleanStr(d.t, 80), by: cleanStr(d.by, 60), op: d.op, l: clampInt(d.l, 0, 4, 0), m: d.m === 'blitz' ? 'blitz' : 'training',
+    r: clampInt(d.r, 1, 10, 1), min: clampInt(d.min, 0, 100, 0), due: cleanDate(d.due), s: Number.isFinite(s) ? s : 0 };
+}
+function cleanRuns(runs) {
+  return (Array.isArray(runs) ? runs : []).slice(0, 60).filter(r => r && typeof r === 'object').map(r => ({ d: cleanDate(r.d), sc: clampInt(r.sc, 0, 1e7, 0), c: clampInt(r.c, 0, 9999, 0),
+    w: clampInt(r.w, 0, 9999, 0), ms: clampInt(r.ms, 0, 1e7, 0), ok: !!r.ok, mi: (Array.isArray(r.mi) ? r.mi : []).slice(0, 20).map(x => (Array.isArray(x) ? x : []).slice(0, 3).map(y => cleanStr(String(y ?? ''), 120))) }));
+}
+function cleanResult(d) { const a = cleanAssign(d); if (!a) return null; a.n = cleanStr(d.n, 60); a.runs = cleanRuns(d.runs); return a; }
+
 function handleHash() {
   const h = location.hash;
   const m = h.match(/^#(auftrag|ergebnis)=([\w-]+)/);
   if (!m) return;
   history.replaceState(null, '', location.pathname + location.search);
   let data; try { data = b64d(m[2]); } catch { toast('Der Link ist leider beschädigt.'); return; }
-  if (m[1] === 'ergebnis') { openSheet('resultView', { data }); return; }
-  if (!data.op || !TOPICS[data.op]) return;
-  if (S.assign && S.assign.i === data.i) { toast('Diesen Auftrag hast du schon.'); return; }
-  S.assign = { ...data, runs: [] }; save();
+  if (m[1] === 'ergebnis') { const r = cleanResult(data); if (r) openSheet('resultView', { data: r }); else toast('Der Link ist leider beschädigt.'); return; }
+  const a = cleanAssign(data);
+  if (!a) { toast('Der Link ist leider beschädigt.'); return; }
+  if (S.assign && S.assign.i === a.i) { toast('Diesen Auftrag hast du schon.'); return; }
+  S.assign = { ...a, runs: [] }; save();
   if (['game', 'duel'].includes(currentScreen())) { toast('📝 Neuer Auftrag gespeichert – du findest ihn auf der Startseite.', 2600); return; }
   if (Sheet.open) closeSheet();
   goHome();

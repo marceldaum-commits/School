@@ -211,18 +211,27 @@ async function classApi(path, body) {
 }
 const classCode = s => String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8);
 const nickOk = s => /^[\p{L}\p{N} _.-]{2,20}$/u.test(s);
+let classSending = false;
 async function submitClassPoints(entry) {
-  if (!CONFIG.classApi || !S.klasse) return;
-  const queue = [...(S.klassePending || []), ...(entry ? [entry] : [])], rest = [];
-  for (const e of queue) {
-    try { await classApi('/klasse/punkte', { code: S.klasse.code, spieler: S.klasse.spieler, ...e }); }
-    catch (err) { if (err.status === 404 || err.status === 403) { S.klasse = null; break; } if (err.status !== 400) rest.push(e); }
-  }
-  S.klassePending = rest.slice(-50); save();
+  const P = S;                                        // Profil festhalten (Wechsel während des Sendens)
+  if (entry) { P.klassePending = [...(P.klassePending || []), entry].slice(-50); save(); }
+  if (classSending || !CONFIG.classApi || !P.klasse || !(P.klassePending || []).length) return;
+  classSending = true;
+  try {
+    for (const e of P.klassePending.slice()) {
+      const kl = P.klasse; if (!kl) break;
+      try { await classApi('/klasse/punkte', { code: kl.code, spieler: kl.spieler, ...e }); P.klassePending = P.klassePending.filter(x => x !== e); }
+      catch (err) {
+        if (err.status === 404 || err.status === 403) { P.klasse = null; P.klassePending = []; break; }
+        if (err.status === 400) P.klassePending = P.klassePending.filter(x => x !== e); else break;   // offline/Server: später erneut
+      }
+      save();
+    }
+  } finally { classSending = false; save(); }
 }
 function rankingHtml(d) {
   if (!d.eintraege || !d.eintraege.length) return '<p class="muted">Diese Woche hat noch niemand Punkte gesammelt. Sei die/der Erste!</p>';
-  return `<ol class="ranking">${d.eintraege.map((e, i) => `<li class="${e.ich ? 'me' : ''}"><span class="rk">${['🥇', '🥈', '🥉'][i] || i + 1}</span><b translate="no">${esc(e.spitzname)}</b><span class="pt">${e.punkte} P.</span></li>`).join('')}</ol>`;
+  return `<ol class="ranking">${d.eintraege.map((e, i) => `<li class="${e.ich ? 'me' : ''}"><span class="rk">${['🥇', '🥈', '🥉'][i] || i + 1}</span><b translate="no">${esc(e.spitzname)}</b><span class="pt">${Math.round(+e.punkte) || 0} P.</span></li>`).join('')}</ol>`;
 }
 
 /* ================= Panels ================= */
@@ -308,7 +317,7 @@ Object.assign(PANELS, {
       <div id="rankBox"><p class="muted">Rangliste wird geladen …</p></div>
       <div class="row2" style="margin-top:12px"><button class="btn" id="klRefresh">Aktualisieren</button><button class="btn" id="klLeave">Klasse verlassen</button></div>`,
       async init() {
-        const load = async () => { try { await submitClassPoints(); const d = await classApi(`/klasse/${encodeURIComponent(S.klasse.code)}/rangliste?spieler=${encodeURIComponent(S.klasse.spieler)}`); $('rankBox').innerHTML = `${d.bis ? `<p class="small muted">Diese Woche bis ${fmtDay(d.bis)}</p>` : ''}${rankingHtml(d)}`; } catch (e) { $('rankBox').innerHTML = `<p class="status err">${esc(e.message)}</p>`; } };
+        const load = async () => { try { await submitClassPoints(); const d = await classApi(`/klasse/${encodeURIComponent(S.klasse.code)}/rangliste?spieler=${encodeURIComponent(S.klasse.spieler)}`); $('rankBox') && ($('rankBox').innerHTML = `${d.bis ? `<p class="small muted">Diese Woche bis ${fmtDay(d.bis)}</p>` : ''}${rankingHtml(d)}`); } catch (e) { $('rankBox') && ($('rankBox').innerHTML = `<p class="status err">${esc(e.message)}</p>`); } };
         $('klRefresh').onclick = load; load();
         $('klLeave').onclick = async () => {
           if (!confirm(tr('Klasse wirklich verlassen? Dein Eintrag in der Rangliste wird gelöscht.'))) return;
@@ -352,7 +361,7 @@ Object.assign(PANELS, {
   },
   rankingView(o) {
     return { title: `Rangliste <span translate="no">${esc(o.name || o.code)}</span>`, html: '<div id="rankBox"><p class="muted">Wird geladen …</p></div>',
-      async init() { try { const d = await classApi(`/klasse/${encodeURIComponent(o.code)}/rangliste`); $('rankBox').innerHTML = rankingHtml(d); } catch (e) { $('rankBox').innerHTML = `<p class="status err">${esc(e.message)}</p>`; } } };
+      async init() { try { const d = await classApi(`/klasse/${encodeURIComponent(o.code)}/rangliste`); $('rankBox') && ($('rankBox').innerHTML = rankingHtml(d)); } catch (e) { $('rankBox') && ($('rankBox').innerHTML = `<p class="status err">${esc(e.message)}</p>`); } } };
   },
 });
 

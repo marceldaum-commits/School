@@ -39,6 +39,7 @@
   </button>
   <div class="card assign" id="assignCard" hidden></div>
   <div class="card challenge advent-card" id="adventCard" hidden></div>
+  <div class="card challenge reise-card" id="reiseCard" hidden></div>
   <div class="card challenge merk-card" id="merkCard" hidden></div>
   <div class="card challenge" id="challengeCard"></div>
   <div class="card challenge" id="classCard" hidden></div>
@@ -81,7 +82,7 @@
       <div class="expr" id="expr"></div>
       <div class="hint" id="hint"></div>
       <div class="ansrow"><span class="pre" id="pre"></span><div class="answer" id="answer"></div><span class="unit" id="unit"></span></div>
-      <div class="feedback" id="feedback"></div>
+      <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
     </div>
     <div class="solution" id="solution" hidden></div>
   </div>
@@ -128,6 +129,7 @@
 <script src="js/memory.js"></script>
 <script src="js/merkvis.js"></script>
 <script src="js/blitz.js"></script>
+<script src="js/reise.js"></script>
 <script src="js/reminder.js"></script>
 <script>init(); i18nStart();</script>
 </body>

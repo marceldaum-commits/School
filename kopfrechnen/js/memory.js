@@ -212,7 +212,7 @@ function merkBeforeTask(t) {
   const c = merkState().c[t.card];
   if (!c && !G_MERK.intro.has(t.card)) { G_MERK.intro.add(t.card); return merkOverlay(t, true); }
   if (!c || c.b <= 1) $('hint').insertAdjacentHTML('beforeend', ' <button class="mtip" id="mTip">💡 Bild-Tipp</button>');
-  $('mTip') && ($('mTip').onclick = e => { e.stopPropagation(); G.merkTip = true; merkOverlay(t, false); });
+  $('mTip') && ($('mTip').onclick = e => { e.stopPropagation(); if (!G || G.locked || G.waiting || G.task !== t) return; G.merkTip = true; merkOverlay(t, false); });
 }
 /** Overlay im Aufgabenfenster: Merk-Moment (mit Lösung) oder Bild-Tipp (ohne Lösung) */
 function merkOverlay(t, mode) {
@@ -229,6 +229,7 @@ function merkOverlay(t, mode) {
     ${mode === 'wrong' && t.w && t.w.length ? `<ol class="steps">${t.w.map(s => `<li>${esc(s)}</li>`).join('')}</ol>` : ''}
     <button class="btn primary block" id="solNext">${{ intro: 'Jetzt du!', tip: 'Zurück zur Aufgabe', wrong: 'Weiter' }[mode]} <span class="muted-on-dark">(OK)</span></button></div></div>`);
   $('solNext').onclick = continueAfterSolution;
+  $('solNext').focus({ preventScroll: true });
   if (mode === 'intro') Sound.hint();
 }
 /** richtig im Merk-Training: Stern fliegt, bei „sitzt fest“ kleine Feier */

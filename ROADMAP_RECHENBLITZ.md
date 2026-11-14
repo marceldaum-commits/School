@@ -32,7 +32,7 @@ Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erl
 |---|---|---|---|
 | 1 ✅ | Sa 14.11. | **Merk-Training** (3.6.0) | Verteilte Wiederholung (Leitner/Intervalle) für Einmaleins, Kernaufgaben, Brüche usw.: jede Aufgabe hat eine Merkstärke, „Heute wiederholen“ als 3-Minuten-Runde, Anzeige „X Aufgaben sitzen fest“ |
 | 2 ✅ | So 15.11. (vorgezogen 14.11.) | **Maskottchen „Blitz“** (3.8.0) + Merksätze, Sternbilder, Was-ist-neu | Eigenes, gezeichnetes SVG-Maskottchen (Fuchs/Blitz) mit Stimmungen (freut sich, denkt nach, tröstet); Standard-Runde 3–5 Minuten; Texte kürzen, mehr Symbole |
-| 3 | Mo 16.11. | **Rechen-Reise (Kapitel 1–3)** | Story-Karte statt Liste: Etappen à 3–5 Min., kleine Geschichte je Kapitel, passend zur Klassenstufe |
+| 3 ✅ | Mo 16.11. (vorgezogen 14.11.) | **Rechen-Reise (Kapitel 1–3)** (3.9.0) | Story-Karte statt Liste: Etappen à 3–5 Min., kleine Geschichte je Kapitel, passend zur Klassenstufe |
 | 4 | Di 17.11. | **Rechen-Reise (Kapitel 4–6)** | Weitere Kapitel, Belohnungsbilder, Urkunde je Kapitel |
 | 5 | Mi 18.11. | **Rechengarten (gemütlich)** | Gelöste Aufgaben lassen Pflanzen wachsen; keine Serien-Strafe: „Tage diese Woche“ statt Tage in Folge, Pausen ohne Verlust |
 | 6 | Do 19.11. | **Zahlen-Dungeon 1** | Roguelike: Räume, Gegner = Aufgaben, Lebenspunkte, kurze Läufe (3–5 Min.) |
@@ -64,3 +64,4 @@ Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erl
 - 14.11. – 3.6.0: Merk-Training (verteilte Wiederholung, 185 Kernaufgaben in 6 Stapeln, „Heute wiederholen“ in 3 Minuten)
 - 14.11. – 3.7.0: Merk-Training erlebbar (Marcel: „fesseln, mit Bild und Animation“) – bewegte Bilder je Aufgabe, Merk-Moment, Bild-Tipp, Merk-Himmel mit Sternbildern
 - 14.11. – 3.8.0: Maskottchen Blitz, Merksätze zu allen 185 Merk-Aufgaben, 21 Sternbilder mit Album, „Was ist neu?“-Karte, roter Punkt am Menü-Knopf entfernt (Tag 2 vorgezogen; morgen weiter mit Tag 3 Rechen-Reise)
+- 14.11. – 3.9.0: Rechen-Reise Kapitel 1–3 (Zahlenwald, Rechenfluss, Funkenhöhle) + Fehler-Check mit 20 Korrekturen (Sicherheit der Links, Timing, Fortschritt, Postausgang, Offline-Cache, Sommerzeit, Barrierefreiheit). Nächster Tag: Rechen-Reise Kapitel 4–6.
