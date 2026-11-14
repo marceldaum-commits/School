@@ -41,6 +41,13 @@ function fillArgs(tr, args) {
 }
 // Zahlen- und Rechenzeichen-Schreibweise der Zielsprache
 function i18nNumbers(s) {
+  // Versionsnummern (3.7.2 bzw. „3.7.2 · 14/11/2026“) nicht wie Zahlen umformen
+  const keep = [];
+  s = s.replace(/\b\d{1,2}\.\d{1,2}\.\d{1,2}\b(?! ?\d)(?: · [\d./]+)?/g, m => { keep.push(m); return `\u0001${keep.length - 1}\u0001`; });
+  s = i18nNumbersCore(s);
+  return keep.length ? s.replace(/\u0001(\d+)\u0001/g, (m, i) => keep[+i]) : s;
+}
+function i18nNumbersCore(s) {
   if (I18N.lang === 'en') {
     s = s.replace(/(\d)([.,])(?=(\d)|$)/g, (m, d, sep, nx) => d + (sep === ',' ? '.' : nx !== undefined ? ',' : '.'));
     s = s.replace(/([\d)x²³]) · (?=[\d(x√−])/g, '$1 × ').replace(/([\d)x²³]) : (?=[\d(x√−])/g, '$1 ÷ ');   // nur in Rechnungen, nicht als Trennpunkt

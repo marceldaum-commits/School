@@ -85,6 +85,7 @@ const PANELS = {
         <div class="chips" id="langSeg"><button data-v="auto" class="${(ROOT.lang || 'auto') === 'auto' ? 'sel' : ''}">Automatisch</button>${Object.entries(I18N.langs).map(([k, n]) => `<button data-v="${k}" translate="no" class="${ROOT.lang === k ? 'sel' : ''}">${n}</button>`).join('')}</div></div>
       <div class="setrow col"><div><b>Design</b><span>Hell, dunkel oder wie das Gerät</span></div>
         <div class="seg" id="themeSeg">${[['auto', 'Automatisch'], ['light', 'Hell'], ['dark', 'Dunkel']].map(([v, l]) => `<button data-v="${v}" class="${S.settings.theme === v ? 'sel' : ''}">${l}</button>`).join('')}</div></div>
+      ${IS_NATIVE && CONFIG.apkUpdates ? `<button class="mi" id="btnUpd"><div class="ico">⬆️</div><div><b>Nach Update suchen</b><span>Installiert: Version <span translate="no">${versionLabel()}</span></span></div></button>` : ''}
       <button class="mi" id="btnReset"><div class="ico">↺</div><div><b>Fortschritt zurücksetzen</b><span>Punkte, Rekorde, Abzeichen und Fehlerkiste dieses Profils löschen</span></div></button>
       </div>`, init: initSettings };
   },
@@ -235,6 +236,13 @@ function initSettings() {
   $('klSeg').onclick = e => { const b = e.target.closest('button'); if (!b) return; S.settings.klasse = +b.dataset.v; homeShowAll = false; save(); $('klSeg').querySelectorAll('button').forEach(x => x.classList.toggle('sel', x === b)); renderHome(); };
   $('langSeg').onclick = e => { const b = e.target.closest('button'); if (b) setLanguage(b.dataset.v); };
   $('themeSeg').onclick = e => { const b = e.target.closest('button'); if (!b) return; S.settings.theme = b.dataset.v; save(); applyTheme(); $('themeSeg').querySelectorAll('button').forEach(x => x.classList.toggle('sel', x === b)); };
+  $('btnUpd') && ($('btnUpd').onclick = async () => {
+    toast('Suche nach Updates …', 1200);
+    const st = await apkUpdateCheck(true);
+    if (!st) toast('Gerade keine Verbindung – bitte später nochmal');
+    else if (apkNewer(st.ver) && st.url) { closeSheet(); toast(`Neue Version ${esc(st.ver)} gefunden`); }
+    else toast('Du hast die neueste Version ✓');
+  });
   $('btnReset').onclick = () => {
     if (!confirm(tr(`Wirklich den gesamten Fortschritt von „${profile().name}“ löschen? Das kann nicht rückgängig gemacht werden.`))) return;
     const keep = { settings: S.settings, sel: S.sel };
@@ -467,6 +475,6 @@ function init() {
   if (ROOT.seenVersion && ROOT.seenVersion !== APP_VERSION) setTimeout(() => toast(`<span translate="no">✨ ${esc(tr('Neu in Version'))} ${APP_VERSION}: ${esc(tr(CHANGELOG[0][2][0]))}</span>`, 3200), 1200);
   ROOT.seenVersion = APP_VERSION; save();
   renderPromo(); renderHome(); handleHash(); handleParams(); flushOutbox(); submitClassPoints(); if (S.advent && S.advent.voucherPending) fetchVoucher();
-  if (IS_NATIVE) Reminder.startup().catch(() => {});   // APK: alle Dateien liegen im Paket, kein Service Worker nötig
+  if (IS_NATIVE) { Reminder.startup().catch(() => {}); apkUpdateCheck(); }   // APK: alle Dateien liegen im Paket, kein Service Worker nötig
   else if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').then(() => Reminder.startup()).catch(() => {});
 }

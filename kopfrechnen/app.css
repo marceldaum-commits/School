@@ -704,3 +704,5 @@ button.badge{font:inherit;cursor:pointer}
 .merk-card .merk-ico,:root[data-theme=dark] .merk-card .merk-ico{background:none;padding:0;overflow:hidden}
 @media (prefers-color-scheme:dark){:root[data-theme=auto] .merk-card .merk-ico{background:none}}
 .merk-ico svg{display:block;width:44px;height:44px}
+.apk-upd{display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px solid var(--orange)}
+.apk-upd .ch-ico{background:rgba(255,116,24,.16)}

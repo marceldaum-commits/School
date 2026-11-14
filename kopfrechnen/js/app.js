@@ -15,6 +15,7 @@ const CONFIG = Object.assign({
   utm: false,
   publicUrl: '',                                        // Adresse für QR-Codes, Flyer, Urkunden, Einladungen
   referralUrl: 'https://www.mathenachhilfe-online.com/freunde-werben/',
+  apkUpdates: null,                                     // APK: { repo: 'owner/name' } → Updates über GitHub-Releases; null = aus
   push: null,                                           // Erinnerung aufs Handy: { endpoint: '/api/push', time: '17:00' }; null = ausgeblendet
   classApi: '',                                         // Server für die Klassen-Challenge (z. B. '/api'); leer = ausgeblendet
   advent: true, adventPreview: 'auto', adventRaffleUrl: '', adventRaffleMin: 12,

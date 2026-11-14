@@ -46,6 +46,10 @@ Meldet Maven Central „429 Too Many Requests“, eine Minute warten und neu sta
 
 **Signieren:** Der Upload-Schlüssel liegt nur bei Marcel (Bitwarden), nie im Repo (`*.jks`/`*.keystore` stehen in `.gitignore`). Für `release` die Signier-Angaben in `android/app/build.gradle` (`signingConfigs`) über Umgebungsvariablen eintragen, oder in Android Studio „Generate Signed Bundle“ nutzen. Google verwaltet den eigentlichen App-Signaturschlüssel (Play App Signing).
 
+## Selbst-Aktualisierung der Test-APK (3.7.2)
+
+Die APK fragt einmal täglich die neueste Release-Seite ab (`apkUpdates` in `config.js`). Gibt es eine neuere Version, zeigt die Startseite „Jetzt aktualisieren“. Der Knopf lädt die APK, Android installiert sie als Update. **Für die Play-Store-Fassung `apkUpdates: null` setzen.**
+
 ## Release-Seiten auf GitHub (Marcel 14.11.2026, Variante 1)
 
 Bei jedem Push auf `rechenblitz-test`, der `kopfrechnen/` oder `android-app/` ändert, baut GitHub (`.github/workflows/rechenblitz-release.yml`) automatisch:

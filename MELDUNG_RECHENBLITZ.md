@@ -4,6 +4,26 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 14.11.2026 (23) – Android-App aktualisiert sich selbst über GitHub-Releases (3.7.2)
+
+- **Marcel 14.11.:** „Kann man in der App einen Auto-Updater machen per Git, damit man es (solange es nicht public ist) auf dem Handy aktuell hat?“
+- **Umsetzung, nur in der APK (`js/native.js`, `config.js` → `apkUpdates: { repo: 'marceldaum-commits/School' }`):**
+  - Höchstens einmal am Tag fragt die App `https://api.github.com/repos/marceldaum-commits/School/releases/latest` ab.
+  - Ist die Release-Seite `rechenblitz-X.Y.Z` neuer, erscheint oben auf der Startseite die Karte „⬆️ Neue Version X.Y.Z ist da – Jetzt aktualisieren“.
+  - Der Knopf öffnet den APK-Download. Android fragt dann „Installieren?“. Weil der Test-Schlüssel gleich bleibt, ist das ein Update, und der Lernstand bleibt erhalten.
+  - In den Einstellungen gibt es „Nach Update suchen“ mit der installierten Version.
+  - Die Web-App fragt GitHub nie ab, das ist geprüft. Für die spätere Play-Store-Fassung wird `apkUpdates: null` gesetzt.
+- **Release-Seiten** entstehen automatisch beim Push auf `rechenblitz-test` (`.github/workflows/rechenblitz-release.yml`), sobald Marcel das Repo-Geheimnis `RECHENBLITZ_TEST_KEYSTORE` hinterlegt hat. Bis dahin gibt es keine Release-Seiten, und der Updater zeigt nichts an.
+- **Bitte Datenschutz 10b ergänzen:** Die Android-Testfassung außerhalb des Play Stores fragt einmal täglich bei GitHub (Microsoft) nach neuen Versionen. Dabei sieht GitHub die IP-Adresse. Es werden keine weiteren Daten gesendet.
+- **Nebenbei behoben:** Versionsnummern wurden im Englischen wie Zahlen umgeformt („3,8,0“, „·“ → „×“). Jetzt bleiben sie unverändert, Rechnungen werden weiter richtig umgeformt.
+- Getestet mit nachgebildeter APK und nachgebildeter GitHub-Antwort in DE/EN/UK:
+  - neuere Version → Karte und Download;
+  - gleiche Version → „Du hast die neueste Version ✓“;
+  - zweiter Start am selben Tag → keine neue Anfrage;
+  - Web-App → 0 Anfragen.
+  Dazu 320 px und die komplette Regression.
+- **Neue APK nötig: ja**, einmalig von Hand: 3.7.2 mit Updater liegt in Marcels Drive. Ab dann kommen Updates über die Release-Seiten.
+
 ## 14.11.2026 (22) – Danke für die Freigabe 3.7.0 · Startkarten-Symbol korrigiert (3.7.1)
 
 - Freigabe 3.7.0 (live = 2819194, 11:31) ist angekommen. Danke!

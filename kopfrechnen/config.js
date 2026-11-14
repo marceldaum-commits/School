@@ -15,6 +15,9 @@ window.RECHENBLITZ_CONFIG = {
   classApi: '/api',
   // Erinnerung aufs Handy (Web-Push, Leitstand-Übergabe 38): Server-Pfad und vorgeschlagene Uhrzeit; endpoint '' = ausgeblendet
   push: { endpoint: '/api/push', time: '17:00' },
+  // Nur in der Android-App (APK, solange nicht im Play Store): neue Versionen von den GitHub-Release-Seiten anbieten.
+  // Für die Play-Store-Fassung auf null setzen (dort aktualisiert Google Play).
+  apkUpdates: { repo: 'marceldaum-commits/School' },
   // Adventskalender: Karte ab 15.11., Türchen 1.–24.12., nachholbar bis 6.1.
   // adventPreview: 'auto' = auf Testseiten alle Türchen offen; adventRaffleUrl = Seite zur Verlosung (leer = keine)
   advent: true,
