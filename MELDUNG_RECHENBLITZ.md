@@ -4,6 +4,34 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 14.11.2026 (26) – Maskottchen Blitz, Merksätze, Sternbilder, „Was ist neu?“ (3.8.0)
+
+- **Marcel 14.11.:** „Alle 4, leg los.“ Außerdem: „Bei dem Button unten rechts den roten Punkt entfernen – das sieht aus, als wär immer eine Mitteilung da.“
+- **Neu, Datei `js/blitz.js` – Maskottchen „Blitz“:**
+  - Ein orangefarbener Fuchs mit Blitz-Schwanz und navyblauem Halstuch in den Farben der Website. Eigene SVG-Zeichnung mit 6 Stimmungen: freut sich, staunt, denkt nach, tröstet, winkt, jubelt.
+  - Blitz grüßt oben auf der Startseite je nach Tageszeit und Lage („Im Merk-Training warten 6 Aufgaben auf dich“).
+  - Er jubelt im Spiel bei Serien (3, 5, 10 …) und nach einem Comeback, tröstet im Lösungsweg, erzählt im Merk-Training die Merksätze und kommentiert das Ergebnis.
+  - In den Einstellungen abschaltbar („Maskottchen Blitz“). Bei „Bewegung reduzieren“ ohne Animation.
+- **Merksätze** (`merkStory` in `js/merkvis.js`): Für jede der 185 Merk-Aufgaben gibt es eine Geschichte oder einen Trick, zum Beispiel:
+  - „5, 6, 7, 8 → 56 = 7 · 8“, Spinnenbeine, Marienkäferpunkte, Wochen, Schachbrett;
+  - Neuner-, Fünfer- und Verdoppeln-Trick, Zehnerfreunde;
+  - Brüche über Geld („1/4 = 25 Cent“).
+  Der 💡 Bild-Tipp gibt nur einen Hinweis, ohne das Ergebnis zu verraten.
+- **Sternbilder mit Namen:**
+  - 21 Sternbilder, zum Beispiel „Die Siebener-Schlange 🐍“, „Der Achter-Drache 🐉“, „Das Quadrat-Schloss 🏰“, „Die Komma-Pizza 🍕“.
+  - Im Merk-Himmel werden die festen Sterne eines Sternbilds verbunden. Fertige Sternbilder leuchten.
+  - Wenn ein Sternbild fertig wird: Feier mit Blitz und eine Karte „Neues Sternbild entdeckt!“ im Ergebnis.
+  - **Sternbilder-Album** in der Merk-Übersicht (unentdeckte zeigen ❔).
+  - Neues Abzeichen „Sternbild-Entdecker“.
+- **„Was ist neu?“** erscheint nach einem Update einmal als Karte mit Blitz und den Neuerungen (statt eines kurzen Hinweises). Ganz neue Nutzer begrüßt Blitz mit 3 Schritten zum Start.
+- **Roter Punkt am Menü-Knopf unten rechts entfernt**, wie von Marcel gewünscht.
+- **Getestet:**
+  - alle Merksätze und Tipps, Sternbild-Feier, Album, Begrüßung, Neuigkeiten, Spiel-Auftritte, Blitz aus;
+  - DE/EN/UK ohne fehlende Übersetzungen (1145 Einträge), 320 px und PC;
+  - offline, APK-Modus, Updater, keine Konsolenfehler, keine fremden Abrufe.
+- **Neue APK: 3.8.0.** GitHub baut sie beim Push selbst (Release-Seite `rechenblitz-3.8.0`), die Android-App meldet das Update von sich aus.
+- Bitte prüfen und live freigeben.
+
 ## 14.11.2026 (25) – FREIGABE-STAND 3.7.2: Startbild Merk-Training ist erkennbar
 
 - **Antwort auf eure Nachricht 15:05:** Das Startbild ist bereits umgesetzt, seit 3.7.1, siehe Meldung (22). Auf der Startkarte „Merk-Training“ steht statt des dunklen Rechtecks ein klares Symbol: Mondsichel und goldenes Sternbild auf Nachtblau, 44 px, abgerundet wie 📆/🏫.

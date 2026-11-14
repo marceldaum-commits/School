@@ -36,7 +36,7 @@ const EMOJIS = ['🦊', '🐼', '🦁', '🐯', '🐸', '🐙', '🦄', '🐧', 
 /* ================= Speicher & Profile ================= */
 const PROFILE_DEFAULT = () => ({
   xp: 0, total: 0, best: {}, box: {}, days: { last: '', streak: 0 }, today: { date: '', solved: 0 },
-  settings: { sound: true, speech: false, auto: true, theme: 'auto', klasse: 0 }, sel: { op: 'mul', lvl: 'auto' },
+  settings: { sound: true, speech: false, auto: true, theme: 'auto', klasse: 0, blitz: true }, sel: { op: 'mul', lvl: 'auto' },
   autoLvl: {}, facts: {}, stats: {}, hist: {}, badges: {}, star3: {}, played: {}, challenge: {}, assign: null, test: null, zenCount: 0, advent: null, klasse: null, klassePending: [], promoDay: '',
 });
 let ROOT, S;
@@ -202,6 +202,7 @@ const BADGES = [
   ['advent24', '🌟', 'Weihnachtsprofi', 'Alle 24 Türchen geschafft'],
   ['klasse', '🏫', 'Teamplayer', 'Einer Klassen-Challenge beigetreten'],
   ['merk25', '🧠', 'Gedächtnis-Profi', '25 Aufgaben sitzen fest im Merk-Training'],
+  ['sternbild', '✨', 'Sternbild-Entdecker', 'Ein ganzes Sternbild im Merk-Training geschafft'],
 ].map(([id, icon, name, desc]) => ({ id, icon, name, desc }));
 let newBadges = [];
 function award(id) { if (!S.badges[id]) { S.badges[id] = todayStr(); newBadges.push(id); } }
@@ -246,6 +247,7 @@ function renderHome() {
   $('sToday').textContent = `${S.today.date === todayStr() ? S.today.solved : 0}/${DAILY_GOAL}`;
   renderSoundIcons();
   renderAssignCard(); renderChallengeCard(); renderMerkCard();
+  if ($('bzHome')) $('bzHome').innerHTML = bzOn() ? blitzSay('wave', blitzGreeting(), 54) : '';
 
   // Themen: die wichtigsten 9 + „Mehr“; im Klassenmodus nur passende
   const k = S.settings.klasse, vis = k && !homeShowAll ? classTopicSet(k) : null;
@@ -508,15 +510,18 @@ function submit() {
       }
       if (G.streak % 5 === 0) {
         setTimeout(() => Sound.milestone(), 150);
-        toast(G.streak >= 15 ? `<b>${G.streak}</b> richtig in Folge – Wahnsinn!` : G.streak >= 10 ? `<b>${G.streak}</b> richtig in Folge – stark!` : '<b>5</b> richtig in Folge!');
+        if (bzOn()) blitzPop('cheer', `<span>${BZ_STREAK[G.streak] || BZ_STREAK[20]}</span> <b>${G.streak}</b> <span>richtig in Folge!</span>`);
+        else toast(G.streak >= 15 ? `<b>${G.streak}</b> richtig in Folge – Wahnsinn!` : G.streak >= 10 ? `<b>${G.streak}</b> richtig in Folge – stark!` : '<b>5</b> richtig in Folge!');
         Confetti.burst(40 + G.streak * 2);
-      }
+      } else if (G.streak === 3 && bzOn() && !t.card) blitzPop('happy', BZ_STREAK[3]);
+      else if (G.comeback && bzOn() && !t.card) blitzPop('happy', 'Siehst du – geschafft!');
+      G.comeback = false;
     }
     adaptStep(true, dt); updateHud(); save();
     setTimeout(() => { if (!G.over) { G.locked = false; nextTask(); } }, cfg.calm ? 700 : 400);
     return;
   }
-  G.wrong++; G.streak = 0;
+  G.wrong++; G.streak = 0; G.comeback = true;
   G.mistakes.push({ ...lastAnswered });
   S.box[key] = { topic: t.topic, lvl: t.lvl, e: t.e, a: t.a, hint: t.hint, unit: t.unit, pre: t.pre, noEq: t.noEq, eqSign: t.eqSign, story: t.story, w: t.w, need: 2 };
   if (cfg.calm || cfg.quiet) Sound.soft(false); else { Sound.wrong(); vibrate(60); }
@@ -530,9 +535,10 @@ function submit() {
 /* Lösungsweg nach einem Fehler */
 function showSolution(t) {
   if (!G || G.over) return;
+  $('bzPop')?.remove();
   if (t.card) return merkOverlay(t, 'wrong');   // Merk-Training: große Karte mit Bild
   G.waiting = true;
-  $('solution').innerHTML = `<div class="sol-head"><b>So geht’s</b><span>Richtig ist: <span class="fx">${esc(showAns(t.a))}${t.unit ? ' ' + esc(t.unit) : ''}</span></span></div>
+  $('solution').innerHTML = `<div class="sol-head">${bzOn() ? `<span class="sol-bz">${blitzSvg('comfort', 40)}</span>` : ''}<b>So geht’s</b><span>Richtig ist: <span class="fx">${esc(showAns(t.a))}${t.unit ? ' ' + esc(t.unit) : ''}</span></span></div>
     <ol class="steps">${(t.w || []).map(s => `<li>${esc(s)}</li>`).join('')}</ol>
     <button class="btn primary block" id="solNext">Weiter <span class="muted-on-dark">(OK)</span></button>`;
   $('solution').hidden = false;
@@ -661,6 +667,7 @@ function renderResult(r) {
   if (G.adapt) xpText += ` · Auto-Stufe jetzt ${G.lvl + 1}`;
   $('result').innerHTML = `
     <h2>${title}</h2>
+    ${bzOn() ? blitzSay(G.mode === 'test' || cfg.calm ? 'happy' : (r.stars ?? 1) >= 2 ? 'cheer' : (r.stars ?? 1) === 1 ? 'happy' : 'comfort', esc(blitzResultLine(r.stars ?? 1, cfg.calm ? 'zen' : G.mode)), 60) : ''}
     ${r.stars != null ? `<div class="stars" id="rStars">${STAR + STAR + STAR}</div>` : ''}
     ${cfg.points ? `<div class="card"><div class="big">${G.score}</div><div class="muted">Punkte</div>${r.newBest ? '<span class="newbest">Neuer Rekord!</span>' : ''}</div>` : ''}
     ${r.extra}

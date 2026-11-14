@@ -67,6 +67,20 @@ const PANELS = {
       <div class="status" id="rStatus" role="status"></div></form>`, init: initReport, focus: 'rMsg' };
   },
 
+  whatsnew(o = {}) {
+    const items = CHANGELOG.filter(([v]) => verNum(v) > verNum(o.since || '0')).slice(0, 4);
+    return { title: 'Neu in Rechenblitz', html: `<div class="wn">${bzOn() ? blitzSay('wave', 'Schau mal, was es Neues gibt!', 64) : ''}
+      ${items.map(([v, d, its]) => `<div class="wn-v"><span translate="no">Version ${v}</span> · ${fmtDateShort(d)}</div><ul class="wn-list">${its.map(i => `<li><span class="wn-i">✨</span><span>${esc(i)}</span></li>`).join('')}</ul>`).join('')}
+      <button class="btn primary block" id="wnGo">Los geht’s!</button><button class="linkbtn" data-go="news" style="align-self:center">Alle Neuerungen ansehen</button></div>`,
+      init() { $('wnGo').onclick = closeSheet; } };
+  },
+  welcome() {
+    return { title: 'Willkommen!', html: `<div class="wn">${blitzSay('wave', '<b>Hallo, ich bin Blitz!</b> Ich helfe dir beim Kopfrechnen – mit Tricks, Bildern und ganz viel Jubel.', 72)}
+      <ul class="wn-list"><li><span class="wn-i">1️⃣</span><span>Wähle ein Thema – oder lass die App die Stufe finden.</span></li>
+      <li><span class="wn-i">2️⃣</span><span>Drück „Los geht’s“ und rechne so schnell du kannst.</span></li>
+      <li><span class="wn-i">🧠</span><span>Im Merk-Training wird jede gemerkte Aufgabe ein Stern an deinem Himmel.</span></li></ul>
+      <button class="btn primary block" id="wnGo">Los geht’s!</button></div>`, init() { $('wnGo').onclick = closeSheet; } };
+  },
   news() {
     return { title: 'Was ist neu?', html: `<div class="news">${CHANGELOG.map(([v, d, items]) => `<div class="nv"><div class="nv-head"><b translate="no">Version ${v}</b><span>${fmtDateShort(d)}</span></div><ul>${items.map(i => `<li>${esc(i)}</li>`).join('')}</ul></div>`).join('')}</div>` };
   },
@@ -78,6 +92,7 @@ const PANELS = {
       ${sw('sound', S.settings.sound, 'Ton', 'Klänge bei richtig, falsch und Serien')}
       ${sw('speech', S.settings.speech, 'Aufgaben vorlesen', 'Der Browser liest jede Aufgabe vor')}
       ${sw('auto', S.settings.auto, 'Automatisch prüfen', 'Prüfen, sobald genug Stellen eingegeben sind')}
+      ${sw('blitz', S.settings.blitz !== false, 'Maskottchen Blitz', 'Blitz der Fuchs feuert dich an und erklärt Tricks')}
       ${Reminder.supported() || isIOS() ? reminderHtml() : ''}
       <div class="setrow col"><div><b>Klassenstufe</b><span>Zeigt passende Themen und schlägt Stufen vor</span></div>
         <div class="chips" id="klSeg">${[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(k => `<button data-v="${k}" class="${S.settings.klasse === k ? 'sel' : ''}">${k || 'Alle'}</button>`).join('')}</div></div>
@@ -228,7 +243,7 @@ document.addEventListener('click', e => { const b = e.target.closest('[data-open
 function initSettings() {
   renderReminder();
   $('sheetBody').querySelectorAll('[data-set]').forEach(b => b.onclick = () => {
-    const k = b.dataset.set; S.settings[k] = !S.settings[k]; save(); Sound.init(); Sound.click();
+    const k = b.dataset.set; S.settings[k] = k === 'blitz' ? S.settings.blitz === false : !S.settings[k]; save(); Sound.init(); Sound.click();
     b.setAttribute('aria-checked', S.settings[k]); b.querySelector('.switch').classList.toggle('on', S.settings[k]);
     if (k === 'speech' && S.settings.speech) speak('3 mal 4');
     renderHome();
@@ -472,7 +487,10 @@ function init() {
   $('brandLink').href = siteLink(CONFIG.websiteUrl, 'logo');
   if (CONFIG.lernraumUrl) { $('btnLernraum').href = siteLink(CONFIG.lernraumUrl, 'lernraum'); $('btnLernraum').hidden = false; $('topbarText').hidden = true; }
   $('btnProfile').onclick = () => openSheet('profiles');
-  if (ROOT.seenVersion && ROOT.seenVersion !== APP_VERSION) setTimeout(() => toast(`<span translate="no">✨ ${esc(tr('Neu in Version'))} ${APP_VERSION}: ${esc(tr(CHANGELOG[0][2][0]))}</span>`, 3200), 1200);
+  // Nach einem Update einmal „Was ist neu?“ mit Blitz; ganz neue Nutzer begrüßt Blitz
+  const seen = ROOT.seenVersion, onHome = () => !Sheet.open && !$('home').hidden && !window.__noWelcome;
+  if (seen && verNum(seen) < verNum(APP_VERSION)) setTimeout(() => onHome() && openSheet('whatsnew', { since: seen }), 900);
+  else if (!seen && !S.total) setTimeout(() => onHome() && openSheet('welcome'), 900);
   ROOT.seenVersion = APP_VERSION; save();
   renderPromo(); renderHome(); handleHash(); handleParams(); flushOutbox(); submitClassPoints(); if (S.advent && S.advent.voucherPending) fetchVoucher();
   if (IS_NATIVE) { Reminder.startup().catch(() => {}); apkUpdateCheck(); }   // APK: alle Dateien liegen im Paket, kein Service Worker nötig

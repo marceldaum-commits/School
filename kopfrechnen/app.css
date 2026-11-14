@@ -185,7 +185,7 @@ body.ingame .app{height:100dvh;min-height:0;padding-bottom:calc(84px + env(safe-
 .fab{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;box-shadow:0 12px 28px rgba(16,27,67,.35);z-index:20;transition:transform .15s}
 .fab:active{transform:scale(.92)}
 .fab svg{width:26px;height:26px}
-.fab::after{content:'';position:absolute;right:2px;top:2px;width:12px;height:12px;border-radius:50%;background:var(--orange);border:2px solid var(--navy)}
+/* kein Dauer-Punkt am Menü-Knopf: sah aus wie eine ungelesene Mitteilung (Marcel 14.11.) */
 :root[data-theme=dark] .fab{background:#fff;color:var(--navy)}
 .sheet-bg{position:fixed;inset:0;background:rgba(10,16,41,.45);backdrop-filter:blur(3px);z-index:40;display:flex;align-items:flex-end;justify-content:center;animation:fade .2s}
 .sheet{width:100%;max-width:560px;max-height:92dvh;overflow:auto;background:var(--bg);border-radius:24px 24px 0 0;padding:8px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -10px 40px rgba(0,0,0,.2);animation:up .25s ease-out}
@@ -706,3 +706,50 @@ button.badge{font:inherit;cursor:pointer}
 .merk-ico svg{display:block;width:44px;height:44px}
 .apk-upd{display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px solid var(--orange)}
 .apk-upd .ch-ico{background:rgba(255,116,24,.16)}
+
+/* ===== 3.8.0 Maskottchen Blitz, Sternbilder, Was ist neu ===== */
+.blitz{display:block;flex:none;overflow:visible;transform-origin:50% 90%;animation:bzbob 2.6s ease-in-out infinite}
+.blitz.bz-cheer,.blitz.bz-happy{animation:bzhop .55s ease-out 2,bzbob 2.6s ease-in-out 1.1s infinite}
+.blitz.bz-wave .bz-arm{transform-box:fill-box;transform-origin:20% 90%;animation:bzwave .5s ease-in-out 4 alternate}
+.blitz.bz-think{animation:bztilt 2.4s ease-in-out infinite}
+@keyframes bzbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes bzhop{0%,100%{transform:translateY(0) scale(1)}40%{transform:translateY(-10px) scale(1.04,.97)}}
+@keyframes bzwave{from{transform:rotate(-12deg)}to{transform:rotate(18deg)}}
+@keyframes bztilt{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+.blitz-say{display:flex;align-items:flex-end;gap:8px;min-width:0}
+.bz-bubble{position:relative;flex:1;min-width:0;background:var(--surface);border:2px solid var(--border);border-radius:16px 16px 16px 4px;padding:9px 12px;font-size:14.5px;line-height:1.4;color:var(--text);box-shadow:0 4px 12px rgba(16,27,67,.06);animation:mvpop .35s .15s backwards}
+.bz-bubble b{color:var(--head)}
+#bzHome{margin:2px 0 -4px}
+#bzHome .bz-bubble{font-size:14px}
+.merk-ov .blitz-say .bz-bubble{background:color-mix(in srgb,var(--orange) 9%,var(--surface));border-color:color-mix(in srgb,var(--orange) 30%,transparent)}
+.bz-pop{position:absolute;right:6px;top:-20px;z-index:5;display:flex;align-items:flex-end;gap:4px;pointer-events:none;animation:bzin .35s cubic-bezier(.34,1.56,.64,1)}
+.bz-pop .bz-bubble{flex:none;max-width:190px;font-size:13.5px;font-weight:700;padding:6px 10px;border-radius:14px 14px 4px 14px}
+.bz-pop.out{animation:bzout .45s forwards}
+@keyframes bzin{from{opacity:0;transform:translateY(16px) scale(.6)}to{opacity:1;transform:none}}
+@keyframes bzout{to{opacity:0;transform:translateY(-12px) scale(.9)}}
+.sol-bz{display:inline-flex;margin-right:6px;vertical-align:middle}
+.sol-head{align-items:center}
+/* Sternbilder */
+.sky-lines polyline{fill:none;stroke:#ffc83d;stroke-opacity:.35;stroke-width:1;stroke-linejoin:round;stroke-linecap:round}
+.sky-lines polyline.done{stroke-opacity:.9;stroke-width:1.6;filter:drop-shadow(0 0 2px #ffc83d)}
+.const-album{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.const-card{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;border-radius:14px;background:#0b1236;color:#9aa7c3;text-align:center;min-width:0}
+.const-card .ci{font-size:24px;filter:grayscale(1);opacity:.5}
+.const-card b{font-size:11px;line-height:1.2;color:#c9d3ea;overflow-wrap:anywhere}
+.const-card small{font-size:11px}
+.const-card.done{background:linear-gradient(160deg,#2a3a8c,#121a4a);box-shadow:0 0 0 2px #ffc83d inset}
+.const-card.done .ci{filter:none;opacity:1}.const-card.done b{color:#ffe7a3}
+.const-new{display:flex;align-items:center;gap:12px;padding:14px;border-radius:18px;background:linear-gradient(160deg,#2a3a8c,#121a4a);color:#fff;box-shadow:0 0 0 2px #ffc83d inset;animation:mvpop .5s .3s backwards}
+.const-new .ci{font-size:40px}.const-new small{display:block;color:#ffc83d;font-weight:700}.const-new b{font-size:18px}
+@media (max-width:360px){.const-album{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* Was ist neu / Willkommen */
+.wn{display:flex;flex-direction:column;gap:12px}
+.wn-v{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:-4px}
+.wn-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.wn-list li{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:10px 12px;font-size:14.5px;line-height:1.4;animation:mvpop .35s backwards}
+.wn-list li:nth-child(2){animation-delay:.08s}.wn-list li:nth-child(3){animation-delay:.16s}.wn-list li:nth-child(4){animation-delay:.24s}
+.wn-i{font-size:18px;flex:none}
+@media (prefers-reduced-motion:reduce){.blitz,.blitz *,.bz-pop,.bz-bubble,.wn-list li,.const-new{animation:none!important}}
+.bz-pop{top:auto;bottom:14px;right:14px}
+#bzHome{margin:0 0 10px}
+@media (min-width:1000px){#bzHome{max-width:620px}}

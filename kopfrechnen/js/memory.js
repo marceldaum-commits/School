@@ -106,6 +106,10 @@ function merkAnswer(key, ok, dt) {
   if (G_MERK) { G_MERK.rose ||= new Set(); G_MERK.intro ||= new Set(); }
   if (G_MERK && c.b > before) G_MERK.rose.add(key);
   if (G_MERK && c.b >= MERK.SOLID && before < MERK.SOLID) G_MERK.solidNow = key;
+  if (c.b >= MERK.SOLID && before < MERK.SOLID) {   // ganzes Sternbild geschafft?
+    const cs = merkConstOf(key);
+    if (cs && merkConstDone(cs) && !(st.consts ||= {})[cs.id]) { st.consts[cs.id] = todayStr(); if (G_MERK) (G_MERK.consts ||= []).push(cs.id); award('sternbild'); }
+  }
   c.due = dayStr(-MERK.INT[c.b]);
   if (merkSolidAll() >= 25) award('merk25');
   return c.b;
@@ -138,8 +142,10 @@ let G_MERK = null;
 
 function merkResultHtml() {
   const s = merkStats(), now = merkSolidAll(), plus = Math.max(0, now - (G_MERK ? G_MERK.before : now));
-  const up = G_MERK ? G_MERK.rose.size : 0;
-  return `<div class="card merk-res"><div class="sky-wrap">${merkSky({ rose: G_MERK ? G_MERK.rose : null })}</div>
+  const up = G_MERK && G_MERK.rose ? G_MERK.rose.size : 0;
+  const nc = (G_MERK && G_MERK.consts || []).map(id => MERK_CONSTS.find(c => c.id === id)).filter(Boolean);
+  const constHtml = nc.map(c => `<div class="const-new"><span class="ci">${c.icon}</span><div><small>Neues Sternbild entdeckt!</small><b>${esc(c.name)}</b></div></div>`).join('');
+  return `${constHtml}<div class="card merk-res"><div class="sky-wrap">${merkSky({ rose: G_MERK ? G_MERK.rose : null })}</div>
     <div class="mr-txt"><b>${up ? `✨ ${up} Sterne heller` : '🌙 Dein Merk-Himmel'}</b><span>${now} Aufgaben sitzen fest${plus ? ` (+${plus})` : ''} · ${s.due ? `Heute noch ${s.due} zu wiederholen` : s.tomorrow ? `Nächste Wiederholung morgen: ${s.tomorrow} Aufgaben` : 'Für heute alles wiederholt'}</span></div></div>`;
 }
 
@@ -172,6 +178,9 @@ PANELS.merk = () => {
     <p class="small muted" style="margin:0">Was du sicher kannst, kommt seltener. Was noch wackelt, kommt öfter – genau dann, wenn du es sonst vergessen würdest.</p>
     <div class="merk-sum"><div><b>${merkSolidAll()}</b><span>sitzen fest</span></div><div><b>${s.due}</b><span>heute fällig</span></div><div><b>${s.tomorrow}</b><span>morgen</span></div></div>
     <button class="btn primary block" id="merkStart" ${s.todo ? '' : 'disabled'}>${s.todo ? `▶ Heute wiederholen (${s.todo})` : 'Für heute alles geschafft ✓'}</button>
+    <div class="mlabel">Sternbilder-Album <span class="muted">(${MERK_CONSTS.filter(c => merkState().consts?.[c.id]).length}/${MERK_CONSTS.length})</span></div>
+    <div class="const-album">${MERK_CONSTS.filter(c => act.includes(c.deck)).map(c => { const done = !!merkState().consts?.[c.id], n = merkConstCount(c);
+      return `<div class="const-card ${done ? 'done' : ''}"><span class="ci">${done ? c.icon : '❔'}</span><b>${done ? esc(c.name) : '???'}</b><small>${n}/${c.keys.length}</small></div>`; }).join('')}</div>
     <div class="mlabel">Was willst du dir merken?${!merkState().decks && k ? ` <span class="muted">(passend zu Klasse ${k})</span>` : ''}</div>
     ${rows}
     <p class="small muted" style="margin:0">Fehler aus anderen Runden zählen mit: Was du dort falsch hattest, kommt hier wieder dran.</p></div>`,
@@ -216,6 +225,7 @@ function merkOverlay(t, mode) {
     <div class="mo-head">${head}</div>
     <div class="merk-eq${mode === 'wrong' ? ' good' : ''}"><span translate="no">${esc(eq)}</span></div>
     ${merkVisual(t)}
+    ${bzOn() ? blitzSay(mode === 'intro' ? 'wow' : mode === 'tip' ? 'think' : 'comfort', `<span class="st-i">${merkStory(t)[0]}</span> ${mode !== 'tip' && merkStory(t)[2] ? '<span>Rückwärts gedacht:</span> ' : ''}<span>${esc(mode === 'tip' ? merkTipText(t) : merkStory(t)[1])}</span>`, 52) : ''}
     ${mode === 'wrong' && t.w && t.w.length ? `<ol class="steps">${t.w.map(s => `<li>${esc(s)}</li>`).join('')}</ol>` : ''}
     <button class="btn primary block" id="solNext">${{ intro: 'Jetzt du!', tip: 'Zurück zur Aufgabe', wrong: 'Weiter' }[mode]} <span class="muted-on-dark">(OK)</span></button></div></div>`);
   $('solNext').onclick = continueAfterSolution;
@@ -225,5 +235,16 @@ function merkOverlay(t, mode) {
 function merkCorrectFx(t) {
   const solid = G_MERK && G_MERK.solidNow === t.card;
   merkFlyStar(solid);
-  if (solid) { G_MERK.solidNow = null; setTimeout(() => { Sound.milestone(); Confetti.burst(60); toast(`⭐ <span translate="no">${esc(taskText(t))} = ${esc(showAns(t.a))}</span> <span>sitzt jetzt fest!</span>`, 2200); }, 250); }
+  const cs = G_MERK && G_MERK.consts && G_MERK.consts.length && !G_MERK.constShown?.includes(G_MERK.consts[G_MERK.consts.length - 1]) ? MERK_CONSTS.find(c => c.id === G_MERK.consts[G_MERK.consts.length - 1]) : null;
+  if (cs) { (G_MERK.constShown ||= []).push(cs.id); G_MERK.solidNow = null; setTimeout(() => { Sound.milestone(); Confetti.burst(160); blitzPop('cheer', `<span>Neues Sternbild:</span> <span>${esc(cs.icon)}</span> <b>${esc(cs.name)}</b>`); }, 250); return; }
+  if (solid) { G_MERK.solidNow = null; setTimeout(() => { Sound.milestone(); Confetti.burst(60); blitzPop('wow', `<span translate="no">${esc(taskText(t))} = ${esc(showAns(t.a))}</span> <span>sitzt jetzt fest!</span>`); }, 250); }
+}
+
+/** Bild-Tipp: Trick ohne Ergebnis verraten (Geschichten mit Ergebnis werden zum Rechenweg-Hinweis) */
+function merkTipText(t) {
+  const [id] = t.card.split(':');
+  if (id === 'ee' || id === 'div') { const a = t.e[0].v, b = t.e[2].v; return id === 'ee' ? `Zähl die Reihen: ${a} Reihen mit je ${b} Punkten.` : `Wie viele Reihen zu ${b} Punkten ergeben ${a}?`; }
+  if (id === 'plus') return 'Füll erst bis 10 auf – dann den Rest dazu.';
+  if (id === 'sq') return 'Rechne die vier Flächen zusammen.';
+  return 'Wie viele der 100 Kästchen sind gefärbt?';
 }

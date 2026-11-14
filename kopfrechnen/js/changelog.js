@@ -1,8 +1,9 @@
 'use strict';
 // Rechenblitz – Versionen mit Datum (neueste oben). Wird unter „Was ist neu?“ angezeigt.
-const APP_VERSION = '3.7.2';
+const APP_VERSION = '3.8.0';
 const APP_DATE = '2026-11-14';
 const CHANGELOG = [
+  ['3.8.0', '2026-11-14', ['Neu: Blitz der Fuchs 🦊 – feuert dich an, tröstet und erklärt Tricks', 'Merksätze zu schweren Aufgaben – zum Beispiel 5, 6, 7, 8 → 56 = 7 · 8', 'Sternbilder mit Namen zum Sammeln – von der Siebener-Schlange bis zum Achter-Drachen', 'Nach jedem Update zeigt dir Blitz, was neu ist']],
   ['3.7.2', '2026-11-14', ['Android-App: meldet neue Versionen selbst und aktualisiert sich mit einem Tipp']],
   ['3.7.1', '2026-11-14', ['Neues Symbol für das Merk-Training auf der Startseite: Mond und Sternbild']],
   ['3.7.0', '2026-11-14', ['Merk-Training zum Erleben: jede Aufgabe mit bewegtem Bild – Punktefeld, Zwanzigerfeld, Quadrat in Teilen, Pizza und Hunderterfeld', 'Neue Aufgaben werden erst gezeigt, dann gefragt', 'Dein Merk-Himmel: jede gemerkte Aufgabe ist ein Stern, ganze Reihen werden zu Sternbildern', '💡 Bild-Tipp und Sterne, die davonfliegen']],
