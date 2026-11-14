@@ -4,6 +4,29 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 14.11.2026 (21) – FREIGABE-STAND für den Leitstand: 3.7.0
+
+- **Bereit zum Testen und für die Live-Freigabe:** Rechenblitz **3.7.0 · 14.11.2026**.
+- **Commit:** `1fc5c4c` (Branch `rechenblitz-test`, identisch mit dem Arbeits-Branch). Auf rechenblitz-test.mathenachhilfe-online.com um 11:08 Uhr geprüft: `APP_VERSION = '3.7.0'`, `js/merkvis.js` liefert 200.
+- **Enthält alles seit dem letzten Live-Stand 3.4.0:**
+  - 3.4.2 Advents-Gutschein vom Server;
+  - 3.5.0 Version mit Datum und „Was ist neu?“;
+  - 3.5.1 Erinnerung aufs Handy;
+  - 3.5.2 Gutschein für jedes Stundenpaket und APK-Unterstützung (`native.js`);
+  - 3.6.0 Merk-Training;
+  - 3.6.1 Klassen-Challenge an (`classApi: '/api'`);
+  - 3.7.0 Merk-Training mit Bildern, Animationen und Sternenhimmel.
+  Einzelheiten stehen in den Meldungen (14)–(20).
+- **Vor der Live-Freigabe nötig:**
+  - Datenschutz-Abschnitt 10b (Erinnerung, Klassen-Challenge, Android-App) muss live sein, wie mit euch abgesprochen.
+  - `/api/push`, `/api/gutschein`, `/api/klasse` und `/api/meldung` müssen auch auf rechenblitz… (live) laufen.
+- **Testvorschlag:**
+  - Startseite → Merk-Training „Los“ → neue Aufgabe zeigt „✨ Neu – merk dir das!“ mit Bild → einmal falsch antworten → Karte mit Bild und Lösungsweg → Ergebnis mit Sternenhimmel.
+  - Einstellungen → Erinnerung an.
+  - Menü → Klassen-Challenge.
+  - Menü → „Was ist neu?“.
+- **Neue APK nötig: ja** – 3.7.0 ist gebaut (gleicher Test-Schlüssel) und liegt in Marcels Drive „AndroidApps/Rechenblitz“. Web und APK haben denselben Stand.
+
 ## 14.11.2026 (20) – Merk-Training zum Erleben: Bilder, Sternenhimmel, Bewegung (3.7.0)
 
 - **Marcel 14.11.:** „Irgendwie catcht das nicht … statisch mit den Lernkarten. Man muss Kinder fesseln. Interaktiver, erlebbar, damit man sich erinnert – mit einem Bild, einer Animation.“
