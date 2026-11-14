@@ -12,7 +12,7 @@ window.RECHENBLITZ_CONFIG = {
   // Öffentliche Adresse für QR-Codes, Flyer, Urkunden und Einladungen (immer die Live-Seite)
   publicUrl: 'https://rechenblitz.mathenachhilfe-online.com/',
   // Klassen-Challenge: Server-Adresse (z. B. '/api'), leer = Funktion ausgeblendet – siehe KLASSEN-API.md
-  classApi: '',
+  classApi: '/api',
   // Erinnerung aufs Handy (Web-Push, Leitstand-Übergabe 38): Server-Pfad und vorgeschlagene Uhrzeit; endpoint '' = ausgeblendet
   push: { endpoint: '/api/push', time: '17:00' },
   // Adventskalender: Karte ab 15.11., Türchen 1.–24.12., nachholbar bis 6.1.

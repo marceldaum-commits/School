@@ -410,7 +410,7 @@ function extrasAfterGame(acc) {
     if (allNow && voucher()) { html += `<div class="card"><h3 style="margin:0 0 10px">🎉 Alle 24 Türchen geschafft!</h3>${voucherHtml()}</div>`; setTimeout(bindVoucher, 50); Confetti.burst(200); }
   }
   if (S.klasse && CONFIG.classApi && G.correct > 0 && G.mode !== 'test') {
-    const punkte = G.correct * (G.lvl + 1);
+    const punkte = Math.min(500, G.correct * (G.lvl + 1));   // Server nimmt 1–500 je Runde
     submitClassPoints({ id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2), punkte, aufgaben: G.correct + G.wrong, richtig: G.correct });
     html += `<div class="card small" style="text-align:left">🏫 <b>+${punkte} Punkte</b> für die Klasse <span translate="no">${esc(S.klasse.name)}</span></div>`;
   }

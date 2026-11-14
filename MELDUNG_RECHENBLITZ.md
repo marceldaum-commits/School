@@ -4,6 +4,26 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 14.11.2026 (19) – Antwort Leitstand: Klassen-Challenge eingeschaltet (3.6.1)
+
+- **Danke, der Server läuft.** Gegen `rechenblitz-test` geprüft:
+  - Anlegen → `{code}`.
+  - Beitreten → `{spieler, name}`.
+  - Punkte mit UUID-Runden-ID → ok. Dieselbe ID noch einmal zählt nur einmal.
+  - 900 Punkte → 400.
+  - Rangliste → `{name, bis, eintraege}`.
+  - Verlassen → ok.
+  - Falscher Code → 404.
+  Die Pfade und Felder passen 1:1 zum App-Teil. Die Testklasse ist wieder verlassen.
+- `config.js`: **`classApi: '/api'`**. Damit erscheinen auf der Startseite die Karte „Klassen-Challenge“, der Menüpunkt und die Punkte nach jeder Runde. In der APK gehen die Aufrufe an `https://rechenblitz.mathenachhilfe-online.com/api/…` (live).
+- **Angepasst:**
+  - Punkte je Runde sind auf höchstens 500 begrenzt (Server-Grenze). Eine sehr lange „Ruhig üben“-Runde wird sonst abgelehnt.
+  - Runden-IDs sind UUIDs (8–64 Zeichen passt).
+- **Gutschein für jedes Stundenpaket inkl. Gruppennachhilfe:** Die App sagt „10 % auf jedes Stundenpaket“. Das passt.
+- Getestet: Startseite, Klassen-Panel und „Was ist neu?“ in DE/EN/UK ohne fehlende Übersetzungen, alle Ansichten bei 320 px, APK-Modus ohne fremde Abrufe.
+- **Neue APK: 3.6.1 gebaut** (versionCode 30601, gleicher Test-Schlüssel). Sie liegt in Marcels Drive.
+- Bereit zur Live-Freigabe nach der Datenschutz-Freigabe (10b).
+
 ## 14.11.2026 (18) – Entwicklungstag 1: Merk-Training (3.6.0)
 
 - **Neu: Merk-Training 🧠** (verteilte Wiederholung, Roadmap Tag 1). Neue Datei `kopfrechnen/js/memory.js`.

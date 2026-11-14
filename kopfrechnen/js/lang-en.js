@@ -994,4 +994,9 @@ I18N.add('en', {"% sind":"% are",
 "🧠 Prozent":"🧠 Percent",
 "Runde {} auf Zehntel":"Round {} to tenths",
 "🐦 Abzeichen:":"🐦 Badge:",
-"Abzeichen:":"Badge:"});
+"Abzeichen:":"Badge:",
+"Neu: Klassen-Challenge 🏫 – mit der ganzen Klasse Punkte sammeln, wöchentliche Rangliste":"New: Class challenge 🏫 – collect points with your whole class, weekly leaderboard",
+"Neu: Merk-Training 🧠 – was wackelt, kommt öfter dran, was sitzt, seltener":"New: Memory training 🧠 – what is shaky comes up more often, what you know, less often",
+"Jeden Tag „Heute wiederholen“ in {} Minuten":"Every day \"Review today\" in {} minutes",
+"Passend zur Klasse: Plus bis {}, Einmaleins, Quadratzahlen, Brüche als Dezimalzahl und Prozent":"Matching your grade: addition up to {}, times tables, square numbers, fractions as decimals and percentages",
+"Neues Abzeichen: Gedächtnis-Profi":"New badge: Memory pro"});

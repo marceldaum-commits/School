@@ -994,4 +994,9 @@ I18N.add('uk', {"% sind":"% — це",
 "🧠 Prozent":"🧠 Відсотки",
 "Runde {} auf Zehntel":"Округли {} до десятих",
 "🐦 Abzeichen:":"🐦 Значок:",
-"Abzeichen:":"Значок:"});
+"Abzeichen:":"Значок:",
+"Neu: Klassen-Challenge 🏫 – mit der ganzen Klasse Punkte sammeln, wöchentliche Rangliste":"Нове: Класний челендж 🏫 – збирайте бали всім класом, щотижневий рейтинг",
+"Neu: Merk-Training 🧠 – was wackelt, kommt öfter dran, was sitzt, seltener":"Нове: Тренування пам'яті 🧠 – те, що хитається, буде частіше, а те, що знаєш, – рідше",
+"Jeden Tag „Heute wiederholen“ in {} Minuten":"Щодня «Повторити сьогодні» за {} хвилини",
+"Passend zur Klasse: Plus bis {}, Einmaleins, Quadratzahlen, Brüche als Dezimalzahl und Prozent":"Відповідно до класу: додавання до {}, таблиця множення, квадрати чисел, дроби як десяткові та відсотки",
+"Neues Abzeichen: Gedächtnis-Profi":"Новий значок: Профі пам'яті"});
