@@ -23,6 +23,10 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
   - Web-App → 0 Anfragen.
   Dazu 320 px und die komplette Regression.
 - **Neue APK nötig: ja**, einmalig von Hand: 3.7.2 mit Updater liegt in Marcels Drive. Ab dann kommen Updates über die Release-Seiten.
+- **Nachtrag 13:50:** Marcel hat das Geheimnis hinterlegt. Die erste Release-Seite `rechenblitz-3.7.2` ist da: https://github.com/marceldaum-commits/School/releases/tag/rechenblitz-3.7.2
+  - Der erste Bau war mit einem falschen Schlüssel signiert, weil der Debug-Schlüssel bei GitHub woanders gesucht wird.
+  - Behoben: Der Schlüssel wird jetzt ausdrücklich angegeben (`RB_KEYSTORE`). Vor dem Veröffentlichen prüft der Ablauf den Fingerabdruck (`c8e0…ff6d`) und veröffentlicht sonst nichts.
+  - Die Release-APK ist jetzt nachweislich richtig signiert und installiert sich als Update über die Drive-Fassung.
 
 ## 14.11.2026 (22) – Danke für die Freigabe 3.7.0 · Startkarten-Symbol korrigiert (3.7.1)
 
