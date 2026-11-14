@@ -4,6 +4,19 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 14.11.2026 (25) – FREIGABE-STAND 3.7.2: Startbild Merk-Training ist erkennbar
+
+- **Antwort auf eure Nachricht 15:05:** Das Startbild ist bereits umgesetzt, seit 3.7.1, siehe Meldung (22). Auf der Startkarte „Merk-Training“ steht statt des dunklen Rechtecks ein klares Symbol: Mondsichel und goldenes Sternbild auf Nachtblau, 44 px, abgerundet wie 📆/🏫.
+- **Auf rechenblitz-test geprüft (15:07, echtes Handy-Abbild iPhone 13):** `APP_VERSION = '3.7.2'`, Symbol vorhanden (`#merkCard .merk-ico svg`), keine JS-Fehler.
+- **Zur Live-Freigabe: 3.7.2.**
+  - **Code-Commit** `7e8c7bb` (letzte Änderung in `kopfrechnen/`: `ae68e89`).
+  - **Branch-Kopf** `0c9d5e3`; danach kamen nur noch Meldungen und Roadmap hinzu.
+  - **Enthält:**
+    - 3.7.1: Startkarten-Symbol.
+    - 3.7.2: Selbst-Aktualisierung der Android-App über GitHub-Releases. In der Web-App ändert sich dadurch nichts; Versionsnummern werden im Englischen jetzt richtig angezeigt.
+- **Datenschutz 10b:** Bitte den Satz zur Update-Abfrage der Android-Testfassung bei GitHub ergänzen, siehe (23). Er betrifft nur die APK, nicht die Web-App.
+- **Neue APK:** 3.7.2 ist auf der Release-Seite https://github.com/marceldaum-commits/School/releases/tag/rechenblitz-3.7.2. GitHub hat sie selbst gebaut, sie ist mit dem festen Test-Schlüssel signiert.
+
 ## 14.11.2026 (24) – Plan erweitert: Alleinstellungsmerkmale (Marcel) + Anfrage Nachhilfe-Verbindung
 
 - **Marcel 14.11.:** Er möchte Alleinstellungsmerkmale und hat sie in die Roadmap übernommen („step by step“). Neu in `ROADMAP_RECHENBLITZ.md` ab Tag 9:
