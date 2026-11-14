@@ -38,21 +38,23 @@ Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erl
 | 6 | Do 19.11. | **Zahlen-Dungeon 1** | Roguelike: Räume, Gegner = Aufgaben, Lebenspunkte, kurze Läufe (3–5 Min.) |
 | 7 | Fr 20.11. | **Zahlen-Dungeon 2** | Deckbuilding: Rechen-Karten = echte Strategien (Zehnerfreund, Verdoppeln, Halbieren, Kommaschieber …) |
 | 8 | Sa 21.11. | **Zahlen-Dungeon 3** | Bosse, Freischaltungen, Balance je Klassenstufe |
-| 9 | So 22.11. | **Design „Expressive“** | Kräftige Formen, Feder-Animationen beim Antippen, Vibration als Rückmeldung, größere Knöpfe, weniger Text überall |
-| 10 | Mo 23.11. | **Neues Thema „Uhr & Zeit“** | Zeitspannen, Uhrzeit + Minuten, Stunden ↔ Minuten, mit Zeitstrahl im Lösungsweg |
-| 11 | Di 24.11. | **Trick des Tages** | Kurze Trick-Lektionen mit Mini-Übung; Tricks werden zu Karten im Zahlen-Dungeon |
-| 12 | Mi 25.11. | **Zahlenmauern & Rechenpyramiden** | Neues Spiel, passend zur Klassenstufe |
-| 13 | Do 26.11. | **Bilder statt Worte** | Zahlenstrahl- und Bruch-Bilder (Kreis/Balken) im Lösungsweg |
-| 14 | Fr 27.11. | **Klassenzimmer-Quiz** | Beamer-/Whiteboard-Modus, 2–4 Teams, Countdown |
+| 9 | So 22.11. | **Fehler-Detektiv 1** ⭐ | Typische Denkfehler erkennen (Reihe verrutscht, Stellenwert, Zähler+Nenner addiert, Vorzeichen, Punkt vor Strich …) und genau diesen Fehler mit Bild erklären |
+| 10 | Mo 23.11. | **Fehler-Detektiv 2** ⭐ | „Lernstand-Brief“ für Eltern (Schwachstellen in Worten, druck-/teilbar) + Brücke zur Probestunde |
+| 11 | Di 24.11. | **Sprachbrücke Mathe + Deutsch** ⭐ | Wort in Textaufgaben antippen → Übersetzung (EN/UK) + Vorlesen; Fachwörter-Sammlung (Summe, Nenner …); vorbereitet für Türkisch/Arabisch |
+| 12 | Mi 25.11. | **Einmaleins-Rhythmus** ⭐ | Jede Reihe mit eigenem Beat, im Takt mittippen – Musik als Merkhilfe |
+| 13 | Do 26.11. | **Geister-Rennen + Herausforderungs-Links** ⭐ | Gegen das eigene Ich von letzter Woche; Link „Schlag meine Zeit!“ zum Teilen |
+| 14 | Fr 27.11. | **Design „Expressive“ + „Marcel erklärt“** | Formen, Bewegung, Vibration; Plätze für kurze Erklär-Clips von Marcel (Video/Ton, Schalter in config.js); sichtbarer Hinweis „Ohne Werbung, ohne Konto, offline – datenschutzfreundlich“ |
 | 15 | Sa 28.11. | **Winterdesign + Weihnachtskapitel** | Schnee/Farben im Dezember (abschaltbar), Weihnachtskapitel in der Rechen-Reise |
-| 16 | So 29.11. | **Barrierefreiheit** | Schriftgröße, gut lesbare Schrift, Kontrast, Tastatur, Bildschirmleser |
-| 17 | Mo 30.11. | **Eltern-Bereich + Statistik** | PIN, Fortschritt je Kind, Verlauf je Thema, Übungszeit-Grenze |
-| 18 | Di 01.12. | **Adventskalender-Start** | Start-Check, Feinschliff, erste Rückmeldungen |
-| 19 | Mi 02.12. | **Geometrie im Kopf** | Umfang, Fläche, Winkel mit eigenen Skizzen |
-| 20 | Do 03.12. | **Android-App 2027** | Store-Texte/Bilder, App-Verknüpfungen, Zahl am App-Symbol („X zu wiederholen“), Signier-Ablauf; Konzept Widgets, Sperrbildschirm, Wear OS, Farben aus dem Hintergrundbild (in der Capacitor-App jetzt machbar) |
+| 16 | So 29.11. | **Klassenzimmer-Quiz** | Beamer-/Whiteboard-Modus, 2–4 Teams, Countdown |
+| 17 | Mo 30.11. | **Eltern-Bereich + Nachhilfe-Verbindung** ⭐ | PIN, Fortschritt je Kind, Verlauf; per Code Lernstand (Merk-Himmel, Schwachstellen) mit der Nachhilfelehrkraft teilen und Merk-Stapel als Hausaufgabe empfangen (App-Seite; Server/Lehrer-App: Leitstand) |
+| 18 | Di 01.12. | **Adventskalender-Start + Barrierefreiheit** | Start-Check, Feinschliff; Schriftgröße, Kontrast, Tastatur, Bildschirmleser |
+| 19 | Mi 02.12. | **Trick des Tages + Zahlenmauern** | Kurze Trick-Lektionen (werden Dungeon-Karten), Zahlenmauern passend zur Klasse |
+| 20 | Do 03.12. | **Android-App 2027** | Store-Texte/Bilder, App-Verknüpfungen, Zahl am App-Symbol; Konzept Widgets, Sperrbildschirm, Wear OS, Autofahrt-Modus |
 | 21 | Fr 04.12. | **Abschluss** | Ladezeit, Barrierefreiheit-Check, alle Sprachen, Rückblick + offene Ideen für Marcel/Leitstand |
 
-**Ideen-Speicher (wenn Zeit bleibt):** Schätz-Blitz, Hör-Rechnen, Fehler-Detektiv (typische Fehlermuster), Gleichungs-Waage, Einkaufsspiel, Wochenziele mit Kalender-Erinnerung.
+⭐ = Alleinstellungsmerkmal (Marcel 14.11.: „Was kann man machen als Alleinstellungsmerkmal?“ → „übernimm es step by step“). Kern: **Hinter Rechenblitz steht echte Nachhilfe** – Diagnose, Verbindung zur Lehrkraft, Marcels Erklärungen.
+
+**Ideen-Speicher (wenn Zeit bleibt):** Uhr & Zeit, Geometrie im Kopf, Autofahrt-Modus (Aufgaben vorlesen, Antwort sprechen), Türkisch/Arabisch für die Sprachbrücke, Schätz-Blitz, Hör-Rechnen, Fehler-Detektiv (typische Fehlermuster), Gleichungs-Waage, Einkaufsspiel, Wochenziele mit Kalender-Erinnerung.
 
 ## Erledigt
 

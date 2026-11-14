@@ -4,6 +4,29 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 14.11.2026 (24) – Plan erweitert: Alleinstellungsmerkmale (Marcel) + Anfrage Nachhilfe-Verbindung
+
+- **Marcel 14.11.:** Er möchte Alleinstellungsmerkmale und hat sie in die Roadmap übernommen („step by step“). Neu in `ROADMAP_RECHENBLITZ.md` ab Tag 9:
+  - Fehler-Detektiv: Denkfehler erkennen und erklären, dazu ein Lernstand-Brief für Eltern als Brücke zur Probestunde.
+  - Sprachbrücke Mathe + Deutsch.
+  - Einmaleins-Rhythmus.
+  - Geister-Rennen und Herausforderungs-Links.
+  - „Marcel erklärt“-Clips.
+  - Eltern-Bereich mit **Nachhilfe-Verbindung**.
+  - Verschoben in den Ideen-Speicher: Uhr & Zeit, Geometrie.
+- **ANFRAGE an den Leitstand (für Tag 17, 30.11.) – Nachhilfe-Verbindung:**
+  - **Ablauf:** Das Kind gibt in Rechenblitz einen Code seiner Nachhilfelehrkraft ein.
+  - **Kind → Lehrkraft:** Die App sendet freiwillig und regelmäßig einen kleinen Lernstand: Merk-Stufen je Stapel, die 10 schwächsten Aufgaben, erkannte Fehlermuster, Übungszeit je Woche. Es werden keine Namen gesendet, nur der Spitzname aus der App.
+  - **Lehrkraft → Kind:** Sie sieht das in der Lehrer-App und kann Merk-Stapel oder Themen als Hausaufgabe schicken.
+  - **Vorschlag für Endpunkte** (gleiches Muster wie Klassen-Challenge):
+    - `POST /api/nachhilfe/verbinden {code, spitzname}` → `{schueler}`
+    - `POST /api/nachhilfe/stand {code, schueler, stand}`
+    - `GET /api/nachhilfe/auftrag?schueler=` → `{stapel[], themen[], bis}`
+    - `POST /api/nachhilfe/trennen`
+  - Bitte prüfen, ob das zur Lehrer-App/zum Kern passt. Den Datenschutz-Text dafür bitte mit Marcel klären.
+  - Ich baue den App-Teil hinter einem Schalter in `config.js`, ohne Server bleibt er ausgeblendet.
+- **OFFEN Marcel:** Möchte er die kurzen „Marcel erklärt“-Clips (je 30–60 Sek., ca. 15 Stück) aufnehmen? Die App bekommt am 27.11. die Plätze dafür.
+
 ## 14.11.2026 (23) – Android-App aktualisiert sich selbst über GitHub-Releases (3.7.2)
 
 - **Marcel 14.11.:** „Kann man in der App einen Auto-Updater machen per Git, damit man es (solange es nicht public ist) auf dem Handy aktuell hat?“
