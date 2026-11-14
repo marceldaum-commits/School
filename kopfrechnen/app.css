@@ -659,3 +659,45 @@ button.badge{font:inherit;cursor:pointer}
 .merk-res .mr-ico{font-size:30px}
 .merk-res b{display:block;color:var(--head)}.merk-res span{font-size:13.5px;color:var(--muted)}
 .win-bar #winTitle{min-width:0;flex:1 1 auto;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.win-bar .tag{flex:none;white-space:nowrap}
+
+/* ===== 3.7.0 Merk-Training erlebbar: Bilder, Sternenhimmel, Bewegung ===== */
+.mv-fig{margin:0;display:flex;flex-direction:column;align-items:center;gap:6px}
+.mv{width:100%;max-width:300px;max-height:190px;color:var(--text);overflow:visible}
+.mv-fig figcaption{font-size:14px;font-weight:600;color:var(--head);text-align:center;line-height:1.35}
+.mv-pop{transform-box:fill-box;transform-origin:center;animation:mvpop .38s cubic-bezier(.34,1.56,.64,1) backwards;animation-delay:var(--d)}
+@keyframes mvpop{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
+.merk-eq{text-align:center;font-size:30px;font-weight:800;color:var(--head);letter-spacing:-.01em;animation:mvpop .4s .1s backwards}
+.solution .mv-fig{flex:none}
+.mtip{font:inherit;font-size:13px;font-weight:700;color:var(--orange-d);background:color-mix(in srgb,var(--orange) 12%,transparent);border-radius:99px;padding:3px 10px;margin-left:4px;vertical-align:middle}
+#taskBox.flipin{animation:flipin .34s cubic-bezier(.2,.8,.3,1)}
+@keyframes flipin{from{transform:perspective(700px) rotateY(-70deg);opacity:.2}to{transform:none;opacity:1}}
+.flystar{position:fixed;z-index:60;pointer-events:none;color:#ffc83d;font-size:30px;text-shadow:0 0 12px rgba(255,200,61,.9);transform:translate(-50%,-50%);animation:flystar .85s cubic-bezier(.3,.6,.4,1) forwards}
+.flystar.big{font-size:54px}
+@keyframes flystar{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}25%{opacity:1;transform:translate(-50%,-90%) scale(1.25)}100%{opacity:0;transform:translate(calc(-50% + 90px),-340%) scale(.4) rotate(140deg)}}
+/* Sternenhimmel */
+.sky{display:block;width:100%;height:auto;border-radius:16px}
+.sky-wrap{border-radius:16px;overflow:hidden;box-shadow:0 6px 18px rgba(7,11,36,.25)}
+.sky-lines line{stroke:#ffc83d;stroke-opacity:.45;stroke-width:1;stroke-linecap:round}
+.sky-labels text{fill:#c9d3ea;font-size:10.5px;font-weight:600}
+.sky .tw{animation:twinkle 3.2s ease-in-out infinite;animation-delay:var(--t)}
+@keyframes twinkle{0%,100%{fill-opacity:1}50%{fill-opacity:.55}}
+.sky .up{transform-box:fill-box;transform-origin:center;animation:starup 1.4s ease-out 2;filter:drop-shadow(0 0 3px #fff)}
+@keyframes starup{0%{transform:scale(1)}30%{transform:scale(3.2)}100%{transform:scale(1)}}
+.merk-card{gap:12px}
+.merk-mini{width:82px;height:56px;flex:none;border-radius:12px;overflow:hidden}
+.merk-mini .sky{height:100%;border-radius:12px}
+.merk-res{flex-direction:column;align-items:stretch;gap:10px}
+.merk-res .mr-txt b{display:block;color:var(--head);font-size:16px}
+.merk-res .mr-txt span{font-size:13.5px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.mv-pop,.merk-eq,#taskBox.flipin,.sky .tw,.sky .up{animation:none}.flystar{display:none}}
+.merk-ov{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:16px;background:rgba(7,11,36,.55);backdrop-filter:blur(3px);animation:fade .2s}
+.merk-ov-card{width:min(440px,100%);max-height:calc(100dvh - 32px);overflow:auto;background:var(--surface);border-radius:24px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;box-shadow:0 20px 50px rgba(7,11,36,.4);animation:mvpop .35s cubic-bezier(.34,1.56,.64,1)}
+.merk-ov .mo-head{font-weight:800;font-size:17px;color:var(--head)}
+.merk-ov .mv{max-height:240px}
+.merk-ov.wrong .mo-head{color:var(--bad)}
+.merk-eq.good{color:var(--good)}
+.merk-ov .steps{margin:0}
+.merk-ov .btn{position:sticky;bottom:0}
+.sky-wrap{background:#070b24}
+.sky-legend{display:flex;background:#0b1236;padding:6px 4px 8px;color:#c9d3ea;font-size:12px;font-weight:600;text-align:center}
+.sky-legend span{padding:0 4px;line-height:1.25}.sky-legend i{font-style:normal}

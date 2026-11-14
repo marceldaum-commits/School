@@ -445,6 +445,7 @@ function nextTask() {
   $('winTag').textContent = G.mode === 'merk' ? merkTag(t.card) : ['challenge', 'test', 'advent'].includes(G.mode) ? `Aufgabe ${G.idx + 1}/${G.total}` : `Stufe ${t.lvl + 1}${G.adapt ? ' · Auto' : ''}`;
   $('feedback').textContent = ''; $('feedback').className = 'feedback';
   renderAnswer(); updateHud(); fitExpr();
+  if (t.card) merkBeforeTask(t);
   speak(I18N.lang === 'de' ? (t.story ? t.e[0].v : taskSpeech(t)) : (t.story ? tr(t.e[0].v) : i18nSpeech(t)));
 }
 
@@ -495,6 +496,7 @@ function submit() {
     G.correct++; G.streak++; G.bestStreak = Math.max(G.bestStreak, G.streak); G.times.push(dt);
     if (S.box[key] && --S.box[key].need <= 0) { delete S.box[key]; if (G.mode === 'fehler' && !Object.keys(S.box).length) award('box'); }
     renderAnswer('ok');
+    if (t.card) merkCorrectFx(t);
     if (cfg.calm || cfg.quiet) Sound.soft(true);
     else {
       Sound.correct(G.streak);
@@ -527,6 +529,7 @@ function submit() {
 /* Lösungsweg nach einem Fehler */
 function showSolution(t) {
   if (!G || G.over) return;
+  if (t.card) return merkOverlay(t, 'wrong');   // Merk-Training: große Karte mit Bild
   G.waiting = true;
   $('solution').innerHTML = `<div class="sol-head"><b>So geht’s</b><span>Richtig ist: <span class="fx">${esc(showAns(t.a))}${t.unit ? ' ' + esc(t.unit) : ''}</span></span></div>
     <ol class="steps">${(t.w || []).map(s => `<li>${esc(s)}</li>`).join('')}</ol>
@@ -536,7 +539,8 @@ function showSolution(t) {
 }
 function continueAfterSolution() {
   if (!G || !G.waiting) return;
-  G.waiting = false; $('solution').hidden = true; Sound.click();
+  G.waiting = false; $('solution').hidden = true; $('merkOv')?.remove(); Sound.click();
+  if (G.merkPeek) { G.merkPeek = false; G.locked = false; if (!G.merkTip) G.t0 = performance.now(); return; }   // Merk-Moment/Bild-Tipp: dieselbe Aufgabe weiter
   G.locked = false; nextTask();
 }
 
@@ -584,7 +588,7 @@ function pauseGame(on) {
 }
 function quitGame() {
   if (G && !G.over && G.cfg.calm && G.idx > 0) return finish();   // ruhiges Üben endet mit einer kleinen Übersicht
-  if (G) G.over = true; cancelAnimationFrame(timerRaf); $('overlay').innerHTML = '';
+  if (G) G.over = true; $('merkOv')?.remove(); cancelAnimationFrame(timerRaf); $('overlay').innerHTML = '';
   if ('speechSynthesis' in window) speechSynthesis.cancel();
   goHome();
 }
@@ -594,7 +598,7 @@ $('btnQuit').onclick = () => { Sound.click(); quitGame(); };
 const STAR = '<svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z" stroke-linejoin="round"/></svg>';
 function finish() {
   if (G.over) return;
-  G.over = true; G.locked = true; G.waiting = false; cancelAnimationFrame(timerRaf); $('solution').hidden = true;
+  G.over = true; G.locked = true; G.waiting = false; $('merkOv')?.remove(); cancelAnimationFrame(timerRaf); $('solution').hidden = true;
   const cfg = G.cfg, answered = G.correct + G.wrong, acc = answered ? G.correct / answered : 0, today = todayStr();
   let stars = null;
   if (cfg.timed) {

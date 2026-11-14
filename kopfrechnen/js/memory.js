@@ -100,8 +100,12 @@ function merkAnswer(key, ok, dt) {
   if (!c) { c = st.c[key] = { b: 0, n: 0, ok: 0, due: todayStr() }; st.newCount++; }
   const slow = dt > (/^b[dp]:/.test(key) ? 12000 : 6000);
   c.n++;
-  if (ok) { c.ok++; c.b = slow ? Math.max(c.b, 1) : Math.min(c.b + 1, MERK.INT.length - 1); }
+  const before = c.b;
+  if (ok) { c.ok++; c.b = slow || (G && G.merkTip) ? Math.max(c.b, 1) : Math.min(c.b + 1, MERK.INT.length - 1); }
   else c.b = 0;
+  if (G_MERK) { G_MERK.rose ||= new Set(); G_MERK.intro ||= new Set(); }
+  if (G_MERK && c.b > before) G_MERK.rose.add(key);
+  if (G_MERK && c.b >= MERK.SOLID && before < MERK.SOLID) G_MERK.solidNow = key;
   c.due = dayStr(-MERK.INT[c.b]);
   if (merkSolidAll() >= 25) award('merk25');
   return c.b;
@@ -119,7 +123,7 @@ function startMerk() {
   if (!q.length) { openSheet('merk'); return; }
   const before = merkSolidAll(), seen = {};
   let pos = 0;
-  G_MERK = { before, start: Date.now(), queue: q };
+  G_MERK = { before, start: Date.now(), queue: q, rose: new Set(), intro: new Set() };
   const gen = () => {
     if (pos >= q.length || (Date.now() - G_MERK.start > MERK.MS && G.correct + G.wrong >= 5)) { G.total = G.idx; return null; }
     const k = q[pos++]; seen[k] = (seen[k] || 0) + 1;
@@ -134,8 +138,9 @@ let G_MERK = null;
 
 function merkResultHtml() {
   const s = merkStats(), now = merkSolidAll(), plus = Math.max(0, now - (G_MERK ? G_MERK.before : now));
-  return `<div class="card merk-res"><div class="mr-ico">🧠</div><div><b>${now} Aufgaben sitzen fest${plus ? ` (+${plus})` : ''}</b>
-    <span>${s.due ? `Heute noch ${s.due} zu wiederholen` : s.tomorrow ? `Nächste Wiederholung morgen: ${s.tomorrow} Aufgaben` : 'Für heute alles wiederholt'}</span></div></div>`;
+  const up = G_MERK ? G_MERK.rose.size : 0;
+  return `<div class="card merk-res"><div class="sky-wrap">${merkSky({ rose: G_MERK ? G_MERK.rose : null })}</div>
+    <div class="mr-txt"><b>${up ? `✨ ${up} Sterne heller` : '🌙 Dein Merk-Himmel'}</b><span>${now} Aufgaben sitzen fest${plus ? ` (+${plus})` : ''} · ${s.due ? `Heute noch ${s.due} zu wiederholen` : s.tomorrow ? `Nächste Wiederholung morgen: ${s.tomorrow} Aufgaben` : 'Für heute alles wiederholt'}</span></div></div>`;
 }
 
 /* ---------- Karte auf der Startseite ---------- */
@@ -144,7 +149,7 @@ function renderMerkCard() {
   const s = merkStats(), solidAll = merkSolidAll();
   el.hidden = false;
   const line = s.todo ? `${s.todo} Aufgaben · ca. 3 Minuten` : s.tomorrow ? `Alles wiederholt ✓ · morgen ${s.tomorrow}` : 'Alles wiederholt ✓';
-  el.innerHTML = `<div class="ch-ico">🧠</div><div class="ch-txt"><b>Merk-Training</b><span>${line}${solidAll ? ` · ${solidAll} sitzen fest` : ''}</span></div>
+  el.innerHTML = `<div class="merk-mini" aria-hidden="true">${merkSky({ mini: true })}</div><div class="ch-txt"><b>Merk-Training</b><span>${line}${solidAll ? ` · ${solidAll} sitzen fest` : ''}</span></div>
     ${s.todo ? '<button class="btn small primary" id="merkGo">Los</button>' : '<button class="btn small" id="merkInfo">Ansehen</button>'}`;
   $('merkGo') && ($('merkGo').onclick = startMerk);
   $('merkInfo') && ($('merkInfo').onclick = () => openSheet('merk'));
@@ -162,6 +167,8 @@ PANELS.merk = () => {
       <span class="switch ${on ? 'on' : ''}"></span></button>`;
   }).join('');
   return { title: 'Merk-Training', html: `<div class="merk">
+    <div class="sky-wrap">${merkSky()}</div>
+    <p class="small muted" style="margin:0">Jede Aufgabe ist ein Stern. Je besser sie sitzt, desto heller leuchtet er – ganze Reihen werden zu Sternbildern.</p>
     <p class="small muted" style="margin:0">Was du sicher kannst, kommt seltener. Was noch wackelt, kommt öfter – genau dann, wenn du es sonst vergessen würdest.</p>
     <div class="merk-sum"><div><b>${merkSolidAll()}</b><span>sitzen fest</span></div><div><b>${s.due}</b><span>heute fällig</span></div><div><b>${s.tomorrow}</b><span>morgen</span></div></div>
     <button class="btn primary block" id="merkStart" ${s.todo ? '' : 'disabled'}>${s.todo ? `▶ Heute wiederholen (${s.todo})` : 'Für heute alles geschafft ✓'}</button>
@@ -185,4 +192,38 @@ function merkTag(key) {
   const c = merkState().c[key];
   if (!c) return 'Neu ✨';
   return `Merkstärke ${c.b}/${MERK.INT.length - 1}`;
+}
+
+/* ---------- Erlebbar: Merk-Moment, Bild-Tipp, Effekte (Marcel 14.11.) ---------- */
+/** Vor jeder Aufgabe im Merk-Training: neue Aufgaben erst zeigen, sonst Bild-Tipp anbieten */
+function merkBeforeTask(t) {
+  G.merkTip = false;
+  $('taskBox').classList.remove('flipin'); void $('taskBox').offsetWidth; $('taskBox').classList.add('flipin');
+  G_MERK ||= { before: merkSolidAll(), start: Date.now() }; G_MERK.rose ||= new Set(); G_MERK.intro ||= new Set();
+  const c = merkState().c[t.card];
+  if (!c && !G_MERK.intro.has(t.card)) { G_MERK.intro.add(t.card); return merkOverlay(t, true); }
+  if (!c || c.b <= 1) $('hint').insertAdjacentHTML('beforeend', ' <button class="mtip" id="mTip">💡 Bild-Tipp</button>');
+  $('mTip') && ($('mTip').onclick = e => { e.stopPropagation(); G.merkTip = true; merkOverlay(t, false); });
+}
+/** Overlay im Aufgabenfenster: Merk-Moment (mit Lösung) oder Bild-Tipp (ohne Lösung) */
+function merkOverlay(t, mode) {
+  if (mode === true) mode = 'intro'; else if (mode === false) mode = 'tip';
+  G.waiting = true; G.merkPeek = mode !== 'wrong';
+  const show = mode !== 'tip', eq = taskText(t) + (t.noEq ? '' : ' = ') + (show ? showAns(t.a) + (t.unit ? ' ' + t.unit : '') : '?');
+  const head = { intro: '✨ Neu – merk dir das!', tip: '💡 Bild-Tipp', wrong: '🔁 Schau nochmal genau hin' }[mode];
+  $('merkOv')?.remove();
+  $('game').insertAdjacentHTML('beforeend', `<div class="merk-ov ${mode}" id="merkOv" role="dialog" aria-modal="true" aria-label="${esc(head)}"><div class="merk-ov-card">
+    <div class="mo-head">${head}</div>
+    <div class="merk-eq${mode === 'wrong' ? ' good' : ''}"><span translate="no">${esc(eq)}</span></div>
+    ${merkVisual(t)}
+    ${mode === 'wrong' && t.w && t.w.length ? `<ol class="steps">${t.w.map(s => `<li>${esc(s)}</li>`).join('')}</ol>` : ''}
+    <button class="btn primary block" id="solNext">${{ intro: 'Jetzt du!', tip: 'Zurück zur Aufgabe', wrong: 'Weiter' }[mode]} <span class="muted-on-dark">(OK)</span></button></div></div>`);
+  $('solNext').onclick = continueAfterSolution;
+  if (mode === 'intro') Sound.hint();
+}
+/** richtig im Merk-Training: Stern fliegt, bei „sitzt fest“ kleine Feier */
+function merkCorrectFx(t) {
+  const solid = G_MERK && G_MERK.solidNow === t.card;
+  merkFlyStar(solid);
+  if (solid) { G_MERK.solidNow = null; setTimeout(() => { Sound.milestone(); Confetti.burst(60); toast(`⭐ <span translate="no">${esc(taskText(t))} = ${esc(showAns(t.a))}</span> <span>sitzt jetzt fest!</span>`, 2200); }, 250); }
 }

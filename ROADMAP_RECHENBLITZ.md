@@ -16,6 +16,8 @@ Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erl
 
 ## Leitlinien (Marcel 13.11., Markt 2025/26)
 
+- **Marcel 14.11.: Alles muss erlebbar sein** – Bilder, Animationen, Dinge, an die man sich erinnert. Keine statischen Listen oder Karteikarten. Jede neue Funktion bekommt ein eigenes Bild bzw. eine Bewegung.
+
 - **Mechanik, die das Lernen trägt** – nicht nur Punkte/Abzeichen: Wiederholen zum richtigen Zeitpunkt, Strategien als Spielzüge.
 - **Kurze Einheiten (3–5 Min.) und Fortschritt über eine Geschichte** statt über Listen.
 - **Lernen trifft Spielgenres** (Roguelike/Deckbuilder) – für Schulmathe auf dem Handy noch frei.
@@ -58,3 +60,4 @@ Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erl
 - 13.11. – 3.5.1: Erinnerung aufs Handy (Leitstand-Übergabe 38), Play-Store-Vorbereitung, schmale Handys ohne Verkleinern
 - 14.11. – 3.5.2: Gutschein für jedes Stundenpaket; Android-App (APK) mit allen Dateien im Paket, komplett offline, Erinnerung lokal; Web + APK parallel
 - 14.11. – 3.6.0: Merk-Training (verteilte Wiederholung, 185 Kernaufgaben in 6 Stapeln, „Heute wiederholen“ in 3 Minuten)
+- 14.11. – 3.7.0: Merk-Training erlebbar (Marcel: „fesseln, mit Bild und Animation“) – bewegte Bilder je Aufgabe, Merk-Moment, Bild-Tipp, Merk-Himmel mit Sternbildern

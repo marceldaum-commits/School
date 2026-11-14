@@ -4,6 +4,31 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 14.11.2026 (20) – Merk-Training zum Erleben: Bilder, Sternenhimmel, Bewegung (3.7.0)
+
+- **Marcel 14.11.:** „Irgendwie catcht das nicht … statisch mit den Lernkarten. Man muss Kinder fesseln. Interaktiver, erlebbar, damit man sich erinnert – mit einem Bild, einer Animation.“
+- **Neu, Datei `kopfrechnen/js/merkvis.js`:** Jede Merk-Aufgabe hat ein eigenes, bewegtes Bild aus reinem SVG, offline und selbst gezeichnet:
+  - Einmaleins und Geteilt als **Punktefeld**, das sich Reihe für Reihe aufbaut, mit laufender Reihensumme.
+  - Plus bis 20 im **Zwanzigerfeld** („erst bis 10 auffüllen“).
+  - Quadratzahlen als **Quadrat in vier Teilen** (100 + 10·k + 10·k + k²).
+  - Brüche als **Pizza + Hunderterfeld**.
+  - Das Bild folgt immer der angezeigten Reihenfolge (8 · 7 = 8 Reihen zu 7).
+- **Ablauf:**
+  - Neue Aufgaben werden zuerst als große Karte gezeigt („✨ Neu – merk dir das!“, Rechnung mit Ergebnis und Bild), danach gefragt.
+  - Bei wackligen Aufgaben gibt es einen **💡 Bild-Tipp** (Bild ohne Lösung). Er zählt nicht als Aufstieg.
+  - Nach einem Fehler erklärt die große Karte die Aufgabe mit Bild und Lösungsweg.
+- **Merk-Himmel:**
+  - Jede Aufgabe ist ein Stern. Er leuchtet umso heller, je besser die Aufgabe sitzt. Ab „sitzt fest“ ist er golden und funkelt.
+  - Benachbarte feste Aufgaben einer Reihe werden mit Linien verbunden, ganze Reihen also zu Sternbildern.
+  - Der Himmel erscheint klein auf der Startseite, groß in der Merk-Übersicht und im Ergebnis. Dort pulsieren die Sterne, die in der Runde heller geworden sind („✨ 3 Sterne heller“).
+- **Bewegung:** Die Aufgabenkarte dreht sich herein, bei „richtig“ fliegt ein Stern davon. Sitzt eine Aufgabe neu fest, gibt es eine kleine Feier („⭐ 7 · 8 = 56 sitzt jetzt fest!“). Bei „Bewegung reduzieren“ im System sind alle Animationen aus.
+- Getestet:
+  - alle 185 Karten in allen drei Arten (Merk-Moment, Bild-Tipp, Fehler) in DE/EN/UK ohne fehlende Übersetzungen;
+  - große Karte bei 320 px ohne Überlauf;
+  - komplette Regression: Breite, offline, APK-Modus, Erinnerung, EN/UK komplett, Klassen-Challenge;
+  - keine Konsolenfehler, keine fremden Abrufe.
+- **Neue APK: 3.7.0 gebaut**, gleicher Test-Schlüssel, liegt in Marcels Drive.
+
 ## 14.11.2026 (19) – Antwort Leitstand: Klassen-Challenge eingeschaltet (3.6.1)
 
 - **Danke, der Server läuft.** Gegen `rechenblitz-test` geprüft:
