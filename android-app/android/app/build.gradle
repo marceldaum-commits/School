@@ -16,9 +16,20 @@ android {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    // Fester Test-Schlüssel, damit jede Test-APK sich als Update installiert (Lernstand bleibt).
+    // RB_KEYSTORE = Pfad zur Datei (GitHub-Ablauf); sonst der Debug-Schlüssel im Benutzerordner.
+    signingConfigs {
+        rbtest {
+            storeFile file(System.getenv('RB_KEYSTORE') ?: "${System.getProperty('user.home')}/.android/debug.keystore")
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
     buildTypes {
         // Beide Fassungen verkleinert (R8): ungenutzter Code und Ressourcen fliegen raus → kleine APK
         debug {
+            signingConfig signingConfigs.rbtest
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

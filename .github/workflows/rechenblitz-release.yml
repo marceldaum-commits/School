@@ -35,8 +35,8 @@ jobs:
             echo "ok=false" >> "$GITHUB_OUTPUT"; exit 0
           fi
           echo "ok=true" >> "$GITHUB_OUTPUT"
-          mkdir -p ~/.android
-          echo "$KEYSTORE" | base64 -d > ~/.android/debug.keystore
+          echo "$KEYSTORE" | base64 -d > "$RUNNER_TEMP/rb-test.keystore"
+          echo "RB_KEYSTORE=$RUNNER_TEMP/rb-test.keystore" >> "$GITHUB_ENV"
 
       - if: steps.key.outputs.ok == 'true'
         uses: actions/setup-java@v5
@@ -58,6 +58,13 @@ jobs:
         run: |
           npm ci --no-audit --no-fund
           bash build.sh
+          # Sicherheitsprüfung: nur veröffentlichen, wenn die APK mit dem festen Test-Schlüssel signiert ist
+          SIGNER=$(ls -d "$ANDROID_HOME"/build-tools/*/ | sort -V | tail -1)apksigner
+          FP=$("$SIGNER" verify --print-certs android/app/build/outputs/apk/debug/app-debug.apk | grep -oP 'SHA-256 digest: \K[0-9a-f]+' | head -1)
+          echo "Signatur: $FP"
+          if [ "$FP" != "c8e0e977cf794b1ed6f2a753a918e4d5ebefdf8d8d16797896354fd89f52ff6d" ]; then
+            echo "::error::Falscher Signierschlüssel ($FP) – APK wird nicht veröffentlicht (ließe sich nicht als Update installieren)."; exit 1
+          fi
           cp android/app/build/outputs/apk/debug/app-debug.apk "$RUNNER_TEMP/Rechenblitz-${{ steps.v.outputs.version }}.apk"
 
       - if: steps.key.outputs.ok == 'true'
