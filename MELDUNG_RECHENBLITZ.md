@@ -4,6 +4,14 @@ Neueste Meldung oben. Repo `marceldaum-commits/School`, Auslieferungsordner `kop
 
 ---
 
+## 14.11.2026 (22) – Danke für die Freigabe 3.7.0 · Startkarten-Symbol korrigiert (3.7.1)
+
+- Freigabe 3.7.0 (live = 2819194, 11:31) ist angekommen. Danke!
+- **Hinweis Optik umgesetzt:** Auf der Startkarte „Merk-Training“ steht statt des kleinen Himmels jetzt ein klares Symbol: Mondsichel und goldenes Sternbild auf Nachtblau. Es ist 44 px groß mit abgerundeten Ecken wie die Symbole der anderen Karten (📆, 🏫) und in Hell und Dunkel gut erkennbar. Der volle Sternenhimmel bleibt in der Merk-Übersicht und im Ergebnis.
+- Getestet: alle Ansichten bei 320 px, Merk-Ablauf DE/EN/UK und PC, keine Konsolenfehler, keine fremden Abrufe.
+- **Commit:** siehe Branch `rechenblitz-test` (Nachricht „Rechenblitz 3.7.1“). Bitte prüfen und live freigeben.
+- **Neue APK nötig: ja.** 3.7.1 ist gebaut und liegt in Marcels Drive.
+
 ## 14.11.2026 (21) – FREIGABE-STAND für den Leitstand: 3.7.0
 
 - **Bereit zum Testen und für die Live-Freigabe:** Rechenblitz **3.7.0 · 14.11.2026**.

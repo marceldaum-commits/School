@@ -1019,4 +1019,5 @@ I18N.add('uk', {"% sind":"% — це",
 "Merk-Training zum Erleben: jede Aufgabe mit bewegtem Bild – Punktefeld, Zwanzigerfeld, Quadrat in Teilen, Pizza und Hunderterfeld":"Тренування пам'яті, яке можна побачити: кожне завдання з анімованим малюнком – поле крапок, двадцятка, квадрат частинами, піца і сотня клітинок",
 "Neue Aufgaben werden erst gezeigt, dann gefragt":"Нові завдання спершу показуються, а потім запитуються",
 "Dein Merk-Himmel: jede gemerkte Aufgabe ist ein Stern, ganze Reihen werden zu Sternbildern":"Твоє небо пам'яті: кожне вивчене завдання – зірка, цілі ряди стають сузір'ями",
-"💡 Bild-Tipp und Sterne, die davonfliegen":"💡 Підказки-малюнки та зірки, що відлітають"});
+"💡 Bild-Tipp und Sterne, die davonfliegen":"💡 Підказки-малюнки та зірки, що відлітають",
+"Neues Symbol für das Merk-Training auf der Startseite: Mond und Sternbild":"Новий значок тренування пам'яті на головній: місяць і сузір'я"});

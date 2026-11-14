@@ -149,7 +149,7 @@ function renderMerkCard() {
   const s = merkStats(), solidAll = merkSolidAll();
   el.hidden = false;
   const line = s.todo ? `${s.todo} Aufgaben · ca. 3 Minuten` : s.tomorrow ? `Alles wiederholt ✓ · morgen ${s.tomorrow}` : 'Alles wiederholt ✓';
-  el.innerHTML = `<div class="merk-mini" aria-hidden="true">${merkSky({ mini: true })}</div><div class="ch-txt"><b>Merk-Training</b><span>${line}${solidAll ? ` · ${solidAll} sitzen fest` : ''}</span></div>
+  el.innerHTML = `<div class="ch-ico merk-ico" aria-hidden="true">${MERK_ICON}</div><div class="ch-txt"><b>Merk-Training</b><span>${line}${solidAll ? ` · ${solidAll} sitzen fest` : ''}</span></div>
     ${s.todo ? '<button class="btn small primary" id="merkGo">Los</button>' : '<button class="btn small" id="merkInfo">Ansehen</button>'}`;
   $('merkGo') && ($('merkGo').onclick = startMerk);
   $('merkInfo') && ($('merkInfo').onclick = () => openSheet('merk'));

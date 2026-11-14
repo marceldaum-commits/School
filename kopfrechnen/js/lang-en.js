@@ -1019,4 +1019,5 @@ I18N.add('en', {"% sind":"% are",
 "Merk-Training zum Erleben: jede Aufgabe mit bewegtem Bild – Punktefeld, Zwanzigerfeld, Quadrat in Teilen, Pizza und Hunderterfeld":"Memory training you can see: every problem with a moving picture – dot grid, twenty frame, square in parts, pizza and hundred grid",
 "Neue Aufgaben werden erst gezeigt, dann gefragt":"New problems are shown first, then asked",
 "Dein Merk-Himmel: jede gemerkte Aufgabe ist ein Stern, ganze Reihen werden zu Sternbildern":"Your memory sky: every memorised problem is a star, whole times tables become constellations",
-"💡 Bild-Tipp und Sterne, die davonfliegen":"💡 Picture hints and stars that fly away"});
+"💡 Bild-Tipp und Sterne, die davonfliegen":"💡 Picture hints and stars that fly away",
+"Neues Symbol für das Merk-Training auf der Startseite: Mond und Sternbild":"New icon for memory training on the home screen: moon and constellation"});

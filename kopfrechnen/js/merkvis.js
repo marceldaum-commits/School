@@ -118,3 +118,11 @@ function merkFlyStar(big) {
   s.style.left = (r.left + r.width / 2) + 'px'; s.style.top = (r.top + r.height * .55) + 'px';
   document.body.appendChild(s); setTimeout(() => s.remove(), 900);
 }
+
+/* Symbol für die Startkarte: Mondsichel + kleines goldenes Sternbild (wie die anderen Karten-Symbole, 44 px) */
+const MERK_ICON = `<svg viewBox="0 0 44 44" width="44" height="44"><defs><linearGradient id="mIcoG" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b2aa8"/><stop offset="1" stop-color="#121a4a"/></linearGradient></defs>
+  <rect width="44" height="44" rx="14" fill="url(#mIcoG)"/>
+  <path d="M15.5 9.5a8 8 0 1 0 7.6 11.2 6.4 6.4 0 1 1-7.6-11.2z" fill="#ffe7a3"/>
+  <polyline points="22,31 28.5,25.5 34,29 35.5,17" fill="none" stroke="#ffc83d" stroke-opacity=".7" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#ffc83d"><circle cx="22" cy="31" r="2"/><circle cx="28.5" cy="25.5" r="2.4"/><circle cx="34" cy="29" r="1.8"/><path d="M35.5 12.6l1.15 2.95 3.05.25-2.35 1.95.75 3-2.6-1.65-2.6 1.65.75-3-2.35-1.95 3.05-.25z"/></g>
+  <circle cx="30" cy="9.5" r=".9" fill="#fff" fill-opacity=".8"/><circle cx="10" cy="33" r=".8" fill="#fff" fill-opacity=".6"/></svg>`;

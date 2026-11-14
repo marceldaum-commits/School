@@ -1,8 +1,9 @@
 'use strict';
 // Rechenblitz – Versionen mit Datum (neueste oben). Wird unter „Was ist neu?“ angezeigt.
-const APP_VERSION = '3.7.0';
+const APP_VERSION = '3.7.1';
 const APP_DATE = '2026-11-14';
 const CHANGELOG = [
+  ['3.7.1', '2026-11-14', ['Neues Symbol für das Merk-Training auf der Startseite: Mond und Sternbild']],
   ['3.7.0', '2026-11-14', ['Merk-Training zum Erleben: jede Aufgabe mit bewegtem Bild – Punktefeld, Zwanzigerfeld, Quadrat in Teilen, Pizza und Hunderterfeld', 'Neue Aufgaben werden erst gezeigt, dann gefragt', 'Dein Merk-Himmel: jede gemerkte Aufgabe ist ein Stern, ganze Reihen werden zu Sternbildern', '💡 Bild-Tipp und Sterne, die davonfliegen']],
   ['3.6.1', '2026-11-14', ['Neu: Klassen-Challenge 🏫 – mit der ganzen Klasse Punkte sammeln, wöchentliche Rangliste']],
   ['3.6.0', '2026-11-14', ['Neu: Merk-Training 🧠 – was wackelt, kommt öfter dran, was sitzt, seltener', 'Jeden Tag „Heute wiederholen“ in 3 Minuten', 'Passend zur Klasse: Plus bis 20, Einmaleins, Quadratzahlen, Brüche als Dezimalzahl und Prozent', 'Neues Abzeichen: Gedächtnis-Profi']],
