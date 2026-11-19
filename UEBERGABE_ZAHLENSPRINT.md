@@ -40,6 +40,7 @@ Wer weiterarbeitet, liest zuerst diese Datei, dann `MELDUNG_RECHENBLITZ.md` (obe
    - Korrekturen: Eltern-Tor im Web für Außen-Links, Werbekarte/Probestunde nur im Elternbereich, Schloss-Text kürzen. Der Gutschein im Elternbereich nur nach Vorlage bei Recht (bleibt bis dahin aus).
    - **Recht V10 (Pflicht Fr):** „← Alle Apps“ (…/lern-apps/ zeigt Preise und Shop) hinter das Eltern-Tor, Grund im Tor: „Hier geht es zur Website.“ Ab Di 24.11. baut der Leitstand eine App-Übersicht ohne Preise auf lernen.…; dann zeigt der Link dorthin und darf ohne Tor sein.
      - App-zu-App-Links (Theorie: Mathe-Trainer, KurvenFlug) sind ohne Tor nur in Ordnung, wenn die Zielseite keine Preise zeigt. Mathe-Trainer und Raumlicht zeigen Oberstufen-Preise ohne Tor. Deshalb vorerst ALLE Außen-Links über das Tor; das deckt V10 ab.
+     - Ergänzung V10(b): Links zum **Mathe-Trainer** dürfen ab Fr ohne Tor sein (er bekommt selbst ein Tor vor Preisen). Links zu **KurvenFlug** bzw. **Experimentopia** ohne Tor, wenn diese dem Tor-Standard folgen. **Raumlicht** für Kinder unter Kl. 9 nur auf preisfreie Einstiege (galton, zufall, rotation, raumflug oder freie Aufgaben), nie auf „erleben“ oder Pro-Seiten. Rechenblitz verlinkt Raumlicht heute nicht.
      - Meldung: „Rechtsbezug: ja (V10)“.
    - Bis 16 Uhr an die AppZentrale melden: geprüft, gefunden/behoben, Commit, Rückweg, „Rechtsbezug“.
    - Die folgenden Punkte (Elternbericht gratis, Zehnerpotenzen usw.) wandern auf **Di 24.11.**:
