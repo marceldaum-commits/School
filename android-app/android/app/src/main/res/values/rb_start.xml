@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Startfarbe (Dunkelblau der Marke): Startbild, Fenster und WebView gleich, damit nichts weiß aufblitzt -->
+    <color name="rb_start">#101B43</color>
+</resources>

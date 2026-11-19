@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Rechenblitz</string>
+    <string name="title_activity_main">Rechenblitz</string>
+    <string name="package_name">com.mathenachhilfeonline.rechenblitz</string>
+    <string name="custom_url_scheme">com.mathenachhilfeonline.rechenblitz</string>
+</resources>

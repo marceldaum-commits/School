@@ -1,0 +1,59 @@
+RECHENBLITZ – STORE-EINTRAG (Deutsch) · zum Hineinkopieren in die Play Console
+=============================================================================
+
+App-Name (max. 30 Zeichen):
+Rechenblitz: Kopfrechnen üben
+
+Kurzbeschreibung (max. 80 Zeichen):
+Kopfrechnen mit Blitz dem Fuchs – spielerisch, offline, ohne Werbung und Konto.
+
+Vollständige Beschreibung (max. 4000 Zeichen):
+Rechenblitz macht Kopfrechnen zum Abenteuer – für Klasse 1 bis 10, kostenlos nutzbar, ohne Werbung und ohne Konto. Entwickelt von Nachhilfe – online, wo echte Lehrkräfte jeden Tag Mathe erklären.
+
+⚡ IN 3 MINUTEN BESSER RECHNEN
+Plus, Minus, Mal und Geteilt, Einmaleins, Brüche, Dezimalzahlen, Prozent, negative Zahlen, Potenzen, Runden, Einheiten, Gleichungen, Geld, Uhr und Zeit, Geometrie, Terme, Funktionen, Zinsen, Wahrscheinlichkeit, Statistik und Textaufgaben – 29 Themen in 6 Stufen, bis zur Profi-Stufe. Die Schwierigkeit passt sich automatisch an. Bei jedem Fehler zeigt Rechenblitz den Lösungsweg Schritt für Schritt.
+
+🦊 MIT BLITZ DEM FUCHS
+Blitz feuert an, tröstet und erklärt Tricks. Mit gesammelten Funken bekommt er neue Outfits – vom Zauberhut bis zum Astronauten-Helm – und ein eigenes Zimmer zum Einrichten.
+
+🗺️ RECHEN-REISE
+Hilf Blitz, seine Funken einzusammeln: sechs Kapitel vom Zahlenwald bis zum Sternenschloss, kurze Etappen, Sticker und Urkunden – passend zur Klassenstufe.
+
+🌌 MERK-TRAINING MIT STERNENHIMMEL
+Was wackelt, kommt öfter dran, was sitzt, seltener – genau dann, wenn man es sonst vergessen würde. Jede gemerkte Aufgabe wird zu einem Stern, ganze Reihen werden zu Sternbildern. Mit Bildern und Merksätzen, die im Kopf bleiben.
+
+🌻 RECHENGARTEN – GEMÜTLICH STATT DRUCK
+Jede richtige Antwort ist ein Wassertropfen. Pflanzen wachsen, werden geerntet, neue Samen kommen dazu. Nichts welkt, Pausen sind okay.
+
+🧩 JEDEN TAG ETWAS NEUES
+Rätsel des Tages, Tageschallenge (für alle gleich), Duell zu zweit am selben Gerät, Abzeichen und Urkunden zum Ausdrucken.
+
+🏫 FÜR SCHULE UND ZUHAUSE
+• Klassen-Challenge: Mit einem Code der Lehrkraft sammelt die Klasse gemeinsam Punkte – nur mit Spitznamen.
+• Aufträge und Arbeitsblätter für Lehrkräfte.
+• Mehrere Profile auf einem Gerät für Geschwister.
+• Einstufungstest: Was passt zu meinem Kind?
+
+🔒 DATENSCHUTZFREUNDLICH
+• Läuft komplett offline – auch im Flugmodus.
+• Kein Konto, keine Werbung, kein Tracking.
+• Optional: Rechenblitz Pro für einmalig 7,99 € (inkl. MwSt., kein Abo) – Profi-Stufe, mehr als 2 Profile, Elternbericht und Vorlagen. Alles andere bleibt kostenlos. Freischalten per Code.
+• Der Lernstand bleibt auf dem Gerät.
+• Neue Inhalte kommen automatisch – ohne neue Installation.
+
+🌍 Deutsch, Englisch und Ukrainisch.
+
+Rechenblitz ist ein Angebot von Nachhilfe – online (mathenachhilfe-online.com): persönliche Online-Nachhilfe 1:1 in Mathe und mehr.
+
+Kategorie: Lernen (Education)
+Tags-Vorschläge: Mathe, Kopfrechnen, Einmaleins, Grundschule, Lernspiel
+Kontakt-E-Mail: (Marcels Support-Adresse eintragen)
+Website: https://rechenblitz.mathenachhilfe-online.com
+Datenschutzerklärung: https://www.mathenachhilfe-online.com/datenschutz/
+
+Grafiken (Ordner android-app/store/):
+• App-Symbol 512×512: icon-512.png
+• Vorschaubild 1024×500: feature-1024x500.png
+• Handy (1080×1920): phone-1-start … phone-7-raetsel
+• Tablet 7 Zoll (1200×1920): tablet7-1 … tablet7-6
+• Tablet 10 Zoll (2560×1600): tablet10-1 … tablet10-6
