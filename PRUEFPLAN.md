@@ -89,7 +89,7 @@ Der Inhalt ist in **4 Blöcke** geteilt. Jeden Monat wird **ein Block gründlich
 |---|---|---|---|
 | 18.11.2026 (Mi) | – | Betriebstest-Woche: nur Fehlerbehebungen, kein neuer Inhalt | – |
 | Do 19.11.2026 (vorgezogen, Marcel) | 3.27.0 | Gleichungssysteme (lgs, 6 Stufen, Kl. 8–10) + Theorie-Querverweise + 2 Lösungswege ergänzt | Nov. |
-| **Fr 20.11.2026** | (geplant) | Zehnerpotenzen ausbauen: wissenschaftliche Schreibweise mit vollständigem Lösungsweg (Komma verschieben, Exponent zählen), übernommen von KurvenFlug/Mathe-Trainer; dazu Elternbericht gratis (Marcel 19.11.), Eltern-Tor nach Standard ELTERN-TOR.md (Malaufgabe in Worten, eigene Ziffern-Tastatur, 1 Fehler = neue Aufgabe) auch im Web für alle Außen-Links und vor Elternbereich/Einstellungen/Kopplung/Löschen/Teilen, Werbekarte nur im Elternbereich, Zählung „elternbereich“, Store-Text | Nov. |
+| **Fr 20.11.2026** | – | **Kein Inhaltsupdate** (Marcel 19.11.: „nur Korrekturen“): gründliche Selbstprüfung + Korrekturen (Eltern-Tor im Web für alle Außen-Links, Werbekarte/Probestunde nur im Elternbereich, Schloss-Text gekürzt). Zehnerpotenzen und Elternbericht gratis → Di 24.11. | – |
 | Di 24.11.2026 | (geplant) | Umbenennung in „Zahlensprint“ (Anzeige + Adresse /zahlensprint/, intern bleibt „rechenblitz“; live erst nach Markenprüfung) + Quadratische Gleichungen im Kopf + PC-Ansicht verbessern (Marcel 19.11.: „alle prüfen“; Fotos vorher in docs/bilder/pc-vorher/) | Nov. |
 | Fr 27.11.2026 | (geplant) | großes Inhaltsupdate | Nov. |
 

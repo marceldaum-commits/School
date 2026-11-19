@@ -35,7 +35,11 @@ Wer weiterarbeitet, liest zuerst diese Datei, dann `MELDUNG_RECHENBLITZ.md` (obe
 - **Repo öffentlich:** keine Geheimnisse, keine Modellnamen in Commits. Proxy-403 nicht umgehen. Neue Dateiendungen vorher melden. Anrede in der App: „du“.
 
 ## 4. Offene Aufgaben (in dieser Reihenfolge)
-1. **Fr 20.11. – Pflicht-Update** (auf `zahlensprint-test`):
+1. **Fr 20.11. – NUR KORREKTUREN** (Marcel 19.11.): kein Inhaltsupdate, keine neuen Funktionen, kein Familien-Speicher.
+   - Selbstprüfung: Start, iPhone/WebKit, PC, alle Links und das Eltern-Tor (kein Kinderpfad ohne Tor zur Kasse oder nach außen), Schloss-Texte, Theorie und Lösungswege nachrechnen, Zählung, Datenschutz- und Lizenz-Hinweise, Konsole leer.
+   - Korrekturen: Eltern-Tor im Web für Außen-Links, Werbekarte/Probestunde nur im Elternbereich, Schloss-Text kürzen. Der Gutschein im Elternbereich nur nach Vorlage bei Recht (bleibt bis dahin aus).
+   - Bis 16 Uhr an die AppZentrale melden: geprüft, gefunden/behoben, Commit, Rückweg, „Rechtsbezug“.
+   - Die folgenden Punkte (Elternbericht gratis, Zehnerpotenzen usw.) wandern auf **Di 24.11.**:
    - **Elternbericht gratis** (Marcel): `PANELS.elternbericht` ohne `hasPro`-Sperre, Pro-Liste anpassen, Store-Text anpassen.
    - **Eltern-Tor nach ELTERN-TOR.md:**
      - Aufgabe: Malaufgabe 13–19 × 6–9 in Worten, eigene Ziffern-Tastatur, nach einem Fehler neue Aufgabe, 10 Minuten nur im Arbeitsspeicher.
