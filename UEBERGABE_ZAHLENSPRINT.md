@@ -38,6 +38,9 @@ Wer weiterarbeitet, liest zuerst diese Datei, dann `MELDUNG_RECHENBLITZ.md` (obe
 1. **Fr 20.11. – NUR KORREKTUREN** (Marcel 19.11.): kein Inhaltsupdate, keine neuen Funktionen, kein Familien-Speicher.
    - Selbstprüfung: Start, iPhone/WebKit, PC, alle Links und das Eltern-Tor (kein Kinderpfad ohne Tor zur Kasse oder nach außen), Schloss-Texte, Theorie und Lösungswege nachrechnen, Zählung, Datenschutz- und Lizenz-Hinweise, Konsole leer.
    - Korrekturen: Eltern-Tor im Web für Außen-Links, Werbekarte/Probestunde nur im Elternbereich, Schloss-Text kürzen. Der Gutschein im Elternbereich nur nach Vorlage bei Recht (bleibt bis dahin aus).
+   - **Recht V10 (Pflicht Fr):** „← Alle Apps“ (…/lern-apps/ zeigt Preise und Shop) hinter das Eltern-Tor, Grund im Tor: „Hier geht es zur Website.“ Ab Di 24.11. baut der Leitstand eine App-Übersicht ohne Preise auf lernen.…; dann zeigt der Link dorthin und darf ohne Tor sein.
+     - App-zu-App-Links (Theorie: Mathe-Trainer, KurvenFlug) sind ohne Tor nur in Ordnung, wenn die Zielseite keine Preise zeigt. Mathe-Trainer und Raumlicht zeigen Oberstufen-Preise ohne Tor. Deshalb vorerst ALLE Außen-Links über das Tor; das deckt V10 ab.
+     - Meldung: „Rechtsbezug: ja (V10)“.
    - Bis 16 Uhr an die AppZentrale melden: geprüft, gefunden/behoben, Commit, Rückweg, „Rechtsbezug“.
    - Die folgenden Punkte (Elternbericht gratis, Zehnerpotenzen usw.) wandern auf **Di 24.11.**:
    - **Elternbericht gratis** (Marcel): `PANELS.elternbericht` ohne `hasPro`-Sperre, Pro-Liste anpassen, Store-Text anpassen.
