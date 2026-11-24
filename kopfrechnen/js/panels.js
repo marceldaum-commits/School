@@ -178,7 +178,7 @@ const PANELS = {
       ${typeof PANELS.koppeln === 'function' && window.crypto && crypto.subtle ? mi('koppeln', '📲', 'Eltern-Handy koppeln' + (kopplung() ? ' <span class="pro-on static">gekoppelt</span>' : ''), 'Lernstand auf dem Eltern-Handy – ohne Konto, verschlüsselt') : ''}
       ${typeof PANELS.wiederherstellen === 'function' && window.crypto && crypto.subtle ? mi('wiederherstellen', '♻️', 'Fortschritt wiederherstellen', 'Neues Gerät? Mit dem Kopplungs-Link den Lernstand zurückholen') : ''}
       ${CONFIG.geschenkUrl ? miLink(CONFIG.geschenkUrl, '🎁', 'Lern-Geschenk verschenken', 'Nachhilfe-Stunden oder Lernpaket als Gutschein') : ''}
-      ${CONFIG.zaehler ? `<button class="setrow" id="zaehlSw" role="switch" aria-checked="${on}"><div><b>Anonyme Nutzungszählung</b><span>Beim Start meldet die App nur „Rechenblitz wurde geöffnet“ und die Version – ohne Namen, Kennungen oder Cookies. Hilft uns zu sehen, ob Rechenblitz genutzt wird.</span></div><span class="switch ${on ? 'on' : ''}"></span></button>` : ''}
+      ${CONFIG.zaehler ? `<button class="setrow" id="zaehlSw" role="switch" aria-checked="${on}"><div><b>Anonyme Nutzungszählung</b><span>Beim Start meldet die App nur „Rechenblitz wurde geöffnet“ und die Version, nach einem Umzug auf die neue Adresse außerdem einmal „Umzug geklappt“ – ohne Namen, Kennungen oder Cookies. Hilft uns zu sehen, ob Rechenblitz genutzt wird.</span></div><span class="switch ${on ? 'on' : ''}"></span></button>` : ''}
     </div>`, init() {
       const b = $('zaehlSw'); if (b) b.onclick = () => { ROOT.zaehlung = !zaehlungAn(); save(); Sound.click(); b.setAttribute('aria-checked', ROOT.zaehlung); b.querySelector('.switch').classList.toggle('on', ROOT.zaehlung); };
     } };
@@ -733,13 +733,29 @@ function resetPart(what, after) {
 }
 
 /* ---------- Anonyme Nutzungszählung (Leitstand 18.11.): einmal je Start {app, v, e:{start:1}} als text/plain ----------
-   Keine Namen, keine Kennungen, keine Cookies; im Elternbereich abschaltbar (Standard: an). Nicht auf localhost/Datei. */
+   Keine Namen, keine Kennungen, keine Cookies; im Elternbereich abschaltbar (Standard: an). Nicht auf localhost/Datei.
+   Ziel nach Adresse (Fehler-Fix 24.11.: die Testseite zählte an die Live-Stufe; die Stufe bestimmt der Trainer-Dienst aus dem Host):
+   · lernen(-test).mathenachhilfe-online.com → gleicher Origin /zaehler/v1/e (Test zählt in Test, live in live)
+   · alte Live-Adresse rechenblitz.mathenachhilfe-online.com und die Android-App → CONFIG.zaehler (Live)
+   · alles andere (rechenblitz-test.…, localhost, fremde Adressen) → keine Zählung, nie an die Live-Stufe */
 const zaehlungAn = () => ROOT.zaehlung !== false;
+function zaehlZiel(host = location.hostname, native = IS_NATIVE, proto = location.protocol, origin = location.origin) {
+  if (!CONFIG.zaehler) return '';
+  if (native) return CONFIG.zaehler;                       // APK: eigener Ursprung (localhost/capacitor), immer Live
+  if (!/^https?:$/.test(proto)) return '';
+  if (/^lernen(-test)?\.mathenachhilfe-online\.com$/.test(host)) return origin + '/zaehler/v1/e';
+  if (host === 'rechenblitz.mathenachhilfe-online.com') return CONFIG.zaehler;
+  return '';
+}
+function zaehlSenden(body) {
+  const ziel = zaehlZiel(); if (!ziel || !zaehlungAn()) return;
+  fetch(ziel, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify(body), credentials: 'omit', keepalive: true, cache: 'no-store' }).catch(() => {});
+}
 function zaehlStart() {
   try {
-    if (!CONFIG.zaehler || !zaehlungAn() || !/^https?:$/.test(location.protocol) && !IS_NATIVE) return;
-    if (!IS_NATIVE && /^(localhost|127\.|\[::1\])/.test(location.hostname)) return;
-    fetch(CONFIG.zaehler, { method: 'POST', headers: { 'Content-Type': 'text/plain' }, body: JSON.stringify({ app: 'rechenblitz', v: APP_VERSION, e: { start: 1 } }), credentials: 'omit', keepalive: true, cache: 'no-store' }).catch(() => {});
+    zaehlSenden({ app: 'rechenblitz', v: APP_VERSION, e: { start: 1 } });
+    // Umzug auf die gemeinsame Adresse (Recht 24.11.): einmal, in dem Start, in dem die Übernahme abgeschlossen wurde; kein eigener Merker, nur bei eingeschalteter Zählung
+    if (window.__umzugOk) zaehlSenden({ app: 'rechenblitz', ev: 'umzug', v: APP_VERSION });
   } catch {}
 }
 setTimeout(zaehlStart, 3000);
