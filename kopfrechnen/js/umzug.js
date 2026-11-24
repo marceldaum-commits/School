@@ -53,7 +53,7 @@ const umzugInstalliert = () => { try { return matchMedia('(display-mode: standal
 function umzugWeiter(url) {
   if (!umzugInstalliert()) { location.replace(url); return; }
   const b = document.getElementById('boot'); if (!b) { location.replace(url); return; }
-  b.innerHTML = `<div class="umzug-box"><b>${esc(umzugTr('Rechenblitz ist umgezogen'))}</b><p>${esc(umzugTr('Dein Lernstand ist schon unterwegs. Öffne die neue Adresse und installiere die App dort bitte neu auf dem Startbildschirm. Diese alte App kannst du danach löschen.'))}</p><a class="umzug-btn" href="${url.replace(/"/g, '&quot;')}" target="_blank" rel="noopener">${esc(umzugTr('Zur neuen Adresse'))}</a><small>${UMZUG.ziel(UMZUG.stufe()).replace(/^https:\/\//, '')}</small></div>`;
+  b.innerHTML = `<div class="umzug-box"><b>${esc(umzugTr('Zahlensprint ist umgezogen'))}</b><p>${esc(umzugTr('Dein Lernstand ist schon unterwegs. Öffne die neue Adresse und installiere die App dort bitte neu auf dem Startbildschirm. Diese alte App kannst du danach löschen.'))}</p><a class="umzug-btn" href="${url.replace(/"/g, '&quot;')}" target="_blank" rel="noopener">${esc(umzugTr('Zur neuen Adresse'))}</a><small>${UMZUG.ziel(UMZUG.stufe()).replace(/^https:\/\//, '')}</small></div>`;
 }
 // NEU: „#umzug=<id>.<key>.<schreib>“ einlösen. Läuft vor loadRoot()/init().
 async function umzugNeu() {

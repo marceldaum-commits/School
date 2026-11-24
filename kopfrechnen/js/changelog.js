@@ -1,8 +1,9 @@
 'use strict';
 // Rechenblitz – Versionen mit Datum (neueste oben). Wird unter „Was ist neu?“ angezeigt.
-const APP_VERSION = '3.28.4';
+const APP_VERSION = '3.29.0';
 const APP_DATE = '2026-11-24';
 const CHANGELOG = [
+  ['3.29.0', '2026-11-24', ['Neuer Name: Aus Rechenblitz wird Zahlensprint – dieselbe App, dein Lernstand bleibt', 'Bis Ende Februar steht „früher Rechenblitz“ dabei']],
   ['3.28.4', '2026-11-24', ['Fehlerbehebung: Die anonyme Nutzungszählung zählt jetzt auf der Testseite nur in der Teststufe', 'Anonym gezählt wird jetzt auch, ob der Umzug auf die neue Adresse geklappt hat – nur wenn die Zählung eingeschaltet ist']],
   ['3.28.3', '2026-11-19', ['Adventskalender ohne Gutschein-Hinweise']],
   ['3.28.2', '2026-11-19', ['Pro-Hinweise für Kinder ohne Preis und ohne Kauf-Knopf – Kaufen nur im Bereich für Erwachsene']],

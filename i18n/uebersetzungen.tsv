@@ -28,7 +28,7 @@ Alle Schüler bekommen dieselben Aufgaben (gut zum Besprechen).	All students get
 Alle Themen zufällig gemischt – Stufe {}	All topics randomly mixed – level {}	Усі теми впереміш – рівень {}
 Alle Ziffern addieren: {}	Add all digits: {}	Додай усі цифри: {}
 Alle {} Türchen geschafft	All {} doors done	Усі {} віконець пройдено
-Alles funktioniert über Links – ohne Anmeldung. Die Schüler brauchen nur Rechenblitz im Browser.	Everything works with links – no sign-up. Students only need Rechenblitz in their browser.	Усе працює через посилання – без реєстрації. Учням потрібен лише Rechenblitz у браузері.
+Alles funktioniert über Links – ohne Anmeldung. Die Schüler brauchen nur Zahlensprint im Browser.	Everything works with links – no sign-up. Students only need Zahlensprint in their browser.	Усе працює через посилання – без реєстрації. Учням потрібен лише Zahlensprint у браузері.
 Alles gemischt	All mixed	Усе впереміш
 Alleskönner	All-rounder	Майстер на всі руки
 Als App installieren	Install as app	Встановити як застосунок
@@ -429,12 +429,12 @@ Rangliste	Leaderboard	Рейтинг
 Rangliste wird geladen …	Loading leaderboard …	Завантаження рейтингу …
 Rechen-Adventskalender	Maths Advent calendar	Математичний адвент-календар
 Rechen-Starter	Maths beginner	Початківець
-Rechenblitz Tageschallenge	Rechenblitz daily challenge	Щоденний виклик Rechenblitz
-Rechenblitz ist	Rechenblitz is	Rechenblitz –
-Rechenblitz ist kostenlos – teile es!	Rechenblitz is free – share it!	Rechenblitz безкоштовний – поділися ним!
-Rechenblitz {}	Rechenblitz {}	Rechenblitz {}
-Rechenblitz – Kopfrechnen üben	Rechenblitz – practise mental maths	Rechenblitz – тренуй усний рахунок
-Rechenblitz – Tageschallenge {}	Rechenblitz – daily challenge {}	Rechenblitz – щоденний виклик {}
+Zahlensprint Tageschallenge	Zahlensprint daily challenge	Щоденний виклик Zahlensprint
+Zahlensprint ist	Zahlensprint is	Zahlensprint –
+Zahlensprint ist kostenlos – teile es!	Zahlensprint is free – share it!	Zahlensprint безкоштовний – поділися ним!
+Zahlensprint {}	Zahlensprint {}	Zahlensprint {}
+Zahlensprint – Kopfrechnen üben	Zahlensprint – practise mental maths	Zahlensprint – тренуй усний рахунок
+Zahlensprint – Tageschallenge {}	Zahlensprint – daily challenge {}	Zahlensprint – щоденний виклик {}
 Rechenblitz-Legende	Rechenblitz legend	Легенда Rechenblitz
 Rechenmaschine	Calculating machine	Рахувальна машина
 Rechenprofi	Maths pro	Профі рахунку
@@ -460,7 +460,7 @@ Schließen	Close	Закрити
 Schwierigkeit	Difficulty	Складність
 Schön	Nicely	Гарно
 So geht’s	Here's how	Ось як
-So kommt Rechenblitz auf deinen Startbildschirm:	How to put Rechenblitz on your home screen:	Як додати Rechenblitz на головний екран:
+So kommt Zahlensprint auf deinen Startbildschirm:	How to put Zahlensprint on your home screen:	Як додати Zahlensprint на головний екран:
 Speichern	Save	Зберегти
 Spitzname (kein echter Name nötig)	Nickname (no real name needed)	Псевдонім (справжнє ім'я не потрібне)
 Sprache	Language	Мова
@@ -574,7 +574,7 @@ Zu zweit an einem Gerät – wer ist schneller?	Two players, one device – who'
 Zu „Freunde werben“ ↗	To "Refer a friend" ↗	До «Порекомендуй друзям» ↗
 Zufällige Aufgaben mit Lösungsblatt	Random tasks with answer sheet	Випадкові завдання з відповідями
 Zum Adventskalender	To the Advent calendar	До адвент-календаря
-Zum Aushängen in Schule, Hort, Bibliothek oder Praxis – mit QR-Code direkt zu Rechenblitz.	To put up at school, after-school club, library or practice – with a QR code straight to Rechenblitz.	Для школи, продовженого дня, бібліотеки чи кабінету – з QR-кодом прямо до Rechenblitz.
+Zum Aushängen in Schule, Hort, Bibliothek oder Praxis – mit QR-Code direkt zu Zahlensprint.	To put up at school, after-school club, library or practice – with a QR code straight to Zahlensprint.	Для школи, продовженого дня, бібліотеки чи кабінету – з QR-кодом прямо до Zahlensprint.
 Zum Home-Bildschirm	Add to Home Screen	На початковий екран
 Zur Website mathenachhilfe-online.com	To the website mathenachhilfe-online.com	На сайт mathenachhilfe-online.com
 Zur Website ↗	To website ↗	На сайт ↗
@@ -828,7 +828,7 @@ für die Klasse	for the class	для класу
 du bist	you are	ти –
 Zweistellig	Two digits	Двоцифрове
 Schaffst du mehr? {}	Can you beat that? {}	Зможеш краще? {}
-Ich übe Kopfrechnen mit Rechenblitz – kostenlos und ohne Anmeldung. Probier's aus: {}	I'm practising mental maths with Rechenblitz – free and no sign-up. Try it: {}	Я тренуюся в усному рахунку з Rechenblitz – безкоштовно й без реєстрації. Спробуй: {}
+Ich übe Kopfrechnen mit Zahlensprint – kostenlos und ohne Anmeldung. Probier's aus: {}	I'm practising mental maths with Zahlensprint – free and no sign-up. Try it: {}	Я тренуюся в усному рахунку з Zahlensprint – безкоштовно й без реєстрації. Спробуй: {}
 Alle Details: {}	All details: {}	Усі деталі: {}
 Heute	Today	Сьогодні
 Heute: {} in {} s	Today: {} in {} s	Сьогодні: {} за {} с
@@ -856,8 +856,8 @@ Neue Abzeichen	New badges	Нові значки
 • {} Aufgaben, {} % richtig	• {} tasks, {}% correct	• {} завдань, {} % правильно
 • {} Minuten Übungszeit	• {} minutes of practice	• {} хвилин тренувань
 Kostenlose Probestunde: {}	Free trial lesson: {}	Безкоштовний пробний урок: {}
-Rechenblitz – Wochenbericht für	Rechenblitz – weekly report for	Rechenblitz – тижневий звіт для
-Rechenblitz – Ergebnis von	Rechenblitz – result of	Rechenblitz – результат
+Zahlensprint – Wochenbericht für	Zahlensprint – weekly report for	Zahlensprint – тижневий звіт для
+Zahlensprint – Ergebnis von	Zahlensprint – result of	Zahlensprint – результат
 Kopfrechen-Trick	Mental maths trick	Трюк усного рахунку
 Mal {} heißt mal {} und dann halbieren. {}	Times {} means times {} and then halve. {}	Помножити на {} – це помножити на {} і поділити навпіл. {}
 Mal {} heißt mal {} und dann halbieren. {}.	Times {} means times {} and then halve. {}.	Помножити на {} – це помножити на {} і поділити навпіл. {}.
@@ -905,8 +905,8 @@ Profile, Abzeichen, Duell, Tageschallenge	Profiles, badges, duel, daily challeng
 Einstufungstest und Wochenbericht	Placement test and weekly report	Тест рівня й тижневий звіт
 Neu in Version	New in version	Нове у версії
 Version	Version	Версія
-Rechenblitz	Rechenblitz	Rechenblitz
-Rechenblitz ⚡	Rechenblitz ⚡	Rechenblitz ⚡
+Zahlensprint	Zahlensprint	Zahlensprint
+Zahlensprint ⚡	Zahlensprint ⚡	Zahlensprint ⚡
 mathenachhilfe-online.com	mathenachhilfe-online.com	mathenachhilfe-online.com
 Ton, Erinnerung, Klassenstufe, Design	Sound, reminder, grade, appearance	Звук, нагадування, клас, вигляд
 Neu in den Einstellungen: Erinnerung aufs Handy – einmal am Tag zu deiner Uhrzeit	New in settings: a reminder on your phone – once a day at your chosen time	Нове в налаштуваннях: нагадування на телефон – раз на день у твій час
@@ -926,16 +926,16 @@ Zeit für {} Minuten Kopfrechnen! Dein Gehirn freut sich.	Time for {} minutes of
 Mitteilungen sind gesperrt.	Notifications are blocked.	Сповіщення заблоковано.
 So erlaubst du sie:	Here's how to allow them:	Як їх дозволити:
 iPhone/iPad: Einstellungen öffnen	iPhone/iPad: open Settings	iPhone/iPad: відкрий «Параметри»
-„Mitteilungen“ → „Rechenblitz“	"Notifications" → "Rechenblitz"	«Сповіщення» → «Rechenblitz»
+„Mitteilungen“ → „Zahlensprint“	"Notifications" → "Zahlensprint"	«Сповіщення» → «Zahlensprint»
 „Mitteilungen erlauben“ einschalten	Turn on "Allow Notifications"	Увімкни «Дозволити сповіщення»
 Android-Einstellungen öffnen	Open Android settings	Відкрий налаштування Android
-„Apps“ → „Rechenblitz“ → „Benachrichtigungen“	"Apps" → "Rechenblitz" → "Notifications"	«Додатки» → «Rechenblitz» → «Сповіщення»
+„Apps“ → „Zahlensprint“ → „Benachrichtigungen“	"Apps" → "Zahlensprint" → "Notifications"	«Додатки» → «Zahlensprint» → «Сповіщення»
 Einschalten und hier den Schalter antippen	Turn them on and tap the switch here	Увімкни їх і торкнися перемикача тут
 Oben links neben der Adresse auf das Schloss bzw. den Regler tippen	Tap the lock or slider icon left of the address bar	Торкнися значка замка або повзунка ліворуч від адреси
 „Berechtigungen“ → „Benachrichtigungen“	"Permissions" → "Notifications"	«Дозволи» → «Сповіщення»
 „Zulassen“ wählen und die Seite neu laden	Choose "Allow" and reload the page	Вибери «Дозволити» й перезавантаж сторінку
 Dieser Browser kann leider keine Erinnerungen anzeigen.	Sorry, this browser can't show reminders.	На жаль, цей браузер не може показувати нагадування.
-Auf dem iPhone und iPad gehen Erinnerungen nur, wenn Rechenblitz als App auf dem Home-Bildschirm liegt.	On iPhone and iPad, reminders only work when Rechenblitz is on the Home Screen as an app.	На iPhone та iPad нагадування працюють, лише якщо Rechenblitz додано на початковий екран як застосунок.
+Auf dem iPhone und iPad gehen Erinnerungen nur, wenn Zahlensprint als App auf dem Home-Bildschirm liegt.	On iPhone and iPad, reminders only work when Zahlensprint is on the Home Screen as an app.	На iPhone та iPad нагадування працюють, лише якщо Zahlensprint додано на початковий екран як застосунок.
 Mitteilungen sind gesperrt – siehe Anleitung oben.	Notifications are blocked – see the steps above.	Сповіщення заблоковано – дивись інструкцію вище.
 Ohne Erlaubnis geht es leider nicht.	Sorry, it doesn't work without permission.	На жаль, без дозволу не вийде.
 Keine Internetverbindung – bitte später noch einmal.	No internet connection – please try again later.	Немає з'єднання з інтернетом – спробуй пізніше.
@@ -1139,7 +1139,7 @@ Los geht’s!	Let's go!	Почнімо!
 Sternbilder-Album	Constellation album	Альбом сузір'їв
 Maskottchen Blitz	Mascot Blitz	Талісман Бліц
 Blitz der Fuchs feuert dich an und erklärt Tricks	Blitz the fox cheers you on and explains tricks	Лисеня Бліц підбадьорює тебе й пояснює трюки
-Neu in Rechenblitz	New in Rechenblitz	Нове в Rechenblitz
+Neu in Zahlensprint	New in Zahlensprint	Нове в Zahlensprint
 Schau mal, was es Neues gibt!	Look what's new!	Подивись, що нового!
 Alle Neuerungen ansehen	See all updates	Переглянути всі новинки
 Willkommen!	Welcome!	Ласкаво просимо!
@@ -1511,7 +1511,7 @@ A4 quer – ganze Seite	A{} landscape – full page	A{} альбомна – н�
 Halbe Seite	Half page	Пів сторінки
 Urkunden drucken: neu „A4 quer – ganze Seite“	Printing certificates: new “A{} landscape – full page”	Друк грамот: нове «A{} альбомна – на всю сторінку»
 Vorbereitung für Google Play	Getting ready for Google Play	Підготовка до Google Play
-Für Version {} bitte Rechenblitz im Play Store aktualisieren – der Lernstand bleibt	For version {} please update Rechenblitz in the Play Store – your progress stays	Для версії {} онови Rechenblitz у Play Store – прогрес збережеться
+Für Version {} bitte Zahlensprint im Play Store aktualisieren – der Lernstand bleibt	For version {} please update Zahlensprint in the Play Store – your progress stays	Для версії {} онови Zahlensprint у Play Store – прогрес збережеться
 Play Store	Play Store	Play Store
 Vorbereitung für Google Play: Updates direkt in der App	Getting ready for Google Play: updates right inside the app	Підготовка до Google Play: оновлення прямо в застосунку
 Nur für Erwachsene	Adults only	Лише для дорослих
@@ -2254,11 +2254,11 @@ Drucken / PDF	Print / PDF	Друк / PDF
 🔒 Profi	🔒 Pro	🔒 Профі
 Profi 🔒	Pro 🔒	Профі 🔒
 Pro	Pro	Pro
-Rechenblitz Pro	Rechenblitz Pro	Rechenblitz Pro
+Zahlensprint Pro	Zahlensprint Pro	Zahlensprint Pro
 Profi-Stufe, mehr Profile, Elternbericht	Pro level, more profiles, parent report	Рівень Профі, більше профілів, звіт для батьків
 Freischalten oder Code einlösen	Unlock or redeem a code	Розблокувати або ввести код
 Freigeschaltet – danke!	Unlocked – thank you!	Розблоковано – дякуємо!
-Die Profi-Stufe gehört zu Rechenblitz Pro.	The Pro level is part of Rechenblitz Pro.	Рівень Профі входить до Rechenblitz Pro.
+Die Profi-Stufe gehört zu Zahlensprint Pro.	The Pro level is part of Zahlensprint Pro.	Рівень Профі входить до Zahlensprint Pro.
 Profi-Stufe in allen {} Themen	Pro level in all {} topics	Рівень Профі в усіх {} темах
 Für richtig gute Rechner – große Zahlen, viele Schritte	For really strong calculators – big numbers, many steps	Для дуже сильних рахівників – великі числа, багато кроків
 Unbegrenzt Profile	Unlimited profiles	Необмежено профілів
@@ -2273,18 +2273,18 @@ kein Abo	no subscription	без підписки
 Kauf auf unserer Website, der Code kommt per E-Mail	Purchase on our website, the code arrives by email	Покупка на нашому сайті, код надійде електронною поштою
 Code schon gekauft? Hier einfügen:	Already bought a code? Paste it here:	Уже купили код? Вставте його тут:
 Einlösen	Redeem	Активувати
-Mehr als {} Profile gibt es mit Rechenblitz Pro.	More than {} profiles are available with Rechenblitz Pro.	Понад {} профілі доступні з Rechenblitz Pro.
-Der Elternbericht gehört zu Rechenblitz Pro.	The parent report is part of Rechenblitz Pro.	Звіт для батьків входить до Rechenblitz Pro.
-Vorlagen speichern und teilen gehört zu Rechenblitz Pro.	Saving and sharing templates is part of Rechenblitz Pro.	Збереження й поширення шаблонів входить до Rechenblitz Pro.
+Mehr als {} Profile gibt es mit Zahlensprint Pro.	More than {} profiles are available with Zahlensprint Pro.	Понад {} профілі доступні з Zahlensprint Pro.
+Der Elternbericht gehört zu Zahlensprint Pro.	The parent report is part of Zahlensprint Pro.	Звіт для батьків входить до Zahlensprint Pro.
+Vorlagen speichern und teilen gehört zu Zahlensprint Pro.	Saving and sharing templates is part of Zahlensprint Pro.	Збереження й поширення шаблонів входить до Zahlensprint Pro.
 Zurzeit sind alle Pro-Funktionen kostenlos freigeschaltet.	All Pro features are currently unlocked for free.	Зараз усі функції Pro безкоштовні.
-Das sieht nicht wie ein Rechenblitz-Code aus. Bitte genau so eingeben, wie er in der E-Mail steht.	That doesn’t look like a Rechenblitz code. Please enter it exactly as in the email.	Це не схоже на код Rechenblitz. Введіть його точно так, як у листі.
+Das sieht nicht wie ein Zahlensprint-Code aus. Bitte genau so eingeben, wie er in der E-Mail steht.	That doesn’t look like a Zahlensprint code. Please enter it exactly as in the email.	Це не схоже на код Zahlensprint. Введіть його точно так, як у листі.
 Dieser Code gehört zu einer anderen App.	This code belongs to a different app.	Цей код належить іншому застосунку.
 Dieser Code schaltet etwas anderes frei.	This code unlocks something else.	Цей код розблоковує щось інше.
 Dieser Code ist nicht gültig. Bitte noch einmal genau abschreiben.	This code is not valid. Please copy it again carefully.	Цей код недійсний. Перепишіть його ще раз уважно.
 Dieses Gerät kann den Code nicht prüfen. Bitte Browser bzw. App aktualisieren.	This device can’t check the code. Please update your browser or the app.	Цей пристрій не може перевірити код. Оновіть браузер або застосунок.
-Rechenblitz Pro ist freigeschaltet – danke!	Rechenblitz Pro is unlocked – thank you!	Rechenblitz Pro розблоковано – дякуємо!
-✓ Rechenblitz Pro ist auf diesem Gerät freigeschaltet – für alle Profile. Danke für deine Unterstützung!	✓ Rechenblitz Pro is unlocked on this device – for all profiles. Thanks for your support!	✓ Rechenblitz Pro розблоковано на цьому пристрої – для всіх профілів. Дякуємо за підтримку!
-Die Profi-Stufe gehört zu Rechenblitz Pro – jetzt Stufe {}	The Pro level is part of Rechenblitz Pro – level {} for now	Рівень Профі входить до Rechenblitz Pro – зараз рівень {}
+Zahlensprint Pro ist freigeschaltet – danke!	Zahlensprint Pro is unlocked – thank you!	Zahlensprint Pro розблоковано – дякуємо!
+✓ Zahlensprint Pro ist auf diesem Gerät freigeschaltet – für alle Profile. Danke für deine Unterstützung!	✓ Zahlensprint Pro is unlocked on this device – for all profiles. Thanks for your support!	✓ Zahlensprint Pro розблоковано на цьому пристрої – для всіх профілів. Дякуємо за підтримку!
+Die Profi-Stufe gehört zu Zahlensprint Pro – jetzt Stufe {}	The Pro level is part of Zahlensprint Pro – level {} for now	Рівень Профі входить до Zahlensprint Pro – зараз рівень {}
 Neu für Eltern: der Elternbericht 📈 – Verlauf über {} Wochen, Stärken und Schwächen je Thema, zum Ausdrucken	New for parents: the parent report 📈 – progress over {} weeks, strengths and weaknesses per topic, printable	Нове для батьків: звіт 📈 – прогрес за {} тижнів, сильні та слабкі сторони за темами, для друку
 # 17.11.2026 – Zahlen-Dungeon (3.21.0)
 Zahlen-Dungeon	Number Dungeon	Числове підземелля
@@ -2374,16 +2374,16 @@ Neu: eigene Rechenblitz-Musik 🎵 – vier selbst komponierte Stücke für Men�
 Neue Klänge für richtig, Serie, Sterne, Stufe geschafft, Garten und Reise – falsch klingt jetzt freundlich	New sounds for right answers, streaks, stars, level-ups, garden and journey – wrong answers now sound friendly	Нові звуки для правильних відповідей, серій, зірок, нового рівня, саду й подорожі – помилка тепер звучить дружньо
 Musik und Effekte einzeln ein- und ausschalten, mit eigener Lautstärke	Switch music and effects on and off separately, each with its own volume	Музику й ефекти можна вмикати окремо, кожне зі своєю гучністю
 Vorlesen: Aufgaben, Lösungswege, Theorie und Blitz – Stimme und Tempo wählbar, mit Probe	Read aloud: tasks, solution steps, theory and Blitz – choose voice and speed, with a sample	Читання вголос: завдання, розв’язання, теорія і Бліц – голос і швидкість на вибір, з прикладом
-Zum Vorlesen bitte die neue Rechenblitz-App installieren.	To use read aloud, please install the new Rechenblitz app.	Щоб читати вголос, встанови нову версію застосунку Rechenblitz.
+Zum Vorlesen bitte die neue Zahlensprint-App installieren.	To use read aloud, please install the new Zahlensprint app.	Щоб читати вголос, встанови нову версію застосунку Zahlensprint.
 Android-App: Vorlesen jetzt auch hier – mit den Stimmen des Handys, Tempo und Probe (neue App-Version nötig)	Android app: read aloud now works here too – with the phone's voices, speed and a sample (new app version needed)	Застосунок Android: читання вголос тепер і тут – голоси телефона, швидкість і приклад (потрібна нова версія застосунку)
 Neu: die natürliche Stimme „Thorsten“ zum Vorlesen – einmal laden, dann auch offline	New: the natural voice “Thorsten” for reading aloud (German only) – load it once, then it works offline too	Нове: природний голос «Thorsten» для читання вголос (лише німецькою) – завантаж один раз, далі працює й офлайн
 Stimme „Thorsten“: kommt jetzt von unserem eigenen Stimmen-Server, wird vor dem Speichern geprüft, Laden lässt sich abbrechen	Voice “Thorsten”: now comes from our own voice server, is checked before saving, and loading can be cancelled	Голос «Thorsten»: тепер з нашого власного сервера голосів, перевіряється перед збереженням, завантаження можна скасувати
 Stimme „Thorsten“: beide Dateien vom Stimmen-Server werden geprüft	Voice “Thorsten”: both files from the voice server are verified	Голос «Thorsten»: обидва файли із сервера голосів перевіряються
 ⭐ Pro aktiv	⭐ Pro active	⭐ Pro активний
 Pro aktiv	Pro active	Pro активний
-Rechenblitz Pro ist auf diesem Gerät freigeschaltet – für alle Profile. Danke für deine Unterstützung!	Rechenblitz Pro is unlocked on this device – for all profiles. Thank you for your support!	Rechenblitz Pro розблоковано на цьому пристрої – для всіх профілів. Дякуємо за підтримку!
+Zahlensprint Pro ist auf diesem Gerät freigeschaltet – für alle Profile. Danke für deine Unterstützung!	Zahlensprint Pro is unlocked on this device – for all profiles. Thank you for your support!	Zahlensprint Pro розблоковано на цьому пристрої – для всіх профілів. Дякуємо за підтримку!
 Auf diesem Gerät freigeschaltet – für alle Profile	Unlocked on this device – for all profiles	Розблоковано на цьому пристрої – для всіх профілів
-Rechenblitz Pro ist auf diesem Gerät freigeschaltet.	Rechenblitz Pro is unlocked on this device.	Rechenblitz Pro розблоковано на цьому пристрої.
+Zahlensprint Pro ist auf diesem Gerät freigeschaltet.	Zahlensprint Pro is unlocked on this device.	Zahlensprint Pro розблоковано на цьому пристрої.
 Neu: „Pro aktiv“ ist deutlich zu sehen – auf der Startseite, im Menü, in den Einstellungen und im Elternbericht	New: “Pro active” is clearly visible – on the start screen, in the menu, in the settings and in the parent report	Нове: «Pro активний» добре видно – на головному екрані, у меню, у налаштуваннях і у звіті для батьків
 Nova – KI-generierte Stimme	Nova – AI-generated voice	Nova – голос, згенерований ШІ
 Gerätestimme (automatisch)	Device voice (automatic)	Голос пристрою (автоматично)
@@ -2452,9 +2452,9 @@ Vorlesen ist vorerst ausgeschaltet – dafür gibt es die neue Musik und Klänge
 App installieren	Install app	Встановити застосунок
 📱 App installieren	📱 Install app	📱 Встановити застосунок
 Auf den Startbildschirm – startet wie eine App, auch offline	On your home screen – opens like an app, even offline	На головний екран – запускається як застосунок, навіть офлайн
-📱 Rechenblitz wird installiert	📱 Installing Rechenblitz	📱 Rechenblitz встановлюється
+📱 Zahlensprint wird installiert	📱 Installing Zahlensprint	📱 Zahlensprint встановлюється
 Gilt in der Web-App auf diesem Gerät – für alle Profile	Valid in the web app on this device – for all profiles	Діє у вебзастосунку на цьому пристрої – для всіх профілів
-Rechenblitz Pro gilt in der Web-App auf diesem Gerät – für alle Profile. Danke für deine Unterstützung!	Rechenblitz Pro is active in the web app on this device – for all profiles. Thank you for your support!	Rechenblitz Pro діє у вебзастосунку на цьому пристрої – для всіх профілів. Дякуємо за підтримку!
+Zahlensprint Pro gilt in der Web-App auf diesem Gerät – für alle Profile. Danke für deine Unterstützung!	Zahlensprint Pro is active in the web app on this device – for all profiles. Thank you for your support!	Zahlensprint Pro діє у вебзастосунку на цьому пристрої – для всіх профілів. Дякуємо за підтримку!
 gilt in der Web-App	valid in the web app	діє у вебзастосунку
 Neu: Knopf „App installieren“ – Rechenblitz kommt mit einem Tipp auf den Startbildschirm und startet wie eine App, auch offline	New: “Install app” button – Rechenblitz lands on your home screen with one tap and opens like an app, even offline	Нове: кнопка «Встановити застосунок» – Rechenblitz одним дотиком з’являється на головному екрані й запускається як застосунок, навіть офлайн
 Elternbereich	Parents' area	Розділ для батьків
@@ -2464,7 +2464,7 @@ Was geübt wurde, wo es hakt	What was practised, where it gets stuck	Що впр
 Lern-Geschenk verschenken	Give a learning gift	Подарувати навчання
 Nachhilfe-Stunden oder Lernpaket als Gutschein	Tutoring lessons or a learning pack as a voucher	Уроки з репетитором або навчальний пакет як подарунковий сертифікат
 Anonyme Nutzungszählung	Anonymous usage count	Анонімний підрахунок використання
-Beim Start meldet die App nur „Rechenblitz wurde geöffnet“ und die Version, nach einem Umzug auf die neue Adresse außerdem einmal „Umzug geklappt“ – ohne Namen, Kennungen oder Cookies. Hilft uns zu sehen, ob Rechenblitz genutzt wird.	At start-up the app only reports “Rechenblitz was opened” and the version, and after a move to the new address also once “move worked” – no names, identifiers or cookies. It helps us see whether Rechenblitz is used.	Під час запуску застосунок повідомляє лише «Rechenblitz відкрито» та версію, а після переходу на нову адресу ще один раз «перехід вдався» – без імен, ідентифікаторів чи файлів cookie. Це допомагає нам бачити, чи користуються Rechenblitz.
+Beim Start meldet die App nur „Zahlensprint wurde geöffnet“ und die Version, nach einem Umzug auf die neue Adresse außerdem einmal „Umzug geklappt“ – ohne Namen, Kennungen oder Cookies. Hilft uns zu sehen, ob Zahlensprint genutzt wird.	At start-up the app only reports “Zahlensprint was opened” and the version, and after a move to the new address also once “move worked” – no names, identifiers or cookies. It helps us see whether Zahlensprint is used.	Під час запуску застосунок повідомляє лише «Zahlensprint відкрито» та версію, а після переходу на нову адресу ще один раз «перехід вдався» – без імен, ідентифікаторів чи файлів cookie. Це допомагає нам бачити, чи користуються Zahlensprint.
 Neuer Elternbereich: Berichte, Lern-Geschenk und die anonyme Nutzungszählung (abschaltbar)	New parents' area: reports, learning gift and the anonymous usage count (can be switched off)	Новий розділ для батьків: звіти, навчальний подарунок і анонімний підрахунок використання (можна вимкнути)
 Eltern-Handy koppeln	Link a parent's phone	Під’єднати телефон батьків
 📲 Eltern-Handy koppeln	📲 Link a parent's phone	📲 Під’єднати телефон батьків
@@ -2548,19 +2548,25 @@ Nebenwinkel ergänzen sich zu {}°.	Adjacent angles on a straight line add up to
 Der andere Winkel	The other angle	Інший кут
 Ende minus Anfang (in Minuten nach {} Uhr)	End minus start (in minutes after {})	Кінець мінус початок (у хвилинах після {})
 Lösungswege bei Nebenwinkeln und Minuten-Zeitspannen nennen jetzt die Regel	Solutions for adjacent angles and time spans in minutes now state the rule	Розв’язки для суміжних кутів і проміжків часу в хвилинах тепер називають правило
-✅ Dein Lernstand ist mit umgezogen – Rechenblitz hat jetzt eine neue Adresse.	✅ Your progress has moved too – Rechenblitz has a new address now.	✅ Твій прогрес теж переїхав — Rechenblitz тепер має нову адресу.
+✅ Dein Lernstand ist mit umgezogen – Zahlensprint hat jetzt eine neue Adresse.	✅ Your progress has moved too – Zahlensprint has a new address now.	✅ Твій прогрес теж переїхав — Zahlensprint тепер має нову адресу.
 Wir ziehen um …	We are moving …	Ми переїжджаємо …
-Rechenblitz ist umgezogen	Rechenblitz has moved	Rechenblitz переїхав
+Zahlensprint ist umgezogen	Zahlensprint has moved	Zahlensprint переїхав
 Dein Lernstand ist schon unterwegs. Öffne die neue Adresse und installiere die App dort bitte neu auf dem Startbildschirm. Diese alte App kannst du danach löschen.	Your progress is already on its way. Open the new address and please install the app there again on your home screen. You can delete this old app afterwards.	Твій прогрес уже в дорозі. Відкрий нову адресу й, будь ласка, знову встанови там застосунок на головний екран. Цей старий застосунок потім можна видалити.
 Zur neuen Adresse	To the new address	До нової адреси
 Vorbereitet für den Umzug auf die gemeinsame Adresse aller Lern-Apps: Der Lernstand zieht verschlüsselt mit um	Prepared for the move to the shared address of all learning apps: your progress moves along, encrypted	Підготовлено до переїзду на спільну адресу всіх навчальних застосунків: прогрес переїжджає зашифрованим
 Speicher und Offline-Dateien tragen jetzt eindeutig den Namen Rechenblitz	Storage and offline files now clearly carry the name Rechenblitz	Сховище й офлайн-файли тепер чітко мають назву Rechenblitz
 Fehlerbehebung: Die App startet jetzt auch, wenn im Speicher kein Profil liegt	Bug fix: the app now also starts when no profile is stored	Виправлення: застосунок тепер запускається, навіть якщо в сховищі немає профілю
 Dieser Bereich ist für Erwachsene.	This area is for adults.	Цей розділ для дорослих.
-Das gehört zu Rechenblitz Pro. Deine Eltern können im Elternbereich nachsehen.	This is part of Rechenblitz Pro. Your parents can have a look in the parents’ area.	Це входить до Rechenblitz Pro. Твої батьки можуть подивитися в розділі для батьків.
+Das gehört zu Zahlensprint Pro. Deine Eltern können im Elternbereich nachsehen.	This is part of Zahlensprint Pro. Your parents can have a look in the parents’ area.	Це входить до Zahlensprint Pro. Твої батьки можуть подивитися в розділі для батьків.
 🔒 Für Eltern	🔒 For parents	🔒 Для батьків
 Was Pro enthält · Code einlösen	What Pro includes · redeem a code	Що містить Pro · активувати код
 Pro-Hinweise für Kinder ohne Preis und ohne Kauf-Knopf – Kaufen nur im Bereich für Erwachsene	Pro notes for children without price or buy button – buying only in the area for adults	Підказки про Pro для дітей без ціни й кнопки купівлі — купівля лише в розділі для дорослих
 Adventskalender ohne Gutschein-Hinweise	Advent calendar without voucher notes	Адвент-календар без згадок про ваучер
 Fehlerbehebung: Die anonyme Nutzungszählung zählt jetzt auf der Testseite nur in der Teststufe	Bug fix: the anonymous usage count now counts only in the test tier on the test site	Виправлення: анонімний підрахунок використання на тестовому сайті тепер рахується лише в тестовому рівні
 Anonym gezählt wird jetzt auch, ob der Umzug auf die neue Adresse geklappt hat – nur wenn die Zählung eingeschaltet ist	Whether the move to the new address worked is now also counted anonymously – only if counting is switched on	Анонімно також рахується, чи вдався перехід на нову адресу, – лише якщо підрахунок увімкнено
+früher Rechenblitz	formerly Rechenblitz	раніше Rechenblitz
+Zahlensprint ist der neue Name von Rechenblitz	Zahlensprint is the new name of Rechenblitz	Zahlensprint – нова назва Rechenblitz
+Neuer Name: Aus Rechenblitz wird Zahlensprint – dieselbe App, dein Lernstand bleibt	New name: Rechenblitz becomes Zahlensprint – the same app, your progress stays	Нова назва: Rechenblitz стає Zahlensprint – той самий застосунок, твій прогрес залишається
+Bis Ende Februar steht „früher Rechenblitz“ dabei	Until the end of February it says “formerly Rechenblitz”	До кінця лютого поруч стоятиме «раніше Rechenblitz»
+Rechenblitz Pro ist da	Rechenblitz Pro is here	Rechenblitz Pro вже тут
+Profi-Stufe, mehr Profile, Elternbericht und Vorlagen für einmalig {} € – alles andere bleibt kostenlos	Pro level, more profiles, parent report and templates for a one-off {} € – everything else stays free	Професійний рівень, більше профілів, звіт для батьків і шаблони за одноразові {} € – усе інше залишається безкоштовним

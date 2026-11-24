@@ -1,5 +1,5 @@
 // Rechenblitz Service Worker: App läuft nach dem ersten Besuch auch offline.
-const CACHE = 'rechenblitz-3.28.4';
+const CACHE = 'rechenblitz-3.29.0';
 const PUSH = 'rechenblitz-push', NOVA = 'rechenblitz-nova';   // Erinnerungstext und offline geladene Vorlese-Sätze – bleiben bei Updates erhalten
 const FILES = ['./', 'index.html', 'app.min.css', 'config.js', 'js/rechenblitz.min.js', 'js/lang-en.js', 'js/lang-uk.js', 'manifest.webmanifest', 'icons/logo.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png',
   'icons/apple-touch-icon.png', 'icons/favicon-32.png', 'fonts/Inter.woff2', 'fonts/SourceSerif4-italic.woff2', 'fonts/Caveat.woff2'];
@@ -24,7 +24,7 @@ self.addEventListener('fetch', e => {
 /* ---------- Erinnerung aufs Handy: Push ohne Inhalt, Text kommt aus der App ---------- */
 const pushInfo = () => caches.open(PUSH).then(c => c.match('push-info')).then(r => r ? r.json() : {}).catch(() => ({}));
 self.addEventListener('push', e => {
-  e.waitUntil(pushInfo().then(i => self.registration.showNotification(i.title || 'Rechenblitz ⚡', {
+  e.waitUntil(pushInfo().then(i => self.registration.showNotification(i.title || 'Zahlensprint ⚡', {
     body: i.body || 'Zeit für 3 Minuten Kopfrechnen! Dein Gehirn freut sich.',
     icon: 'icons/icon-192.png', tag: 'rechenblitz-erinnerung', renotify: false, data: { url: './' } })));
 });

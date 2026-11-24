@@ -232,7 +232,7 @@ PANELS.wunschShare = ({ cfg }) => {
     <button class="btn primary block" id="wsShare">Link teilen</button>
     <button class="btn block" id="wsCopy">Link kopieren</button></div>`,
     init() {
-      $('wsShare').onclick = () => shareText(`${tr('Übung für dich')}: ${C.k || tr('Üben nach Wunsch')} – ${tr(wunschSummary(C))}\n${url}`, 'Rechenblitz', url);
+      $('wsShare').onclick = () => shareText(`${tr('Übung für dich')}: ${C.k || tr('Üben nach Wunsch')} – ${tr(wunschSummary(C))}\n${url}`, 'Zahlensprint', url);
       $('wsCopy').onclick = async () => { try { await navigator.clipboard.writeText(url); toast('Link kopiert ✓'); } catch { showPanel('shareBox', { text: url }, true); } };
     } };
 };

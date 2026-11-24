@@ -89,7 +89,7 @@ function renderLiveUpdate() {
   el.innerHTML = kind === 'ready'
     ? `<div class="ch-ico">✨</div><div class="ch-txt"><b>Version ${esc(u.pending)} ist geladen</b><span>Lernstand bleibt erhalten</span></div><button class="btn small primary" id="apkGo">Jetzt neu starten</button>`
     : u.store === 'play'
-      ? `<div class="ch-ico">⬆️</div><div class="ch-txt"><b>Neue App-Version nötig</b><span>Für Version ${esc(u.needVersion || '')} bitte Rechenblitz im Play Store aktualisieren – der Lernstand bleibt</span></div><button class="btn small primary" id="apkGo">Play Store</button>`
+      ? `<div class="ch-ico">⬆️</div><div class="ch-txt"><b>Neue App-Version nötig</b><span>Für Version ${esc(u.needVersion || '')} bitte Zahlensprint im Play Store aktualisieren – der Lernstand bleibt</span></div><button class="btn small primary" id="apkGo">Play Store</button>`
       : `<div class="ch-ico">⬆️</div><div class="ch-txt"><b>Neue App-Version nötig</b><span>Für Version ${esc(u.needVersion || '')} bitte die App einmal neu installieren – der Lernstand bleibt</span></div>${u.apkUrl ? '<button class="btn small primary" id="apkGo">Herunterladen</button>' : ''}`;
   $('apkGo') && ($('apkGo').onclick = () => {
     if (kind === 'ready') { save(); RbUpd()?.apply().catch(() => {}); return; }
@@ -141,7 +141,7 @@ function widgetUpdate() {
       const line1 = m && m.todo ? tr(`🧠 ${m.todo} Aufgaben warten · ca. 3 Min.`)
         : m && merkSolidAll() ? tr(`🧠 Alles wiederholt ✓ · ${merkSolidAll()} sitzen fest`) : tr('🧠 Zeit für 3 Minuten Kopfrechnen!');
       const line2 = [tr(`🎯 ${solved}/${DAILY_GOAL} heute`), tr(`🌱 ${typeof weekCount === 'function' ? weekCount() : 0}/7 diese Woche`), next ? `${tr('Heute dran:')} ${i18nNumbers(taskText(merkTask(next)))}` : ''].filter(Boolean).join(' · ');
-      W.update({ title: 'Rechenblitz', line1, line2, button: tr('Los'), idle1: tr('🧠 Zeit für 3 Minuten Kopfrechnen!'), idle2: tr('Tippe hier – Blitz wartet schon'), day: today }).catch(() => {});
+      W.update({ title: 'Zahlensprint', line1, line2, button: tr('Los'), idle1: tr('🧠 Zeit für 3 Minuten Kopfrechnen!'), idle2: tr('Tippe hier – Blitz wartet schon'), day: today }).catch(() => {});
     } catch {}
   }, 300);
 }

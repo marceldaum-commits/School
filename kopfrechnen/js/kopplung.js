@@ -38,7 +38,7 @@ function elternBerichtJson() {
   for (let i = 13; i >= 0; i--) { const h = S.hist[dayStr(i)]; if (h && h.n) letzte.push({ tag: dayStr(i), min: Math.round(h.ms / 60000), aufgaben: h.n, richtig: h.ok }); }
   const merkVon = MERK_DECKS.reduce((a, x) => a + x.keys().length, 0), reiseVon = REISE_CH.length * REISE.N * 3;
   const r = {
-    format: 1, app: 'rechenblitz', appName: 'Rechenblitz',
+    format: 1, app: 'rechenblitz', appName: 'Zahlensprint',
     ...(k && k.name ? { name: k.name } : {}),
     ...(S.settings.klasse ? { klasse: S.settings.klasse } : {}),
     stand: new Date().toISOString(),
@@ -49,7 +49,7 @@ function elternBerichtJson() {
     fortschritt: [{ titel: 'Merk-Training: sitzt fest', geschafft: merkSolidAll(), von: merkVon }, { titel: 'Rechen-Reise: Sterne', geschafft: reiseTotalStars(), von: reiseVon }],
     letzte,
     verlauf: Object.entries(monateInit()).sort(([a], [b]) => a < b ? -1 : 1).slice(-12).map(([monat, m]) => ({ monat, min: Math.round(m.ms / 60000), aufgaben: m.n, richtigProzent: pc(m.ok, m.n) })),
-    hinweis: 'Aus der Rechenblitz-App, letzte 10 Wochen. Hakt es irgendwo? Kostenlose Probestunde: mathenachhilfe-online.com/probestunde/',
+    hinweis: 'Aus der Zahlensprint-App, letzte 10 Wochen. Hakt es irgendwo? Kostenlose Probestunde: mathenachhilfe-online.com/probestunde/',
   };
   return r;
 }
@@ -141,7 +141,7 @@ PANELS.koppeln = () => {
       <p class="small muted">Der Link enthält den Schlüssel – bitte nur an Eltern weitergeben. Er stellt auch den Fortschritt auf einem neuen Gerät wieder her (Elternbereich → Fortschritt wiederherstellen).</p>
       <button class="btn block kp-off" id="kpOff">Kopplung aufheben</button>
     </div>`, init() {
-      $('kpShare').onclick = () => shareText(`Rechenblitz – Lernstand${k.name ? ' von ' + k.name : ''}\n${url}`, 'Rechenblitz – Eltern-Bericht', url);
+      $('kpShare').onclick = () => shareText(`Zahlensprint – Lernstand${k.name ? ' von ' + k.name : ''}\n${url}`, 'Zahlensprint – Eltern-Bericht', url);
       $('kpSync').onclick = async () => { const ok = await elternSync(true); toast(ok ? '✓ Bericht aktualisiert' : 'Gerade keine Verbindung – bitte später nochmal', 2000); showPanel('koppeln', {}, false); };
       $('kpOff').onclick = async () => { if (!confirm(tr('Kopplung aufheben? Der Bericht wird vom Server gelöscht und der Link funktioniert nicht mehr.'))) return;
         const ok = await elternEntkoppeln(); toast(ok ? 'Kopplung aufgehoben' : 'Kopplung aufgehoben – der Server war nicht erreichbar, der Bericht verfällt nach 90 Tagen', 2600); showPanel('koppeln', {}, false); };

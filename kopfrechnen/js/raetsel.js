@@ -44,7 +44,7 @@ const RAETSEL_EMO = { g: '🟩', y: '🟨', n: '⬜' };
 function raetselShare() {
   const st = raetselState(), sec = raetselSecret(st.date, st.len);
   const grid = st.g.map(g => raetselScore(g, sec).map(x => RAETSEL_EMO[x]).join('')).join('\n');
-  shareText(`Rechenblitz – Rätsel des Tages ${fmtDay(st.date)}\n${st.won ? st.g.length : 'X'}/${RAETSEL_TRIES}\n${grid}\n${tr('Schaffst du es schneller?')} ${appUrl()}`, 'Rechenblitz-Rätsel');
+  shareText(`Zahlensprint – Rätsel des Tages ${fmtDay(st.date)}\n${st.won ? st.g.length : 'X'}/${RAETSEL_TRIES}\n${grid}\n${tr('Schaffst du es schneller?')} ${appUrl()}`, 'Zahlensprint-Rätsel');
 }
 
 PANELS.raetsel = () => {

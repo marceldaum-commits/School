@@ -13,7 +13,7 @@ const canInstall = () => !isStandalone() && (!!installPrompt || isIOS());
 async function doInstall() {
   if (!installPrompt) return openSheet('install');
   installPrompt.prompt(); const r = await installPrompt.userChoice.catch(() => null); installPrompt = null; renderInstall();
-  if (r && r.outcome === 'accepted') toast('📱 Rechenblitz wird installiert');
+  if (r && r.outcome === 'accepted') toast('📱 Zahlensprint wird installiert');
 }
 function renderInstall() { const b = $('installCta'); if (b) b.hidden = !canInstall(); }
 addEventListener('appinstalled', () => { installPrompt = null; renderInstall(); });
@@ -44,7 +44,7 @@ const PANELS = {
       ${miLink(siteLink(CONFIG.trialUrl, 'menu-probestunde'), '🎓', 'Kostenlose Probestunde', 'Unverbindlich ausprobieren')}
       ${CONFIG.lernraumUrl ? `<a class="mi" href="${esc(siteLink(CONFIG.lernraumUrl, 'menu-lernraum'))}"><div class="ico">📚</div><div><b>Zurück zum Lernraum</b><span>Weitere Lernspiele und Übungen</span></div><span class="chev">←</span></a>` : ''}
       ${mi('news', '🆕', 'Was ist neu?', `Version ${versionLabel()}`)}
-      ${mi('invite', '💌', 'Freunde einladen', 'Rechenblitz ist kostenlos – teile es!')}
+      ${mi('invite', '💌', 'Freunde einladen', 'Zahlensprint ist kostenlos – teile es!')}
       ${adventPhase() !== 'off' ? mi('advent', '🎄', 'Rechen-Adventskalender', 'Jeden Tag ein Türchen') : ''}
       ${CONFIG.classApi ? mi('klasse', '🏫', 'Klassen-Challenge', S.klasse ? 'Rangliste deiner Klasse' : 'Mit Klassencode beitreten') : ''}
       <div class="mlabel">Mein Fortschritt</div>
@@ -56,10 +56,10 @@ const PANELS = {
       ${mi('eltern', '👪', 'Elternbereich', 'Berichte, Lern-Geschenk, Einstellungen für Eltern')}
       ${mi('profiles', profile().emoji, 'Wer übt?', 'Profile für Geschwister & Freunde')}
       ${mi('teacher', '👩‍🏫', 'Für Lehrkräfte', 'Aufträge verschicken, Arbeitsblätter drucken')}
-      ${proLocks() || RBPRO.ok ? mi('pro', '⭐', RBPRO.ok ? 'Rechenblitz Pro <span class="pro-on static">Pro aktiv</span>' : 'Rechenblitz Pro', RBPRO.ok ? 'Gilt in der Web-App auf diesem Gerät – für alle Profile' : 'Profi-Stufe, mehr Profile, Elternbericht', RBPRO.ok ? 'pro-active' : '') : ''}
+      ${proLocks() || RBPRO.ok ? mi('pro', '⭐', RBPRO.ok ? 'Zahlensprint Pro <span class="pro-on static">Pro aktiv</span>' : 'Zahlensprint Pro', RBPRO.ok ? 'Gilt in der Web-App auf diesem Gerät – für alle Profile' : 'Profi-Stufe, mehr Profile, Elternbericht', RBPRO.ok ? 'pro-active' : '') : ''}
       ${mi('settings', '⚙️', 'Einstellungen', 'Ton, Erinnerung, Klassenstufe, Design')}
       ${!isStandalone() && (installPrompt || isIOS()) ? mi('install', '📱', 'App installieren', 'Auf den Startbildschirm – läuft auch offline') : ''}
-      </div><p class="small muted" style="text-align:center;margin:14px 0 0">Rechenblitz ${versionLabel()}${n ? ` · ${n} Meldung${n > 1 ? 'en' : ''} wartet auf Versand` : ''}</p>` };
+      </div><p class="small muted" style="text-align:center;margin:14px 0 0">Zahlensprint ${versionLabel()}${frueherAn() ? ' · früher Rechenblitz' : ''}${n ? ` · ${n} Meldung${n > 1 ? 'en' : ''} wartet auf Versand` : ''}</p>` };
   },
 
   /* ---------- Fehler melden / Idee ---------- */
@@ -83,7 +83,8 @@ const PANELS = {
 
   whatsnew(o = {}) {
     const items = CHANGELOG.filter(([v]) => verNum(v) > verNum(o.since || '0')).slice(0, 4);
-    return { title: 'Neu in Rechenblitz', html: `<div class="wn">${bzOn() ? blitzSay('wave', 'Schau mal, was es Neues gibt!', 64) : ''}
+    return { title: 'Neu in Zahlensprint', html: `<div class="wn">${bzOn() ? blitzSay('wave', 'Schau mal, was es Neues gibt!', 64) : ''}
+      ${frueherAn() ? '<p class="small muted" style="margin:0">Zahlensprint ist der neue Name von Rechenblitz</p>' : ''}
       ${items.map(([v, d, its]) => `<div class="wn-v"><span translate="no">Version ${v}</span> · ${fmtDateShort(d)}</div><ul class="wn-list">${its.map(i => `<li><span class="wn-i">✨</span><span>${esc(i)}</span></li>`).join('')}</ul>`).join('')}
       <button class="btn primary block" id="wnGo">Los geht’s!</button><button class="linkbtn" data-go="news" style="align-self:center">Alle Neuerungen ansehen</button></div>`,
       init() { $('wnGo').onclick = closeSheet; } };
@@ -104,7 +105,7 @@ const PANELS = {
     const sw = (id, on, t, d) => `<button class="setrow" data-set="${id}" role="switch" aria-checked="${on}"><div><b>${t}</b><span>${d}</span></div><span class="switch ${on ? 'on' : ''}"></span></button>`;
     return { title: 'Einstellungen', html: `<div class="menu">
       ${canInstall() ? '<button class="btn primary block" data-install>📱 App installieren</button>' : ''}
-      ${proLocks() || RBPRO.ok ? mi('pro', '⭐', RBPRO.ok ? 'Rechenblitz Pro <span class="pro-on static">Pro aktiv</span>' : 'Rechenblitz Pro', RBPRO.ok ? 'Gilt in der Web-App auf diesem Gerät – für alle Profile' : 'Was Pro enthält · Code einlösen', RBPRO.ok ? 'pro-active' : '') : ''}
+      ${proLocks() || RBPRO.ok ? mi('pro', '⭐', RBPRO.ok ? 'Zahlensprint Pro <span class="pro-on static">Pro aktiv</span>' : 'Zahlensprint Pro', RBPRO.ok ? 'Gilt in der Web-App auf diesem Gerät – für alle Profile' : 'Was Pro enthält · Code einlösen', RBPRO.ok ? 'pro-active' : '') : ''}
       ${sw('music', musicOn(), 'Musik', 'Eigene Blitz-Melodien im Menü und im Spiel')}
       <label class="setrow col vol"><span><b>Lautstärke Musik</b></span><input type="range" id="volMusic" min="0" max="100" step="5" value="${S.settings.musicVol ?? 50}"></label>
       ${sw('sound', S.settings.sound, 'Effekte', 'Klänge bei richtig, falsch, Serien und Sternen')}
@@ -115,7 +116,7 @@ const PANELS = {
         <div class="vrow"><b>Sprechtempo</b><div class="chips" id="rateSeg" role="group" aria-label="Sprechtempo">${RATES.map(r => `<button data-v="${r}" class="${speechRate() === r ? 'sel' : ''}" aria-pressed="${speechRate() === r}" translate="no">${String(r).replace('.', ',')}×</button>`).join('')}</div></div>
         <p class="small muted" id="novaNote">Vorgelesen wird mit der Stimme Nova, einer mit KI (OpenAI) erzeugten Stimme. Feste Texte vertonen wir vorab. Texte, die erst in der Aufgabe entstehen (z. B. Rechenaufgaben), schickt die App ohne Angaben zu dir an unseren Server stimmen.mathenachhilfe-online.com; dieser lässt sie einmalig von OpenAI vertonen und speichert die Audiodatei. Es werden keine Namen, Konten oder Geräte-Kennungen übertragen, und unser Server speichert keine Zugriffsprotokolle.</p>
         <button class="btn" id="voiceTest">▶ Probe hören</button>
-        <div id="novaOff" class="novaoff"></div></div>` : (IS_NATIVE ? '<p class="small muted setnote">Zum Vorlesen bitte die neue Rechenblitz-App installieren.</p>' : '<p class="small muted setnote">Auf diesem Gerät gibt es keine Vorlese-Stimme.</p>')}
+        <div id="novaOff" class="novaoff"></div></div>` : (IS_NATIVE ? '<p class="small muted setnote">Zum Vorlesen bitte die neue Zahlensprint-App installieren.</p>' : '<p class="small muted setnote">Auf diesem Gerät gibt es keine Vorlese-Stimme.</p>')}
       ${sw('auto', S.settings.auto, 'Automatisch prüfen', 'Prüfen, sobald genug Stellen eingegeben sind')}
       ${sw('blitz', S.settings.blitz !== false, 'Maskottchen Blitz', 'Blitz der Fuchs feuert dich an und erklärt Tricks')}
       ${Reminder.supported() || isIOS() ? reminderHtml() : ''}
@@ -178,7 +179,7 @@ const PANELS = {
       ${typeof PANELS.koppeln === 'function' && window.crypto && crypto.subtle ? mi('koppeln', '📲', 'Eltern-Handy koppeln' + (kopplung() ? ' <span class="pro-on static">gekoppelt</span>' : ''), 'Lernstand auf dem Eltern-Handy – ohne Konto, verschlüsselt') : ''}
       ${typeof PANELS.wiederherstellen === 'function' && window.crypto && crypto.subtle ? mi('wiederherstellen', '♻️', 'Fortschritt wiederherstellen', 'Neues Gerät? Mit dem Kopplungs-Link den Lernstand zurückholen') : ''}
       ${CONFIG.geschenkUrl ? miLink(CONFIG.geschenkUrl, '🎁', 'Lern-Geschenk verschenken', 'Nachhilfe-Stunden oder Lernpaket als Gutschein') : ''}
-      ${CONFIG.zaehler ? `<button class="setrow" id="zaehlSw" role="switch" aria-checked="${on}"><div><b>Anonyme Nutzungszählung</b><span>Beim Start meldet die App nur „Rechenblitz wurde geöffnet“ und die Version, nach einem Umzug auf die neue Adresse außerdem einmal „Umzug geklappt“ – ohne Namen, Kennungen oder Cookies. Hilft uns zu sehen, ob Rechenblitz genutzt wird.</span></div><span class="switch ${on ? 'on' : ''}"></span></button>` : ''}
+      ${CONFIG.zaehler ? `<button class="setrow" id="zaehlSw" role="switch" aria-checked="${on}"><div><b>Anonyme Nutzungszählung</b><span>Beim Start meldet die App nur „Zahlensprint wurde geöffnet“ und die Version, nach einem Umzug auf die neue Adresse außerdem einmal „Umzug geklappt“ – ohne Namen, Kennungen oder Cookies. Hilft uns zu sehen, ob Zahlensprint genutzt wird.</span></div><span class="switch ${on ? 'on' : ''}"></span></button>` : ''}
     </div>`, init() {
       const b = $('zaehlSw'); if (b) b.onclick = () => { ROOT.zaehlung = !zaehlungAn(); save(); Sound.click(); b.setAttribute('aria-checked', ROOT.zaehlung); b.querySelector('.switch').classList.toggle('on', ROOT.zaehlung); };
     } };
@@ -199,14 +200,14 @@ const PANELS = {
       ${!w.n ? '<p class="muted">Diese Woche wurde noch nicht geübt.</p>' : ''}
       <a class="cta-inline" href="${esc(siteLink(CONFIG.trialUrl, 'wochenbericht'))}" target="_blank" rel="noopener">🎓 Hakt es irgendwo? Kostenlose Probestunde bei Nachhilfe – online</a>
       </div><div class="row2" style="margin-top:12px"><button class="btn primary" id="wkShare">Teilen</button><button class="btn" id="wkPrint">Drucken</button></div>`, init: () => {
-        $('wkShare').onclick = () => shareText(weekText(w), 'Rechenblitz Wochenbericht');
+        $('wkShare').onclick = () => shareText(weekText(w), 'Zahlensprint Wochenbericht');
         $('wkPrint').onclick = () => printHtml(`<h1>Wochenbericht · ${esc(profile().name)}</h1><p>${fmtDay(dayStr(6))} bis ${fmtDay(dayStr(0))}</p>${$('weekReport').innerHTML}`);
       } };
   },
 
   /* ---------- Lehrkräfte ---------- */
   teacher() {
-    return { title: 'Für Lehrkräfte', html: `<p class="small muted" style="margin:0 0 12px">Alles funktioniert über Links – ohne Anmeldung. Die Schüler brauchen nur Rechenblitz im Browser.</p><div class="menu">
+    return { title: 'Für Lehrkräfte', html: `<p class="small muted" style="margin:0 0 12px">Alles funktioniert über Links – ohne Anmeldung. Die Schüler brauchen nur Zahlensprint im Browser.</p><div class="menu">
       ${mi('assignCreate', '📝', 'Auftrag erstellen', 'Übung festlegen und als Link verschicken', 'accent')}
       ${mi('resultView', '📥', 'Ergebnis ansehen', 'Link oder Code eines Schülers öffnen')}
       ${mi('worksheet', '🖨️', 'Arbeitsblatt drucken', 'Zufällige Aufgaben mit Lösungsblatt')}
@@ -249,8 +250,8 @@ const PANELS = {
 
   install() {
     return { title: 'App installieren', html: installPrompt
-      ? '<p>Installiere Rechenblitz auf deinem Gerät. Dann startet es wie eine App vom Startbildschirm und funktioniert auch ohne Internet.</p><button class="btn primary block" id="btnInstall">Jetzt installieren</button>'
-      : '<p>So kommt Rechenblitz auf deinen Startbildschirm:</p><ol style="padding-left:20px;line-height:1.8"><li>Tippe in Safari unten auf <b>Teilen</b> (□↑).</li><li>Wähle <b>Zum Home-Bildschirm</b>.</li><li>Tippe auf <b>Hinzufügen</b>.</li></ol>',
+      ? '<p>Installiere Zahlensprint auf deinem Gerät. Dann startet es wie eine App vom Startbildschirm und funktioniert auch ohne Internet.</p><button class="btn primary block" id="btnInstall">Jetzt installieren</button>'
+      : '<p>So kommt Zahlensprint auf deinen Startbildschirm:</p><ol style="padding-left:20px;line-height:1.8"><li>Tippe in Safari unten auf <b>Teilen</b> (□↑).</li><li>Wähle <b>Zum Home-Bildschirm</b>.</li><li>Tippe auf <b>Hinzufügen</b>.</li></ol>',
       init() { const b = $('btnInstall'); if (b) b.onclick = () => { closeSheet(); doInstall(); }; } };
   },
   shareBox(o) {
@@ -415,7 +416,7 @@ function weekData(back) {
   r.weak = list.filter(([, s]) => s.acc < .75).reverse().slice(0, 3);
   return r;
 }
-const weekText = w => `Rechenblitz – Wochenbericht für ${profile().name}\n${fmtDay(dayStr(6))} bis ${fmtDay(dayStr(0))}\n\n• ${w.days} von 7 Tagen geübt\n• ${w.n} Aufgaben, ${w.n ? Math.round(w.ok / w.n * 100) : 0} % richtig\n• ${Math.round(w.ms / 60000)} Minuten Übungszeit`
+const weekText = w => `Zahlensprint – Wochenbericht für ${profile().name}\n${fmtDay(dayStr(6))} bis ${fmtDay(dayStr(0))}\n\n• ${w.days} von 7 Tagen geübt\n• ${w.n} Aufgaben, ${w.n ? Math.round(w.ok / w.n * 100) : 0} % richtig\n• ${Math.round(w.ms / 60000)} Minuten Übungszeit`
   + (w.strong.length ? `\n\nLäuft gut: ${w.strong.map(([t]) => TOPICS[t].name).join(', ')}` : '') + (w.weak.length ? `\nHier lohnt sich Üben: ${w.weak.map(([t]) => TOPICS[t].name).join(', ')}` : '')
   + `\n\nKostenlose Probestunde: ${siteLink(CONFIG.trialUrl, 'wochenbericht-geteilt')}`;
 
@@ -428,9 +429,9 @@ function initAssignCreate() {
     const by = $('acBy').value.trim(); try { localStorage.setItem('rb-teacher', by); } catch {}
     const a = { i: Date.now().toString(36), t: $('acTitle').value.trim(), by, op: $('acOp').value, l: +$('acLvl').value, m: $('acMode').value, r: +$('acRuns').value, min: +$('acMin').value, due: $('acDue').value || '', s: $('acSeed').checked ? Math.floor(Math.random() * 1e9) : 0 };
     const url = `${appUrl()}#auftrag=${b64e(a)}`;
-    const txt = `${a.t || 'Rechenblitz-Auftrag'}${a.by ? ' von ' + a.by : ''}: ${TOPICS[a.op].name}, Stufe ${a.l + 1}, ${a.r}× ${a.m === 'blitz' ? 'Blitzrunde' : 'Training'}${a.due ? ', bis ' + fmtDay(a.due) : ''}.\nÖffnen: ${url}`;
+    const txt = `${a.t || 'Zahlensprint-Auftrag'}${a.by ? ' von ' + a.by : ''}: ${TOPICS[a.op].name}, Stufe ${a.l + 1}, ${a.r}× ${a.m === 'blitz' ? 'Blitzrunde' : 'Training'}${a.due ? ', bis ' + fmtDay(a.due) : ''}.\nÖffnen: ${url}`;
     $('acOut').innerHTML = `<div class="card" style="box-shadow:none"><b>Link für die Schüler</b><textarea class="sharebox" readonly rows="3">${esc(url)}</textarea><div class="row2"><button type="button" class="btn primary" id="acShare">Teilen</button><button type="button" class="btn" id="acCopy">Kopieren</button></div><p class="small muted" style="margin:8px 0 0">Wenn alle Runden geschafft sind, schicken die Schüler dir ein Ergebnis-Link zurück. Den öffnest du einfach – oder unter „Ergebnis ansehen“.</p></div>`;
-    $('acShare').onclick = () => shareText(txt, 'Rechenblitz-Auftrag');
+    $('acShare').onclick = () => shareText(txt, 'Zahlensprint-Auftrag');
     $('acCopy').onclick = async () => { try { await navigator.clipboard.writeText(url); toast('Link kopiert ✓'); } catch { $('acOut').querySelector('textarea').select(); } };
     $('acOut').scrollIntoView({ behavior: 'smooth' });
   };
@@ -463,7 +464,7 @@ function initWorksheet() {
   };
 }
 function printHtml(html) {
-  $('print').innerHTML = `<div class="print-brand"><img src="icons/logo.svg" alt=""> Rechenblitz · Nachhilfe – online · mathenachhilfe-online.com</div>${html}`;
+  $('print').innerHTML = `<div class="print-brand"><img src="icons/logo.svg" alt=""> Zahlensprint · Nachhilfe – online · mathenachhilfe-online.com</div>${html}`;
   document.body.classList.add('printing');
   setTimeout(() => { window.print(); setTimeout(() => document.body.classList.remove('printing'), 500); }, 100);
 }
@@ -549,8 +550,8 @@ function reportDone(res, payload) {
   else if (res === 'invalid') $('sheetBody').innerHTML = box('⚠️', true, 'Das hat nicht geklappt', 'Die Meldung konnte nicht angenommen werden. Bitte versuche es noch einmal mit einer etwas ausführlicheren Beschreibung.');
   else if (res === 'queued') $('sheetBody').innerHTML = box('⏳', true, 'Gespeichert', 'Gerade gibt es keine Verbindung. Deine Meldung wird automatisch gesendet, sobald du wieder online bist.');
   else {
-    const body = `${payload.message}\n\n${payload.task ? `Aufgabe: ${payload.task.task}\nAntwort: ${payload.task.given || '–'}\nLösung der App: ${payload.task.expected}\n` : ''}\nRechenblitz ${APP_VERSION} · ${navigator.userAgent}`;
-    const href = `mailto:${CONFIG.fallbackMail}?subject=${encodeURIComponent('Rechenblitz: ' + (payload.type === 'idee' ? 'Idee' : 'Fehlermeldung'))}&body=${encodeURIComponent(body)}`;
+    const body = `${payload.message}\n\n${payload.task ? `Aufgabe: ${payload.task.task}\nAntwort: ${payload.task.given || '–'}\nLösung der App: ${payload.task.expected}\n` : ''}\nZahlensprint ${APP_VERSION} · ${navigator.userAgent}`;
+    const href = `mailto:${CONFIG.fallbackMail}?subject=${encodeURIComponent('Zahlensprint: ' + (payload.type === 'idee' ? 'Idee' : 'Fehlermeldung'))}&body=${encodeURIComponent(body)}`;
     $('sheetBody').innerHTML = box('✉️', true, 'Fast geschafft', 'Der direkte Versand ist hier noch nicht eingerichtet. Deine Meldung ist gespeichert und wird später automatisch übertragen – oder du schickst sie gleich per E-Mail.', `<a class="btn primary block" href="${href}">Per E-Mail senden</a>`);
   }
   $('thxClose').onclick = closeSheet;
@@ -632,7 +633,7 @@ function init() {
   if (seen && verNum(seen) < verNum(APP_VERSION)) setTimeout(() => onHome() && openSheet('whatsnew', { since: seen }), 900);
   else if (!seen && !S.total) setTimeout(() => onHome() && openSheet('welcome'), 900);
   ROOT.seenVersion = APP_VERSION; save();
-  if (window.__umzugOk) setTimeout(() => toast('✅ Dein Lernstand ist mit umgezogen – Rechenblitz hat jetzt eine neue Adresse.', 4200), 600);
+  if (window.__umzugOk) setTimeout(() => toast('✅ Dein Lernstand ist mit umgezogen – Zahlensprint hat jetzt eine neue Adresse.', 4200), 600);
   renderPromo(); renderHome(); handleHash(); handleParams(); proStartup(); flushOutbox(); submitClassPoints(); if (S.advent && S.advent.voucherPending) fetchVoucher();
   if (IS_NATIVE) { Reminder.startup().catch(() => {}); apkUpdateCheck(); }   // APK: alle Dateien liegen im Paket, kein Service Worker nötig
   else if ('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('sw.js').then(() => Reminder.startup()).catch(() => {});

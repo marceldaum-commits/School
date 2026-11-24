@@ -161,7 +161,7 @@ async function drawCertificate(o) {
   x.fillStyle = '#ff7418'; x.beginPath(); x.arc(W - 150, 150, 26, 0, Math.PI * 2); x.fill();
   try { const logo = await loadImg('icons/logo.svg'); x.drawImage(logo, 120, 110, 96, 96); } catch {}
   x.textBaseline = 'alphabetic'; x.textAlign = 'left';
-  x.fillStyle = '#101b43'; x.font = '800 42px Inter, Arial, sans-serif'; x.fillText('Rechenblitz', 232, 155);
+  x.fillStyle = '#101b43'; x.font = '800 42px Inter, Arial, sans-serif'; x.fillText('Zahlensprint', 232, 155);
   x.fillStyle = '#61718a'; x.font = '500 24px Inter, Arial, sans-serif'; x.fillText(tr('by Nachhilfe – online'), 232, 192);
   x.textAlign = 'center';
   const g = x.createLinearGradient(W / 2 - 260, 0, W / 2 + 260, 0); g.addColorStop(0, '#ff8a3d'); g.addColorStop(1, '#df5e0c');
@@ -208,8 +208,8 @@ function resultPromo() {   // höchstens einmal am Tag, damit es nicht nervt
 }
 
 /* ================= Freunde einladen ================= */
-const inviteText = () => `Ich übe Kopfrechnen mit Rechenblitz – kostenlos und ohne Anmeldung. Probier's aus: ${publicUrl()}`;
-const shareInvite = () => shareText(inviteText(), 'Rechenblitz – Kopfrechnen üben');
+const inviteText = () => `Ich übe Kopfrechnen mit Zahlensprint – kostenlos und ohne Anmeldung. Probier's aus: ${publicUrl()}`;
+const shareInvite = () => shareText(inviteText(), 'Zahlensprint – Kopfrechnen üben');
 
 /* ================= Klassen-Challenge (braucht Server) ================= */
 async function classApi(path, body) {
@@ -296,7 +296,7 @@ Object.assign(PANELS, {
         await render();
         $('certShare').onclick = async () => {
           const blob = await new Promise(r => certCanvas.toBlob(r, 'image/png')), file = new File([blob], 'rechenblitz-urkunde.png', { type: 'image/png' });
-          if (navigator.canShare && navigator.canShare({ files: [file] })) { try { await navigator.share({ files: [file], title: 'Meine Rechenblitz-Urkunde', text: `Geschafft! ${publicUrl()}` }); } catch {} }
+          if (navigator.canShare && navigator.canShare({ files: [file] })) { try { await navigator.share({ files: [file], title: 'Meine Zahlensprint-Urkunde', text: `Geschafft! ${publicUrl()}` }); } catch {} }
           else { $('certSave').click(); toast('Bild gespeichert – jetzt z. B. per WhatsApp schicken'); }
         };
         $('certPrint').onclick = () => { const o = $('certPrintOpts'); o.hidden = !o.hidden; if (!o.hidden) o.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); };
@@ -304,14 +304,14 @@ Object.assign(PANELS, {
       } };
   },
   invite() {
-    return { title: 'Freunde einladen', html: `<p style="margin:0 0 10px">Rechenblitz ist <b>kostenlos</b> und braucht keine Anmeldung. Zeig den Code deinen Freunden oder schick ihnen den Link.</p>
+    return { title: 'Freunde einladen', html: `<p style="margin:0 0 10px">Zahlensprint ist <b>kostenlos</b> und braucht keine Anmeldung. Zeig den Code deinen Freunden oder schick ihnen den Link.</p>
       <div class="qrbox">${qrSvg(publicUrl())}<div class="small muted">${esc(publicUrl())}</div></div>
       <button class="btn primary block" id="invShare">Link teilen</button>
       <div class="card parents"><b>Für Eltern: Freunde werben</b><p class="small muted" style="margin:4px 0 8px">Empfiehl Nachhilfe – online weiter: Bucht die empfohlene Familie ein Paket ab 10 Stunden, schenken wir dir eine Unterrichtsstunde.</p><a class="btn block" href="${esc(siteLink(CONFIG.referralUrl, 'einladen'))}" target="_blank" rel="noopener">Zu „Freunde werben“ ↗</a></div>`,
       init() { $('invShare').onclick = shareInvite; } };
   },
   flyer() {
-    return { title: 'Flyer & Poster', html: `<p class="small muted" style="margin:0 0 10px">Zum Aushängen in Schule, Hort, Bibliothek oder Praxis – mit QR-Code direkt zu Rechenblitz.</p>
+    return { title: 'Flyer & Poster', html: `<p class="small muted" style="margin:0 0 10px">Zum Aushängen in Schule, Hort, Bibliothek oder Praxis – mit QR-Code direkt zu Zahlensprint.</p>
       <div class="seg" id="flKind"><button data-v="poster" class="sel">Poster (A4)</button><button data-v="cards">4 Handzettel (A6)</button></div>
       <label class="field" style="margin-top:12px"><span>Eigener Hinweis (optional)</span><input id="flNote" maxlength="70" placeholder="z. B. Empfohlen von der Klasse 4b"></label>
       <div class="flyerprev" id="flPrev"></div>
@@ -366,7 +366,7 @@ Object.assign(PANELS, {
             const r = await classApi('/klasse', { name }), link = `${publicUrl()}#klasse=${r.code}`;
             const mine = JSON.parse(localStorage.getItem('rb-classes') || '[]'); mine.unshift({ code: r.code, name }); try { localStorage.setItem('rb-classes', JSON.stringify(mine.slice(0, 20))); } catch {}
             $('ccOut').innerHTML = `<div class="card" style="box-shadow:none;text-align:center"><div class="small muted">Klassencode</div><div class="bigcode" translate="no">${esc(r.code)}</div><div class="qrbox">${qrSvg(link)}</div><textarea class="sharebox" readonly rows="2">${esc(link)}</textarea><div class="row2"><button type="button" class="btn primary" id="ccShare">Teilen</button><button type="button" class="btn" id="ccRank">Rangliste</button></div></div>`;
-            $('ccShare').onclick = () => shareText(`Klassen-Challenge „${name}“ bei Rechenblitz: Code ${r.code}\n${link}`, 'Rechenblitz Klassen-Challenge');
+            $('ccShare').onclick = () => shareText(`Klassen-Challenge „${name}“ bei Zahlensprint: Code ${r.code}\n${link}`, 'Zahlensprint Klassen-Challenge');
             $('ccRank').onclick = () => showPanel('rankingView', { code: r.code, name }, true);
           } catch (err) { $('ccErr').textContent = err.message; }
         };
@@ -381,9 +381,9 @@ Object.assign(PANELS, {
 function flyerHtml(note, preview) {
   const url = publicUrl(), short = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
   return `<div class="flyer${preview ? ' prev' : ''}">
-    <div class="fl-head"><img src="icons/logo.svg" alt=""><div><b>Rechenblitz</b><small>by Nachhilfe – online</small></div></div>
+    <div class="fl-head"><img src="icons/logo.svg" alt=""><div><b>Zahlensprint</b><small>by Nachhilfe – online</small></div></div>
     <div class="fl-eyebrow">Kostenlos · ohne Anmeldung</div>
-    <h2>Kopfrechnen üben mit <em>Rechenblitz</em></h2>
+    <h2>Kopfrechnen üben mit <em>Zahlensprint</em></h2>
     <p class="fl-lead">Vom Einmaleins bis zu Brüchen, Prozent und Gleichungen – mit Lösungsweg bei jedem Fehler.</p>
     <div class="fl-body"><ul><li>29 Themen, 6 Stufen – passt sich automatisch an</li><li>Tageschallenge, Duell & Abzeichen</li><li>Handy, Tablet und PC – auch offline</li><li>Für Lehrkräfte: Aufträge & Arbeitsblätter</li>${voucher() && ['teaser', 'on'].includes(adventPhase()) ? `<li>Im Advent: Rechen-Adventskalender mit ${voucher().percent || 10}-%-Gutschein</li>` : ''}</ul>
     <div class="fl-qr">${qrSvg(url)}<span>${esc(short)}</span></div></div>

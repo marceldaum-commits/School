@@ -26,6 +26,9 @@ const CONFIG = Object.assign({
 
 const $ = id => document.getElementById(id);
 const todayStr = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+// Umbenennung Rechenblitz → Zahlensprint (24.11.2026): „früher Rechenblitz“ noch etwa 3 Monate zeigen (bis 28.2.2027)
+const FRUEHER_BIS = '2027-03-01';
+const frueherAn = () => todayStr() < FRUEHER_BIS;
 const dayStr = back => { const d = new Date(); return todayStr(new Date(d.getFullYear(), d.getMonth(), d.getDate() - back, 12)); };   // kalendarisch, sommerzeitsicher
 const fmtDay = s => new Date(s + 'T12:00').toLocaleDateString(locale(), { weekday: 'short', day: 'numeric', month: 'numeric' });
 const fmtSec = ms => (ms / 1000).toFixed(1).replace('.', ',') + ' s';
@@ -396,7 +399,7 @@ function shareAssignResult() {
   const data = { i: a.i, t: a.t, by: a.by, n: profile().name, op: a.op, l: a.l, m: a.m, r: a.r, min: a.min, runs: a.runs };
   const url = `${appUrl()}#ergebnis=${b64e(data)}`;
   const done = a.runs.filter(r => r.ok).length;
-  shareText(`Rechenblitz – Ergebnis von ${profile().name}\n${a.t || TOPICS[a.op].name + ' Stufe ' + (a.l + 1)}: ${done}/${a.r} Runden geschafft\nAlle Details: ${url}`, 'Rechenblitz-Ergebnis', url);
+  shareText(`Zahlensprint – Ergebnis von ${profile().name}\n${a.t || TOPICS[a.op].name + ' Stufe ' + (a.l + 1)}: ${done}/${a.r} Runden geschafft\nAlle Details: ${url}`, 'Zahlensprint-Ergebnis', url);
 }
 const b64e = obj => btoa(unescape(encodeURIComponent(JSON.stringify(obj)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 const b64d = s => JSON.parse(decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/')))));
@@ -425,7 +428,7 @@ function renderChallengeCard() {
 }
 function shareChallenge() {
   const c = S.challenge;
-  shareText(`Rechenblitz – Tageschallenge ${fmtDay(c.date)}\n${c.marks}\n${c.correct}/10 richtig in ${fmtSec(c.ms)}\nSchaffst du mehr? ${appUrl()}`, 'Rechenblitz Tageschallenge');
+  shareText(`Zahlensprint – Tageschallenge ${fmtDay(c.date)}\n${c.marks}\n${c.correct}/10 richtig in ${fmtSec(c.ms)}\nSchaffst du mehr? ${appUrl()}`, 'Zahlensprint Tageschallenge');
 }
 
 /* ================= Spiel ================= */
@@ -460,7 +463,7 @@ function startGame(mode, opts = {}) {
   $('game').classList.toggle('dgmode', mode === 'dungeon'); $('dgOv')?.remove();   // Zahlen-Dungeon: eigene Anzeige über der Aufgabe   // große Ziffern und Tasten (Üben nach Wunsch)
   const adapt = !opts.queue && !opts.gen && opts.lvl == null && S.sel.lvl === 'auto' && ['training', 'blitz', 'zen'].includes(mode);
   let lvl = opts.lvl ?? currentLevel(op);
-  if (lvl >= 5 && !hasPro()) { lvl = 4; setTimeout(() => toast('Die Profi-Stufe gehört zu Rechenblitz Pro – jetzt Stufe 5', 2400), 300); }
+  if (lvl >= 5 && !hasPro()) { lvl = 4; setTimeout(() => toast('Die Profi-Stufe gehört zu Zahlensprint Pro – jetzt Stufe 5', 2400), 300); }
   G = { mode, cfg, op, lvl, adapt, win: [], idx: 0, correct: 0, wrong: 0, streak: 0, bestStreak: 0, score: 0, input: '', task: null, locked: true,
     mistakes: [], results: [], times: [], recent: [], queue: opts.queue || null, gen: opts.gen || null, title: opts.title, assign: !!opts.assign,
     testPlan: opts.testPlan, klasse: opts.klasse, door: opts.door, wunsch: opts.wunsch, endAt: 0, lastTick: 99, over: false, paused: false, waiting: false, started: Date.now() };

@@ -24,7 +24,7 @@ const Reminder = {
   /** Text für die Mitteilung in der aktuellen Sprache an den Service Worker übergeben */
   async storeText() {
     if (!('caches' in window)) return;
-    const info = { title: tr('Rechenblitz ⚡'), body: tr('Zeit für 3 Minuten Kopfrechnen! Dein Gehirn freut sich.'), zeit: Reminder.st().zeit, api: Reminder.api() };
+    const info = { title: tr('Zahlensprint ⚡'), body: tr('Zeit für 3 Minuten Kopfrechnen! Dein Gehirn freut sich.'), zeit: Reminder.st().zeit, api: Reminder.api() };
     try { const c = await caches.open(Reminder.CACHE); await c.put(Reminder.KEY, new Response(JSON.stringify(info), { headers: { 'Content-Type': 'application/json' } })); } catch {}
   },
   async post(path, body) {
@@ -77,15 +77,15 @@ async function renderReminder() {
   const box = $('remBox'); if (!box) return;
   const s = await Reminder.state(), st = Reminder.st();
   const steps = (isIOS()
-    ? ['iPhone/iPad: Einstellungen öffnen', '„Mitteilungen“ → „Rechenblitz“', '„Mitteilungen erlauben“ einschalten']
+    ? ['iPhone/iPad: Einstellungen öffnen', '„Mitteilungen“ → „Zahlensprint“', '„Mitteilungen erlauben“ einschalten']
     : isStandalone()
-      ? ['Android-Einstellungen öffnen', '„Apps“ → „Rechenblitz“ → „Benachrichtigungen“', 'Einschalten und hier den Schalter antippen']
+      ? ['Android-Einstellungen öffnen', '„Apps“ → „Zahlensprint“ → „Benachrichtigungen“', 'Einschalten und hier den Schalter antippen']
       : ['Oben links neben der Adresse auf das Schloss bzw. den Regler tippen', '„Berechtigungen“ → „Benachrichtigungen“', '„Zulassen“ wählen und die Seite neu laden']);
   const install = !isStandalone() && (installPrompt || isIOS() || s.mode === 'ios')
     ? `<div class="rem-hint">📱 <span>Am besten als App installieren – dann kommt die Erinnerung wie bei jeder App.</span> <button class="linkbtn" data-go="install">So geht’s</button></div>` : '';
   let body;
   if (s.mode === 'none') body = `<p class="small muted" style="margin:0">Dieser Browser kann leider keine Erinnerungen anzeigen.</p>`;
-  else if (s.mode === 'ios') body = `<p class="small muted" style="margin:0">Auf dem iPhone und iPad gehen Erinnerungen nur, wenn Rechenblitz als App auf dem Home-Bildschirm liegt.</p>`;
+  else if (s.mode === 'ios') body = `<p class="small muted" style="margin:0">Auf dem iPhone und iPad gehen Erinnerungen nur, wenn Zahlensprint als App auf dem Home-Bildschirm liegt.</p>`;
   else body = `<button class="setrow sw-inner" id="remSw" role="switch" aria-checked="${s.on}" ${s.mode === 'denied' ? 'disabled' : ''}><div><b>${s.on ? 'An' : 'Aus'}</b><span>${s.on ? `Jeden Tag um ${esc(st.zeit)} Uhr` : 'Tippe, um die Erinnerung einzuschalten'}</span></div><span class="switch ${s.on ? 'on' : ''}"></span></button>
     ${s.on ? `<label class="rem-time"><span>Uhrzeit</span><input type="time" id="remTime" step="300" value="${esc(st.zeit)}"></label>` : ''}
     ${s.mode === 'denied' ? `<div class="rem-denied"><b>Mitteilungen sind gesperrt.</b> So erlaubst du sie:<ol>${steps.map(x => `<li>${x}</li>`).join('')}</ol></div>` : ''}
@@ -127,7 +127,7 @@ if (IS_NATIVE) Object.assign(Reminder, {
   async plan() {
     const [hour, minute] = Reminder.st().zeit.split(':').map(Number);
     await LocalNote().cancel({ notifications: [{ id: Reminder.ID }] }).catch(() => {});
-    await LocalNote().schedule({ notifications: [{ id: Reminder.ID, title: tr('Rechenblitz ⚡'), body: tr('Zeit für 3 Minuten Kopfrechnen! Dein Gehirn freut sich.'),
+    await LocalNote().schedule({ notifications: [{ id: Reminder.ID, title: tr('Zahlensprint ⚡'), body: tr('Zeit für 3 Minuten Kopfrechnen! Dein Gehirn freut sich.'),
       schedule: { on: { hour, minute }, allowWhileIdle: true } }] });
   },
   async on() {

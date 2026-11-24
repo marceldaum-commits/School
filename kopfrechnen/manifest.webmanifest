@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "Rechenblitz – Kopfrechnen üben",
-  "short_name": "Rechenblitz",
-  "description": "Kopfrechnen trainieren mit zufälligen Aufgaben – von Nachhilfe – online.",
+  "name": "Zahlensprint – Kopfrechnen üben",
+  "short_name": "Zahlensprint",
+  "description": "Zahlensprint (früher Rechenblitz): Kopfrechnen trainieren mit zufälligen Aufgaben – von Nachhilfe – online.",
   "lang": "de",
   "start_url": "./",
   "scope": "./",

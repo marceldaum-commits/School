@@ -52,7 +52,7 @@ async function proVerify(code) {
   return good ? { ok: msg[2] === RBPRO.product, why: msg[2] === RBPRO.product ? '' : 'product', product: msg[2] } : { ok: false, why: 'sig' };
 }
 const RBPRO_WHY = {
-  format: 'Das sieht nicht wie ein Rechenblitz-Code aus. Bitte genau so eingeben, wie er in der E-Mail steht.',
+  format: 'Das sieht nicht wie ein Zahlensprint-Code aus. Bitte genau so eingeben, wie er in der E-Mail steht.',
   app: 'Dieser Code gehört zu einer anderen App.',
   product: 'Dieser Code schaltet etwas anderes frei.',
   sig: 'Dieser Code ist nicht gültig. Bitte noch einmal genau abschreiben.',
@@ -64,7 +64,7 @@ async function proRedeem(code, quiet) {
   const r = await proVerify(code);
   if (!r.ok) { if (!quiet) toast(RBPRO_WHY[r.why] || RBPRO_WHY.sig, 3200); return false; }
   RBPRO.ok = true; ROOT.pro = { code: proNorm(code), at: todayStr() }; save();
-  if (!quiet) { toast('<span>⭐</span> <span>Rechenblitz Pro ist freigeschaltet – danke!</span>', 2600); if (typeof Sound !== 'undefined') Sound.win?.(); }
+  if (!quiet) { toast('<span>⭐</span> <span>Zahlensprint Pro ist freigeschaltet – danke!</span>', 2600); if (typeof Sound !== 'undefined') Sound.win?.(); }
   renderHome(); return true;
 }
 /** Beim Start: gespeicherten Code erneut prüfen und den Code aus dem Freischalt-Link einlösen.
@@ -105,13 +105,13 @@ PANELS.pro = ({ what, eltern } = {}) => {
     ['👨‍👩‍👧', 'Unbegrenzt Profile', `Frei sind ${RBPRO.freeProfiles} Profile – mit Pro für alle Geschwister`],
     ['📈', 'Elternbericht', 'Verlauf über 10 Wochen, Stärken und Schwächen je Thema, zum Ausdrucken'],
     ['💾', 'Vorlagen speichern und teilen', '„Üben nach Wunsch“ als Vorlage, Link oder QR-Code']];
-  const WHAT = { profi: 'Die Profi-Stufe gehört zu Rechenblitz Pro.', profile: `Mehr als ${RBPRO.freeProfiles} Profile gibt es mit Rechenblitz Pro.`, bericht: 'Der Elternbericht gehört zu Rechenblitz Pro.', vorlage: 'Vorlagen speichern und teilen gehört zu Rechenblitz Pro.' };
-  return { title: '<span>⭐</span> <span>Rechenblitz Pro</span>', html: `<div class="pro">
-    ${own ? '<p class="pro-own"><span class="pro-on static">⭐ Pro aktiv</span> Rechenblitz Pro gilt in der Web-App auf diesem Gerät – für alle Profile. Danke für deine Unterstützung!</p>'
+  const WHAT = { profi: 'Die Profi-Stufe gehört zu Zahlensprint Pro.', profile: `Mehr als ${RBPRO.freeProfiles} Profile gibt es mit Zahlensprint Pro.`, bericht: 'Der Elternbericht gehört zu Zahlensprint Pro.', vorlage: 'Vorlagen speichern und teilen gehört zu Zahlensprint Pro.' };
+  return { title: '<span>⭐</span> <span>Zahlensprint Pro</span>', html: `<div class="pro">
+    ${own ? '<p class="pro-own"><span class="pro-on static">⭐ Pro aktiv</span> Zahlensprint Pro gilt in der Web-App auf diesem Gerät – für alle Profile. Danke für deine Unterstützung!</p>'
       : `${what && WHAT[what] ? `<p class="pro-what">${WHAT[what]}</p>` : ''}${!locks ? '<p class="small muted">Zurzeit sind alle Pro-Funktionen kostenlos freigeschaltet.</p>' : ''}`}
     <div class="menu">${feats.map(([i, t, s]) => `<div class="mi static"><div class="ico">${i}</div><div><b>${t}</b><span>${s}</span></div></div>`).join('')}</div>
     <p class="small muted">Kostenlos bleiben alle 29 Themen in Stufe 1–5, alle Spiele, Lösungswege, Reise und Garten – ohne Werbung.</p>
-    ${kind ? `<p class="pro-kind">Das gehört zu Rechenblitz Pro. Deine Eltern können im Elternbereich nachsehen.</p><button class="btn block" id="proEltern">🔒 Für Eltern</button>` : ''}
+    ${kind ? `<p class="pro-kind">Das gehört zu Zahlensprint Pro. Deine Eltern können im Elternbereich nachsehen.</p><button class="btn block" id="proEltern">🔒 Für Eltern</button>` : ''}
     ${!kind && !own && locks && !proPlay() ? `<button class="btn primary big" id="proBuy">Pro kaufen – ${RBPRO.price} einmalig</button><p class="small muted" style="text-align:center;margin:4px 0 0">inkl. MwSt. · kein Abo · Kauf auf unserer Website, der Code kommt per E-Mail · gilt in der Web-App</p>` : ''}
     ${own ? '' : `<form class="pro-code" id="proForm" autocomplete="off"><label class="field"><span>Code schon gekauft? Hier einfügen:</span>
       <input id="proIn" placeholder="RB-…" autocapitalize="characters" spellcheck="false" translate="no"></label><button class="btn" type="submit">Einlösen</button></form>`}
@@ -138,7 +138,7 @@ PANELS.elternbericht = () => {
   const amp = acc => acc >= .85 ? ['ok', 'sitzt sicher'] : acc >= .7 ? ['mid', 'fast sicher'] : ['bad', 'üben'];
   const rows = d.topics.map(t => { const [c, l] = amp(t.acc); return `<tr><td><span translate="no">${TOPICS[t.k].g}</span> ${TOPICS[t.k].name}</td><td>${t.n}</td><td><span class="amp ${c}">${pc(t.ok, t.n)} %</span></td><td>${t.lvl != null ? lvlName(t.lvl) : '–'}</td><td>${t.trend == null ? '–' : t.trend >= .03 ? '↗ besser' : t.trend <= -.03 ? '↘ schwächer' : '→ gleich'}</td><td class="small">${l}${d.box[t.k] ? ` · ${d.box[t.k]} in der Fehlerkiste` : ''}</td></tr>`; }).join('');
   const weak = d.topics.filter(t => t.n >= 10 && t.acc < .7).slice(0, 3), strong = d.topics.filter(t => t.n >= 10 && t.acc >= .9).slice(0, 3);
-  return { title: `Elternbericht · ${esc(profile().name)}`, html: `<div class="report" id="elternReport">${RBPRO.ok ? '<p class="pro-line"><span class="pro-on static">⭐ Pro aktiv</span> <span class="small muted">Rechenblitz Pro ist auf diesem Gerät freigeschaltet.</span></p>' : ''}
+  return { title: `Elternbericht · ${esc(profile().name)}`, html: `<div class="report" id="elternReport">${RBPRO.ok ? '<p class="pro-line"><span class="pro-on static">⭐ Pro aktiv</span> <span class="small muted">Zahlensprint Pro ist auf diesem Gerät freigeschaltet.</span></p>' : ''}
     <p class="small muted" style="margin-top:0">Die letzten 10 Wochen (${fmtDay(dayStr(69))} bis ${fmtDay(dayStr(0))})</p>
     <div class="wgrid"><div class="stat"><b>${d.days}</b><span>Tage geübt</span></div><div class="stat"><b>${d.n}</b><span>Aufgaben</span></div><div class="stat"><b>${pc(d.ok, d.n)} %</b><span>richtig</span></div><div class="stat"><b>${Math.round(d.ms / 60000)}</b><span>Minuten</span></div></div>
     <h4>Aufgaben je Woche</h4>
