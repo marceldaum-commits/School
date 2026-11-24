@@ -404,6 +404,7 @@ function shareAssignResult() {
 const b64e = obj => btoa(unescape(encodeURIComponent(JSON.stringify(obj)))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 const b64d = s => JSON.parse(decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/')))));
 async function shareText(text, title, url) {
+  if (typeof elternFrei === 'function' && !elternFrei()) return mitTor(() => shareText(text, title, url), 'Teilen nach außen ist für Erwachsene.');
   if (navigator.share) { try { await navigator.share({ title: tr(title), text: String(text).split('\n').map(tr).join('\n') }); return; } catch (e) { if (e.name === 'AbortError') return; } }
   text = String(text).split('\n').map(tr).join('\n'); title = tr(title);
   try { await navigator.clipboard.writeText(text); toast('In die Zwischenablage kopiert ✓'); }
@@ -809,6 +810,7 @@ function renderResult(r) {
   bindResultExtras(r);
   $('result').querySelectorAll('.mistakes .linkbtn').forEach(b => b.onclick = () => openSheet('report', { type: 'aufgabe', ctx: G.mistakes[+b.dataset.i] }));
   $('result').querySelectorAll('[data-go]').forEach(b => b.onclick = () => openSheet(b.dataset.go));
+  bindHilfe();
   setTimeout(() => { const bb = $('result').querySelector('.bz-bubble'); if (bb) Voice.speakRaw(mathSpeak(bb.textContent, I18N.lang)); }, 120);   // Blitz sagt das Ergebnis
   if (r.stars != null && !$('rStars')) Sound.fanfare(r.stars);   // Rechen-Reise zeigt eigene Sterne
   else if (r.stars != null) {
@@ -841,7 +843,7 @@ function finishTest() {
   return `<div class="card testres"><p class="muted" style="margin:0 0 8px">Klasse ${G.klasse} · ${G.correct} von ${G.results.length} richtig</p>
     ${res.map(r => `<div class="tr"><span class="tg">${TOPICS[r.topic].g}</span><div><b>${TOPICS[r.topic].name}</b><small>${r.ok === 3 ? 'Sitzt sicher 💪' : r.ok === 2 ? 'Fast sicher' : 'Hier lohnt sich Üben'} · empfohlen: Stufe ${r.rec + 1}</small></div><span class="pill3">${'●'.repeat(r.ok)}${'○'.repeat(3 - r.ok)}</span></div>`).join('')}
     <p class="small muted" style="margin:10px 0 0">Die Stufen sind jetzt auf <b>Auto</b> gestellt und passen sich beim Üben weiter an.</p></div>
-    ${weak.length >= 2 ? `<a class="card cta" href="${esc(CONFIG.trialUrl)}" target="_blank" rel="noopener" style="text-decoration:none"><div style="font-size:26px">🎓</div><p><b>Bei ein paar Themen hakt es noch.</b><br>In einer kostenlosen Probestunde schauen wir gemeinsam drauf.</p></a>` : ''}`;
+    ${weak.length >= 2 ? `<div class="card hilfe" id="hilfeKarte" data-topic="${esc(weak[0].topic)}"><p style="margin:0 0 10px">Du kommst hier gerade nicht weiter? Das ist okay. Probier eine leichtere Stufe oder schau dir die Erklärung noch einmal an. Und du kannst jederzeit deine Eltern oder deine Lehrkraft fragen.</p><div class="row2"><button class="btn" id="hilfeLeicht">Leichter üben</button><button class="btn" id="hilfeErkl">Erklärung ansehen</button></div></div>` : ''}`;
 }
 
 /* ================= Duell ================= */

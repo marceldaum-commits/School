@@ -16,8 +16,8 @@ const unb64u = s => Buffer.from(s.replace(/-/g, '+').replace(/_/g, '/'), 'base64
  // etwas Lernstand erzeugen
  const k = await p.evaluate(async () => { S.sel = { op: 'mul', lvl: 1 }; startGame('training'); await new Promise(r => setTimeout(r, 3000));
    for (let i = 0; i < 6; i++) { if (!G || G.over) break; G.input = i % 3 ? canon(G.task.a) : '0'; submit(); await new Promise(r => setTimeout(r, 2200)); try { continueAfterSolution(); } catch {} }
-   openSheet('eltern'); await new Promise(r => setTimeout(r, 300)); const hasBtn = !!$('sheetBody').querySelector('[data-go="koppeln"]');
-   showPanel('koppeln', {}, true); await new Promise(r => setTimeout(r, 300)); $('kpName').value = 'Testkind'; $('kpGo').click(); await new Promise(r => setTimeout(r, 4000));
+   GATE.okUntil = Date.now() + 6e5; openSheet('eltern'); await new Promise(r => setTimeout(r, 300)); const hasBtn = !!$('sheetBody').querySelector('[data-go="koppeln"]');
+   GATE.okUntil = Date.now() + 6e5; showPanel('koppeln', {}, true); await new Promise(r => setTimeout(r, 300)); $('kpName').value = 'Testkind'; $('kpGo').click(); await new Promise(r => setTimeout(r, 4000));
    const k = kopplung(); return { hasBtn, id: k.id, schreib: k.schreib, key: k.key, last: k.last, link: kopplungLink(k), qr: !!$('sheetBody').querySelector('.qrbox svg'), ui: $('sheetBody').textContent.slice(0, 80) }; });
  R.app = { hasBtn: k.hasBtn, laengen: [k.id.length, k.schreib.length, k.key.length], hochgeladen: !!k.last, link: k.link.replace(k.key, '<key>'), qr: k.qr };
  // Abruf wie die Eltern-Seite + Entschlüsseln

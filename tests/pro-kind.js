@@ -11,9 +11,9 @@ const { chromium } = require('playwright');
     await p.screenshot({ path: require("path").join(require("os").tmpdir(), `prokind-${lang}.png`) });
     await p.click('#proEltern'); await p.waitForTimeout(500);
     const gate = await p.evaluate(() => document.getElementById('sheetBody').innerText);
-    // Zahl lösen: Wort aus dem Panel → Ziffern über gateWords rückwärts suchen
-    const n = await p.evaluate(() => { const w = document.getElementById('gateWord').textContent; for (let i = 100; i < 1000; i++) if (gateWords(i, I18N.lang) === w) return i; });
-    await p.fill('#gateIn', String(n)); await p.click('#gateForm button[type=submit]'); await p.waitForTimeout(600);
+    // Aufgabe lösen: Zahlwörter aus dem Tor zurückrechnen, mit der Tastatur eingeben
+    await p.evaluate(async () => { const W = GATE_W[I18N.lang] || GATE_W.de, t = document.getElementById('gateWord').textContent, has = w => new RegExp('(^|[^\\p{L}])' + w + '([^\\p{L}]|$)', 'u').test(t);
+      const a = W.a.findIndex(has), bb = W.b.findIndex(has); for (const ch of String((13 + a) * (6 + bb))) document.querySelector(`.gate-key[data-k="${ch}"]`).click(); document.querySelector('.gate-key[data-k="✓"]').click(); await new Promise(r => setTimeout(r, 600)); });
     const parent = await p.evaluate(() => document.getElementById('sheetBody').innerText);
     res[lang] = { kidHasPrice: /€|kaufen|Buy|Купити/i.test(kid), kidText: kid.slice(0, 160), gateOk: /Erwachsene|adults|дорослих/.test(gate), parentHasBuy: /7,99|€/.test(parent), errs, miss: [...new Set(miss)] };
     await p.close(); }

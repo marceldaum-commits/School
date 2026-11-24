@@ -41,7 +41,6 @@ const PANELS = {
       ${mi('theorie', '📖', 'Theorie', 'Regeln und Beispiele zu allen Themen')}
       ${mi('idea', '💡', 'Idee oder Feedback', 'Was sollen wir verbessern?')}
       ${miLink(siteLink(CONFIG.websiteUrl, 'menu'), '🌐', 'Zu Nachhilfe – online', 'Online-Nachhilfe 1:1 in Mathe & mehr', 'accent')}
-      ${miLink(siteLink(CONFIG.trialUrl, 'menu-probestunde'), '🎓', 'Kostenlose Probestunde', 'Unverbindlich ausprobieren')}
       ${CONFIG.lernraumUrl ? `<a class="mi" href="${esc(siteLink(CONFIG.lernraumUrl, 'menu-lernraum'))}"><div class="ico">📚</div><div><b>Zurück zum Lernraum</b><span>Weitere Lernspiele und Übungen</span></div><span class="chev">←</span></a>` : ''}
       ${mi('news', '🆕', 'Was ist neu?', `Version ${versionLabel()}`)}
       ${mi('invite', '💌', 'Freunde einladen', 'Zahlensprint ist kostenlos – teile es!')}
@@ -105,7 +104,6 @@ const PANELS = {
     const sw = (id, on, t, d) => `<button class="setrow" data-set="${id}" role="switch" aria-checked="${on}"><div><b>${t}</b><span>${d}</span></div><span class="switch ${on ? 'on' : ''}"></span></button>`;
     return { title: 'Einstellungen', html: `<div class="menu">
       ${canInstall() ? '<button class="btn primary block" data-install>📱 App installieren</button>' : ''}
-      ${proLocks() || RBPRO.ok ? mi('pro', '⭐', RBPRO.ok ? 'Zahlensprint Pro <span class="pro-on static">Pro aktiv</span>' : 'Zahlensprint Pro', RBPRO.ok ? 'Gilt in der Web-App auf diesem Gerät – für alle Profile' : 'Was Pro enthält · Code einlösen', RBPRO.ok ? 'pro-active' : '') : ''}
       ${sw('music', musicOn(), 'Musik', 'Eigene Blitz-Melodien im Menü und im Spiel')}
       <label class="setrow col vol"><span><b>Lautstärke Musik</b></span><input type="range" id="volMusic" min="0" max="100" step="5" value="${S.settings.musicVol ?? 50}"></label>
       ${sw('sound', S.settings.sound, 'Effekte', 'Klänge bei richtig, falsch, Serien und Sternen')}
@@ -126,6 +124,13 @@ const PANELS = {
         <div class="chips" id="langSeg"><button data-v="auto" class="${(ROOT.lang || 'auto') === 'auto' ? 'sel' : ''}">Automatisch</button>${Object.entries(I18N.langs).map(([k, n]) => `<button data-v="${k}" translate="no" class="${ROOT.lang === k ? 'sel' : ''}">${n}</button>`).join('')}</div></div>
       <div class="setrow col"><div><b>Design</b><span>Hell, dunkel oder wie das Gerät</span></div>
         <div class="seg" id="themeSeg">${[['auto', 'Automatisch'], ['light', 'Hell'], ['dark', 'Dunkel']].map(([v, l]) => `<button data-v="${v}" class="${S.settings.theme === v ? 'sel' : ''}">${l}</button>`).join('')}</div></div>
+      ${mi('settingsEltern', '🔒', 'Für Eltern', 'Zahlensprint Pro, Zurücksetzen, App-Update')}
+      </div>`, init: initSettings };
+  },
+
+  settingsEltern() {
+    return { title: '🔒 Einstellungen für Eltern', html: `<div class="menu">
+      ${proLocks() || RBPRO.ok ? mi('pro', '⭐', RBPRO.ok ? 'Zahlensprint Pro <span class="pro-on static">Pro aktiv</span>' : 'Zahlensprint Pro', RBPRO.ok ? 'Gilt in der Web-App auf diesem Gerät – für alle Profile' : 'Was Pro enthält · Code einlösen', RBPRO.ok ? 'pro-active' : '') : ''}
       ${IS_NATIVE ? `<div class="mi" style="cursor:default"><div class="ico">✨</div><div><b>Aktualisiert sich automatisch</b><span>Installiert: Version <span translate="no">${versionLabel()}</span></span><span id="updInfo" style="display:block;font-size:12px"></span></div></div>` : ''}
       <div class="mlabel">Zurücksetzen</div>
       <button class="mi" data-reset="reise"><div class="ico">🗺️</div><div><b>Rechen-Reise neu starten</b><span>Sterne, Sticker und Klassenwahl der Reise löschen</span></div></button>
@@ -133,8 +138,9 @@ const PANELS = {
       <button class="mi" data-reset="badges"><div class="ico">🏅</div><div><b>Abzeichen zurücksetzen</b><span>Alle Abzeichen dieses Profils löschen</span></div></button>
       <button class="mi" data-reset="box"><div class="ico">📦</div><div><b>Fehlerkiste leeren</b><span>Gesammelte Fehler-Aufgaben löschen</span></div></button>
       <button class="mi" id="btnReset"><div class="ico">↺</div><div><b>Alles zurücksetzen</b><span>Punkte, Rekorde, Abzeichen, Fehlerkiste, Merk-Training, Reise, Funken, Garderobe und Rätsel dieses Profils löschen – Auftrag der Lehrkraft, Adventskalender und Klasse bleiben</span></div></button>
-      </div>`, init: initSettings };
+      </div>`, init: initSettingsEltern };
   },
+
 
   /* ---------- Profile ---------- */
   profiles() {
@@ -174,13 +180,17 @@ const PANELS = {
   eltern() {
     const on = zaehlungAn();
     return { title: '👪 Elternbereich', html: `<div class="menu">
+      ${nachhilfeHinweis()}
       ${mi('week', '📊', 'Wochenbericht', 'Was geübt wurde, wo es hakt')}
       ${mi('elternbericht', '📈', 'Elternbericht' + proBadge(), 'Verlauf über 10 Wochen, Stärken und Schwächen je Thema')}
       ${typeof PANELS.koppeln === 'function' && window.crypto && crypto.subtle ? mi('koppeln', '📲', 'Eltern-Handy koppeln' + (kopplung() ? ' <span class="pro-on static">gekoppelt</span>' : ''), 'Lernstand auf dem Eltern-Handy – ohne Konto, verschlüsselt') : ''}
       ${typeof PANELS.wiederherstellen === 'function' && window.crypto && crypto.subtle ? mi('wiederherstellen', '♻️', 'Fortschritt wiederherstellen', 'Neues Gerät? Mit dem Kopplungs-Link den Lernstand zurückholen') : ''}
       ${CONFIG.geschenkUrl ? miLink(CONFIG.geschenkUrl, '🎁', 'Lern-Geschenk verschenken', 'Nachhilfe-Stunden oder Lernpaket als Gutschein') : ''}
-      ${CONFIG.zaehler ? `<button class="setrow" id="zaehlSw" role="switch" aria-checked="${on}"><div><b>Anonyme Nutzungszählung</b><span>Beim Start meldet die App nur „Zahlensprint wurde geöffnet“ und die Version, nach einem Umzug auf die neue Adresse außerdem einmal „Umzug geklappt“ – ohne Namen, Kennungen oder Cookies. Hilft uns zu sehen, ob Zahlensprint genutzt wird.</span></div><span class="switch ${on ? 'on' : ''}"></span></button>` : ''}
+      <button class="setrow" id="nhSw" role="switch" aria-checked="${!!ROOT.hinweisAus}"><div><b>Hinweise auf Nachhilfe ausblenden</b><span>Dann zeigt die App keine Hinweise auf die kostenlose Probestunde mehr</span></div><span class="switch ${ROOT.hinweisAus ? 'on' : ''}"></span></button>
+      ${CONFIG.zaehler ? `<button class="setrow" id="zaehlSw" role="switch" aria-checked="${on}"><div><b>Anonyme Nutzungszählung</b><span>Beim Start meldet die App nur „Zahlensprint wurde geöffnet“ und die Version, nach einem Umzug auf die neue Adresse außerdem einmal „Umzug geklappt“ und wenn der Link zur Probestunde angetippt wird – ohne Namen, Kennungen oder Cookies. Hilft uns zu sehen, ob Zahlensprint genutzt wird.</span></div><span class="switch ${on ? 'on' : ''}"></span></button>` : ''}
     </div>`, init() {
+      bindNachhilfeHinweis();
+      const nh = $('nhSw'); if (nh) nh.onclick = () => { ROOT.hinweisAus = !ROOT.hinweisAus; save(); Sound.click(); nh.setAttribute('aria-checked', !!ROOT.hinweisAus); nh.querySelector('.switch').classList.toggle('on', !!ROOT.hinweisAus); };
       const b = $('zaehlSw'); if (b) b.onclick = () => { ROOT.zaehlung = !zaehlungAn(); save(); Sound.click(); b.setAttribute('aria-checked', ROOT.zaehlung); b.querySelector('.switch').classList.toggle('on', ROOT.zaehlung); };
     } };
   },
@@ -266,7 +276,11 @@ function openSheet(panel = 'menu', opts) {
   if (!Sheet.open) { Sheet.open = true; $('sheetBg').hidden = false; pauseGame(true); Sheet.lastFocus = document.activeElement; Sheet.stack = []; }
   showPanel(panel, opts, true);
 }
+// Bereiche hinter dem Eltern-Tor (Standard der AppZentrale): Elternbereich, Eltern-Einstellungen, Kopplung, Klassen-Code, Einladen/Flyer
+const TOR_BEREICHE = new Set(['eltern', 'settingsEltern', 'koppeln', 'wiederherstellen', 'invite', 'flyer', 'classCreate']);
+const brauchtTor = (panel, opts) => (TOR_BEREICHE.has(panel) || (panel === 'klasse' && !S.klasse)) && !elternFrei();
 function showPanel(panel, opts, push) {
+  if (brauchtTor(panel, opts)) { opts = { next: [panel, opts || {}] }; panel = 'elternGate'; }
   if (push) Sheet.stack.push([panel, opts]);
   const p = PANELS[panel](opts);
   $('sheetTitle').innerHTML = p.title;
@@ -342,6 +356,10 @@ function initSettings() {
   $('klSeg').onclick = e => { const b = e.target.closest('button'); if (!b) return; S.settings.klasse = +b.dataset.v; homeShowAll = false; save(); $('klSeg').querySelectorAll('button').forEach(x => x.classList.toggle('sel', x === b)); renderHome(); };
   $('langSeg').onclick = e => { const b = e.target.closest('button'); if (b) setLanguage(b.dataset.v); };
   $('themeSeg').onclick = e => { const b = e.target.closest('button'); if (!b) return; S.settings.theme = b.dataset.v; save(); applyTheme(); $('themeSeg').querySelectorAll('button').forEach(x => x.classList.toggle('sel', x === b)); };
+}
+
+// Eltern-Einstellungen (hinter dem Eltern-Tor): Update-Info und Zurücksetzen
+function initSettingsEltern() {
   if (RbUpd()) RbUpd().status().then(u => {   // App: woher der laufende Stand kommt (zur Kontrolle der Selbst-Aktualisierung)
     const el = $('updInfo'); if (!el || !u) return;
     const src = u.version && u.version !== u.bundled ? (u.source === 'server' ? 'Server' : 'GitHub') : 'App-Paket';
@@ -558,16 +576,10 @@ function reportDone(res, payload) {
 }
 addEventListener('online', flushOutbox);
 
-/* ---------- Werbung für die Website ---------- */
-const PROMOS = [
-  ['🎓', 'Kostenlose Probestunde', 'Persönliche Online-Nachhilfe 1:1 – die erste Stunde ist gratis.', 'probestunde', () => CONFIG.trialUrl],
-  ['⭐', '5,0 Sterne bei Google', 'Über 600 Familien bewerten Nachhilfe – online mit 5 Sternen.', 'bewertungen', () => CONFIG.websiteUrl],
-  ['👩‍🏫', 'Feste Lehrkraft, die passt', 'Mathe, Deutsch, Englisch, Physik & mehr – von der Grundschule bis zum Abschluss.', 'faecher', () => CONFIG.websiteUrl],
-  ['📈', 'Bessere Noten, weniger Stress', 'Gezielte Hilfe genau bei den Themen, die noch haken.', 'noten', () => CONFIG.websiteUrl],
-];
+/* ---------- Tipp für Klasse 9–10 (V15): ohne Tor, sachlich, höchstens einmal pro Woche; die frühere Werbekarte ist weg (Kinderansicht ohne Werbung) ---------- */
 function renderPromo() {
-  const i = Math.floor(Date.now() / 864e5 + Math.random() * 4) % PROMOS.length, [icon, title, text, place, url] = PROMOS[i];
-  $('promo').innerHTML = `<div class="pr-ico">${icon}</div><div class="pr-txt"><span class="eyebrow">Nachhilfe – online</span><b>${title}</b><p>${text}</p></div><a class="btn primary small" href="${esc(siteLink(url(), 'promo-' + place))}" target="_blank" rel="noopener">Zur Website ↗</a>`;
+  const el = $('promo'); if (!el) return;
+  const t = tippKlasse(); el.innerHTML = t; el.hidden = !t; bindTipp();
 }
 
 /* ---------- Links (#auftrag=… / #ergebnis=…) ---------- */

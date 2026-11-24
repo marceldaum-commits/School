@@ -96,7 +96,6 @@ function needPro(what) {
 }
 const proBadge = () => proLocks() && !RBPRO.ok ? ' <span class="probadge">Pro</span>' : '';
 
-const elternFrei = () => typeof GATE === 'object' && Date.now() < GATE.okUntil;   // Eltern-Tor in den letzten 10 Minuten bestanden
 PANELS.pro = ({ what, eltern } = {}) => {
   const own = RBPRO.ok, locks = proLocks();
   // UWG Anh. Nr. 28: In der Ansicht für Kinder kein Preis, kein Kauf-Knopf, keine Aufforderung – nur sachlich, Weg über das Eltern-Tor
@@ -117,7 +116,7 @@ PANELS.pro = ({ what, eltern } = {}) => {
       <input id="proIn" placeholder="RB-…" autocapitalize="characters" spellcheck="false" translate="no"></label><button class="btn" type="submit">Einlösen</button></form>`}
   </div>`, init() {
     if ($('proEltern')) $('proEltern').onclick = () => showPanel('elternGate', { next: ['pro', { what, eltern: true }] }, true);
-    if ($('proBuy')) $('proBuy').onclick = () => elternFrei() ? gateOpen(CONFIG.proCheckout) : openSheet('elternGate', { href: CONFIG.proCheckout, kind: 'kauf' });
+    if ($('proBuy')) $('proBuy').onclick = () => elternFrei() ? gateOpen(CONFIG.proCheckout) : openSheet('elternGate', { href: CONFIG.proCheckout, grund: 'Dieses Paket gehört zu Zahlensprint Pro.' });
     if ($('proForm')) $('proForm').onsubmit = async e => { e.preventDefault(); const v = $('proIn').value.trim(); if (!v) return $('proIn').focus(); if (await proRedeem(v)) closeSheet(); };
   } };
 };

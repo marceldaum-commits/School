@@ -198,13 +198,67 @@ function weakTopic() {
   for (const [tp, [ok, bad]] of Object.entries(agg)) { const n = ok + bad, acc = ok / n; if (n >= 10 && acc < .7 && (!best || acc < best[1])) best = [tp, acc]; }
   return best && best[0];
 }
-function resultPromo() {   // höchstens einmal am Tag, damit es nicht nervt
+// Weg zur Probestunde (Recht V15, Marcel 24.11.2026): Berechnung nur auf dem Gerät, nichts davon geht an einen Server.
+// KINDERANSICHT: nur der Hilfesatz mit zwei Knöpfen, kein Link nach außen, kein Wort zur Probestunde. Höchstens einmal am Tag.
+function resultPromo() {
   const today = todayStr();
   if (!G || G.mode === 'test' || S.promoDay === today) return '';
+  const w = weakTopic(); if (!w) return '';
   S.promoDay = today; save();
-  const w = weakTopic();
-  const txt = w ? `<b>${esc(TOPICS[w].name)}</b> klappt noch nicht ganz? In einer <b>kostenlosen Probestunde</b> schauen wir gemeinsam drauf.` : 'Mehr Hilfe gewünscht? <b>Kostenlose Probestunde bei Nachhilfe – online</b>';
-  return `<a class="promo-line" href="${esc(siteLink(CONFIG.trialUrl, w ? 'ergebnis-' + w : 'ergebnis'))}" target="_blank" rel="noopener">🎓 <span>${txt}</span> ↗</a>`;
+  return `<div class="card hilfe" id="hilfeKarte" data-topic="${esc(w)}"><p style="margin:0 0 10px">Du kommst hier gerade nicht weiter? Das ist okay. Probier eine leichtere Stufe oder schau dir die Erklärung noch einmal an. Und du kannst jederzeit deine Eltern oder deine Lehrkraft fragen.</p>
+    <div class="row2"><button class="btn" id="hilfeLeicht">Leichter üben</button><button class="btn" id="hilfeErkl">Erklärung ansehen</button></div></div>`;
+}
+function bindHilfe() {
+  const k = $('hilfeKarte'); if (!k) return; const t = k.dataset.topic;
+  $('hilfeLeicht').onclick = () => { S.sel.op = t; S.sel.lvl = Math.max(0, currentLevel(t) - 1); save(); goHome(); toast('Eine leichtere Stufe ist eingestellt.', 2200); };
+  $('hilfeErkl').onclick = () => openSheet('theorie', { topic: t, lvl: currentLevel(t) });
+}
+// Übersetzung mit Platzhaltern {0}, {1} (Wörterbuch-Schlüssel = deutscher Text mit {0}/{1}); Werte dürfen fertiges HTML sein
+function trArgs(de, ...args) {
+  const hit = I18N.lang === 'de' ? null : (I18N.dict[I18N.lang] || {})[i18nKey(de).key];   // Schlüssel wie im Wörterbuch: {0} wird dort zu {{}}
+  return (hit != null ? hit : de).replace(/\{(\d+)\}/g, (m, i) => args[+i] ?? '');
+}
+// ELTERNBEREICH: objektiver Auslöser – ein Thema in den letzten 14 Tagen unter 50 % richtig (mindestens 10 Aufgaben).
+function schwierigesThema() {
+  const agg = {};
+  for (let i = 0; i < 14; i++) { const h = S.hist[dayStr(i)]; if (!h) continue; for (const [tp, [ok, bad]] of Object.entries(h.tp)) { const a = agg[tp] || (agg[tp] = [0, 0]); a[0] += ok; a[1] += bad; } }
+  let best = null;
+  for (const [tp, [ok, bad]] of Object.entries(agg)) { const n = ok + bad; if (n >= 10 && ok / n < .5 && TOPICS[tp] && (!best || ok / n < best[1])) best = [tp, ok / n]; }
+  return best && best[0];
+}
+const NACHHILFE_PAUSE_TAGE = 28;   // höchstens einmal in 4 Wochen je Thema
+function nachhilfeHinweis() {
+  if (ROOT.hinweisAus) return '';
+  const t = schwierigesThema(); if (!t) return '';
+  const seen = S.nachhilfeSeen || (S.nachhilfeSeen = {}), last = seen[t];
+  if (last && (new Date(todayStr()) - new Date(last)) / 864e5 < NACHHILFE_PAUSE_TAGE) return '';
+  seen[t] = todayStr(); save();
+  const body = trArgs('In {0} hat {1} in den letzten Wochen öfter Schwierigkeiten. Das ist normal und lässt sich üben – die App zeigt dazu passende Übungen. Wenn ihr persönliche Unterstützung möchtet: Unser Angebot – eine kostenlose, unverbindliche Probestunde Online-Nachhilfe.', `<b>${esc(tr(TOPICS[t].name))}</b>`, `<b>${esc(profile().name && profile().name !== 'Ich' ? profile().name : tr('euer Kind'))}</b>`);
+  return `<div class="card nh-hinweis" id="nhHinweis"><div style="display:flex;justify-content:space-between;gap:8px"><b>Hinweis</b><button class="linkbtn" id="nhZu" aria-label="Hinweis schließen">✕</button></div>
+    <p style="margin:6px 0 10px" translate="no">${body}</p>
+    <div class="row2"><a class="btn primary" id="nhLink" href="${esc(probeLink('elternbereich'))}" target="_blank" rel="noopener">Probestunde anfragen</a><button class="btn" id="nhAus">Solche Hinweise ausblenden</button></div></div>`;
+}
+function bindNachhilfeHinweis() {
+  if (!$('nhHinweis')) return;
+  $('nhZu').onclick = () => $('nhHinweis').remove();
+  $('nhAus').onclick = () => { ROOT.hinweisAus = true; save(); $('nhHinweis').remove(); toast('Hinweise auf Nachhilfe sind ausgeblendet.', 2400); };
+  $('nhLink').onclick = () => zaehlSenden({ app: 'rechenblitz', ev: 'probestunde_klick', ort: 'elternbereich', v: APP_VERSION });
+}
+const probeLink = ort => { try { const u = new URL(CONFIG.trialUrl); u.searchParams.set('src', 'rechenblitz'); return u.href; } catch { return CONFIG.trialUrl; } };
+// KLASSE 9–10 (nur wenn die Klassenstufe bekannt ist), ohne Tor: sachlicher Tipp, höchstens einmal pro Woche, wegklickbar
+function tippKlasse() {
+  const k = S.settings.klasse;
+  if (!(k === 9 || k === 10) || ROOT.hinweisAus) return '';
+  const last = S.tippDatum; if (last && (new Date(todayStr()) - new Date(last)) / 864e5 < 7) return '';
+  return `<div class="card promo" id="tippKarte" style="position:relative"><button class="linkbtn" id="tippZu" aria-label="Tipp schließen" style="position:absolute;right:10px;top:8px">✕</button>
+    <p style="margin:0 24px 8px 0"><b>Tipp:</b> Wenn ein Thema länger hakt, kann eine persönliche Erklärung helfen. Mit deinen Eltern könnt ihr bei uns eine kostenlose, unverbindliche Probestunde anfragen.</p>
+    <a class="btn small" id="tippLink" href="${esc(probeLink('tipp'))}" target="_blank" rel="noopener">Mehr erfahren</a></div>`;
+}
+function bindTipp() {
+  if (!$('tippKarte')) return;
+  S.tippDatum = todayStr(); save();   // einmal gezeigt: eine Woche Ruhe
+  $('tippZu').onclick = () => $('tippKarte').remove();
+  $('tippLink').onclick = () => zaehlSenden({ app: 'rechenblitz', ev: 'probestunde_klick', ort: 'link', v: APP_VERSION });
 }
 
 /* ================= Freunde einladen ================= */

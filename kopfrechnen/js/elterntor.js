@@ -1,61 +1,73 @@
 'use strict';
 /* =====================================================================
-   Rechenblitz – Elternabfrage vor Links nach außen (Marcel 16.11., Google-Play-Familienrichtlinie)
-   Nur in der Android-App: Bevor ein Link die App verlässt (Website, Probestunde, Stundenpakete …),
-   muss ein Erwachsener eine ausgeschriebene Zahl in Ziffern eintippen. Impressum und Datenschutz
-   bleiben ohne Abfrage erreichbar. Einmal bestanden gilt die Abfrage 10 Minuten.
+   Zahlensprint – Eltern-Tor (Standard der AppZentrale, ELTERN-TOR.md; Marcel 24.11.2026)
+   Eine Malaufgabe in Worten (13–19 × 6–9), eigene Zifferntastatur, nach einem Fehler eine neue Aufgabe,
+   danach 10 Minuten offen (nur im Arbeitsspeicher, nie gespeichert). Ein Vorlese-Knopf kommt erst mit der Tonstudio-Stimme.
+   Hinter dem Tor: Elternbereich, Kauf (Pro), Zurücksetzen/Löschen, Familie/Kopplung, Klassen-Code, Teilen nach außen,
+   alle Links aus der App hinaus – AUSSER Impressum, Datenschutz, der Website-Startseite („Zu Nachhilfe – online“,
+   „← Alle Apps“, /lern-apps/) und den Schwester-Apps (V10 neu, Marcel: „Ohne Tor, neutral“).
    ===================================================================== */
 const GATE = { okUntil: 0, pass: false, minutes: 10 };
 const GATE_FREE = /\/(impressum|datenschutz)\b/i;
+// Ohne Tor erlaubt (V10 neu): Website-Startseite und /lern-apps/, Impressum, Datenschutz, die Schwester-Apps auf *.mathenachhilfe-online.com außer www
+const gateFrei = u => GATE_FREE.test(u.pathname) || (u.host === 'www.mathenachhilfe-online.com' ? /^\/(lern-apps\/?)?$/.test(u.pathname) : /(^|\.)mathenachhilfe-online\.com$/.test(u.hostname));
+const elternFrei = () => Date.now() < GATE.okUntil;   // Eltern-Tor in den letzten 10 Minuten bestanden
 
-/** Zahl 121–999 als Wort (Deutsch, Englisch, Ukrainisch) */
-function gateWords(n, lang) {
-  const h = Math.floor(n / 100), t = Math.floor(n / 10) % 10, o = n % 10;
-  if (lang === 'en') {
-    const O = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'], T = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
-    return `${O[h]} hundred and ${T[t]}-${O[o]}`;
-  }
-  if (lang === 'uk') {
-    const H = ['', 'сто', 'двісті', 'триста', 'чотириста', 'п’ятсот', 'шістсот', 'сімсот', 'вісімсот', 'дев’ятсот'];
-    const T = ['', '', 'двадцять', 'тридцять', 'сорок', 'п’ятдесят', 'шістдесят', 'сімдесят', 'вісімдесят', 'дев’яносто'];
-    const O = ['', 'один', 'два', 'три', 'чотири', 'п’ять', 'шість', 'сім', 'вісім', 'дев’ять'];
-    return `${H[h]} ${T[t]} ${O[o]}`;
-  }
-  const O = ['', 'ein', 'zwei', 'drei', 'vier', 'fünf', 'sechs', 'sieben', 'acht', 'neun'], T = ['', '', 'zwanzig', 'dreißig', 'vierzig', 'fünfzig', 'sechzig', 'siebzig', 'achtzig', 'neunzig'];
-  return `${O[h]}hundert${O[o]}und${T[t]}`;
+/** Zahlwörter 13–19 und 6–9 (Deutsch, Englisch, Ukrainisch) */
+const GATE_W = {
+  de: { a: ['dreizehn', 'vierzehn', 'fünfzehn', 'sechzehn', 'siebzehn', 'achtzehn', 'neunzehn'], b: ['sechs', 'sieben', 'acht', 'neun'], q: (a, b) => `Was ergibt ${a} mal ${b}?` },
+  en: { a: ['thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'], b: ['six', 'seven', 'eight', 'nine'], q: (a, b) => `What is ${a} times ${b}?` },
+  uk: { a: ['тринадцять', 'чотирнадцять', 'п’ятнадцять', 'шістнадцять', 'сімнадцять', 'вісімнадцять', 'дев’ятнадцять'], b: ['шість', 'сім', 'вісім', 'дев’ять'], q: (a, b) => `Скільки буде ${a} помножити на ${b}?` },
+};
+function gateTask(lang) {
+  const a = 13 + Math.floor(Math.random() * 7), b = 6 + Math.floor(Math.random() * 4), W = GATE_W[lang] || GATE_W.de;
+  return { a, b, answer: a * b, text: W.q(W.a[a - 13], W.b[b - 6]) };
 }
-const gateNumber = () => rnd(1, 9) * 100 + rnd(2, 9) * 10 + rnd(1, 9);   // immer dreistellig mit Zehner ≥ 2 und Einer ≥ 1
 
-PANELS.elternGate = ({ href, next }) => {   // next: [Panel, Optionen] – statt eines Links einen Bereich für Erwachsene öffnen (z. B. Pro-Kauf)
-  let n = gateNumber();
+PANELS.elternGate = ({ href, next, then, grund }) => {   // next: [Panel, Optionen] – Bereich für Erwachsene öffnen; then: Funktion nach bestandenem Tor; href: Link öffnen
   const lang = (typeof I18N !== 'undefined' && I18N.lang) || 'de';
-  return { title: '<span>🔒</span> <span>Nur für Erwachsene</span>', html: `<form class="gate" id="gateForm" autocomplete="off">
-    <p style="margin:0">${next ? 'Dieser Bereich ist für Erwachsene.' : 'Dieser Link führt aus der App zur Website von Nachhilfe – online.'}</p>
-    <p class="small muted" style="margin:0">Bitte gib die Zahl in Ziffern ein:</p>
-    <div class="gate-word" id="gateWord" translate="no">${esc(gateWords(n, lang))}</div>
-    <input id="gateIn" inputmode="numeric" pattern="[0-9]*" maxlength="3" aria-label="Zahl in Ziffern" required>
-    <div class="row2"><button class="btn" type="button" id="gateCancel">Abbrechen</button><button class="btn primary" type="submit">Weiter</button></div></form>`,
-    focus: 'gateIn',
+  let t = gateTask(lang), eingabe = '';
+  const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '⌫', '0', '✓'];
+  return { title: '<span>🔒</span> <span>Nur für Erwachsene</span>', html: `<div class="gate" id="gateForm">
+    <p style="margin:0">${esc(grund || (next || then ? 'Dieser Bereich ist für Erwachsene.' : 'Dieser Link führt aus der App hinaus.'))}</p>
+    <p class="small muted" style="margin:0">Bitte löse die Aufgabe:</p>
+    <div class="gate-word" id="gateWord" translate="no">${esc(t.text)}</div>
+    <div class="gate-in" id="gateIn" role="status" aria-live="polite" aria-label="Deine Eingabe" translate="no">&nbsp;</div>
+    <div class="gate-pad" role="group" aria-label="Zifferntastatur" translate="no">${keys.map(k => `<button type="button" class="gate-key${k === '✓' ? ' ok' : ''}" data-k="${k}" aria-label="${k === '⌫' ? 'Löschen' : k === '✓' ? 'Fertig' : k}">${k}</button>`).join('')}</div>
+    <div class="row2"><button class="btn" type="button" id="gateCancel">Abbrechen</button></div></div>`,
     init() {
-      $('gateCancel').onclick = closeSheet;
-      $('gateForm').onsubmit = e => {
-        e.preventDefault();
-        if (+$('gateIn').value.trim() === n) { GATE.okUntil = Date.now() + GATE.minutes * 60000; if (next) { showPanel(next[0], next[1] || {}, false); return; } closeSheet(); gateOpen(href); return; }
-        n = gateNumber(); $('gateWord').textContent = gateWords(n, lang); $('gateIn').value = ''; $('gateIn').focus();
+      const show = () => { $('gateIn').textContent = eingabe || '\u00a0'; };
+      const fertig = () => {
+        if (+eingabe === t.answer) {
+          GATE.okUntil = Date.now() + GATE.minutes * 60000;
+          if (next) { showPanel(next[0], next[1] || {}, false); return; }
+          closeSheet();
+          if (then) { try { then(); } catch {} } else if (href) gateOpen(href);
+          return;
+        }
+        t = gateTask(lang); eingabe = ''; $('gateWord').textContent = t.text; show();
         toast('Das war nicht richtig – bitte einen Erwachsenen fragen.', 2200);
       };
+      $('gateCancel').onclick = closeSheet;
+      $('gateForm').querySelector('.gate-pad').addEventListener('click', e => {
+        const b = e.target.closest('[data-k]'); if (!b) return; const k = b.dataset.k;
+        if (k === '⌫') eingabe = eingabe.slice(0, -1); else if (k === '✓') { if (eingabe) fertig(); return; } else if (eingabe.length < 3) eingabe += k;
+        show();
+      });
     } };
 };
 function gateOpen(href) {
   const a = document.createElement('a'); a.href = href; a.target = '_blank'; a.rel = 'noopener';
   GATE.pass = true; document.body.appendChild(a); a.click(); a.remove(); GATE.pass = false;
 }
+/** Etwas nur nach dem Eltern-Tor tun (z. B. Teilen nach außen) */
+function mitTor(fn, grund) { if (elternFrei()) return fn(); openSheet('elternGate', { then: fn, grund }); }
 document.addEventListener('click', e => {
-  if (!IS_NATIVE || GATE.pass) return;
+  if (GATE.pass) return;
   const a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
   let u; try { u = new URL(a.getAttribute('href'), location.href); } catch { return; }
-  if (!/^https?:$/.test(u.protocol) || u.host === location.host || GATE_FREE.test(u.pathname)) return;
-  if (Date.now() < GATE.okUntil) return;
+  if (!/^https?:$/.test(u.protocol) || u.host === location.host || gateFrei(u)) return;
+  if (elternFrei()) return;
   e.preventDefault(); e.stopPropagation();
   openSheet('elternGate', { href: u.href });
 }, true);

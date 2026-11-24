@@ -2464,7 +2464,6 @@ Was geübt wurde, wo es hakt	What was practised, where it gets stuck	Що впр
 Lern-Geschenk verschenken	Give a learning gift	Подарувати навчання
 Nachhilfe-Stunden oder Lernpaket als Gutschein	Tutoring lessons or a learning pack as a voucher	Уроки з репетитором або навчальний пакет як подарунковий сертифікат
 Anonyme Nutzungszählung	Anonymous usage count	Анонімний підрахунок використання
-Beim Start meldet die App nur „Zahlensprint wurde geöffnet“ und die Version, nach einem Umzug auf die neue Adresse außerdem einmal „Umzug geklappt“ – ohne Namen, Kennungen oder Cookies. Hilft uns zu sehen, ob Zahlensprint genutzt wird.	At start-up the app only reports “Zahlensprint was opened” and the version, and after a move to the new address also once “move worked” – no names, identifiers or cookies. It helps us see whether Zahlensprint is used.	Під час запуску застосунок повідомляє лише «Zahlensprint відкрито» та версію, а після переходу на нову адресу ще один раз «перехід вдався» – без імен, ідентифікаторів чи файлів cookie. Це допомагає нам бачити, чи користуються Zahlensprint.
 Neuer Elternbereich: Berichte, Lern-Geschenk und die anonyme Nutzungszählung (abschaltbar)	New parents' area: reports, learning gift and the anonymous usage count (can be switched off)	Новий розділ для батьків: звіти, навчальний подарунок і анонімний підрахунок використання (можна вимкнути)
 Eltern-Handy koppeln	Link a parent's phone	Під’єднати телефон батьків
 📲 Eltern-Handy koppeln	📲 Link a parent's phone	📲 Під’єднати телефон батьків
@@ -2570,3 +2569,34 @@ Neuer Name: Aus Rechenblitz wird Zahlensprint – dieselbe App, dein Lernstand b
 Bis Ende Februar steht „früher Rechenblitz“ dabei	Until the end of February it says “formerly Rechenblitz”	До кінця лютого поруч стоятиме «раніше Rechenblitz»
 Rechenblitz Pro ist da	Rechenblitz Pro is here	Rechenblitz Pro вже тут
 Profi-Stufe, mehr Profile, Elternbericht und Vorlagen für einmalig {} € – alles andere bleibt kostenlos	Pro level, more profiles, parent report and templates for a one-off {} € – everything else stays free	Професійний рівень, більше профілів, звіт для батьків і шаблони за одноразові {} € – усе інше залишається безкоштовним
+Dieser Link führt aus der App hinaus.	This link leads out of the app.	Це посилання веде за межі застосунку.
+Bitte löse die Aufgabe:	Please solve the task:	Будь ласка, розв’яжи завдання:
+Deine Eingabe	Your input	Твоя відповідь
+Zifferntastatur	Number keypad	Цифрова клавіатура
+Dieses Paket gehört zu Zahlensprint Pro.	This package belongs to Zahlensprint Pro.	Цей пакет належить до Zahlensprint Pro.
+Teilen nach außen ist für Erwachsene.	Sharing outside the app is for adults.	Ділитися поза застосунком можуть дорослі.
+Zahlensprint Pro, Zurücksetzen, App-Update	Zahlensprint Pro, reset, app update	Zahlensprint Pro, скидання, оновлення застосунку
+🔒 Einstellungen für Eltern	🔒 Settings for parents	🔒 Налаштування для батьків
+Du kommst hier gerade nicht weiter? Das ist okay. Probier eine leichtere Stufe oder schau dir die Erklärung noch einmal an. Und du kannst jederzeit deine Eltern oder deine Lehrkraft fragen.	Stuck here right now? That's okay. Try an easier level or look at the explanation again. And you can ask your parents or your teacher at any time.	Зараз не виходить? Нічого страшного. Спробуй легший рівень або ще раз подивись пояснення. І ти завжди можеш запитати батьків чи вчителя.
+Leichter üben	Practise at an easier level	Тренуватися легше
+Erklärung ansehen	View explanation	Переглянути пояснення
+Eine leichtere Stufe ist eingestellt.	An easier level is set.	Встановлено легший рівень.
+Hinweis	Note	Примітка
+Hinweis schließen	Close note	Закрити примітку
+In {0} hat {1} in den letzten Wochen öfter Schwierigkeiten. Das ist normal und lässt sich üben – die App zeigt dazu passende Übungen. Wenn ihr persönliche Unterstützung möchtet: Unser Angebot – eine kostenlose, unverbindliche Probestunde Online-Nachhilfe.	In {0}, {1} has had difficulties more often in recent weeks. That is normal and can be practised – the app shows suitable exercises. If you would like personal support: our offer – a free, no-obligation trial lesson of online tutoring.	У темі {0} у {1} останніми тижнями частіше виникають труднощі. Це нормально, і це можна потренувати – застосунок показує відповідні вправи. Якщо ви хочете особистої підтримки: наша пропозиція – безкоштовне пробне заняття онлайн-репетиторства без зобов’язань.
+Probestunde anfragen	Request a trial lesson	Запросити пробне заняття
+Solche Hinweise ausblenden	Hide notes like this	Приховувати такі примітки
+Hinweise auf Nachhilfe ausblenden	Hide notes about tutoring	Приховати примітки про репетиторство
+Dann zeigt die App keine Hinweise auf die kostenlose Probestunde mehr	Then the app no longer shows notes about the free trial lesson	Тоді застосунок більше не показуватиме примітки про безкоштовне пробне заняття
+Hinweise auf Nachhilfe sind ausgeblendet.	Notes about tutoring are hidden.	Примітки про репетиторство приховано.
+Tipp	Tip	Порада
+Wenn ein Thema länger hakt, kann eine persönliche Erklärung helfen. Mit deinen Eltern könnt ihr bei uns eine kostenlose, unverbindliche Probestunde anfragen.	If a topic stays difficult for longer, a personal explanation can help. Together with your parents you can request a free, no-obligation trial lesson from us.	Якщо тема довго не виходить, може допомогти особисте пояснення. Разом із батьками ви можете запросити в нас безкоштовне пробне заняття без зобов’язань.
+Mehr erfahren	Learn more	Дізнатися більше
+Tipp schließen	Close tip	Закрити пораду
+Beim Start meldet die App nur „Zahlensprint wurde geöffnet“ und die Version, nach einem Umzug auf die neue Adresse außerdem einmal „Umzug geklappt“ und wenn der Link zur Probestunde angetippt wird – ohne Namen, Kennungen oder Cookies. Hilft uns zu sehen, ob Zahlensprint genutzt wird.	At start-up the app only reports “Zahlensprint was opened” and the version, after a move to the new address also once “move worked”, and when the link to the trial lesson is tapped – no names, identifiers or cookies. It helps us see whether Zahlensprint is used.	Під час запуску застосунок повідомляє лише «Zahlensprint відкрито» та версію, після переходу на нову адресу – ще раз «перехід вдався», а також коли натискають посилання на пробне заняття, – без імен, ідентифікаторів чи файлів cookie. Це допомагає нам бачити, чи користуються Zahlensprint.
+Neues Eltern-Tor: eine Malaufgabe in Worten mit eigener Zifferntastatur – gilt für Elternbereich, Eltern-Einstellungen, Kauf, Einladen und Teilen	New parent gate: a multiplication task in words with its own number keypad – applies to the parents' area, parent settings, purchases, inviting and sharing	Нова батьківська перевірка: завдання на множення словами з власною цифровою клавіатурою – для розділу для батьків, налаштувань для батьків, покупок, запрошень і поширення
+Einstellungen aufgeteilt: Ton, Musik, Vorlesen, Klassenstufe, Sprache und Design bleiben offen, Pro und Zurücksetzen liegen hinter dem Eltern-Tor	Settings split: sound, music, reading aloud, grade, language and design stay open; Pro and reset are behind the parent gate	Налаштування розділено: звук, музика, читання вголос, клас, мова й дизайн залишаються відкритими, а Pro і скидання – за батьківською перевіркою
+Kinder sehen bei Schwierigkeiten nur einen Hilfesatz mit „Leichter üben“ und „Erklärung ansehen“; im Elternbereich gibt es einen abschaltbaren Hinweis	When children struggle they only see a help sentence with “Practise at an easier level” and “View explanation”; the parents' area has a note that can be switched off	Коли в дитини виникають труднощі, вона бачить лише підказку з кнопками «Тренуватися легше» і «Переглянути пояснення»; у розділі для батьків є примітка, яку можна вимкнути
+Für Eltern	For parents	Для батьків
+Tipp:	Tip:	Порада:
+euer Kind	your child	вашої дитини

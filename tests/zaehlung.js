@@ -12,6 +12,6 @@ const ROOTDIR = path.join(__dirname, '../kopfrechnen');
  const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
  await p.goto('https://lernen-test.mathenachhilfe-online.com/rechenblitz/'); await p.waitForTimeout(4500);
  const first = hits.length;
- const ui = await p.evaluate(async () => { openSheet('eltern'); await new Promise(r => setTimeout(r, 300)); const t = $('sheetBody').textContent; const sw = $('zaehlSw'); const on = sw.getAttribute('aria-checked'); sw.click(); return { gift: /Lern-Geschenk/.test(t), giftHref: $('sheetBody').querySelector('a[href*="geschenke"]')?.href, on, after: sw.getAttribute('aria-checked'), week: /Wochenbericht/.test(t) }; });
+ const ui = await p.evaluate(async () => { GATE.okUntil = Date.now() + 6e5; openSheet('eltern'); await new Promise(r => setTimeout(r, 300)); const t = $('sheetBody').textContent; const sw = $('zaehlSw'); const on = sw.getAttribute('aria-checked'); sw.click(); return { gift: /Lern-Geschenk/.test(t), giftHref: $('sheetBody').querySelector('a[href*="geschenke"]')?.href, on, after: sw.getAttribute('aria-checked'), week: /Wochenbericht/.test(t) }; });
  await p.reload(); await p.waitForTimeout(4500);
  console.log(JSON.stringify({ ersterStart: first, meldung: hits[0], ui, nachAbschalten: hits.length - first, anLiveStufe: live.length, errs })); await b.close(); })();

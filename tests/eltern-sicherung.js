@@ -19,12 +19,12 @@ const MOCK = process.argv[2] !== 'echt';
  // Bericht enthält verlauf
  R.berichtVerlauf = await A.p.evaluate(() => elternBerichtJson().verlauf);
  const B = await neu();
- const bb = await B.p.evaluate(async link => { window.confirm = () => true; S.total = 3; S.hist[todayStr()] = { n: 3, ok: 1, ms: 1000, tp: {} }; save(); showPanel('wiederherstellen', {}, true); await new Promise(r => setTimeout(r, 300));
+ const bb = await B.p.evaluate(async link => { window.confirm = () => true; S.total = 3; S.hist[todayStr()] = { n: 3, ok: 1, ms: 1000, tp: {} }; save(); GATE.okUntil = Date.now() + 6e5; showPanel('wiederherstellen', {}, true); await new Promise(r => setTimeout(r, 300));
    $('wdLink').value = link; $('wdGo').click(); await new Promise(r => setTimeout(r, 2500)); return { total: S.total, hist: Object.keys(S.hist), monate: S.monate, xp: S.xp, name: profile().name, gekoppelt: !!kopplung(), schreibDa: !!(kopplung() || {}).schreib }; }, a.link);
  R.B = { gleicherStand: bb.total === a.total && JSON.stringify(bb.hist) === JSON.stringify(a.hist) && JSON.stringify(bb.monate) === JSON.stringify(a.monate) && bb.xp === a.xp, name: bb.name, gekoppelt: bb.gekoppelt, schreibDa: bb.schreibDa };
  await spiel(B.p); R.B.schreibtWeiter = await B.p.evaluate(async () => { await elternSync(true); return kopplung().sicherung; });
  // fremder Schlüssel
  R.fremd = await B.p.evaluate(async () => { const k = kopplung(); const r = await fetch(KOPPLUNG.sich(k.stufe) + k.id, { method: 'PUT', headers: { 'Content-Type': 'text/plain', 'X-Schreib': 'AAAAAAAAAAAAAAAAAAAAAA' }, body: 'AAAAAAAAAAAAAAAA.AAAA' }); return r.status; });
  // falscher Link / andere Fehler
- R.fehlerTexte = await B.p.evaluate(async () => { const out = []; for (const v of ['quatsch', 'https://www.mathenachhilfe-online.com/eltern-bericht/#AAAAAAAAAAAAAAAAAAAAAA.' + 'B'.repeat(43)]) { showPanel('wiederherstellen', {}, true); await new Promise(r => setTimeout(r, 200)); $('wdLink').value = v; $('wdGo').click(); await new Promise(r => setTimeout(r, 1200)); out.push($('wdMsg').textContent); } return out; });
+ R.fehlerTexte = await B.p.evaluate(async () => { const out = []; for (const v of ['quatsch', 'https://www.mathenachhilfe-online.com/eltern-bericht/#AAAAAAAAAAAAAAAAAAAAAA.' + 'B'.repeat(43)]) { GATE.okUntil = Date.now() + 6e5; showPanel('wiederherstellen', {}, true); await new Promise(r => setTimeout(r, 200)); $('wdLink').value = v; $('wdGo').click(); await new Promise(r => setTimeout(r, 1200)); out.push($('wdMsg').textContent); } return out; });
  R.log = log; console.log(JSON.stringify(R, null, 1)); await b.close(); })();

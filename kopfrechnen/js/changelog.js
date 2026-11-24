@@ -1,8 +1,9 @@
 'use strict';
 // Rechenblitz – Versionen mit Datum (neueste oben). Wird unter „Was ist neu?“ angezeigt.
-const APP_VERSION = '3.29.0';
+const APP_VERSION = '3.30.0';
 const APP_DATE = '2026-11-24';
 const CHANGELOG = [
+  ['3.30.0', '2026-11-24', ['Neues Eltern-Tor: eine Malaufgabe in Worten mit eigener Zifferntastatur – gilt für Elternbereich, Eltern-Einstellungen, Kauf, Einladen und Teilen', 'Einstellungen aufgeteilt: Ton, Musik, Vorlesen, Klassenstufe, Sprache und Design bleiben offen, Pro und Zurücksetzen liegen hinter dem Eltern-Tor', 'Kinder sehen bei Schwierigkeiten nur einen Hilfesatz mit „Leichter üben“ und „Erklärung ansehen“; im Elternbereich gibt es einen abschaltbaren Hinweis']],
   ['3.29.0', '2026-11-24', ['Neuer Name: Aus Rechenblitz wird Zahlensprint – dieselbe App, dein Lernstand bleibt', 'Bis Ende Februar steht „früher Rechenblitz“ dabei']],
   ['3.28.4', '2026-11-24', ['Fehlerbehebung: Die anonyme Nutzungszählung zählt jetzt auf der Testseite nur in der Teststufe', 'Anonym gezählt wird jetzt auch, ob der Umzug auf die neue Adresse geklappt hat – nur wenn die Zählung eingeschaltet ist']],
   ['3.28.3', '2026-11-19', ['Adventskalender ohne Gutschein-Hinweise']],
