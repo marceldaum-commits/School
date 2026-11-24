@@ -2,6 +2,33 @@
 
 Neuester Beitrag oben.
 
+## Wochenrunde 24.11.2026 (Beitrag bis 17:00)
+
+**Rhythmus (Marcel 21.11., Dauerregel):** Arbeit jede Woche Di ab 15:00 bis einschließlich So, Pause Mo und Di bis 15:00, außer Marcel sagt etwas anderes. Montagstermine wandern auf Di, die Wochenrunde beginnt Di 15:07. Tagesaufgabe Mi–So 5:41, dazu Di 14:55 durch die AppZentrale.
+
+**Stand**
+- Live 3.28.3 (Gleichungssysteme, Umzug auf die gemeinsame Adresse, Pro-Fenster für Kinder ohne Preis, Gutschein aus). Auf `rechenblitz-test`: **3.28.4** (Zähl-Fix: Test zählt nicht mehr an die Live-Stufe; Zählwert „umzug“), Commit 154388f.
+- Vorlesen ist auf test und live aus (seit 18.11.); es gibt keine Abrufe mehr an den Stimmen-Server.
+
+**Vorschlag Di-/Fr-Update**
+- Di 24.11. (ab 15:00, Reihenfolge): 1. Zähl-Fix ✓ · 2. Adresse in `native.js`/`publicUrl` auf `lernen.…/zahlensprint/` · 3. Umbenennung in Zahlensprint (DE/EN/UK, Manifest, Pfad `/zahlensprint/`, Abschied für `/rechenblitz/`) · 4. V10 neu und Einstellungen aufteilen (Schnell-Schalter offen, Rest hinter dem Eltern-Tor) · 5. Eltern-Tor-Standard (Malaufgabe 13–19 × 6–9, eigene Tastatur, zunächst ohne Vorlese-Knopf) · 6. Probestunde V15 · 7. Nova/OpenAI entfernen.
+- Fr 27.11.: Startanimation (Auftrag Leitstand), Textliste für das Tonstudio (feste Texte je Sprache, dazu die 84 Tor-Sätze), Elternbericht kostenlos, Zehnerpotenzen mit Schreibweise 10ⁿ, quadratische Gleichungen.
+- Monatsprüfung (PRUEFPLAN.md, Block C) ab Di 24.11.
+
+**Ideen**
+- Die Tonstudio-Stimmen (de/en/uk) für Theorie und Lösungswege nutzen, sobald der Bedarfs-Weg `/stimme/v1` steht.
+- Einheitlicher „Hilfe-Satz“ für alle Kinder-Apps bei Schwierigkeiten (V15, ohne Außenlink).
+
+**Überschneidungen**
+- Eltern-Tor, Einstellungen-Aufteilung und Probestunde V15: gleicher Wortlaut in allen Apps; ich nutze die Texte der AppZentrale.
+- Zählung: gleicher Zählweg `/zaehler/v1/e`, Stufe über den Host; die Idee „relative Zähl-URL“ gilt für alle Apps.
+- `familie.js` (Mathe-Trainer): Fehler bei App-Nummer > 7 / Präfix „HL“; ich übernehme die Korrektur, sobald sie da ist.
+
+**Abgeben / Übernehmen**
+- Abgeben: nichts.
+- Übernehmen: Tor-Standard und Startanimation aus der gemeinsamen Vorlage; Pro-Code-Prüfung und Eltern-Tor-Ablauf lassen sich dem Tafel-Raum (Hörlehrer) weitergeben (Dateien bereits genannt).
+- Zahlensprint = Rechenblitz (Marcel 22.11.): ein Raum, zwei Namen.
+
 ## Ökosystem-Ideen (Frage Marcel 19.11., nur sammeln, am Montag planen, bis dahin nichts bauen)
 
 **a) Beitrag und Aufwand je Idee**
