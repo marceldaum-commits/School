@@ -1,6 +1,6 @@
 // Erzeugt kopfrechnen/vorlesen/texte.json – alle FESTEN Vorlese-Texte (Theorie, Blitz-Sätze) in DE/EN/UK,
-// genau so, wie die App sie spricht (mathSpeak). Unser Stimmen-Werk vertont daraus die Stimme „Nova“.
-// Dazu die häufigsten Aufgaben-Sätze (vorlesen-haeufig.json); alle anderen Aufgaben vertont der Server bei Bedarf (/jetzt). Läuft bei jedem Bauen (stand.js).
+// genau so, wie die App sie spricht (mathSpeak). Daraus entsteht die Textliste für das Tonstudio (eigene KI-Stimmen).
+// Dazu die häufigsten Aufgaben-Sätze (vorlesen-haeufig.json); alle anderen Aufgaben vertont das Tonstudio bei Bedarf (/stimme/v1). Läuft bei jedem Bauen (stand.js).
 const fs = require('fs'), path = require('path');
 const JS = f => fs.readFileSync(path.join(__dirname, '../kopfrechnen/js', f), 'utf8').replace(/^'use strict';/, '');
 function build() {

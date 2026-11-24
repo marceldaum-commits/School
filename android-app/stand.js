@@ -12,7 +12,7 @@ for (const [f, txt] of Object.entries(bundled)) {
   fs.writeFileSync(p, txt); console.log(`Bündel geschrieben: kopfrechnen/${f} (${Math.round(txt.length / 1024)} KB)`);
 }
 const root = path.join(__dirname, '..', 'kopfrechnen'), out = path.join(root, 'stand.json');
-require('./vorlesen.js').build();   // feste Vorlese-Texte für die Stimme „Nova“ (kopfrechnen/vorlesen/texte.json) immer aktuell halten
+require('./vorlesen.js').build();   // feste Vorlese-Texte für das Tonstudio (kopfrechnen/vorlesen/texte.json) immer aktuell halten
 const SKIP = new Set(['stand.json', 'sw.js']);   // sw.js braucht die App nicht
 const files = {};
 (function walk(dir) {

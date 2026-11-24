@@ -1,12 +1,12 @@
 // Rechenblitz Service Worker: App läuft nach dem ersten Besuch auch offline.
-const CACHE = 'rechenblitz-3.30.0';
-const PUSH = 'rechenblitz-push', NOVA = 'rechenblitz-nova';   // Erinnerungstext und offline geladene Vorlese-Sätze – bleiben bei Updates erhalten
+const CACHE = 'rechenblitz-3.30.1';
+const PUSH = 'rechenblitz-push', STIMME = 'rechenblitz-stimme';   // Erinnerungstext und offline geladene Vorlese-Sätze – bleiben bei Updates erhalten
 const FILES = ['./', 'index.html', 'app.min.css', 'config.js', 'js/rechenblitz.min.js', 'js/lang-en.js', 'js/lang-uk.js', 'manifest.webmanifest', 'icons/logo.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png',
   'icons/apple-touch-icon.png', 'icons/favicon-32.png', 'fonts/Inter.woff2', 'fonts/SourceSerif4-italic.woff2', 'fonts/Caveat.woff2'];
 // Beim Installieren alles frisch vom Server holen (nicht aus dem Browser-Speicher), dann sofort aktiv werden
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES.map(f => new Request(f, { cache: 'reload' })))).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('rechenblitz-') && k !== CACHE && k !== PUSH && k !== NOVA).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('rechenblitz-') && k !== CACHE && k !== PUSH && k !== STIMME).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 self.addEventListener('fetch', e => {
   const req = e.request, url = new URL(req.url);

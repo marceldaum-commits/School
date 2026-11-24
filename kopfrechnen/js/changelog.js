@@ -1,8 +1,9 @@
 'use strict';
 // Rechenblitz – Versionen mit Datum (neueste oben). Wird unter „Was ist neu?“ angezeigt.
-const APP_VERSION = '3.30.0';
+const APP_VERSION = '3.30.1';
 const APP_DATE = '2026-11-24';
 const CHANGELOG = [
+  ['3.30.1', '2026-11-24', ['Vorlesen ist vorbereitet für unsere eigenen Stimmen: keine Anbindung an externe Anbieter und keine Gerätestimme mehr']],
   ['3.30.0', '2026-11-24', ['Neues Eltern-Tor: eine Malaufgabe in Worten mit eigener Zifferntastatur – gilt für Elternbereich, Eltern-Einstellungen, Kauf, Einladen und Teilen', 'Einstellungen aufgeteilt: Ton, Musik, Vorlesen, Klassenstufe, Sprache und Design bleiben offen, Pro und Zurücksetzen liegen hinter dem Eltern-Tor', 'Kinder sehen bei Schwierigkeiten nur einen Hilfesatz mit „Leichter üben“ und „Erklärung ansehen“; im Elternbereich gibt es einen abschaltbaren Hinweis']],
   ['3.29.0', '2026-11-24', ['Neuer Name: Aus Rechenblitz wird Zahlensprint – dieselbe App, dein Lernstand bleibt', 'Bis Ende Februar steht „früher Rechenblitz“ dabei']],
   ['3.28.4', '2026-11-24', ['Fehlerbehebung: Die anonyme Nutzungszählung zählt jetzt auf der Testseite nur in der Teststufe', 'Anonym gezählt wird jetzt auch, ob der Umzug auf die neue Adresse geklappt hat – nur wenn die Zählung eingeschaltet ist']],
@@ -22,18 +23,18 @@ const CHANGELOG = [
   ['3.26.8', '2026-11-18', ['Ganz neue Musik: moderner Klang mit Hall, Flächen und Beat – Lo-Fi im Menü, Pop beim Üben, Dance in der Blitzrunde, Trap im Dungeon']],
   ['3.26.7', '2026-11-18', ['Die Web-App holt neue Versionen noch zuverlässiger von selbst – nie mitten in einer Runde']],
   ['3.26.6', '2026-11-18', ['Überschlag: Der Hinweis sagt jetzt genau, welche Zahl wie gerundet wird', 'Würfel-Aufgaben fragen nach dem Durchschnitt statt „ungefähr“ – so gibt es genau eine richtige Antwort']],
-  ['3.26.5', '2026-11-18', ['Noch mehr Sätze kommen sofort mit Nova: Einmaleins mit Lösungswegen, Merk-Karten und Blitz-Sprüche', 'Offline laden zeigt die Größe jetzt genauer an']],
+  ['3.26.5', '2026-11-18', ['Noch mehr Sätze kommen sofort mit der KI-Stimme: Einmaleins mit Lösungswegen, Merk-Karten und Blitz-Sprüche', 'Offline laden zeigt die Größe jetzt genauer an']],
   ['3.26.4', '2026-11-18', ['Überall dasselbe Rechenblitz-Symbol: im Kopf der App, beim Start, auf Bildern zum Teilen und beim Drucken']],
   ['3.26.3', '2026-11-18', ['Ukrainisch: Brüche werden richtig vorgelesen (z. B. „дві третіх“)']],
-  ['3.26.2', '2026-11-17', ['Textaufgaben genauer formuliert (z. B. leeres Becken, Tage bis zu einem Datum, Uhrzeit am Morgen)', 'Vorlesen: Nova liest immer ganze Sätze und wartet kurz, statt auf die Gerätestimme zu wechseln', 'Neues App-Symbol: der Rechenblitz ⚡']],
+  ['3.26.2', '2026-11-17', ['Textaufgaben genauer formuliert (z. B. leeres Becken, Tage bis zu einem Datum, Uhrzeit am Morgen)', 'Vorlesen: Die KI-Stimme liest immer ganze Sätze und wartet kurz, statt auf die Gerätestimme zu wechseln', 'Neues App-Symbol: der Rechenblitz ⚡']],
   ['3.26.1', '2026-11-17', ['Musik startet sofort: in der Android-App beim Öffnen, im Browser beim ersten Tippen – „Musik aus“ bleibt aus']],
   ['3.26.0', '2026-11-17', ['Zahlen-Dungeon: neue Rechen-Karten 🃏 – echte Rechentricks wie Zehnerfreund, Verdoppeln oder Fünfer-Trick', 'Vor jedem Kampf eine Karte spielen: Aufgaben mit diesem Trick machen mehr Schaden, die Probe schützt ein Herz', 'Nach jedem Sieg eine neue Karte für dein Deck']],
   ['3.25.4', '2026-11-17', ['Rechenblitz Pro ist da: Profi-Stufe, mehr Profile, Elternbericht und Vorlagen für einmalig 7,99 € – alles andere bleibt kostenlos']],
-  ['3.25.3', '2026-11-17', ['Pro-Codes lassen sich jetzt auch auf älteren Handys einlösen', 'Ukrainisch liest nur noch die Stimme Nova vor']],
+  ['3.25.3', '2026-11-17', ['Pro-Codes lassen sich jetzt auch auf älteren Handys einlösen', 'Ukrainisch liest nur noch die KI-Stimme vor']],
   ['3.25.2', '2026-11-17', ['Fehler behoben: Wer früher den Ton ausgeschaltet hatte, bekommt nach dem Update auch keine Musik', 'Klassen-Challenge: verständliche Meldung ohne Internet, alle Texte übersetzt', 'Abzeichen-Übersicht besser lesbar']],
-  ['3.25.1', '2026-11-17', ['Neu: alle Nova-Texte offline laden – in den Einstellungen unter Vorlesen, mit Fortschritt und Abbrechen', 'Wahlweise in Bestqualität']],
-  ['3.25.0', '2026-11-17', ['Neu: Vorlesen nur noch mit der KI-Stimme „Nova“ – auch Aufgaben und Lösungswege, in der Blitzrunde ohne Wartezeit', 'Sprechtempo in den Einstellungen wählbar – von 0,75× bis 1,5×']],
-  ['3.24.4', '2026-11-17', ['Neu: KI-Stimme „Nova“ für Theorie und Blitz – vorab vertont, deine Daten gehen nicht an OpenAI']],
+  ['3.25.1', '2026-11-17', ['Neu: alle Vorlese-Texte offline laden – in den Einstellungen unter Vorlesen, mit Fortschritt und Abbrechen', 'Wahlweise in Bestqualität']],
+  ['3.25.0', '2026-11-17', ['Neu: Vorlesen nur noch mit einer KI-Stimme – auch Aufgaben und Lösungswege, in der Blitzrunde ohne Wartezeit', 'Sprechtempo in den Einstellungen wählbar – von 0,75× bis 1,5×']],
+  ['3.24.4', '2026-11-17', ['Neu: KI-Stimme für Theorie und Blitz – vorab vertont']],
   ['3.24.3', '2026-11-17', ['Neu: „Pro aktiv“ ist deutlich zu sehen – auf der Startseite, im Menü, in den Einstellungen und im Elternbericht']],
   ['3.24.2', '2026-11-17', ['Stimme „Thorsten“: beide Dateien vom Stimmen-Server werden geprüft']],
   ['3.24.1', '2026-11-17', ['Stimme „Thorsten“: kommt jetzt von unserem eigenen Stimmen-Server, wird vor dem Speichern geprüft, Laden lässt sich abbrechen']],

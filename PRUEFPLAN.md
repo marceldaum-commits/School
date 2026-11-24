@@ -5,6 +5,7 @@
 ## 1. Zweimal pro Woche: großes Inhaltsupdate (dienstags und freitags bis 16 Uhr auf `rechenblitz-test`)
 
 > Neue Dauerregel Marcel 18.11.2026 (ersetzt „wöchentlich mittwochs“): „Ich will jede Woche Dienstag und Freitag ein großes Inhaltsupdate aller Apps.“ Erstes Update: **Freitag, 20.11.2026**.
+> **Wochenrhythmus (Dauerregel Marcel 21.11.2026):** Gearbeitet wird jede Woche von **Dienstag 15:00 bis einschließlich Sonntag**. Montag und Dienstag bis 15:00 ist Pause (nichts bauen, nichts committen, nichts pushen; lesen und planen sind erlaubt), außer Marcel gibt eine andere Anweisung. Montagstermine wandern auf Dienstag, die Wochenrunde beginnt Di 15:07. Das Di-Update beginnt um 15:00, das Fr-Update liegt innerhalb der Arbeitswoche; es gibt keine 16- oder 18-Uhr-Frist, geliefert wird, wenn alles fertig und geprüft ist (Nachtschicht erlaubt). Die Tagesaufgabe (5:41) läuft Mi–So, am Di schaltet die AppZentrale sie um 14:55 ein.
 
 - **Wann:** dienstags und freitags bis **16 Uhr** auf `rechenblitz-test`, als Nachkomma-Version mit Datum, dazu eine Meldung in `MELDUNG_RECHENBLITZ.md`. Der Leitstand prüft am selben Tag und gibt frei.
 - **Was:** Das wählen wir selbst, je nachdem, was am meisten bringt, zum Beispiel:

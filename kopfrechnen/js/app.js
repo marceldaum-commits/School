@@ -534,7 +534,7 @@ function nextTask() {
   if (t.card) merkBeforeTask(t);
   speak(taskSay(t));
   // Blitzrunde: die nächste Aufgabe schon vorbereiten und ihre Sprachdatei vorab holen – dann gibt es keine Wartezeit
-  if (G.mode === 'blitz' && S.settings.speech && !G.queue && !G.gen) { G.pre = makeTask(G.op, G.lvl); Nova.prefetch(taskSay(G.pre)); }
+  if (G.mode === 'blitz' && S.settings.speech && !G.queue && !G.gen) { G.pre = makeTask(G.op, G.lvl); Stimme.prefetch(taskSay(G.pre)); }
 }
 
 function renderAnswer(state) {

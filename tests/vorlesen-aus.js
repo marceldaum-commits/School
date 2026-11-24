@@ -14,10 +14,10 @@ const { chromium } = require('playwright');
   await p.goto('http://localhost:8765/'); await p.waitForTimeout(1500); await p.mouse.click(160, 20); await p.waitForTimeout(300);
   R[L] = await p.evaluate(async () => { const sl = ms => new Promise(r => setTimeout(r, ms)); const r = {};
     openSheet('settings'); await sl(400); const body = $('sheetBody');
-    r.ui = { speechSwitch: !!body.querySelector('[data-k="speech"], #sw-speech') || /Vorlesen|Read aloud|Читання/.test(body.textContent), voiceTest: !!$('voiceTest'), rate: !!$('rateSeg'), novaOff: !!$('novaOff'), musik: !!$('volMusic') || /Musik|Music|Музик/.test(body.textContent), toene: /Effekte|effects|ефект/i.test(body.textContent) };
+    r.ui = { speechSwitch: !!body.querySelector('[data-k="speech"], #sw-speech') || /Vorlesen|Read aloud|Читання/.test(body.textContent), voiceTest: !!$('voiceTest'), rate: !!$('rateSeg'), musik: !!$('volMusic') || /Musik|Music|Музик/.test(body.textContent), toene: /Effekte|effects|ефект/i.test(body.textContent) };
     closeSheet(); openSheet('theorie', { topic: 'mul', lvl: 1 }); await sl(300); r.ui.theoSay = !!$('theoSay'); closeSheet();
     S.sel = { op: 'mul', lvl: 1 }; startGame('training'); await sl(3500); G.input = canon(G.task.a) === '1' ? '2' : '1'; submit(); await sl(2500);
-    r.said = __said.length; r.toasts = [...document.querySelectorAll('.toast')].map(t => t.textContent).join('|'); r.music = Music.cur; r.speechSetting = S.settings.speech; r.available = Voice.available(); r.novaCan = Nova.can();
+    r.said = __said.length; r.toasts = [...document.querySelectorAll('.toast')].map(t => t.textContent).join('|'); r.music = Music.cur; r.speechSetting = S.settings.speech; r.available = Voice.available(); r.stimmeCan = Stimme.can();
     return r; });
   R[L].stimmenAbrufe = stimmen.length; R[L].errs = errs; await ctx.close(); }
  console.log(JSON.stringify(R, null, 1)); await b.close(); })();

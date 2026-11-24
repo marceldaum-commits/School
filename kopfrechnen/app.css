@@ -1064,15 +1064,6 @@ button.badge{font:inherit;cursor:pointer}
 .mi.pro-active{border-color:#ff9a3c}
 .voicebox #rateSeg{flex:1;flex-wrap:wrap;gap:4px}
 .voicebox #rateSeg button{padding:4px 8px;font-size:13px}
-.novaoff{display:grid;gap:8px}
-.novaoff p{margin:0}
-.novaoff .bar{height:10px}
-.novaoff .bar>i{display:block;height:100%;width:0;background:var(--orange-d);border-radius:99px;transition:width .2s}
-.novaoff .btn{white-space:normal;height:auto;min-height:44px;padding-top:8px;padding-bottom:8px;line-height:1.3}
-.voicebox,.novaoff{min-width:0}
-.novaoff .btn{display:block;width:100%;text-align:center}
-.novaoff .btn span[translate=no]{white-space:nowrap}
-.setrow .novaoff .btn span{color:inherit;font-size:inherit}
 /* Abzeichen noch nicht verdient: nur das Bild blass, Text bleibt lesbar (Kontrast WCAG AA) */
 .badge{opacity:1;filter:none}
 .badge:not(.on) span{opacity:.45;filter:grayscale(1)}
@@ -1092,10 +1083,6 @@ button.badge{font:inherit;cursor:pointer}
 .dg-card-trick{font-size:12.5px;color:#d9def0;line-height:1.35}
 .dg-chip{margin-left:auto;padding:2px 8px;border-radius:999px;background:rgba(255,209,102,.18);color:#ffd166;font-size:12.5px;font-weight:800;white-space:nowrap}
 .dg-handbox #dgNoCard{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.55);color:#fff}
-/* Nova lädt gerade (ab 0,7 s Wartezeit) */
-.nova-load { position: fixed; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 60; padding: 4px 10px; border-radius: 999px; background: var(--navy); color: #fff; box-shadow: var(--sh-act); font-size: .85rem; pointer-events: none; animation: novaPulse 1s ease-in-out infinite alternate; }
-@keyframes novaPulse { from { opacity: .55; } to { opacity: 1; } }
-@media (prefers-reduced-motion: reduce) { .nova-load { animation: none; } }
 /* „App installieren“ auf der Startseite (nur solange nicht installiert) */
 .install-cta { display: flex; align-items: center; gap: 12px; width: 100%; margin: 0 0 12px; padding: 12px 14px; border: 0; border-radius: 16px; background: linear-gradient(135deg, #ff9a3c, #ff6a00); color: #0a0f24; text-align: left; font: inherit; cursor: pointer; box-shadow: 0 4px 14px rgba(255, 106, 0, .3); }
 .install-cta[hidden] { display: none; }

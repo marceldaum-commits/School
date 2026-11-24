@@ -2385,23 +2385,17 @@ Zahlensprint Pro ist auf diesem Gerät freigeschaltet – für alle Profile. Dan
 Auf diesem Gerät freigeschaltet – für alle Profile	Unlocked on this device – for all profiles	Розблоковано на цьому пристрої – для всіх профілів
 Zahlensprint Pro ist auf diesem Gerät freigeschaltet.	Zahlensprint Pro is unlocked on this device.	Zahlensprint Pro розблоковано на цьому пристрої.
 Neu: „Pro aktiv“ ist deutlich zu sehen – auf der Startseite, im Menü, in den Einstellungen und im Elternbericht	New: “Pro active” is clearly visible – on the start screen, in the menu, in the settings and in the parent report	Нове: «Pro активний» добре видно – на головному екрані, у меню, у налаштуваннях і у звіті для батьків
-Nova – KI-generierte Stimme	Nova – AI-generated voice	Nova – голос, згенерований ШІ
 Gerätestimme (automatisch)	Device voice (automatic)	Голос пристрою (автоматично)
-Die Stimme Nova ist eine mit KI (OpenAI) erzeugte Stimme. Die festen Texte der App werden von uns vorab vertont; von deinem Gerät werden keine Daten an OpenAI übertragen. Die Audiodateien lädt die App bei Bedarf von stimmen.mathenachhilfe-online.com.	The voice Nova is a voice generated with AI (OpenAI). We record the app's fixed texts in advance; no data is sent from your device to OpenAI. The app loads the audio files from stimmen.mathenachhilfe-online.com when needed.	Голос Nova створено за допомогою ШІ (OpenAI). Постійні тексти застосунку ми озвучуємо заздалегідь; з твого пристрою жодні дані не передаються до OpenAI. Аудіофайли застосунок за потреби завантажує зі stimmen.mathenachhilfe-online.com.
-Neu: KI-Stimme „Nova“ für Theorie und Blitz – vorab vertont, deine Daten gehen nicht an OpenAI	New: AI voice “Nova” for theory and Blitz – recorded in advance, your data is not sent to OpenAI	Нове: голос ШІ «Nova» для теорії та Бліца – озвучено заздалегідь, твої дані не передаються до OpenAI
-Vorgelesen wird mit der Stimme Nova, einer mit KI (OpenAI) erzeugten Stimme. Feste Texte vertonen wir vorab. Texte, die erst in der Aufgabe entstehen (z. B. Rechenaufgaben), schickt die App ohne Angaben zu dir an unseren Server stimmen.mathenachhilfe-online.com; dieser lässt sie einmalig von OpenAI vertonen und speichert die Audiodatei. Es werden keine Namen, Konten oder Geräte-Kennungen übertragen, und unser Server speichert keine Zugriffsprotokolle.	Reading aloud uses the voice Nova, a voice generated with AI (OpenAI). We record fixed texts in advance. Texts that only come up during a task (e.g. maths problems) are sent by the app, without any information about you, to our server stimmen.mathenachhilfe-online.com; it has them recorded once by OpenAI and stores the audio file. No names, accounts or device IDs are transmitted, and our server keeps no access logs.	Для читання вголос використовується голос Nova, створений за допомогою ШІ (OpenAI). Постійні тексти ми озвучуємо заздалегідь. Тексти, що з’являються лише під час завдання (наприклад, приклади), застосунок надсилає без жодних даних про тебе на наш сервер stimmen.mathenachhilfe-online.com; він один раз озвучує їх через OpenAI і зберігає аудіофайл. Імена, облікові записи чи ідентифікатори пристроїв не передаються, а наш сервер не зберігає журналів доступу.
-Neu: Vorlesen nur noch mit der KI-Stimme „Nova“ – auch Aufgaben und Lösungswege, in der Blitzrunde ohne Wartezeit	New: reading aloud now only uses the AI voice “Nova” – including tasks and solution steps, without waiting in the Blitz round	Нове: читання вголос лише голосом ШІ «Nova» – також завдання й розв’язання, у бліц-раунді без очікування
+Neu: KI-Stimme für Theorie und Blitz – vorab vertont	New: AI voice for theory and Blitz – recorded in advance	Нове: голос ШІ для теорії та Блиска – озвучено заздалегідь
+Neu: Vorlesen nur noch mit einer KI-Stimme – auch Aufgaben und Lösungswege, in der Blitzrunde ohne Wartezeit	New: reading aloud only with an AI voice – including tasks and solution steps, without waiting in the Blitz round	Нове: читання вголос лише голосом ШІ – разом із завданнями та розв’язаннями, у блискавичному раунді без очікування
 Sprechtempo	Speaking speed	Темп мовлення
 Sprechtempo in den Einstellungen wählbar – von {}× bis {}×	Speaking speed can be chosen in the settings – from {}× to {}×	Темп мовлення можна вибрати в налаштуваннях – від {}× до {}×
-Alle Nova-Texte offline laden	Download all Nova texts for offline use	Завантажити всі тексти Nova офлайн
 Am besten im WLAN.	Best over Wi-Fi.	Найкраще через Wi-Fi.
 Schon gespeichert:	Already saved:	Уже збережено:
 Offline-Stimme löschen	Delete offline voice	Видалити офлайн-голос
 Offline-Stimme löschen?	Delete the offline voice?	Видалити офлайн-голос?
-Lade Nova-Texte …	Downloading Nova texts …	Завантаження текстів Nova …
 Abgebrochen – beim nächsten Tippen geht es dort weiter.	Cancelled – tap again to continue where it stopped.	Скасовано – натисни ще раз, щоб продовжити з того місця.
-✓ Alle Nova-Texte sind offline gespeichert.	✓ All Nova texts are saved for offline use.	✓ Усі тексти Nova збережено офлайн.
-Neu: alle Nova-Texte offline laden – in den Einstellungen unter Vorlesen, mit Fortschritt und Abbrechen	New: download all Nova texts for offline use – in the settings under Read aloud, with progress and cancel	Нове: завантаж усі тексти Nova офлайн – у налаштуваннях у розділі «Читати вголос», з прогресом і скасуванням
+Neu: alle Vorlese-Texte offline laden – in den Einstellungen unter Vorlesen, mit Fortschritt und Abbrechen	New: load all reading texts offline – in the settings under Reading aloud, with progress and cancel	Нове: завантажувати всі тексти для читання офлайн – у налаштуваннях у розділі «Читання вголос», з прогресом і скасуванням
 Offline laden – Standard	Download for offline use – standard	Завантажити офлайн – стандарт
 Offline laden – Bestqualität	Download for offline use – best quality	Завантажити офлайн – найкраща якість
 Wahlweise in Bestqualität	Optionally in best quality	За бажанням – у найкращій якості
@@ -2414,7 +2408,7 @@ Fehler behoben: Wer früher den Ton ausgeschaltet hatte, bekommt nach dem Update
 Klassen-Challenge: verständliche Meldung ohne Internet, alle Texte übersetzt	Class challenge: clear message without internet, all texts translated	Класний челендж: зрозуміле повідомлення без інтернету, усі тексти перекладено
 Abzeichen-Übersicht besser lesbar	Badge overview easier to read	Огляд значків легше читати
 Pro-Codes lassen sich jetzt auch auf älteren Handys einlösen	Pro codes can now be redeemed on older phones too	Коди Pro тепер можна активувати й на старіших телефонах
-Ukrainisch liest nur noch die Stimme Nova vor	Ukrainian is now read aloud only by the Nova voice	Українською тепер читає вголос лише голос Nova
+Ukrainisch liest nur noch die KI-Stimme vor	Ukrainian is now read aloud only by the AI voice	Українською тепер читає вголос лише голос ШІ
 Rechenblitz Pro ist da: Profi-Stufe, mehr Profile, Elternbericht und Vorlagen für einmalig {},{} € – alles andere bleibt kostenlos	Rechenblitz Pro is here: Pro level, more profiles, parent report and templates for a one-off €{}.{} – everything else stays free	Rechenblitz Pro вже тут: рівень Профі, більше профілів, звіт для батьків і шаблони за одноразові {},{} € – усе інше залишається безкоштовним
 {} Räume, {} Herzen, Rechen-Karten – schaffst du den Wächter?	{} rooms, {} hearts, maths cards – can you beat the Guardian?	{} кімнат, {} сердець, картки-обчислення – чи переможеш Вартового?
 Spiel eine Rechen-Karte	Play a maths card	Зіграй картку-обчислення
@@ -2430,9 +2424,8 @@ Zahlen-Dungeon: neue Rechen-Karten 🃏 – echte Rechentricks wie Zehnerfreund,
 Vor jedem Kampf eine Karte spielen: Aufgaben mit diesem Trick machen mehr Schaden, die Probe schützt ein Herz	Play a card before each fight: tasks with that trick do more damage, the check protects a heart	Перед кожним боєм зіграй картку: завдання з цим трюком завдають більше шкоди, перевірка захищає серце
 Nach jedem Sieg eine neue Karte für dein Deck	A new card for your deck after every win	Після кожної перемоги – нова картка для твоєї колоди
 Musik startet sofort: in der Android-App beim Öffnen, im Browser beim ersten Tippen – „Musik aus“ bleibt aus	Music starts right away: in the Android app when it opens, in the browser at the first tap – “Music off” stays off	Музика вмикається одразу: в Android-застосунку під час відкриття, у браузері після першого дотику – «Музику вимкнено» залишається вимкненою
-Nova gerade nicht erreichbar	Nova is not reachable right now	Nova зараз недоступна
 Textaufgaben genauer formuliert (z. B. leeres Becken, Tage bis zu einem Datum, Uhrzeit am Morgen)	Word problems worded more precisely (e.g. empty pool, days until a date, time in the morning)	Текстові задачі сформульовано точніше (напр., порожній басейн, дні до певної дати, час уранці)
-Vorlesen: Nova liest immer ganze Sätze und wartet kurz, statt auf die Gerätestimme zu wechseln	Reading aloud: Nova always reads whole sentences and waits briefly instead of switching to the device voice	Читання вголос: Nova завжди читає цілі речення й трохи чекає, замість перемикатися на голос пристрою
+Vorlesen: Die KI-Stimme liest immer ganze Sätze und wartet kurz, statt auf die Gerätestimme zu wechseln	Reading aloud: the AI voice always reads whole sentences and waits briefly instead of switching to the device voice	Читання вголос: голос ШІ завжди читає цілі речення й трохи чекає, а не перемикається на голос пристрою
 Runde {} auf Hundertstel	Round {} to hundredths	Округли {} до сотих
 ein Achtel von {}	one eighth of {}	одна восьма від {}
 {} Teile	{} parts	{} деталей
@@ -2441,7 +2434,7 @@ ein Achtel von {}	one eighth of {}	одна восьма від {}
 Neues App-Symbol: der Rechenblitz ⚡	New app icon: the Rechenblitz lightning bolt ⚡	Новий значок застосунку: блискавка Rechenblitz ⚡
 Ukrainisch: Brüche werden richtig vorgelesen (z. B. „дві третіх“)	Ukrainian: fractions are now read aloud correctly (e.g. “дві третіх”)	Українська: дроби тепер читаються правильно (напр., «дві третіх»)
 Überall dasselbe Rechenblitz-Symbol: im Kopf der App, beim Start, auf Bildern zum Teilen und beim Drucken	The same Rechenblitz icon everywhere: in the app header, at start-up, on share images and when printing	Всюди однаковий значок Rechenblitz: у заголовку застосунку, під час запуску, на зображеннях для поширення та під час друку
-Noch mehr Sätze kommen sofort mit Nova: Einmaleins mit Lösungswegen, Merk-Karten und Blitz-Sprüche	Even more sentences come straight from Nova: times tables with solutions, memory cards and Blitz's sayings	Ще більше речень одразу озвучує Nova: таблиця множення з розв’язками, картки для запам’ятовування та фрази Бліца
+Noch mehr Sätze kommen sofort mit der KI-Stimme: Einmaleins mit Lösungswegen, Merk-Karten und Blitz-Sprüche	Even more sentences arrive instantly with the AI voice: times tables with solution steps, memory cards and Blitz lines	Ще більше речень звучать одразу з голосом ШІ: таблиця множення з розв’язаннями, картки для запам’ятовування та репліки Блиска
 Offline laden zeigt die Größe jetzt genauer an	Offline download now shows the size more accurately	Завантаження офлайн тепер точніше показує розмір
 Überschlag: Der Hinweis sagt jetzt genau, welche Zahl wie gerundet wird	Estimating: the hint now says exactly how to round each number	Оцінка: підказка тепер точно каже, як округлити кожне число
 Würfel-Aufgaben fragen nach dem Durchschnitt statt „ungefähr“ – so gibt es genau eine richtige Antwort	Dice questions now ask for the average instead of “about” – so there is exactly one correct answer	Задачі з кубиком тепер питають про середнє, а не «приблизно», – тож є рівно одна правильна відповідь
@@ -2600,3 +2593,5 @@ Kinder sehen bei Schwierigkeiten nur einen Hilfesatz mit „Leichter üben“ un
 Für Eltern	For parents	Для батьків
 Tipp:	Tip:	Порада:
 euer Kind	your child	вашої дитини
+Vorlesen ist vorbereitet für unsere eigenen Stimmen: keine Anbindung an externe Anbieter und keine Gerätestimme mehr	Reading aloud is prepared for our own voices: no connection to external providers and no device voice any more	Читання вголос підготовлено для наших власних голосів: жодного підключення до зовнішніх постачальників і жодного голосу пристрою
+Vorlesen kommt bald mit unseren eigenen Stimmen.	Reading aloud is coming soon with our own voices.	Читання вголос незабаром з’явиться з нашими власними голосами.

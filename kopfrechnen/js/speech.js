@@ -1,7 +1,6 @@
 'use strict';
 /* ================= Vorlesen: Aufgaben, Lösungswege, Theorie und Blitz =================
-   Gesprochen wird mit der KI-Stimme „Nova“ (nova.js). Nur wenn sie nicht verfügbar ist, still die Gerätestimme
-   (Web Speech API bzw. TextToSpeech-Plugin der Android-Hülle). Mathe wird ausgesprochen: „3/4“ → „3 Viertel“, „x²“ → „x hoch 2“, Einheiten als Wörter. */
+   Gesprochen wird nur mit den eigenen KI-Stimmen (stimme.js), nie mit der Gerätestimme. Mathe wird ausgesprochen: „3/4“ → „3 Viertel“, „x²“ → „x hoch 2“, Einheiten als Wörter. */
 const SPEECH_FRAC = { de: FRAC_NAMES };
 const SPEECH = {
   de: { op: { '·': 'mal', '×': 'mal', ':': 'geteilt durch', '÷': 'geteilt durch', '−': 'minus', '+': 'plus', '=': 'gleich', '≈': 'ungefähr', '≙': 'entspricht', '→': ', also', '<': 'kleiner als', '>': 'größer als' },
@@ -75,25 +74,12 @@ const joinSay = parts => parts.map(x => String(x).trim().replace(/[.!?:]+$/, '')
 // Deutscher Quelltext → so, wie er gerade angezeigt wird (übersetzt, mit Zahlen-Schreibweise der Sprache)
 const shownText = de => I18N.lang === 'de' ? de : (typeof i18nNumbers === 'function' ? i18nNumbers(tr(de)) : tr(de));
 
-// Vorlesen insgesamt an? (Schalter in config.js, Marcel 18.11.: vorerst aus)
+// Vorlesen insgesamt an? (Schalter in config.js; aus, bis die Tonstudio-Stimme steht)
 const VORLESEN = () => CONFIG.vorlesen !== false;
 const Voice = {
-  plugin: () => window.Capacitor?.Plugins?.TextToSpeech || null,
-  web: () => 'speechSynthesis' in window ? window.speechSynthesis : null,
-  available() { return VORLESEN() && (Nova.can() || !!(this.plugin() || this.web())); },
+  available() { return VORLESEN() && Stimme.can(); },
   seq: 0, chain: Promise.resolve(),
-  stop() { this.seq++; this.chain = Promise.resolve(); Nova.stop(); const P = this.plugin(); if (P) { try { P.stop(); } catch {} } const W = this.web(); if (W) W.cancel(); },
-  // Notlösung nur ohne Netz: Gerätestimme; Promise endet nach dem Sprechen
-  async device(text) {
-    const P = this.plugin();
-    if (P) { try { await P.speak({ text, lang: locale(), rate: speechRate(), pitch: 1, volume: 1, category: 'ambient', queueStrategy: 0 }); } catch {} return; }
-    const W = this.web(); if (!W) return;
-    await new Promise(res => {
-      const u = new SpeechSynthesisUtterance(text); u.lang = locale(); u.rate = speechRate();
-      const t = setTimeout(res, 1500 + text.length * 120); u.onend = u.onerror = () => { clearTimeout(t); res(); };
-      W.speak(u);
-    });
-  },
+  stop() { this.seq++; this.chain = Promise.resolve(); Stimme.stop(); },
   // lange Texte in Stücke bis 300 Zeichen (an Satzgrenzen) – so viel nimmt der Stimmen-Server
   chunks(text) {
     if (text.length <= 300) return [text];
@@ -102,30 +88,9 @@ const Voice = {
     if (cur) out.push(cur);
     return out.flatMap(c => c.length <= 300 ? [c] : c.match(/.{1,300}(\s|$)/g).map(x => x.trim()));
   },
-  // ein Stück mit Nova sprechen, sonst Rückfall nach den Regeln; false = abgebrochen
-  async part(c, seq, jetzt = true) {
-    if (await Nova.play(c, I18N.lang, () => seq !== this.seq, jetzt)) return true;
-    if (seq !== this.seq) return false;
-    if (!jetzt && Nova.fail === 'fehlt') return null;   // fertige Datei gibt es nicht → Satz für Satz
-    // Gerätestimme nur, wenn wirklich kein Netz da ist (oder Nova abgeschaltet). Ist Nova bei bestehendem Netz nicht erreichbar:
-    // still, einmal je Sitzung ein Hinweis (Vorgabe Marcel 17.11.). Ukrainisch immer nur mit Nova.
-    if (Nova.fail === 'abspielen') return true;
-    if (!['offline', 'aus'].includes(Nova.fail)) { Nova.notice(); return true; }
-    if (I18N.lang !== 'uk') await this.device(c);
-    return true;
-  },
+  // ein Text: Stück für Stück mit der KI-Stimme; es gibt keine Gerätestimme (Marcel 20.11.)
   async one(text, seq) {
-    for (const c of this.chunks(text)) {
-      if (seq !== this.seq) return;
-      // Gibt es den Text schon fertig (vorab vertont / gespeichert), als Ganzes. Sonst Satz für Satz: alle Sätze gleichzeitig
-      // beim Server bestellen (jeder Satz bleibt ganz), dann nacheinander sprechen – so wartet niemand lange auf einen Lösungsweg.
-      const sent = Nova.sentences(c);
-      if (sent.length > 1 && Nova.can()) {
-        const r = await this.part(c, seq, false);
-        if (r === false) return;
-        if (r === null) { sent.forEach(x => Nova.prefetch(Nova.scrub(x))); for (const x of sent) if ((await this.part(x, seq)) === false) return; }
-      } else if ((await this.part(c, seq)) === false) return;
-    }
+    for (const c of this.chunks(text)) { if (seq !== this.seq) return; if ((await Stimme.play(c, I18N.lang, () => seq !== this.seq)) === false) return; }
   },
   // spricht Abschnitte nacheinander; queue: hinten anhängen statt unterbrechen
   speakParts(parts, { queue = false, force = false } = {}) {

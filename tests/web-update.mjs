@@ -14,7 +14,7 @@ try {
   const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
   let loads = 0; p.on('load', () => loads++);
   await p.goto(URL_); await p.waitForFunction(() => navigator.serviceWorker.controller, null, { timeout: 15000 }).catch(() => {}); await p.waitForTimeout(6500);
-  R.start = await p.evaluate(async () => { S.total = 4242; save(); const c = await caches.open('rechenblitz-nova'); await c.put('/nova/test.mp3', new Response('x')); return { v: APP_VERSION, sw: !!navigator.serviceWorker.controller, caches: await caches.keys() }; });
+  R.start = await p.evaluate(async () => { S.total = 4242; save(); const c = await caches.open('rechenblitz-stimme'); await c.put('/stimme/test.mp3', new Response('x')); return { v: APP_VERSION, sw: !!navigator.serviceWorker.controller, caches: await caches.keys() }; });
   await p.evaluate(() => { S.sel = { op: 'mul', lvl: 1 }; startGame('training'); }); await p.waitForTimeout(3500);
   bump(OLD, NEW);
   const before = loads;
@@ -25,7 +25,7 @@ try {
   await p.evaluate(() => quitGame(true) || goHome?.()); await p.evaluate(() => { try { goHome(); } catch {} });
   await p.waitForFunction(v => typeof APP_VERSION !== 'undefined' && APP_VERSION === v, NEW, { timeout: 20000 }).catch(() => {});
   await p.waitForTimeout(2500);
-  R.after = await p.evaluate(async () => ({ v: APP_VERSION, total: S.total, nova: !!(await (await caches.open('rechenblitz-nova')).match('/nova/test.mp3')), caches: await caches.keys(), toast: [...document.querySelectorAll('.toast')].map(t => t.textContent).join(' | ') }));
+  R.after = await p.evaluate(async () => ({ v: APP_VERSION, total: S.total, nova: !!(await (await caches.open('rechenblitz-stimme')).match('/stimme/test.mp3')), caches: await caches.keys(), toast: [...document.querySelectorAll('.toast')].map(t => t.textContent).join(' | ') }));
   R.errs = errs; await ctx.close();
   // Fall 2: alte Version seit Tagen zu, beim nächsten Öffnen kommt die neue (ohne Klick)
   bump(NEW, OLD);
@@ -39,4 +39,4 @@ try {
 } finally { await b.close(); srv.kill(); }
 console.log(JSON.stringify(R, null, 1));
 const ok = R.inGame && !R.inGame.reloaded && R.after.v === NEW && R.after.total === 4242 && R.after.nova && !R.after.caches.includes('rechenblitz-' + OLD) && /3|9/.test(R.after.toast) && R.reopen.v === NEW && !R.errs.length;
-console.log(ok ? 'Web-Update ✓ (nicht mitten in der Runde, danach automatisch, Daten + Nova-Dateien bleiben, alter Cache weg, Hinweis, beim Wiederöffnen neu)' : 'Web-Update ✗'); process.exit(ok ? 0 : 1);
+console.log(ok ? 'Web-Update ✓ (nicht mitten in der Runde, danach automatisch, Daten + Stimmen-Dateien bleiben, alter Cache weg, Hinweis, beim Wiederöffnen neu)' : 'Web-Update ✗'); process.exit(ok ? 0 : 1);

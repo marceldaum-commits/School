@@ -20,15 +20,15 @@ window.RECHENBLITZ_CONFIG = {
   // Nur in der Android-App (APK, solange nicht im Play Store): neue Versionen von den GitHub-Release-Seiten anbieten.
   // Für die Play-Store-Fassung auf null setzen (dort aktualisiert Google Play).
   apkUpdates: { repo: 'marceldaum-commits/School' },
-  // Vorlesen (Nova) an/aus. Marcel 18.11.: „Vorlesen erstmal rausnehmen“ – false = keine Vorlese-Knöpfe/-Einstellungen,
+  // Vorlesen (eigene KI-Stimmen) an/aus. Marcel 18.11.: „Vorlesen erstmal rausnehmen“ – false = keine Vorlese-Knöpfe/-Einstellungen,
   // keine Abrufe beim Stimmen-Server, keine Gerätestimme. Der Code bleibt; true schaltet alles wieder ein.
   vorlesen: false,
   // Umzug auf die gemeinsame Adresse lernen.mathenachhilfe-online.com/rechenblitz/ (Marcel 19.11.2026, js/umzug.js).
   // false = nichts passiert. true (erst wenn der Leitstand meldet, dass die neue Adresse läuft): die alte Adresse packt den
   // Lernstand verschlüsselt ein und leitet weiter, die neue Adresse übernimmt ihn.
   umzug: true,
-  // Vorlesen nur mit der KI-Stimme „Nova“: Audiodateien von unserem Stimmen-Server; neue Texte über /jetzt (die App schickt nichts an OpenAI)
-  nova: { base: 'https://stimmen.mathenachhilfe-online.com/nova/', jetzt: 'https://stimmen.mathenachhilfe-online.com/jetzt' },
+  // Vorlesen nur mit den eigenen KI-Stimmen (Tonstudio, ab Mi 25.11.): base = Adresse der Audiodateien; leer = Stimme aus. Kein externer Anbieter, keine Gerätestimme.
+  stimme: { base: '' },
   // Anonyme Nutzungszählung (Leitstand 18.11.): beim Start nur {app, Version, start:1} – ohne Namen, Kennungen, Cookies.
   // Abschaltbar im Elternbereich; '' = Zählung aus.
   zaehler: 'https://trainer.mathenachhilfe-online.com/zaehler/v1/e',
