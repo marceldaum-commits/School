@@ -244,7 +244,7 @@ const BADGES = [
   ['reise4', '🎈', 'Wolkenflieger', 'Kapitel 4 der Rechen-Reise geschafft'],
   ['reise5', '🐉', 'Drachenbezwinger', 'Kapitel 5 der Rechen-Reise geschafft'],
   ['reise6', '👑', 'Sternenkönig', 'Kapitel 6 der Rechen-Reise geschafft'],
-  ['reiseAll', '⚡', 'Echter Rechenblitz', 'Die ganze Rechen-Reise geschafft'],
+  ['reiseAll', '⚡', 'Echter Blitz', 'Die ganze Rechen-Reise geschafft'],
   ['raetsel', '🧩', 'Rätselprofi', 'Das Rätsel des Tages gelöst'],
   ['garten1', '🌱', 'Erste Ernte', 'Im Rechengarten zum ersten Mal geerntet'],
   ['garten10', '🧺', 'Gärtner-Profi', '10-mal im Rechengarten geerntet'],
@@ -270,7 +270,7 @@ function announceBadges() {
 }
 
 /* ================= Startseite ================= */
-const RANKS = ['Rechen-Starter', 'Zahlenfuchs', 'Rechenprofi', 'Kopfrechen-Ass', 'Mathe-Meister', 'Zahlen-Genie', 'Rechenblitz-Legende'];
+const RANKS = ['Rechen-Starter', 'Zahlenfuchs', 'Rechenprofi', 'Kopfrechen-Ass', 'Mathe-Meister', 'Zahlen-Genie', 'Zahlensprint-Legende'];
 const levelFromXp = xp => Math.floor(Math.sqrt(xp / 40)) + 1;
 const xpForLevel = l => 40 * (l - 1) ** 2;
 const ICON_SOUND_ON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>';

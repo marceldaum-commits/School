@@ -34,7 +34,7 @@ const REISE_CH = [
   { id: 'schloss', icon: '🏰', name: 'Das Sternenschloss', sky: ['#2a3a8c', '#070b24'], path: '#ffc83d', node: '#7a5cff', sticker: '👑', words: true,
     intro: 'Der allerletzte Funke liegt im Sternenschloss. Wenn wir ihn finden, leuchte ich wieder ganz!',
     st: ['Das Schlosstor öffnet sich nur für richtige Antworten.', 'Im Spiegelsaal sieht alles doppelt aus.', 'Die Sternentreppe – Stufe für Stufe nach oben.', 'Die Bibliothek der Rechentricks.', 'Der Thronsaal funkelt schon …', 'Der Sternenwächter! Die letzte Prüfung – du schaffst das!'],
-    done: 'Alle Funken sind zurück – ich leuchte wieder! Danke, du bist ein echter Rechenblitz! 👑', off: 2, boss: 12 },
+    done: 'Alle Funken sind zurück – ich leuchte wieder! Danke, du bist ein echter Blitz! 👑', off: 2, boss: 12 },
 ];
 
 function reiseState() {

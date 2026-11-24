@@ -435,7 +435,7 @@ Zahlensprint ist kostenlos – teile es!	Zahlensprint is free – share it!	Zahl
 Zahlensprint {}	Zahlensprint {}	Zahlensprint {}
 Zahlensprint – Kopfrechnen üben	Zahlensprint – practise mental maths	Zahlensprint – тренуй усний рахунок
 Zahlensprint – Tageschallenge {}	Zahlensprint – daily challenge {}	Zahlensprint – щоденний виклик {}
-Rechenblitz-Legende	Rechenblitz legend	Легенда Rechenblitz
+Zahlensprint-Legende	Zahlensprint legend	Легенда Zahlensprint
 Rechenmaschine	Calculating machine	Рахувальна машина
 Rechenprofi	Maths pro	Профі рахунку
 Rechne rückwärts: {}	Work backwards: {}	Рахуй у зворотному напрямку: {}
@@ -1262,7 +1262,7 @@ Die Sternentreppe – Stufe für Stufe nach oben.	The star staircase – step by
 Die Bibliothek der Rechentricks.	The library of maths tricks.	Бібліотека математичних трюків.
 Der Thronsaal funkelt schon …	The throne room is already sparkling …	Тронна зала вже виблискує …
 Der Sternenwächter! Die letzte Prüfung – du schaffst das!	The star guardian! The final test – you can do it!	Зоряний вартовий! Останнє випробування – у тебе вийде!
-Alle Funken sind zurück – ich leuchte wieder! Danke, du bist ein echter Rechenblitz! 👑	All sparks are back – I'm shining again! Thank you, you're a real Rechenblitz! 👑	Усі іскри повернулися – я знову сяю! Дякую, ти справжній Rechenblitz! 👑
+Alle Funken sind zurück – ich leuchte wieder! Danke, du bist ein echter Blitz! 👑	All sparks are back – I'm shining again! Thank you, you're a real Blitz! 👑	Усі іскри повернулися – я знову сяю! Дякую, ти справжній Бліц! 👑
 Rechen-Reise geschafft!	Maths journey complete!	Математичну подорож завершено!
 Sticker-Album	Sticker album	Альбом наліпок
 🏅 Große Urkunde	🏅 Grand certificate	🏅 Велика грамота
@@ -1272,7 +1272,7 @@ Alle Funken für Blitz gesammelt · Klasse {}	All sparks collected for Blitz · 
 Wolkenflieger	Cloud flyer	Хмарний летун
 Drachenbezwinger	Dragon tamer	Переможець драконів
 Sternenkönig	Star king	Зоряний король
-Echter Rechenblitz	Real Rechenblitz	Справжній Rechenblitz
+Echter Blitz	Real Blitz	Справжній Бліц
 Rechen-Reise komplett: Wolkenstadt, Feuerberg und Sternenschloss	Maths journey complete: Cloud City, Fire Mountain and Star Castle	Математична подорож повна: Хмарне місто, Вогняна гора і Зоряний замок
 Großes Finale – Blitz leuchtet wieder golden	Grand finale – Blitz shines golden again	Великий фінал – Бліц знову сяє золотом
 Sticker-Album, große Urkunde und neue Abzeichen	Sticker album, grand certificate and new badges	Альбом наліпок, велика грамота й нові значки
@@ -2386,7 +2386,7 @@ Auf diesem Gerät freigeschaltet – für alle Profile	Unlocked on this device �
 Zahlensprint Pro ist auf diesem Gerät freigeschaltet.	Zahlensprint Pro is unlocked on this device.	Zahlensprint Pro розблоковано на цьому пристрої.
 Neu: „Pro aktiv“ ist deutlich zu sehen – auf der Startseite, im Menü, in den Einstellungen und im Elternbericht	New: “Pro active” is clearly visible – on the start screen, in the menu, in the settings and in the parent report	Нове: «Pro активний» добре видно – на головному екрані, у меню, у налаштуваннях і у звіті для батьків
 Gerätestimme (automatisch)	Device voice (automatic)	Голос пристрою (автоматично)
-Neu: KI-Stimme für Theorie und Blitz – vorab vertont	New: AI voice for theory and Blitz – recorded in advance	Нове: голос ШІ для теорії та Блиска – озвучено заздалегідь
+Neu: KI-Stimme für Theorie und Blitz – vorab vertont	New: AI voice for theory and Blitz – recorded in advance	Нове: голос ШІ для теорії та Бліца – озвучено заздалегідь
 Neu: Vorlesen nur noch mit einer KI-Stimme – auch Aufgaben und Lösungswege, in der Blitzrunde ohne Wartezeit	New: reading aloud only with an AI voice – including tasks and solution steps, without waiting in the Blitz round	Нове: читання вголос лише голосом ШІ – разом із завданнями та розв’язаннями, у блискавичному раунді без очікування
 Sprechtempo	Speaking speed	Темп мовлення
 Sprechtempo in den Einstellungen wählbar – von {}× bis {}×	Speaking speed can be chosen in the settings – from {}× to {}×	Темп мовлення можна вибрати в налаштуваннях – від {}× до {}×
@@ -2434,7 +2434,7 @@ ein Achtel von {}	one eighth of {}	одна восьма від {}
 Neues App-Symbol: der Rechenblitz ⚡	New app icon: the Rechenblitz lightning bolt ⚡	Новий значок застосунку: блискавка Rechenblitz ⚡
 Ukrainisch: Brüche werden richtig vorgelesen (z. B. „дві третіх“)	Ukrainian: fractions are now read aloud correctly (e.g. “дві третіх”)	Українська: дроби тепер читаються правильно (напр., «дві третіх»)
 Überall dasselbe Rechenblitz-Symbol: im Kopf der App, beim Start, auf Bildern zum Teilen und beim Drucken	The same Rechenblitz icon everywhere: in the app header, at start-up, on share images and when printing	Всюди однаковий значок Rechenblitz: у заголовку застосунку, під час запуску, на зображеннях для поширення та під час друку
-Noch mehr Sätze kommen sofort mit der KI-Stimme: Einmaleins mit Lösungswegen, Merk-Karten und Blitz-Sprüche	Even more sentences arrive instantly with the AI voice: times tables with solution steps, memory cards and Blitz lines	Ще більше речень звучать одразу з голосом ШІ: таблиця множення з розв’язаннями, картки для запам’ятовування та репліки Блиска
+Noch mehr Sätze kommen sofort mit der KI-Stimme: Einmaleins mit Lösungswegen, Merk-Karten und Blitz-Sprüche	Even more sentences arrive instantly with the AI voice: times tables with solution steps, memory cards and Blitz lines	Ще більше речень звучать одразу з голосом ШІ: таблиця множення з розв’язаннями, картки для запам’ятовування та репліки Бліца
 Offline laden zeigt die Größe jetzt genauer an	Offline download now shows the size more accurately	Завантаження офлайн тепер точніше показує розмір
 Überschlag: Der Hinweis sagt jetzt genau, welche Zahl wie gerundet wird	Estimating: the hint now says exactly how to round each number	Оцінка: підказка тепер точно каже, як округлити кожне число
 Würfel-Aufgaben fragen nach dem Durchschnitt statt „ungefähr“ – so gibt es genau eine richtige Antwort	Dice questions now ask for the average instead of “about” – so there is exactly one correct answer	Задачі з кубиком тепер питають про середнє, а не «приблизно», – тож є рівно одна правильна відповідь
@@ -2595,3 +2595,5 @@ Tipp:	Tip:	Порада:
 euer Kind	your child	вашої дитини
 Vorlesen ist vorbereitet für unsere eigenen Stimmen: keine Anbindung an externe Anbieter und keine Gerätestimme mehr	Reading aloud is prepared for our own voices: no connection to external providers and no device voice any more	Читання вголос підготовлено для наших власних голосів: жодного підключення до зовнішніх постачальників і жодного голосу пристрою
 Vorlesen kommt bald mit unseren eigenen Stimmen.	Reading aloud is coming soon with our own voices.	Читання вголос незабаром з’явиться з нашими власними голосами.
+
+Der Titel „Echter Rechenblitz“ heißt jetzt „Echter Blitz“, der Rang „Rechenblitz-Legende“ heißt „Zahlensprint-Legende“	The title “Real Rechenblitz” is now “Real Blitz”, the rank “Rechenblitz legend” is now “Zahlensprint legend”	Титул «Справжній Rechenblitz» тепер називається «Справжній Бліц», ранг «Легенда Rechenblitz» – «Легенда Zahlensprint»
