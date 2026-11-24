@@ -91,7 +91,7 @@ Der Inhalt ist in **4 Blöcke** geteilt. Jeden Monat wird **ein Block gründlich
 | 18.11.2026 (Mi) | – | Betriebstest-Woche: nur Fehlerbehebungen, kein neuer Inhalt | – |
 | Do 19.11.2026 (vorgezogen, Marcel) | 3.27.0 | Gleichungssysteme (lgs, 6 Stufen, Kl. 8–10) + Theorie-Querverweise + 2 Lösungswege ergänzt | Nov. |
 | **Fr 20.11.2026** | – | **Kein Inhaltsupdate** (Marcel 19.11.: „nur Korrekturen“): gründliche Selbstprüfung + Korrekturen (Eltern-Tor im Web für alle Außen-Links, Werbekarte/Probestunde nur im Elternbereich, Schloss-Text gekürzt). Zehnerpotenzen und Elternbericht gratis → Di 24.11. | – |
-| Di 24.11.2026 | (geplant) | Umbenennung in „Zahlensprint“ (Anzeige + Adresse /zahlensprint/, intern bleibt „rechenblitz“; live erst nach Markenprüfung) + Quadratische Gleichungen im Kopf + PC-Ansicht verbessern (Marcel 19.11.: „alle prüfen“; Fotos vorher in docs/bilder/pc-vorher/) | Nov. |
+| Di 24.11.2026 (ab 15:00) | 3.28.4 bis 3.30.2 | Kein neuer Rechen-Inhalt, sondern Pflicht-Umbauten: Zähl-Fix (3.28.4), Name „Zahlensprint“ (3.29.0, Schritt 1), Eltern-Tor-Standard, V10 neu, Einstellungen geteilt, Weg zur Probestunde V15 (3.30.0), OpenAI/Nova entfernt (3.30.1), Auflage V37 (3.30.2). **Verschoben auf Fr 27.11.:** Quadratische Gleichungen im Kopf, PC-Ansicht, Elternbericht kostenlos, Zehnerpotenzen mit Schreibweise 10ⁿ; Schritt 2 der Umbenennung (Pfad /zahlensprint/) sobald der Leitstand den Ordner anlegt | – (Monats-Check ab Fr) |
 | Fr 27.11.2026 | (geplant) | großes Inhaltsupdate | Nov. |
 
 ## 6. Prüf-Protokoll
