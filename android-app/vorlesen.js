@@ -3,7 +3,7 @@
 // Dazu die häufigsten Aufgaben-Sätze (vorlesen-haeufig.json); alle anderen Aufgaben vertont das Tonstudio bei Bedarf (/stimme/v1). Läuft bei jedem Bauen (stand.js).
 const fs = require('fs'), path = require('path');
 const JS = f => fs.readFileSync(path.join(__dirname, '../kopfrechnen/js', f), 'utf8').replace(/^'use strict';/, '');
-function build() {
+function build(opt = {}) {
   const ctx = {};
   const fracLine = JS('engine.js').match(/const FRAC_NAMES = \{[^}]*\};/)[0];
   const speech = JS('speech.js').split('const Voice = {')[0].replace('const SPEECH_FRAC = { de: FRAC_NAMES };', '');
@@ -27,6 +27,7 @@ function build() {
   const addRaw = (text, sprache) => { const t = text.normalize('NFC').replace(/\s+/g, ' ').trim(), k = sprache + '|' + t; if (t && !seen.has(k)) { seen.add(k); out.push({ text: t, sprache, laufzeit: true }); } };
   for (const de of blitzDe) { add(de, 'de'); const t = tsv.get(de); if (t) { if (t.en) add(t.en, 'en'); if (t.uk) add(t.uk, 'uk'); } }
   for (const [lang, list] of Object.entries(haeufig)) list.forEach(t => addRaw(t, lang));
+  if (opt.liste) return out;   // nur die Liste (für die Textliste des Tonstudios), ohne die Datei zu schreiben
   // Vorlesen abgeschaltet (config.js vorlesen: false, Marcel 18.11.): leere Liste, damit das Stimmen-Werk für Rechenblitz nichts spricht
   const aus = /^\s*vorlesen:\s*false/m.test(fs.readFileSync(path.join(__dirname, '../kopfrechnen/config.js'), 'utf8'));
   const json = JSON.stringify({ format: 1, app: 'rechenblitz', texte: aus ? [] : out }, null, 1) + '\n';
