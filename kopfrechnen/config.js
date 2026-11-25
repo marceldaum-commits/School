@@ -10,7 +10,7 @@ window.RECHENBLITZ_CONFIG = {
   // true: Links zur Website bekommen ?utm_source=rechenblitz… (nur sinnvoll mit Besucherstatistik)
   utm: false,
   // Öffentliche Adresse für QR-Codes, Flyer, Urkunden und Einladungen (immer die Live-Seite)
-  publicUrl: 'https://rechenblitz.mathenachhilfe-online.com/',
+  publicUrl: 'https://lernen.mathenachhilfe-online.com/zahlensprint/',
   // Klassen-Challenge: Server-Adresse (z. B. '/api'), leer = Funktion ausgeblendet – siehe KLASSEN-API.md
   // Rechenblitz Pro (7,99 € einmalig): Kassen-URL des Woo-Produkts RB-PRO. Leer = keine Sperren, alles frei (pro.js, Meldung 54)
   proCheckout: 'https://www.mathenachhilfe-online.com/kasse/?bestellweg=aendern&add-to-cart=4150',   // Rechenblitz Pro 7,99 € (Shop-Produkt 4150, Leitstand 17.11.) – damit sind die Pro-Sperren an

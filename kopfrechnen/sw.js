@@ -1,12 +1,14 @@
-// Rechenblitz Service Worker: App läuft nach dem ersten Besuch auch offline.
-const CACHE = 'rechenblitz-3.30.3';
+// Zahlensprint (früher Rechenblitz) Service Worker: App läuft nach dem ersten Besuch auch offline.
+// Cache-Name nach Pfad: unter /zahlensprint/ „zahlensprint-<Version>“, sonst (alter Pfad /rechenblitz/, Hosts rechenblitz[-test].…) „rechenblitz-<Version>“ –
+// so räumt der Service Worker des einen Pfads nie die Caches des anderen auf (beide liegen auf demselben Origin lernen.…)
+const VER = '3.31.0', PRE = /\/zahlensprint\/$/.test(self.registration.scope) ? 'zahlensprint' : 'rechenblitz', CACHE = PRE + '-' + VER;
 const PUSH = 'rechenblitz-push', STIMME = 'rechenblitz-stimme';   // Erinnerungstext und offline geladene Vorlese-Sätze – bleiben bei Updates erhalten
 const FILES = ['./', 'index.html', 'app.min.css', 'config.js', 'js/rechenblitz.min.js', 'js/lang-en.js', 'js/lang-uk.js', 'manifest.webmanifest', 'icons/logo.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png',
   'icons/apple-touch-icon.png', 'icons/favicon-32.png', 'fonts/Inter.woff2', 'fonts/SourceSerif4-italic.woff2', 'fonts/Caveat.woff2'];
 // Beim Installieren alles frisch vom Server holen (nicht aus dem Browser-Speicher), dann sofort aktiv werden
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES.map(f => new Request(f, { cache: 'reload' })))).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith('rechenblitz-') && k !== CACHE && k !== PUSH && k !== STIMME).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.startsWith(PRE + '-') && k !== CACHE && k !== PUSH && k !== STIMME).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 self.addEventListener('fetch', e => {
   const req = e.request, url = new URL(req.url);

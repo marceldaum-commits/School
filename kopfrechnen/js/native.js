@@ -8,7 +8,7 @@
 const IS_NATIVE = !!(window.Capacitor && typeof Capacitor.isNativePlatform === 'function' && Capacitor.isNativePlatform());
 if (IS_NATIVE) {
   const c = (window.RECHENBLITZ_CONFIG ||= {});
-  const base = (c.nativeServer || 'https://rechenblitz.mathenachhilfe-online.com').replace(/\/$/, '');
+  const base = (c.nativeServer || 'https://lernen.mathenachhilfe-online.com/zahlensprint').replace(/\/$/, '');
   const abs = v => (typeof v === 'string' && v.startsWith('/') ? base + v : v);
   // Server-Funktionen (Fehler melden, Gutschein, Klassen) gehen an die Live-Seite – ohne Netz wartet alles im Postausgang
   c.reportEndpoint = abs(c.reportEndpoint);

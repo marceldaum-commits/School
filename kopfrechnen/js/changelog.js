@@ -1,8 +1,9 @@
 'use strict';
 // Rechenblitz – Versionen mit Datum (neueste oben). Wird unter „Was ist neu?“ angezeigt.
-const APP_VERSION = '3.30.3';
+const APP_VERSION = '3.31.0';
 const APP_DATE = '2026-11-24';
 const CHANGELOG = [
+  ['3.31.0', '2026-11-25', ['Zahlensprint hat jetzt seine eigene Adresse lernen.mathenachhilfe-online.com/zahlensprint/ – dein Lernstand bleibt erhalten', 'Links, QR-Codes und Urkunden zeigen auf die neue Adresse']],
   ['3.30.3', '2026-11-25', ['Vorlesen vorbereitet: Ein Doppelpunkt im Text wird nicht mehr als „geteilt durch“ gelesen']],
   ['3.30.2', '2026-11-24', ['Der Titel „Echter Rechenblitz“ heißt jetzt „Echter Blitz“, der Rang „Rechenblitz-Legende“ heißt „Zahlensprint-Legende“']],
   ['3.30.1', '2026-11-24', ['Vorlesen ist vorbereitet für unsere eigenen Stimmen: keine Anbindung an externe Anbieter und keine Gerätestimme mehr']],

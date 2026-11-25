@@ -2,7 +2,7 @@
 /* ================= Umzug auf die gemeinsame Adresse (Marcel 19.11.2026) =================
    Alle Lern-Apps ziehen nach lernen.mathenachhilfe-online.com/<app>/ (Test: lernen-test.…).
    Dieselbe Version läuft auf der alten und der neuen Adresse:
-   Standard: UMZUG-LERNEN.md (AppZentrale, Stand 2a584ec).
+   Standard: UMZUG-LERNEN.md (AppZentrale, Stand 2a584ec). Seit der Umbenennung (24.11.2026) zuerst lernen(-test).…/zahlensprint/, sonst /rechenblitz/.
    ALT (rechenblitz[-test].mathenachhilfe-online.com): eigene Speicher-Schlüssel einsammeln → {"app","v":1,"umzug":true,"daten"} mit AES-GCM-256 →
      als Einmal-Sicherung PUT trainer(-test)…/eltern/v1/s/<id> (X-Schreib) → weiterleiten auf die neue Adresse mit #umzug=<id>.<key>.<schreib>
      (?thema=…, #pro=…, #auftrag=… usw. bleiben erhalten). Der Schlüssel steht nur im Teil nach „#“ und geht nie an einen Server.
@@ -12,7 +12,9 @@ const UMZUG = {
   KEYS: ['rechenblitz', 'rb-classes', 'rb-teacher'],          // alle eigenen Schlüssel im Browser-Speicher
   alt: () => /^rechenblitz(-test)?\.mathenachhilfe-online\.com$/.test(location.hostname),
   stufe: () => /^rechenblitz-test\./.test(location.hostname) ? 'test' : 'live',
-  ziel: st => (st === 'test' ? 'https://lernen-test.' : 'https://lernen.') + 'mathenachhilfe-online.com/rechenblitz/',
+  // Zielpfad: zuerst /zahlensprint/ (neuer Name), sonst /rechenblitz/ – welcher wirklich die App ausliefert, zeigt die Probe in umzugAlt()
+  pfade: ['zahlensprint', 'rechenblitz'], pfad: 'zahlensprint',
+  ziel: st => (st === 'test' ? 'https://lernen-test.' : 'https://lernen.') + 'mathenachhilfe-online.com/' + UMZUG.pfad + '/',
 };
 const umzugAn = () => !!(typeof CONFIG === 'object' && CONFIG.umzug) && !(typeof IS_NATIVE !== 'undefined' && IS_NATIVE);
 // Zieladresse: Pfad bleibt (z. B. index.html), Abfrage bleibt, Hash bekommt vorne „umzug=…“ (andere Angaben bleiben dahinter)
@@ -29,7 +31,9 @@ function umzugDaten() {
 async function umzugAlt() {
   // Liefert die neue Adresse wirklich Rechenblitz aus? Eigenes App-Symbol als Bild laden (404, falsche Seite oder kein Netz → Fehler).
   // Sonst hier bleiben und beim nächsten Start erneut versuchen (Standard UMZUG-LERNEN.md)
-  const bereit = await new Promise(res => { const im = new Image(), t = setTimeout(() => res(false), 8000); im.onload = () => { clearTimeout(t); res(im.naturalWidth === 192); }; im.onerror = () => { clearTimeout(t); res(false); }; im.src = UMZUG.ziel(UMZUG.stufe()) + 'icons/icon-192.png?u=' + Date.now(); });
+  const probe = ziel => new Promise(res => { const im = new Image(), t = setTimeout(() => res(false), 8000); im.onload = () => { clearTimeout(t); res(im.naturalWidth === 192); }; im.onerror = () => { clearTimeout(t); res(false); }; im.src = ziel + 'icons/icon-192.png?u=' + Date.now(); });
+  let bereit = false;
+  for (const pf of UMZUG.pfade) { UMZUG.pfad = pf; if (await probe(UMZUG.ziel(UMZUG.stufe()))) { bereit = true; break; } }
   if (!bereit) return false;
   const daten = umzugDaten();
   if (!Object.keys(daten).length) { umzugWeiter(umzugZielUrl('')); return true; }   // nichts zu übertragen: nur weiterleiten

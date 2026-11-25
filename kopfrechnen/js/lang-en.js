@@ -2590,4 +2590,6 @@ I18N.add('en', {"% sind":"% are",
 "Vorlesen ist vorbereitet für unsere eigenen Stimmen: keine Anbindung an externe Anbieter und keine Gerätestimme mehr":"Reading aloud is prepared for our own voices: no connection to external providers and no device voice any more",
 "Vorlesen kommt bald mit unseren eigenen Stimmen.":"Reading aloud is coming soon with our own voices.",
 "Der Titel „Echter Rechenblitz“ heißt jetzt „Echter Blitz“, der Rang „Rechenblitz-Legende“ heißt „Zahlensprint-Legende“":"The title “Real Rechenblitz” is now “Real Blitz”, the rank “Rechenblitz legend” is now “Zahlensprint legend”",
-"Vorlesen vorbereitet: Ein Doppelpunkt im Text wird nicht mehr als „geteilt durch“ gelesen":"Reading aloud prepared: a colon in the text is no longer read as “divided by”"});
+"Vorlesen vorbereitet: Ein Doppelpunkt im Text wird nicht mehr als „geteilt durch“ gelesen":"Reading aloud prepared: a colon in the text is no longer read as “divided by”",
+"Zahlensprint hat jetzt seine eigene Adresse lernen.mathenachhilfe-online.com/zahlensprint/ – dein Lernstand bleibt erhalten":"Zahlensprint now has its own address lernen.mathenachhilfe-online.com/zahlensprint/ – your progress is kept",
+"Links, QR-Codes und Urkunden zeigen auf die neue Adresse":"Links, QR codes and certificates point to the new address"});
