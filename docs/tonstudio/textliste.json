@@ -3,7 +3,7 @@
  "app": "zahlensprint",
  "stand": "2026-11-25",
  "hinweis": "Ukrainisch (Piper uk_UA ukrainian_tts, Sprecherin tetiana) ist im Quasselquest-Format nicht vorgesehen; Zahlen stehen als Ziffern, das Tonstudio schreibt sie aus (Marcel 25.11.).",
- "texte": [
+ "eintraege": [
   {
    "id": "a8abe72eef6f0c65e9e1",
    "sprache": "de",
@@ -73,19 +73,19 @@
    ]
   },
   {
-   "id": "c833a17b558ebb87025f",
+   "id": "c277ecceae8ec6ca0b9a",
    "sprache": "de",
-   "sprechtext": "Beispiel 8 plus 5 geteilt durch 8 plus 2 gleich 10, dann 10 plus 3 gleich 13.",
+   "sprechtext": "Beispiel 8 plus 5: 8 plus 2 gleich 10, dann 10 plus 3 gleich 13.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "c833a17b558ebb87025f_normal.mp3"
+     "datei": "c277ecceae8ec6ca0b9a_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "c833a17b558ebb87025f_langsam.mp3"
+     "datei": "c277ecceae8ec6ca0b9a_langsam.mp3"
     }
    ]
   },
@@ -107,19 +107,19 @@
    ]
   },
   {
-   "id": "8e89369a3cc8324a2e7a",
+   "id": "3c4fb8c61e22667e552d",
    "sprache": "de",
-   "sprechtext": "Beispiel 57 plus 7 geteilt durch 57 plus 3 gleich 60, dann 60 plus 4 gleich 64.",
+   "sprechtext": "Beispiel 57 plus 7: 57 plus 3 gleich 60, dann 60 plus 4 gleich 64.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "8e89369a3cc8324a2e7a_normal.mp3"
+     "datei": "3c4fb8c61e22667e552d_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "8e89369a3cc8324a2e7a_langsam.mp3"
+     "datei": "3c4fb8c61e22667e552d_langsam.mp3"
     }
    ]
   },
@@ -141,19 +141,19 @@
    ]
   },
   {
-   "id": "d4baf9391cdcd2edb3c2",
+   "id": "69e3f8eea1adba312683",
    "sprache": "de",
-   "sprechtext": "Beispiel 49 plus 25 geteilt durch 49 plus 20 gleich 69, dann 69 plus 5 gleich 74.",
+   "sprechtext": "Beispiel 49 plus 25: 49 plus 20 gleich 69, dann 69 plus 5 gleich 74.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "d4baf9391cdcd2edb3c2_normal.mp3"
+     "datei": "69e3f8eea1adba312683_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "d4baf9391cdcd2edb3c2_langsam.mp3"
+     "datei": "69e3f8eea1adba312683_langsam.mp3"
     }
    ]
   },
@@ -294,19 +294,19 @@
    ]
   },
   {
-   "id": "805ddee8479d6a8b034b",
+   "id": "1a0d86c0be92b8a85688",
    "sprache": "de",
-   "sprechtext": "Beispiel 14 minus 7 geteilt durch 14 minus 4 gleich 10, dann 10 minus 3 gleich 7.",
+   "sprechtext": "Beispiel 14 minus 7: 14 minus 4 gleich 10, dann 10 minus 3 gleich 7.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "805ddee8479d6a8b034b_normal.mp3"
+     "datei": "1a0d86c0be92b8a85688_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "805ddee8479d6a8b034b_langsam.mp3"
+     "datei": "1a0d86c0be92b8a85688_langsam.mp3"
     }
    ]
   },
@@ -328,19 +328,19 @@
    ]
   },
   {
-   "id": "739df11f7e24ac499397",
+   "id": "1de466e947d6cef49afe",
    "sprache": "de",
-   "sprechtext": "Beispiel 62 minus 9 geteilt durch 62 minus 2 gleich 60, dann 60 minus 7 gleich 53.",
+   "sprechtext": "Beispiel 62 minus 9: 62 minus 2 gleich 60, dann 60 minus 7 gleich 53.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "739df11f7e24ac499397_normal.mp3"
+     "datei": "1de466e947d6cef49afe_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "739df11f7e24ac499397_langsam.mp3"
+     "datei": "1de466e947d6cef49afe_langsam.mp3"
     }
    ]
   },
@@ -362,19 +362,19 @@
    ]
   },
   {
-   "id": "bc7c5f17bd5c8cc806db",
+   "id": "b619e2a2300b0fe839f0",
    "sprache": "de",
-   "sprechtext": "Beispiel 74 minus 25 geteilt durch 74 minus 20 gleich 54, dann 54 minus 5 gleich 49.",
+   "sprechtext": "Beispiel 74 minus 25: 74 minus 20 gleich 54, dann 54 minus 5 gleich 49.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "bc7c5f17bd5c8cc806db_normal.mp3"
+     "datei": "b619e2a2300b0fe839f0_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "bc7c5f17bd5c8cc806db_langsam.mp3"
+     "datei": "b619e2a2300b0fe839f0_langsam.mp3"
     }
    ]
   },
@@ -396,19 +396,19 @@
    ]
   },
   {
-   "id": "c020c460d175f1b7db8f",
+   "id": "c31700a4c3c6290cd1b7",
    "sprache": "de",
-   "sprechtext": "Beispiel 554 minus 218 geteilt durch minus 200, dann minus 10, dann minus 8.",
+   "sprechtext": "Beispiel 554 minus 218: minus 200, dann minus 10, dann minus 8.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "c020c460d175f1b7db8f_normal.mp3"
+     "datei": "c31700a4c3c6290cd1b7_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "c020c460d175f1b7db8f_langsam.mp3"
+     "datei": "c31700a4c3c6290cd1b7_langsam.mp3"
     }
    ]
   },
@@ -549,19 +549,19 @@
    ]
   },
   {
-   "id": "3cf7719e041347754d18",
+   "id": "022046e999580228a3f8",
    "sprache": "de",
-   "sprechtext": "Beispiel 6 mal 15 geteilt durch 6 mal 10 gleich 60 und 6 mal 5 gleich 30, zusammen 90.",
+   "sprechtext": "Beispiel 6 mal 15: 6 mal 10 gleich 60 und 6 mal 5 gleich 30, zusammen 90.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "3cf7719e041347754d18_normal.mp3"
+     "datei": "022046e999580228a3f8_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "3cf7719e041347754d18_langsam.mp3"
+     "datei": "022046e999580228a3f8_langsam.mp3"
     }
    ]
   },
@@ -583,19 +583,19 @@
    ]
   },
   {
-   "id": "1a5a9c246400e74e3a2d",
+   "id": "69b45c2590cdf6145d78",
    "sprache": "de",
-   "sprechtext": "Beispiel 9 mal 14 geteilt durch 9 mal 10 gleich 90 und 9 mal 4 gleich 36, zusammen 126.",
+   "sprechtext": "Beispiel 9 mal 14: 9 mal 10 gleich 90 und 9 mal 4 gleich 36, zusammen 126.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "1a5a9c246400e74e3a2d_normal.mp3"
+     "datei": "69b45c2590cdf6145d78_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "1a5a9c246400e74e3a2d_langsam.mp3"
+     "datei": "69b45c2590cdf6145d78_langsam.mp3"
     }
    ]
   },
@@ -617,19 +617,19 @@
    ]
   },
   {
-   "id": "a6638c27dadacb9f331a",
+   "id": "33893790be2c31171334",
    "sprache": "de",
-   "sprechtext": "Beispiel 14 mal 13 geteilt durch 14 mal 10 gleich 140 und 14 mal 3 gleich 42, zusammen 182.",
+   "sprechtext": "Beispiel 14 mal 13: 14 mal 10 gleich 140 und 14 mal 3 gleich 42, zusammen 182.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "a6638c27dadacb9f331a_normal.mp3"
+     "datei": "33893790be2c31171334_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "a6638c27dadacb9f331a_langsam.mp3"
+     "datei": "33893790be2c31171334_langsam.mp3"
     }
    ]
   },
@@ -753,19 +753,19 @@
    ]
   },
   {
-   "id": "b4600d836f7d879196ec",
+   "id": "72d75e49ba7fe0872cce",
    "sprache": "de",
-   "sprechtext": "Beispiel 72 geteilt durch 6 geteilt durch 60 geteilt durch 6 gleich 10 und 12 geteilt durch 6 gleich 2, zusammen 12.",
+   "sprechtext": "Beispiel 72 geteilt durch 6: 60 geteilt durch 6 gleich 10 und 12 geteilt durch 6 gleich 2, zusammen 12.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "b4600d836f7d879196ec_normal.mp3"
+     "datei": "72d75e49ba7fe0872cce_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "b4600d836f7d879196ec_langsam.mp3"
+     "datei": "72d75e49ba7fe0872cce_langsam.mp3"
     }
    ]
   },
@@ -787,19 +787,19 @@
    ]
   },
   {
-   "id": "a198b5a99757467e6de1",
+   "id": "47301050d504e0d7618e",
    "sprache": "de",
-   "sprechtext": "Beispiel 210 geteilt durch 6 geteilt durch 180 geteilt durch 6 gleich 30 und 30 geteilt durch 6 gleich 5, zusammen 35.",
+   "sprechtext": "Beispiel 210 geteilt durch 6: 180 geteilt durch 6 gleich 30 und 30 geteilt durch 6 gleich 5, zusammen 35.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "a198b5a99757467e6de1_normal.mp3"
+     "datei": "47301050d504e0d7618e_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "a198b5a99757467e6de1_langsam.mp3"
+     "datei": "47301050d504e0d7618e_langsam.mp3"
     }
    ]
   },
@@ -821,19 +821,19 @@
    ]
   },
   {
-   "id": "abc5dd845fef56c32b4d",
+   "id": "3125c1f3c816c15072f3",
    "sprache": "de",
-   "sprechtext": "Beispiel 384 geteilt durch 16 geteilt durch 320 geteilt durch 16 gleich 20 und 64 geteilt durch 16 gleich 4, zusammen 24.",
+   "sprechtext": "Beispiel 384 geteilt durch 16: 320 geteilt durch 16 gleich 20 und 64 geteilt durch 16 gleich 4, zusammen 24.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "abc5dd845fef56c32b4d_normal.mp3"
+     "datei": "3125c1f3c816c15072f3_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "abc5dd845fef56c32b4d_langsam.mp3"
+     "datei": "3125c1f3c816c15072f3_langsam.mp3"
     }
    ]
   },
@@ -974,19 +974,19 @@
    ]
   },
   {
-   "id": "a350d825389b1db3eeb3",
+   "id": "f6656c97c4fa9ad24322",
    "sprache": "de",
-   "sprechtext": "Geteilt-Lücke: 42: wie viel? gleich 14, also Welche Zahl mal 14 ergibt 42?, also 3.",
+   "sprechtext": "Geteilt-Lücke: 42 geteilt durch wie viel? gleich 14, also Welche Zahl mal 14 ergibt 42?, also 3.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "a350d825389b1db3eeb3_normal.mp3"
+     "datei": "f6656c97c4fa9ad24322_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "a350d825389b1db3eeb3_langsam.mp3"
+     "datei": "f6656c97c4fa9ad24322_langsam.mp3"
     }
    ]
   },
@@ -1127,19 +1127,19 @@
    ]
   },
   {
-   "id": "b00198d26d255245304f",
+   "id": "4e760c52c87ce50d91a2",
    "sprache": "de",
-   "sprechtext": "Beispiel die Hälfte von 28 geteilt durch 20, also 10 und 8, also 4, zusammen 14.",
+   "sprechtext": "Beispiel die Hälfte von 28: 20, also 10 und 8, also 4, zusammen 14.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "b00198d26d255245304f_normal.mp3"
+     "datei": "4e760c52c87ce50d91a2_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "b00198d26d255245304f_langsam.mp3"
+     "datei": "4e760c52c87ce50d91a2_langsam.mp3"
     }
    ]
   },
@@ -1161,19 +1161,19 @@
    ]
   },
   {
-   "id": "272f9db2bf6c38fea86a",
+   "id": "b5c3f51f9abb1d46fdcb",
    "sprache": "de",
-   "sprechtext": "Beispiel die Hälfte von 152 geteilt durch 140, also 70 und 12, also 6, zusammen 76.",
+   "sprechtext": "Beispiel die Hälfte von 152: 140, also 70 und 12, also 6, zusammen 76.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "272f9db2bf6c38fea86a_normal.mp3"
+     "datei": "b5c3f51f9abb1d46fdcb_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "272f9db2bf6c38fea86a_langsam.mp3"
+     "datei": "b5c3f51f9abb1d46fdcb_langsam.mp3"
     }
    ]
   },
@@ -1263,19 +1263,19 @@
    ]
   },
   {
-   "id": "4dde1eaffabdbc4f5117",
+   "id": "37e602b9f575fdc06c8a",
    "sprache": "de",
-   "sprechtext": "Beispiel ein Achtel von 9539 geteilt durch 4769,5, also 2384,75, also 1192,375.",
+   "sprechtext": "Beispiel ein Achtel von 9539: 4769,5, also 2384,75, also 1192,375.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "4dde1eaffabdbc4f5117_normal.mp3"
+     "datei": "37e602b9f575fdc06c8a_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "4dde1eaffabdbc4f5117_langsam.mp3"
+     "datei": "37e602b9f575fdc06c8a_langsam.mp3"
     }
    ]
   },
@@ -1433,19 +1433,19 @@
    ]
   },
   {
-   "id": "a848ddaa5f0d30bc8a2c",
+   "id": "6ab6076c4028451ceaeb",
    "sprache": "de",
-   "sprechtext": "Kilopreis: Preis: Gramm mal 1000.",
+   "sprechtext": "Kilopreis: Preis geteilt durch Gramm mal 1000.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "a848ddaa5f0d30bc8a2c_normal.mp3"
+     "datei": "6ab6076c4028451ceaeb_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "a848ddaa5f0d30bc8a2c_langsam.mp3"
+     "datei": "6ab6076c4028451ceaeb_langsam.mp3"
     }
    ]
   },
@@ -1620,19 +1620,19 @@
    ]
   },
   {
-   "id": "bee4697d2dd0191447ef",
+   "id": "e913f5d9f4c0ce7b376e",
    "sprache": "de",
-   "sprechtext": "Eine ganze Zahl ist ein Bruch mit Nenner 1 geteilt durch 7 gleich 7 durch 1.",
+   "sprechtext": "Eine ganze Zahl ist ein Bruch mit Nenner 1: 7 gleich 7 durch 1.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "bee4697d2dd0191447ef_normal.mp3"
+     "datei": "e913f5d9f4c0ce7b376e_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "bee4697d2dd0191447ef_langsam.mp3"
+     "datei": "e913f5d9f4c0ce7b376e_langsam.mp3"
     }
    ]
   },
@@ -1790,19 +1790,19 @@
    ]
   },
   {
-   "id": "1301a0d3c71e0dcbd435",
+   "id": "16ab53e6d008774be06f",
    "sprache": "de",
-   "sprechtext": "Beispiel 5,38 mal 2 geteilt durch 538 mal 2 gleich 1076, zwei Stellen, also 10,76.",
+   "sprechtext": "Beispiel 5,38 mal 2: 538 mal 2 gleich 1076, zwei Stellen, also 10,76.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "1301a0d3c71e0dcbd435_normal.mp3"
+     "datei": "16ab53e6d008774be06f_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "1301a0d3c71e0dcbd435_langsam.mp3"
+     "datei": "16ab53e6d008774be06f_langsam.mp3"
     }
    ]
   },
@@ -1824,19 +1824,19 @@
    ]
   },
   {
-   "id": "914460c3bed84c387d06",
+   "id": "21d8f51558dc8c3e6d6a",
    "sprache": "de",
-   "sprechtext": "Bruch in Dezimalzahl: Zähler: Nenner, oder auf 10, 100, 1000 erweitern.",
+   "sprechtext": "Bruch in Dezimalzahl: Zähler geteilt durch Nenner, oder auf 10, 100, 1000 erweitern.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "914460c3bed84c387d06_normal.mp3"
+     "datei": "21d8f51558dc8c3e6d6a_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "914460c3bed84c387d06_langsam.mp3"
+     "datei": "21d8f51558dc8c3e6d6a_langsam.mp3"
     }
    ]
   },
@@ -1943,19 +1943,19 @@
    ]
   },
   {
-   "id": "6e4eca18b77534eaa0b4",
+   "id": "83c82d55e50da5a95486",
    "sprache": "de",
-   "sprechtext": "Beispiel 40 Prozent von 210 geteilt durch 10 Prozent sind 21, also 40 Prozent gleich 4 mal 21 gleich 84.",
+   "sprechtext": "Beispiel 40 Prozent von 210: 10 Prozent sind 21, also 40 Prozent gleich 4 mal 21 gleich 84.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "6e4eca18b77534eaa0b4_normal.mp3"
+     "datei": "83c82d55e50da5a95486_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "6e4eca18b77534eaa0b4_langsam.mp3"
+     "datei": "83c82d55e50da5a95486_langsam.mp3"
     }
    ]
   },
@@ -2487,19 +2487,19 @@
    ]
   },
   {
-   "id": "a04249e3fe3a6a8ee85d",
+   "id": "17eb907f79aa5704284f",
    "sprache": "de",
-   "sprechtext": "Beispiel 2x plus 3 mit x gleich 10 geteilt durch 2 mal 10 plus 3 gleich 23.",
+   "sprechtext": "Beispiel 2x plus 3 mit x gleich 10: 2 mal 10 plus 3 gleich 23.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "a04249e3fe3a6a8ee85d_normal.mp3"
+     "datei": "17eb907f79aa5704284f_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "a04249e3fe3a6a8ee85d_langsam.mp3"
+     "datei": "17eb907f79aa5704284f_langsam.mp3"
     }
    ]
   },
@@ -2674,19 +2674,19 @@
    ]
   },
   {
-   "id": "effa43cabb881825350c",
+   "id": "916715c8482220353038",
    "sprache": "de",
-   "sprechtext": "x hoch 3 gleich x mal x mal x. Bei negativem x geteilt durch minus 2 hoch 3 gleich minus 8.",
+   "sprechtext": "x hoch 3 gleich x mal x mal x. Bei negativem x: minus 2 hoch 3 gleich minus 8.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "effa43cabb881825350c_normal.mp3"
+     "datei": "916715c8482220353038_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "effa43cabb881825350c_langsam.mp3"
+     "datei": "916715c8482220353038_langsam.mp3"
     }
    ]
   },
@@ -2793,19 +2793,19 @@
    ]
   },
   {
-   "id": "19508518edc96161ee1e",
+   "id": "2890b85d26277067c8f4",
    "sprache": "de",
-   "sprechtext": "Beispiel P 2 und 8, Q 6 und 16: m gleich 8 geteilt durch 4 gleich 2.",
+   "sprechtext": "Beispiel P 2 und 8, Q 6 und 16 geteilt durch m gleich 8 geteilt durch 4 gleich 2.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "19508518edc96161ee1e_normal.mp3"
+     "datei": "2890b85d26277067c8f4_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "19508518edc96161ee1e_langsam.mp3"
+     "datei": "2890b85d26277067c8f4_langsam.mp3"
     }
    ]
   },
@@ -3422,19 +3422,19 @@
    ]
   },
   {
-   "id": "0d8a6b74fa6190d405d7",
+   "id": "5c4a18ffca597241dcd6",
    "sprache": "de",
-   "sprechtext": "Beispiel 7900 mal 90 geteilt durch 79 mal 9 gleich 711, drei Nullen, also 711.000.",
+   "sprechtext": "Beispiel 7900 mal 90: 79 mal 9 gleich 711, drei Nullen, also 711.000.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "0d8a6b74fa6190d405d7_normal.mp3"
+     "datei": "5c4a18ffca597241dcd6_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "0d8a6b74fa6190d405d7_langsam.mp3"
+     "datei": "5c4a18ffca597241dcd6_langsam.mp3"
     }
    ]
   },
@@ -4085,19 +4085,19 @@
    ]
   },
   {
-   "id": "24425283b9850828b65b",
+   "id": "9f83bf443e51540c290c",
    "sprache": "de",
-   "sprechtext": "Beispiel I: x plus 6y gleich 45, II: 6x minus y gleich 11. II mal 6 geteilt durch 36x minus 6y gleich 66.",
+   "sprechtext": "Beispiel I: x plus 6y gleich 45, II: 6x minus y gleich 11. II mal 6: 36x minus 6y gleich 66.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "24425283b9850828b65b_normal.mp3"
+     "datei": "9f83bf443e51540c290c_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "24425283b9850828b65b_langsam.mp3"
+     "datei": "9f83bf443e51540c290c_langsam.mp3"
     }
    ]
   },
@@ -4170,19 +4170,19 @@
    ]
   },
   {
-   "id": "fa233ce4be3ccceda94f",
+   "id": "f74b904be8ebce295106",
    "sprache": "de",
-   "sprechtext": "I mal 2 geteilt durch 4x plus 6y gleich 24. II mal minus 3 geteilt durch minus 9x minus 6y gleich minus 39. Addieren: minus 5x gleich minus 15, also x gleich 3.",
+   "sprechtext": "I mal 2: 4x plus 6y gleich 24. II mal minus 3: minus 9x minus 6y gleich minus 39. Addieren: minus 5x gleich minus 15, also x gleich 3.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "fa233ce4be3ccceda94f_normal.mp3"
+     "datei": "f74b904be8ebce295106_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "fa233ce4be3ccceda94f_langsam.mp3"
+     "datei": "f74b904be8ebce295106_langsam.mp3"
     }
    ]
   },
@@ -4323,19 +4323,19 @@
    ]
   },
   {
-   "id": "102228eeffbf9248498c",
+   "id": "af76f05cf91d9725a9d5",
    "sprache": "de",
-   "sprechtext": "a mal x gleich b: beide Seiten durch a teilen. x: a gleich b: beide Seiten mal a.",
+   "sprechtext": "a mal x gleich b: beide Seiten durch a teilen. x geteilt durch a gleich b: beide Seiten mal a.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "102228eeffbf9248498c_normal.mp3"
+     "datei": "af76f05cf91d9725a9d5_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "102228eeffbf9248498c_langsam.mp3"
+     "datei": "af76f05cf91d9725a9d5_langsam.mp3"
     }
    ]
   },
@@ -4799,19 +4799,19 @@
    ]
   },
   {
-   "id": "00e827c151cce10b10ae",
+   "id": "f9a6c5eae742e36c8587",
    "sprache": "de",
-   "sprechtext": "Seite aus Fläche: Länge gleich Fläche: Breite.",
+   "sprechtext": "Seite aus Fläche: Länge gleich Fläche geteilt durch Breite.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "00e827c151cce10b10ae_normal.mp3"
+     "datei": "f9a6c5eae742e36c8587_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "00e827c151cce10b10ae_langsam.mp3"
+     "datei": "f9a6c5eae742e36c8587_langsam.mp3"
     }
    ]
   },
@@ -5377,36 +5377,36 @@
    ]
   },
   {
-   "id": "50a7452ddd2e0ba917f7",
+   "id": "a44316ef002b74aa0cb8",
    "sprache": "de",
-   "sprechtext": "Zinssatz p gleich Zinsen mal 100: Kapital.",
+   "sprechtext": "Zinssatz p gleich Zinsen mal 100 geteilt durch Kapital.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "50a7452ddd2e0ba917f7_normal.mp3"
+     "datei": "a44316ef002b74aa0cb8_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "50a7452ddd2e0ba917f7_langsam.mp3"
+     "datei": "a44316ef002b74aa0cb8_langsam.mp3"
     }
    ]
   },
   {
-   "id": "5676fafff03341bb82ea",
+   "id": "070d57794b3931c6b341",
    "sprache": "de",
-   "sprechtext": "Kapital gleich Zinsen mal 100: p.",
+   "sprechtext": "Kapital gleich Zinsen mal 100 geteilt durch p.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "5676fafff03341bb82ea_normal.mp3"
+     "datei": "070d57794b3931c6b341_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "5676fafff03341bb82ea_langsam.mp3"
+     "datei": "070d57794b3931c6b341_langsam.mp3"
     }
    ]
   },
@@ -5496,19 +5496,19 @@
    ]
   },
   {
-   "id": "5cd54b17d86fa7b149a7",
+   "id": "70c81f3404ede764d509",
    "sprache": "de",
-   "sprechtext": "Wahrscheinlichkeit gleich günstige Ergebnisse: alle möglichen Ergebnisse.",
+   "sprechtext": "Wahrscheinlichkeit gleich günstige Ergebnisse geteilt durch alle möglichen Ergebnisse.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "5cd54b17d86fa7b149a7_normal.mp3"
+     "datei": "70c81f3404ede764d509_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "5cd54b17d86fa7b149a7_langsam.mp3"
+     "datei": "70c81f3404ede764d509_langsam.mp3"
     }
    ]
   },
@@ -5581,19 +5581,19 @@
    ]
   },
   {
-   "id": "7debfc38595be6b65fea",
+   "id": "b9d6b52840c8b8d5ab62",
    "sprache": "de",
-   "sprechtext": "Bruch in Prozent: Zähler: Nenner, dann mal 100.",
+   "sprechtext": "Bruch in Prozent: Zähler geteilt durch Nenner, dann mal 100.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "7debfc38595be6b65fea_normal.mp3"
+     "datei": "b9d6b52840c8b8d5ab62_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "7debfc38595be6b65fea_langsam.mp3"
+     "datei": "b9d6b52840c8b8d5ab62_langsam.mp3"
     }
    ]
   },
@@ -5734,19 +5734,19 @@
    ]
   },
   {
-   "id": "f592791ed1cc85549f11",
+   "id": "f28dcaf2869db291db41",
    "sprache": "de",
-   "sprechtext": "Mittelwert gleich Summe aller Werte: Anzahl der Werte.",
+   "sprechtext": "Mittelwert gleich Summe aller Werte geteilt durch Anzahl der Werte.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "f592791ed1cc85549f11_normal.mp3"
+     "datei": "f28dcaf2869db291db41_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "f592791ed1cc85549f11_langsam.mp3"
+     "datei": "f28dcaf2869db291db41_langsam.mp3"
     }
    ]
   },
@@ -6227,19 +6227,19 @@
    ]
   },
   {
-   "id": "7c9dbd1acddb59aad26d",
+   "id": "508cd5bc84c5ea9166d2",
    "sprache": "en",
-   "sprechtext": "Example 8 plus 5 divided by 8 plus 2 equals 10, then 10 plus 3 equals 13.",
+   "sprechtext": "Example 8 plus 5: 8 plus 2 equals 10, then 10 plus 3 equals 13.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "7c9dbd1acddb59aad26d_normal.mp3"
+     "datei": "508cd5bc84c5ea9166d2_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "7c9dbd1acddb59aad26d_langsam.mp3"
+     "datei": "508cd5bc84c5ea9166d2_langsam.mp3"
     }
    ]
   },
@@ -6261,19 +6261,19 @@
    ]
   },
   {
-   "id": "d50e33dc1cd780930f5c",
+   "id": "3d2424e9882557a5a71e",
    "sprache": "en",
-   "sprechtext": "Example 57 plus 7 divided by 57 plus 3 equals 60, then 60 plus 4 equals 64.",
+   "sprechtext": "Example 57 plus 7: 57 plus 3 equals 60, then 60 plus 4 equals 64.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "d50e33dc1cd780930f5c_normal.mp3"
+     "datei": "3d2424e9882557a5a71e_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "d50e33dc1cd780930f5c_langsam.mp3"
+     "datei": "3d2424e9882557a5a71e_langsam.mp3"
     }
    ]
   },
@@ -6295,19 +6295,19 @@
    ]
   },
   {
-   "id": "0b8e5eda44d1cc32cb39",
+   "id": "188fddf0b314fa90467e",
    "sprache": "en",
-   "sprechtext": "Example 49 plus 25 divided by 49 plus 20 equals 69, then 69 plus 5 equals 74.",
+   "sprechtext": "Example 49 plus 25: 49 plus 20 equals 69, then 69 plus 5 equals 74.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "0b8e5eda44d1cc32cb39_normal.mp3"
+     "datei": "188fddf0b314fa90467e_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "0b8e5eda44d1cc32cb39_langsam.mp3"
+     "datei": "188fddf0b314fa90467e_langsam.mp3"
     }
    ]
   },
@@ -6448,19 +6448,19 @@
    ]
   },
   {
-   "id": "1800f69a4b30640d0dc5",
+   "id": "dec1a74e2c8c09d0b7eb",
    "sprache": "en",
-   "sprechtext": "Example 14 minus 7 divided by 14 minus 4 equals 10, then 10 minus 3 equals 7.",
+   "sprechtext": "Example 14 minus 7: 14 minus 4 equals 10, then 10 minus 3 equals 7.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "1800f69a4b30640d0dc5_normal.mp3"
+     "datei": "dec1a74e2c8c09d0b7eb_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "1800f69a4b30640d0dc5_langsam.mp3"
+     "datei": "dec1a74e2c8c09d0b7eb_langsam.mp3"
     }
    ]
   },
@@ -6482,19 +6482,19 @@
    ]
   },
   {
-   "id": "5df9a9d7e38b7a7c782c",
+   "id": "5166466d35de174a955f",
    "sprache": "en",
-   "sprechtext": "Example 62 minus 9 divided by 62 minus 2 equals 60, then 60 minus 7 equals 53.",
+   "sprechtext": "Example 62 minus 9: 62 minus 2 equals 60, then 60 minus 7 equals 53.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "5df9a9d7e38b7a7c782c_normal.mp3"
+     "datei": "5166466d35de174a955f_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "5df9a9d7e38b7a7c782c_langsam.mp3"
+     "datei": "5166466d35de174a955f_langsam.mp3"
     }
    ]
   },
@@ -6516,19 +6516,19 @@
    ]
   },
   {
-   "id": "e1c80d0557f94ef56951",
+   "id": "3024733f839b9d17d86f",
    "sprache": "en",
-   "sprechtext": "Example 74 minus 25 divided by 74 minus 20 equals 54, then 54 minus 5 equals 49.",
+   "sprechtext": "Example 74 minus 25: 74 minus 20 equals 54, then 54 minus 5 equals 49.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "e1c80d0557f94ef56951_normal.mp3"
+     "datei": "3024733f839b9d17d86f_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "e1c80d0557f94ef56951_langsam.mp3"
+     "datei": "3024733f839b9d17d86f_langsam.mp3"
     }
    ]
   },
@@ -6550,19 +6550,19 @@
    ]
   },
   {
-   "id": "15ed00054398e0807f59",
+   "id": "f47ca275567c4ec79061",
    "sprache": "en",
-   "sprechtext": "Example 554 minus 218 divided by minus 200, then minus 10, then minus 8.",
+   "sprechtext": "Example 554 minus 218: minus 200, then minus 10, then minus 8.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "15ed00054398e0807f59_normal.mp3"
+     "datei": "f47ca275567c4ec79061_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "15ed00054398e0807f59_langsam.mp3"
+     "datei": "f47ca275567c4ec79061_langsam.mp3"
     }
    ]
   },
@@ -6703,19 +6703,19 @@
    ]
   },
   {
-   "id": "a93c0608bcb92e38f5ac",
+   "id": "b823a14397985189e275",
    "sprache": "en",
-   "sprechtext": "Example 6 times 15 divided by 6 times 10 equals 60 and 6 times 5 equals 30, together 90.",
+   "sprechtext": "Example 6 times 15: 6 times 10 equals 60 and 6 times 5 equals 30, together 90.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "a93c0608bcb92e38f5ac_normal.mp3"
+     "datei": "b823a14397985189e275_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "a93c0608bcb92e38f5ac_langsam.mp3"
+     "datei": "b823a14397985189e275_langsam.mp3"
     }
    ]
   },
@@ -6737,19 +6737,19 @@
    ]
   },
   {
-   "id": "bc3a494ce1adda2c5761",
+   "id": "325abc78a29a1ab0e1d0",
    "sprache": "en",
-   "sprechtext": "Example 9 times 14 divided by 9 times 10 equals 90 and 9 times 4 equals 36, together 126.",
+   "sprechtext": "Example 9 times 14: 9 times 10 equals 90 and 9 times 4 equals 36, together 126.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "bc3a494ce1adda2c5761_normal.mp3"
+     "datei": "325abc78a29a1ab0e1d0_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "bc3a494ce1adda2c5761_langsam.mp3"
+     "datei": "325abc78a29a1ab0e1d0_langsam.mp3"
     }
    ]
   },
@@ -6771,19 +6771,19 @@
    ]
   },
   {
-   "id": "802b88e9d0541b91a303",
+   "id": "f6395d0c6fae6238d648",
    "sprache": "en",
-   "sprechtext": "Example 14 times 13 divided by 14 times 10 equals 140 and 14 times 3 equals 42, together 182.",
+   "sprechtext": "Example 14 times 13: 14 times 10 equals 140 and 14 times 3 equals 42, together 182.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "802b88e9d0541b91a303_normal.mp3"
+     "datei": "f6395d0c6fae6238d648_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "802b88e9d0541b91a303_langsam.mp3"
+     "datei": "f6395d0c6fae6238d648_langsam.mp3"
     }
    ]
   },
@@ -6907,19 +6907,19 @@
    ]
   },
   {
-   "id": "c4cb9ed5cea7069bff39",
+   "id": "b17c95d91087f027a1b1",
    "sprache": "en",
-   "sprechtext": "Example 72 divided by 6 divided by 60 divided by 6 equals 10 and 12 divided by 6 equals 2, together 12.",
+   "sprechtext": "Example 72 divided by 6: 60 divided by 6 equals 10 and 12 divided by 6 equals 2, together 12.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "c4cb9ed5cea7069bff39_normal.mp3"
+     "datei": "b17c95d91087f027a1b1_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "c4cb9ed5cea7069bff39_langsam.mp3"
+     "datei": "b17c95d91087f027a1b1_langsam.mp3"
     }
    ]
   },
@@ -6941,19 +6941,19 @@
    ]
   },
   {
-   "id": "c1bbf2ca3f2ad21b78cd",
+   "id": "1abe2df66f9615c45509",
    "sprache": "en",
-   "sprechtext": "Example 210 divided by 6 divided by 180 divided by 6 equals 30 and 30 divided by 6 equals 5, together 35.",
+   "sprechtext": "Example 210 divided by 6: 180 divided by 6 equals 30 and 30 divided by 6 equals 5, together 35.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "c1bbf2ca3f2ad21b78cd_normal.mp3"
+     "datei": "1abe2df66f9615c45509_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "c1bbf2ca3f2ad21b78cd_langsam.mp3"
+     "datei": "1abe2df66f9615c45509_langsam.mp3"
     }
    ]
   },
@@ -6975,19 +6975,19 @@
    ]
   },
   {
-   "id": "9f87f9edbb7536b9e3dc",
+   "id": "df36c09cfdc34aa847f1",
    "sprache": "en",
-   "sprechtext": "Example 384 divided by 16 divided by 320 divided by 16 equals 20 and 64 divided by 16 equals 4, together 24.",
+   "sprechtext": "Example 384 divided by 16: 320 divided by 16 equals 20 and 64 divided by 16 equals 4, together 24.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "9f87f9edbb7536b9e3dc_normal.mp3"
+     "datei": "df36c09cfdc34aa847f1_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "9f87f9edbb7536b9e3dc_langsam.mp3"
+     "datei": "df36c09cfdc34aa847f1_langsam.mp3"
     }
    ]
   },
@@ -7281,19 +7281,19 @@
    ]
   },
   {
-   "id": "f9d08274105e2ef87ce8",
+   "id": "7f54ad7b0cab3a172513",
    "sprache": "en",
-   "sprechtext": "Example half of 28 divided by 20, so 10 and 8, so 4, together 14.",
+   "sprechtext": "Example half of 28: 20, so 10 and 8, so 4, together 14.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "f9d08274105e2ef87ce8_normal.mp3"
+     "datei": "7f54ad7b0cab3a172513_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "f9d08274105e2ef87ce8_langsam.mp3"
+     "datei": "7f54ad7b0cab3a172513_langsam.mp3"
     }
    ]
   },
@@ -7315,19 +7315,19 @@
    ]
   },
   {
-   "id": "2b6d66022018ffcd6f34",
+   "id": "73d29328d4f793afc299",
    "sprache": "en",
-   "sprechtext": "Example half of 152 divided by 140, so 70 and 12, so 6, together 76.",
+   "sprechtext": "Example half of 152: 140, so 70 and 12, so 6, together 76.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "2b6d66022018ffcd6f34_normal.mp3"
+     "datei": "73d29328d4f793afc299_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "2b6d66022018ffcd6f34_langsam.mp3"
+     "datei": "73d29328d4f793afc299_langsam.mp3"
     }
    ]
   },
@@ -7417,19 +7417,19 @@
    ]
   },
   {
-   "id": "3b0196d4bc058750d69b",
+   "id": "bc4c6c2589ff13ca2ccb",
    "sprache": "en",
-   "sprechtext": "Example an eighth of 9,539 divided by 4,769.5, so 2,384.75, so 1,192.375.",
+   "sprechtext": "Example an eighth of 9,539: 4,769.5, so 2,384.75, so 1,192.375.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "3b0196d4bc058750d69b_normal.mp3"
+     "datei": "bc4c6c2589ff13ca2ccb_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "3b0196d4bc058750d69b_langsam.mp3"
+     "datei": "bc4c6c2589ff13ca2ccb_langsam.mp3"
     }
    ]
   },
@@ -7774,19 +7774,19 @@
    ]
   },
   {
-   "id": "b3fe91fbee1bec6d384e",
+   "id": "22f74435436bba6e07c9",
    "sprache": "en",
-   "sprechtext": "A whole number is a fraction with denominator 1 divided by 7 equals 7 over 1.",
+   "sprechtext": "A whole number is a fraction with denominator 1: 7 equals 7 over 1.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "b3fe91fbee1bec6d384e_normal.mp3"
+     "datei": "22f74435436bba6e07c9_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "b3fe91fbee1bec6d384e_langsam.mp3"
+     "datei": "22f74435436bba6e07c9_langsam.mp3"
     }
    ]
   },
@@ -7876,19 +7876,19 @@
    ]
   },
   {
-   "id": "8ca1526a5bda993b9fbb",
+   "id": "d7da55884bc1e1e12eea",
    "sprache": "en",
-   "sprechtext": "Line up the decimal points. Fill missing places with 0 divided by 1.2 equals 1.20.",
+   "sprechtext": "Line up the decimal points. Fill missing places with 0: 1.2 equals 1.20.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "8ca1526a5bda993b9fbb_normal.mp3"
+     "datei": "d7da55884bc1e1e12eea_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "8ca1526a5bda993b9fbb_langsam.mp3"
+     "datei": "d7da55884bc1e1e12eea_langsam.mp3"
     }
    ]
   },
@@ -7944,19 +7944,19 @@
    ]
   },
   {
-   "id": "ff884782c931bbdd0e14",
+   "id": "ce014b29c09e123bdb12",
    "sprache": "en",
-   "sprechtext": "Example 5.38 times 2 divided by 538 times 2 equals 1,076, two places, so 10.76.",
+   "sprechtext": "Example 5.38 times 2: 538 times 2 equals 1,076, two places, so 10.76.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "ff884782c931bbdd0e14_normal.mp3"
+     "datei": "ce014b29c09e123bdb12_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "ff884782c931bbdd0e14_langsam.mp3"
+     "datei": "ce014b29c09e123bdb12_langsam.mp3"
     }
    ]
   },
@@ -8097,19 +8097,19 @@
    ]
   },
   {
-   "id": "f9fc8557466aee9b6b4e",
+   "id": "bdae16ea318f7caf632f",
    "sprache": "en",
-   "sprechtext": "Example 40 percent of 210 divided by 10 percent is 21, so 40 percent equals 4 times 21 equals 84.",
+   "sprechtext": "Example 40 percent of 210: 10 percent is 21, so 40 percent equals 4 times 21 equals 84.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "f9fc8557466aee9b6b4e_normal.mp3"
+     "datei": "bdae16ea318f7caf632f_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "f9fc8557466aee9b6b4e_langsam.mp3"
+     "datei": "bdae16ea318f7caf632f_langsam.mp3"
     }
    ]
   },
@@ -8641,19 +8641,19 @@
    ]
   },
   {
-   "id": "20aaa7a18025e77d2540",
+   "id": "d8f388ddb726a39715da",
    "sprache": "en",
-   "sprechtext": "Example 2x plus 3 with x equals 10 divided by 2 times 10 plus 3 equals 23.",
+   "sprechtext": "Example 2x plus 3 with x equals 10: 2 times 10 plus 3 equals 23.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "20aaa7a18025e77d2540_normal.mp3"
+     "datei": "d8f388ddb726a39715da_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "20aaa7a18025e77d2540_langsam.mp3"
+     "datei": "d8f388ddb726a39715da_langsam.mp3"
     }
    ]
   },
@@ -8828,19 +8828,19 @@
    ]
   },
   {
-   "id": "8bde539ef801068fed6d",
+   "id": "45e72ad446f581909ae9",
    "sprache": "en",
-   "sprechtext": "x to the power of 3 equals x times x times x. With negative x divided by minus 2 to the power of 3 equals minus 8.",
+   "sprechtext": "x to the power of 3 equals x times x times x. With negative x: minus 2 to the power of 3 equals minus 8.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "8bde539ef801068fed6d_normal.mp3"
+     "datei": "45e72ad446f581909ae9_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "8bde539ef801068fed6d_langsam.mp3"
+     "datei": "45e72ad446f581909ae9_langsam.mp3"
     }
    ]
   },
@@ -8947,19 +8947,19 @@
    ]
   },
   {
-   "id": "84a0b5f165e3d7b5c2cc",
+   "id": "2e4daa58183a19eeb0b6",
    "sprache": "en",
-   "sprechtext": "Example P 2 and 8, Q 6 and 16: m equals 8 divided by 4 equals 2.",
+   "sprechtext": "Example P 2 and 8, Q 6 and 16 divided by m equals 8 divided by 4 equals 2.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "84a0b5f165e3d7b5c2cc_normal.mp3"
+     "datei": "2e4daa58183a19eeb0b6_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "84a0b5f165e3d7b5c2cc_langsam.mp3"
+     "datei": "2e4daa58183a19eeb0b6_langsam.mp3"
     }
    ]
   },
@@ -9576,19 +9576,19 @@
    ]
   },
   {
-   "id": "01449c6fbb801969ea9e",
+   "id": "730058546c2f62d9bc47",
    "sprache": "en",
-   "sprechtext": "Example 7,900 times 90 divided by 79 times 9 equals 711, three zeros, so 711,000.",
+   "sprechtext": "Example 7,900 times 90: 79 times 9 equals 711, three zeros, so 711,000.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "01449c6fbb801969ea9e_normal.mp3"
+     "datei": "730058546c2f62d9bc47_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "01449c6fbb801969ea9e_langsam.mp3"
+     "datei": "730058546c2f62d9bc47_langsam.mp3"
     }
    ]
   },
@@ -10239,19 +10239,19 @@
    ]
   },
   {
-   "id": "28d59821043d68c3c50d",
+   "id": "c5e47d548bd728ff38c5",
    "sprache": "en",
-   "sprechtext": "Example I: x plus 6y equals 45, II: 6x minus y equals 11. II times 6 divided by 36x minus 6y equals 66.",
+   "sprechtext": "Example I: x plus 6y equals 45, II: 6x minus y equals 11. II times 6: 36x minus 6y equals 66.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "28d59821043d68c3c50d_normal.mp3"
+     "datei": "c5e47d548bd728ff38c5_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "28d59821043d68c3c50d_langsam.mp3"
+     "datei": "c5e47d548bd728ff38c5_langsam.mp3"
     }
    ]
   },
@@ -10324,19 +10324,19 @@
    ]
   },
   {
-   "id": "f4db17db2d98751975ff",
+   "id": "25dd38f9f24f5c188113",
    "sprache": "en",
-   "sprechtext": "I times 2 divided by 4x plus 6y equals 24. II times minus 3 divided by minus 9x minus 6y equals minus 39. Add: minus 5x equals minus 15, so x equals 3.",
+   "sprechtext": "I times 2: 4x plus 6y equals 24. II times minus 3: minus 9x minus 6y equals minus 39. Add: minus 5x equals minus 15, so x equals 3.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "f4db17db2d98751975ff_normal.mp3"
+     "datei": "25dd38f9f24f5c188113_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "f4db17db2d98751975ff_langsam.mp3"
+     "datei": "25dd38f9f24f5c188113_langsam.mp3"
     }
    ]
   },
@@ -10732,19 +10732,19 @@
    ]
   },
   {
-   "id": "e6ac8a02a45bfc09af55",
+   "id": "5393e8c517526d3f05f0",
    "sprache": "en",
-   "sprechtext": "Example 10 divided by 05 to 12 divided by 10 divided by 55 minutes plus 70 minutes equals 125 minutes.",
+   "sprechtext": "Example 10 divided by 05 to 12 divided by 10: 55 minutes plus 70 minutes equals 125 minutes.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "e6ac8a02a45bfc09af55_normal.mp3"
+     "datei": "5393e8c517526d3f05f0_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "e6ac8a02a45bfc09af55_langsam.mp3"
+     "datei": "5393e8c517526d3f05f0_langsam.mp3"
     }
    ]
   },
@@ -12381,19 +12381,19 @@
    ]
   },
   {
-   "id": "6f4575d35f4c89629dd4",
+   "id": "ab4f19ead89a3a773eb3",
    "sprache": "uk",
-   "sprechtext": "Приклад 8 плюс 5 поділити на 8 плюс 2 дорівнює 10, потім 10 плюс 3 дорівнює 13.",
+   "sprechtext": "Приклад 8 плюс 5: 8 плюс 2 дорівнює 10, потім 10 плюс 3 дорівнює 13.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "6f4575d35f4c89629dd4_normal.mp3"
+     "datei": "ab4f19ead89a3a773eb3_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "6f4575d35f4c89629dd4_langsam.mp3"
+     "datei": "ab4f19ead89a3a773eb3_langsam.mp3"
     }
    ]
   },
@@ -12415,19 +12415,19 @@
    ]
   },
   {
-   "id": "9dc1a093a5f0919b3e15",
+   "id": "c2d9eafdee61e3aa5394",
    "sprache": "uk",
-   "sprechtext": "Приклад 57 плюс 7 поділити на 57 плюс 3 дорівнює 60, потім 60 плюс 4 дорівнює 64.",
+   "sprechtext": "Приклад 57 плюс 7: 57 плюс 3 дорівнює 60, потім 60 плюс 4 дорівнює 64.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "9dc1a093a5f0919b3e15_normal.mp3"
+     "datei": "c2d9eafdee61e3aa5394_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "9dc1a093a5f0919b3e15_langsam.mp3"
+     "datei": "c2d9eafdee61e3aa5394_langsam.mp3"
     }
    ]
   },
@@ -12449,19 +12449,19 @@
    ]
   },
   {
-   "id": "0c930e8ffc8612b6e88e",
+   "id": "226e0d7ddb983ca6af1e",
    "sprache": "uk",
-   "sprechtext": "Приклад 49 плюс 25 поділити на 49 плюс 20 дорівнює 69, потім 69 плюс 5 дорівнює 74.",
+   "sprechtext": "Приклад 49 плюс 25: 49 плюс 20 дорівнює 69, потім 69 плюс 5 дорівнює 74.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "0c930e8ffc8612b6e88e_normal.mp3"
+     "datei": "226e0d7ddb983ca6af1e_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "0c930e8ffc8612b6e88e_langsam.mp3"
+     "datei": "226e0d7ddb983ca6af1e_langsam.mp3"
     }
    ]
   },
@@ -12602,19 +12602,19 @@
    ]
   },
   {
-   "id": "f9113bf916feffdb3d12",
+   "id": "30f732bdef16c2549afd",
    "sprache": "uk",
-   "sprechtext": "Приклад 14 мінус 7 поділити на 14 мінус 4 дорівнює 10, потім 10 мінус 3 дорівнює 7.",
+   "sprechtext": "Приклад 14 мінус 7: 14 мінус 4 дорівнює 10, потім 10 мінус 3 дорівнює 7.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "f9113bf916feffdb3d12_normal.mp3"
+     "datei": "30f732bdef16c2549afd_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "f9113bf916feffdb3d12_langsam.mp3"
+     "datei": "30f732bdef16c2549afd_langsam.mp3"
     }
    ]
   },
@@ -12636,19 +12636,19 @@
    ]
   },
   {
-   "id": "79170139a63c2dd36a7d",
+   "id": "5648e33a73889e0788d6",
    "sprache": "uk",
-   "sprechtext": "Приклад 62 мінус 9 поділити на 62 мінус 2 дорівнює 60, потім 60 мінус 7 дорівнює 53.",
+   "sprechtext": "Приклад 62 мінус 9: 62 мінус 2 дорівнює 60, потім 60 мінус 7 дорівнює 53.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "79170139a63c2dd36a7d_normal.mp3"
+     "datei": "5648e33a73889e0788d6_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "79170139a63c2dd36a7d_langsam.mp3"
+     "datei": "5648e33a73889e0788d6_langsam.mp3"
     }
    ]
   },
@@ -12670,19 +12670,19 @@
    ]
   },
   {
-   "id": "9716f402c12537b3ddf5",
+   "id": "cf441391778dfc48cf0d",
    "sprache": "uk",
-   "sprechtext": "Приклад 74 мінус 25 поділити на 74 мінус 20 дорівнює 54, потім 54 мінус 5 дорівнює 49.",
+   "sprechtext": "Приклад 74 мінус 25: 74 мінус 20 дорівнює 54, потім 54 мінус 5 дорівнює 49.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "9716f402c12537b3ddf5_normal.mp3"
+     "datei": "cf441391778dfc48cf0d_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "9716f402c12537b3ddf5_langsam.mp3"
+     "datei": "cf441391778dfc48cf0d_langsam.mp3"
     }
    ]
   },
@@ -12704,19 +12704,19 @@
    ]
   },
   {
-   "id": "873c522a0167263bd334",
+   "id": "e31dedd8687d837ef0b1",
    "sprache": "uk",
-   "sprechtext": "Приклад 554 мінус 218 поділити на мінус 200, потім мінус 10, потім мінус 8.",
+   "sprechtext": "Приклад 554 мінус 218: мінус 200, потім мінус 10, потім мінус 8.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "873c522a0167263bd334_normal.mp3"
+     "datei": "e31dedd8687d837ef0b1_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "873c522a0167263bd334_langsam.mp3"
+     "datei": "e31dedd8687d837ef0b1_langsam.mp3"
     }
    ]
   },
@@ -12857,19 +12857,19 @@
    ]
   },
   {
-   "id": "2ee413c85a1a5e023a5e",
+   "id": "d707b5240ad9b1a42e56",
    "sprache": "uk",
-   "sprechtext": "Приклад 6 помножити на 15 поділити на 6 помножити на 10 дорівнює 60 і 6 помножити на 5 дорівнює 30, разом 90.",
+   "sprechtext": "Приклад 6 помножити на 15: 6 помножити на 10 дорівнює 60 і 6 помножити на 5 дорівнює 30, разом 90.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "2ee413c85a1a5e023a5e_normal.mp3"
+     "datei": "d707b5240ad9b1a42e56_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "2ee413c85a1a5e023a5e_langsam.mp3"
+     "datei": "d707b5240ad9b1a42e56_langsam.mp3"
     }
    ]
   },
@@ -12891,19 +12891,19 @@
    ]
   },
   {
-   "id": "f09a2aeebb88dfab781b",
+   "id": "71d6def36e467548a77e",
    "sprache": "uk",
-   "sprechtext": "Приклад 9 помножити на 14 поділити на 9 помножити на 10 дорівнює 90 і 9 помножити на 4 дорівнює 36, разом 126.",
+   "sprechtext": "Приклад 9 помножити на 14: 9 помножити на 10 дорівнює 90 і 9 помножити на 4 дорівнює 36, разом 126.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "f09a2aeebb88dfab781b_normal.mp3"
+     "datei": "71d6def36e467548a77e_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "f09a2aeebb88dfab781b_langsam.mp3"
+     "datei": "71d6def36e467548a77e_langsam.mp3"
     }
    ]
   },
@@ -12925,19 +12925,19 @@
    ]
   },
   {
-   "id": "186388c979bf7853747d",
+   "id": "b8446abb3c1bda5d4a3b",
    "sprache": "uk",
-   "sprechtext": "Приклад 14 помножити на 13 поділити на 14 помножити на 10 дорівнює 140 і 14 помножити на 3 дорівнює 42, разом 182.",
+   "sprechtext": "Приклад 14 помножити на 13: 14 помножити на 10 дорівнює 140 і 14 помножити на 3 дорівнює 42, разом 182.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "186388c979bf7853747d_normal.mp3"
+     "datei": "b8446abb3c1bda5d4a3b_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "186388c979bf7853747d_langsam.mp3"
+     "datei": "b8446abb3c1bda5d4a3b_langsam.mp3"
     }
    ]
   },
@@ -13061,19 +13061,19 @@
    ]
   },
   {
-   "id": "e3ba1bd961077b9438f6",
+   "id": "418321b40e27a4a4dce0",
    "sprache": "uk",
-   "sprechtext": "Приклад 72 поділити на 6 поділити на 60 поділити на 6 дорівнює 10 і 12 поділити на 6 дорівнює 2, разом 12.",
+   "sprechtext": "Приклад 72 поділити на 6: 60 поділити на 6 дорівнює 10 і 12 поділити на 6 дорівнює 2, разом 12.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "e3ba1bd961077b9438f6_normal.mp3"
+     "datei": "418321b40e27a4a4dce0_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "e3ba1bd961077b9438f6_langsam.mp3"
+     "datei": "418321b40e27a4a4dce0_langsam.mp3"
     }
    ]
   },
@@ -13095,19 +13095,19 @@
    ]
   },
   {
-   "id": "faac44687ae60a91f5e7",
+   "id": "b2fb498a81ce1717f265",
    "sprache": "uk",
-   "sprechtext": "Приклад 210 поділити на 6 поділити на 180 поділити на 6 дорівнює 30 і 30 поділити на 6 дорівнює 5, разом 35.",
+   "sprechtext": "Приклад 210 поділити на 6: 180 поділити на 6 дорівнює 30 і 30 поділити на 6 дорівнює 5, разом 35.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "faac44687ae60a91f5e7_normal.mp3"
+     "datei": "b2fb498a81ce1717f265_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "faac44687ae60a91f5e7_langsam.mp3"
+     "datei": "b2fb498a81ce1717f265_langsam.mp3"
     }
    ]
   },
@@ -13129,19 +13129,19 @@
    ]
   },
   {
-   "id": "024ae6d888cbfcdc5f3c",
+   "id": "e04b5ed649a733e27a91",
    "sprache": "uk",
-   "sprechtext": "Приклад 384 поділити на 16 поділити на 320 поділити на 16 дорівнює 20 і 64 поділити на 16 дорівнює 4, разом 24.",
+   "sprechtext": "Приклад 384 поділити на 16: 320 поділити на 16 дорівнює 20 і 64 поділити на 16 дорівнює 4, разом 24.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "024ae6d888cbfcdc5f3c_normal.mp3"
+     "datei": "e04b5ed649a733e27a91_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "024ae6d888cbfcdc5f3c_langsam.mp3"
+     "datei": "e04b5ed649a733e27a91_langsam.mp3"
     }
    ]
   },
@@ -13282,19 +13282,19 @@
    ]
   },
   {
-   "id": "636e6284e5112025c708",
+   "id": "2dc6373db0bce0f6e71f",
    "sprache": "uk",
-   "sprechtext": "Пропуск у діленні: 42: ? дорівнює 14, отже яке число, помножене на 14, дає 42?, отже 3.",
+   "sprechtext": "Пропуск у діленні: 42 поділити на ? дорівнює 14, отже яке число, помножене на 14, дає 42?, отже 3.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "636e6284e5112025c708_normal.mp3"
+     "datei": "2dc6373db0bce0f6e71f_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "636e6284e5112025c708_langsam.mp3"
+     "datei": "2dc6373db0bce0f6e71f_langsam.mp3"
     }
    ]
   },
@@ -13435,19 +13435,19 @@
    ]
   },
   {
-   "id": "e9349ac1a1e04ba1e8d2",
+   "id": "92839ad90bab4d2dabbe",
    "sprache": "uk",
-   "sprechtext": "Приклад половина від 28 поділити на 20, отже 10 і 8, отже 4, разом 14.",
+   "sprechtext": "Приклад половина від 28: 20, отже 10 і 8, отже 4, разом 14.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "e9349ac1a1e04ba1e8d2_normal.mp3"
+     "datei": "92839ad90bab4d2dabbe_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "e9349ac1a1e04ba1e8d2_langsam.mp3"
+     "datei": "92839ad90bab4d2dabbe_langsam.mp3"
     }
    ]
   },
@@ -13469,19 +13469,19 @@
    ]
   },
   {
-   "id": "df8885d8d81306ddf32c",
+   "id": "41f69f1d91b55868320b",
    "sprache": "uk",
-   "sprechtext": "Приклад половина від 152 поділити на 140, отже 70 і 12, отже 6, разом 76.",
+   "sprechtext": "Приклад половина від 152: 140, отже 70 і 12, отже 6, разом 76.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "df8885d8d81306ddf32c_normal.mp3"
+     "datei": "41f69f1d91b55868320b_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "df8885d8d81306ddf32c_langsam.mp3"
+     "datei": "41f69f1d91b55868320b_langsam.mp3"
     }
    ]
   },
@@ -13571,19 +13571,19 @@
    ]
   },
   {
-   "id": "5e8507ab66819d89f3a7",
+   "id": "ad8ae0c5ab3fd6c3c275",
    "sprache": "uk",
-   "sprechtext": "Приклад восьма частина від 9539 поділити на 4769,5, отже 2384,75, отже 1192,375.",
+   "sprechtext": "Приклад восьма частина від 9539: 4769,5, отже 2384,75, отже 1192,375.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "5e8507ab66819d89f3a7_normal.mp3"
+     "datei": "ad8ae0c5ab3fd6c3c275_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "5e8507ab66819d89f3a7_langsam.mp3"
+     "datei": "ad8ae0c5ab3fd6c3c275_langsam.mp3"
     }
    ]
   },
@@ -13741,19 +13741,19 @@
    ]
   },
   {
-   "id": "928d46c6732905144283",
+   "id": "fa7951db52048dc4a50d",
    "sprache": "uk",
-   "sprechtext": "Ціна за кілограм: ціна: грами помножити на 1000.",
+   "sprechtext": "Ціна за кілограм: ціна поділити на грами помножити на 1000.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "928d46c6732905144283_normal.mp3"
+     "datei": "fa7951db52048dc4a50d_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "928d46c6732905144283_langsam.mp3"
+     "datei": "fa7951db52048dc4a50d_langsam.mp3"
     }
    ]
   },
@@ -13928,19 +13928,19 @@
    ]
   },
   {
-   "id": "948ad4f072e44aed4203",
+   "id": "2e1b9b15753f58786387",
    "sprache": "uk",
-   "sprechtext": "Ціле число — це дріб зі знаменником 1 поділити на 7 дорівнює 7 поділити на 1.",
+   "sprechtext": "Ціле число — це дріб зі знаменником 1: 7 дорівнює 7 поділити на 1.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "948ad4f072e44aed4203_normal.mp3"
+     "datei": "2e1b9b15753f58786387_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "948ad4f072e44aed4203_langsam.mp3"
+     "datei": "2e1b9b15753f58786387_langsam.mp3"
     }
    ]
   },
@@ -14098,19 +14098,19 @@
    ]
   },
   {
-   "id": "30e328ddf73fd9021b78",
+   "id": "5d731f0656a7978f9f01",
    "sprache": "uk",
-   "sprechtext": "Приклад 5,38 помножити на 2 поділити на 538 помножити на 2 дорівнює 1076, два знаки, отже 10,76.",
+   "sprechtext": "Приклад 5,38 помножити на 2: 538 помножити на 2 дорівнює 1076, два знаки, отже 10,76.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "30e328ddf73fd9021b78_normal.mp3"
+     "datei": "5d731f0656a7978f9f01_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "30e328ddf73fd9021b78_langsam.mp3"
+     "datei": "5d731f0656a7978f9f01_langsam.mp3"
     }
    ]
   },
@@ -14132,19 +14132,19 @@
    ]
   },
   {
-   "id": "841b3b29b42884a2ced1",
+   "id": "c64d9226b90cef50b8ec",
    "sprache": "uk",
-   "sprechtext": "Дріб у десятковий: чисельник: знаменник або розшир до 10, 100, 1000.",
+   "sprechtext": "Дріб у десятковий: чисельник поділити на знаменник або розшир до 10, 100, 1000.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "841b3b29b42884a2ced1_normal.mp3"
+     "datei": "c64d9226b90cef50b8ec_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "841b3b29b42884a2ced1_langsam.mp3"
+     "datei": "c64d9226b90cef50b8ec_langsam.mp3"
     }
    ]
   },
@@ -14251,19 +14251,19 @@
    ]
   },
   {
-   "id": "6265a823216d3b4fb9f9",
+   "id": "4c508ebb46173007e5b4",
    "sprache": "uk",
-   "sprechtext": "Приклад 40 відсотків від 210 поділити на 10 відсотків — це 21, отже 40 відсотків дорівнює 4 помножити на 21 дорівнює 84.",
+   "sprechtext": "Приклад 40 відсотків від 210: 10 відсотків — це 21, отже 40 відсотків дорівнює 4 помножити на 21 дорівнює 84.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "6265a823216d3b4fb9f9_normal.mp3"
+     "datei": "4c508ebb46173007e5b4_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "6265a823216d3b4fb9f9_langsam.mp3"
+     "datei": "4c508ebb46173007e5b4_langsam.mp3"
     }
    ]
   },
@@ -14795,19 +14795,19 @@
    ]
   },
   {
-   "id": "a5bb5073cc63638a4f68",
+   "id": "076373e5f066f13ab321",
    "sprache": "uk",
-   "sprechtext": "Приклад 2x плюс 3 при x дорівнює 10 поділити на 2 помножити на 10 плюс 3 дорівнює 23.",
+   "sprechtext": "Приклад 2x плюс 3 при x дорівнює 10: 2 помножити на 10 плюс 3 дорівнює 23.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "a5bb5073cc63638a4f68_normal.mp3"
+     "datei": "076373e5f066f13ab321_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "a5bb5073cc63638a4f68_langsam.mp3"
+     "datei": "076373e5f066f13ab321_langsam.mp3"
     }
    ]
   },
@@ -14982,19 +14982,19 @@
    ]
   },
   {
-   "id": "96eba5c4b9576c337c53",
+   "id": "566f65c5286d654a61ec",
    "sprache": "uk",
-   "sprechtext": "x у степені 3 дорівнює x помножити на x помножити на x. Для від’ємного x поділити на мінус 2 у степені 3 дорівнює мінус 8.",
+   "sprechtext": "x у степені 3 дорівнює x помножити на x помножити на x. Для від’ємного x: мінус 2 у степені 3 дорівнює мінус 8.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "96eba5c4b9576c337c53_normal.mp3"
+     "datei": "566f65c5286d654a61ec_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "96eba5c4b9576c337c53_langsam.mp3"
+     "datei": "566f65c5286d654a61ec_langsam.mp3"
     }
    ]
   },
@@ -15101,19 +15101,19 @@
    ]
   },
   {
-   "id": "6ae363888257e27edc42",
+   "id": "f6bd9ed0ba562f059565",
    "sprache": "uk",
-   "sprechtext": "Приклад P 2 і 8, Q 6 і 16: m дорівнює 8 поділити на 4 дорівнює 2.",
+   "sprechtext": "Приклад P 2 і 8, Q 6 і 16 поділити на m дорівнює 8 поділити на 4 дорівнює 2.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "6ae363888257e27edc42_normal.mp3"
+     "datei": "f6bd9ed0ba562f059565_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "6ae363888257e27edc42_langsam.mp3"
+     "datei": "f6bd9ed0ba562f059565_langsam.mp3"
     }
    ]
   },
@@ -15713,19 +15713,19 @@
    ]
   },
   {
-   "id": "82ebaec0521718f3fb91",
+   "id": "5d0561b3f4444f5a9a5c",
    "sprache": "uk",
-   "sprechtext": "Приклад 7900 помножити на 90 поділити на 79 помножити на 9 дорівнює 711, три нулі, отже 711 000.",
+   "sprechtext": "Приклад 7900 помножити на 90: 79 помножити на 9 дорівнює 711, три нулі, отже 711 000.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "82ebaec0521718f3fb91_normal.mp3"
+     "datei": "5d0561b3f4444f5a9a5c_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "82ebaec0521718f3fb91_langsam.mp3"
+     "datei": "5d0561b3f4444f5a9a5c_langsam.mp3"
     }
    ]
   },
@@ -16376,19 +16376,19 @@
    ]
   },
   {
-   "id": "db34c36cff052079b5b8",
+   "id": "bd21364d547070fd85c4",
    "sprache": "uk",
-   "sprechtext": "Приклад I: x плюс 6y дорівнює 45, II: 6x мінус y дорівнює 11. II помножити на 6 поділити на 36x мінус 6y дорівнює 66.",
+   "sprechtext": "Приклад I: x плюс 6y дорівнює 45, II: 6x мінус y дорівнює 11. II помножити на 6: 36x мінус 6y дорівнює 66.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "db34c36cff052079b5b8_normal.mp3"
+     "datei": "bd21364d547070fd85c4_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "db34c36cff052079b5b8_langsam.mp3"
+     "datei": "bd21364d547070fd85c4_langsam.mp3"
     }
    ]
   },
@@ -16461,19 +16461,19 @@
    ]
   },
   {
-   "id": "4277ba692a57841e55c0",
+   "id": "e3068ff9aa855b96e813",
    "sprache": "uk",
-   "sprechtext": "I помножити на 2 поділити на 4x плюс 6y дорівнює 24. II помножити на мінус 3 поділити на мінус 9x мінус 6y дорівнює мінус 39. Додаємо: мінус 5x дорівнює мінус 15, отже x дорівнює 3.",
+   "sprechtext": "I помножити на 2: 4x плюс 6y дорівнює 24. II помножити на мінус 3: мінус 9x мінус 6y дорівнює мінус 39. Додаємо: мінус 5x дорівнює мінус 15, отже x дорівнює 3.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "4277ba692a57841e55c0_normal.mp3"
+     "datei": "e3068ff9aa855b96e813_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "4277ba692a57841e55c0_langsam.mp3"
+     "datei": "e3068ff9aa855b96e813_langsam.mp3"
     }
    ]
   },
@@ -16614,19 +16614,19 @@
    ]
   },
   {
-   "id": "9aa5210cc8ec79455919",
+   "id": "a0c7b73a14ecbbdd9640",
    "sprache": "uk",
-   "sprechtext": "a помножити на x дорівнює b: поділи обидві частини на a. x: a дорівнює b: помнож обидві частини на a.",
+   "sprechtext": "a помножити на x дорівнює b: поділи обидві частини на a. x поділити на a дорівнює b: помнож обидві частини на a.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "9aa5210cc8ec79455919_normal.mp3"
+     "datei": "a0c7b73a14ecbbdd9640_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "9aa5210cc8ec79455919_langsam.mp3"
+     "datei": "a0c7b73a14ecbbdd9640_langsam.mp3"
     }
    ]
   },
@@ -16869,19 +16869,19 @@
    ]
   },
   {
-   "id": "60286b584391480bebdf",
+   "id": "8ab1cf81b7e7c983ddfd",
    "sprache": "uk",
-   "sprechtext": "Приклад з 10 поділити на 05 до 12 поділити на 10 поділити на 55 хвилин плюс 70 хвилин дорівнює 125 хвилин.",
+   "sprechtext": "Приклад з 10 поділити на 05 до 12 поділити на 10: 55 хвилин плюс 70 хвилин дорівнює 125 хвилин.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "60286b584391480bebdf_normal.mp3"
+     "datei": "8ab1cf81b7e7c983ddfd_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "60286b584391480bebdf_langsam.mp3"
+     "datei": "8ab1cf81b7e7c983ddfd_langsam.mp3"
     }
    ]
   },
@@ -17090,19 +17090,19 @@
    ]
   },
   {
-   "id": "9b743d7bc9118a90e13f",
+   "id": "f1f270790aef0235a56d",
    "sprache": "uk",
-   "sprechtext": "Сторона за площею: довжина дорівнює площа: ширина.",
+   "sprechtext": "Сторона за площею: довжина дорівнює площа поділити на ширина.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "9b743d7bc9118a90e13f_normal.mp3"
+     "datei": "f1f270790aef0235a56d_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "9b743d7bc9118a90e13f_langsam.mp3"
+     "datei": "f1f270790aef0235a56d_langsam.mp3"
     }
    ]
   },
@@ -17668,36 +17668,36 @@
    ]
   },
   {
-   "id": "56fddaa6afa8e06d097b",
+   "id": "d44df74ceaf91fc5885f",
    "sprache": "uk",
-   "sprechtext": "Ставка p дорівнює відсотки помножити на 100: капітал.",
+   "sprechtext": "Ставка p дорівнює відсотки помножити на 100 поділити на капітал.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "56fddaa6afa8e06d097b_normal.mp3"
+     "datei": "d44df74ceaf91fc5885f_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "56fddaa6afa8e06d097b_langsam.mp3"
+     "datei": "d44df74ceaf91fc5885f_langsam.mp3"
     }
    ]
   },
   {
-   "id": "c0117dbd0a01ce785b27",
+   "id": "6b41d8e3e1ffc809f4c7",
    "sprache": "uk",
-   "sprechtext": "Капітал дорівнює відсотки помножити на 100: p.",
+   "sprechtext": "Капітал дорівнює відсотки помножити на 100 поділити на p.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "c0117dbd0a01ce785b27_normal.mp3"
+     "datei": "6b41d8e3e1ffc809f4c7_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "c0117dbd0a01ce785b27_langsam.mp3"
+     "datei": "6b41d8e3e1ffc809f4c7_langsam.mp3"
     }
    ]
   },
@@ -17787,19 +17787,19 @@
    ]
   },
   {
-   "id": "ebfc7c0234717d275e0d",
+   "id": "f808b2b861fb85099a7d",
    "sprache": "uk",
-   "sprechtext": "Імовірність дорівнює сприятливі наслідки: усі можливі наслідки.",
+   "sprechtext": "Імовірність дорівнює сприятливі наслідки поділити на усі можливі наслідки.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "ebfc7c0234717d275e0d_normal.mp3"
+     "datei": "f808b2b861fb85099a7d_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "ebfc7c0234717d275e0d_langsam.mp3"
+     "datei": "f808b2b861fb85099a7d_langsam.mp3"
     }
    ]
   },
@@ -17872,19 +17872,19 @@
    ]
   },
   {
-   "id": "25111c9bb6989112e11e",
+   "id": "1b205ca248266ecf6910",
    "sprache": "uk",
-   "sprechtext": "Дріб у відсотки: чисельник: знаменник, потім помнож на 100.",
+   "sprechtext": "Дріб у відсотки: чисельник поділити на знаменник, потім помнож на 100.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "25111c9bb6989112e11e_normal.mp3"
+     "datei": "1b205ca248266ecf6910_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "25111c9bb6989112e11e_langsam.mp3"
+     "datei": "1b205ca248266ecf6910_langsam.mp3"
     }
    ]
   },
@@ -18025,19 +18025,19 @@
    ]
   },
   {
-   "id": "3ab8311a46caf733730b",
+   "id": "7933c05cfcf7a773d213",
    "sprache": "uk",
-   "sprechtext": "Середнє дорівнює сума всіх значень: кількість значень.",
+   "sprechtext": "Середнє дорівнює сума всіх значень поділити на кількість значень.",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "3ab8311a46caf733730b_normal.mp3"
+     "datei": "7933c05cfcf7a773d213_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "3ab8311a46caf733730b_langsam.mp3"
+     "datei": "7933c05cfcf7a773d213_langsam.mp3"
     }
    ]
   },
@@ -36929,19 +36929,19 @@
    ]
   },
   {
-   "id": "8d2a099ccdb0092d8c3e",
+   "id": "b9c2da84f4562124e92d",
    "sprache": "en",
-   "sprechtext": "1 over 10 equals 0,1 is memorised now!",
+   "sprechtext": "1 over 10 equals 0.1 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "8d2a099ccdb0092d8c3e_normal.mp3"
+     "datei": "b9c2da84f4562124e92d_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "8d2a099ccdb0092d8c3e_langsam.mp3"
+     "datei": "b9c2da84f4562124e92d_langsam.mp3"
     }
    ]
   },
@@ -37065,19 +37065,19 @@
    ]
   },
   {
-   "id": "239e9c5368c1f9a293ac",
+   "id": "cff1932f8758b9c24c1e",
    "sprache": "en",
-   "sprechtext": "1 over 20 equals 0,05 is memorised now!",
+   "sprechtext": "1 over 20 equals 0.05 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "239e9c5368c1f9a293ac_normal.mp3"
+     "datei": "cff1932f8758b9c24c1e_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "239e9c5368c1f9a293ac_langsam.mp3"
+     "datei": "cff1932f8758b9c24c1e_langsam.mp3"
     }
    ]
   },
@@ -37133,19 +37133,19 @@
    ]
   },
   {
-   "id": "9134e0f02cb4bb7172f5",
+   "id": "3ec8f61cbbe799133f48",
    "sprache": "en",
-   "sprechtext": "1 over 25 equals 0,04 is memorised now!",
+   "sprechtext": "1 over 25 equals 0.04 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "9134e0f02cb4bb7172f5_normal.mp3"
+     "datei": "3ec8f61cbbe799133f48_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "9134e0f02cb4bb7172f5_langsam.mp3"
+     "datei": "3ec8f61cbbe799133f48_langsam.mp3"
     }
    ]
   },
@@ -37184,19 +37184,19 @@
    ]
   },
   {
-   "id": "9c3d57d0257be233206e",
+   "id": "f0e3e38041a08a25e33d",
    "sprache": "en",
-   "sprechtext": "1 over 3 equals 33,3 is memorised now!",
+   "sprechtext": "1 over 3 equals 33.3 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "9c3d57d0257be233206e_normal.mp3"
+     "datei": "f0e3e38041a08a25e33d_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "9c3d57d0257be233206e_langsam.mp3"
+     "datei": "f0e3e38041a08a25e33d_langsam.mp3"
     }
    ]
   },
@@ -37235,19 +37235,19 @@
    ]
   },
   {
-   "id": "47ed2628d79af102b8c1",
+   "id": "e2d44693d8adfbf4ec77",
    "sprache": "en",
-   "sprechtext": "1 over 4 equals 0,25 is memorised now!",
+   "sprechtext": "1 over 4 equals 0.25 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "47ed2628d79af102b8c1_normal.mp3"
+     "datei": "e2d44693d8adfbf4ec77_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "47ed2628d79af102b8c1_langsam.mp3"
+     "datei": "e2d44693d8adfbf4ec77_langsam.mp3"
     }
    ]
   },
@@ -37303,19 +37303,19 @@
    ]
   },
   {
-   "id": "08341bbbd755451d309a",
+   "id": "00c6fddf3662e6be2cb7",
    "sprache": "en",
-   "sprechtext": "1 over 5 equals 0,2 is memorised now!",
+   "sprechtext": "1 over 5 equals 0.2 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "08341bbbd755451d309a_normal.mp3"
+     "datei": "00c6fddf3662e6be2cb7_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "08341bbbd755451d309a_langsam.mp3"
+     "datei": "00c6fddf3662e6be2cb7_langsam.mp3"
     }
    ]
   },
@@ -37371,19 +37371,19 @@
    ]
   },
   {
-   "id": "bbb47afa75c8378081b4",
+   "id": "7c3b2ceecbd3074d4838",
    "sprache": "en",
-   "sprechtext": "1 over 50 equals 0,02 is memorised now!",
+   "sprechtext": "1 over 50 equals 0.02 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "bbb47afa75c8378081b4_normal.mp3"
+     "datei": "7c3b2ceecbd3074d4838_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "bbb47afa75c8378081b4_langsam.mp3"
+     "datei": "7c3b2ceecbd3074d4838_langsam.mp3"
     }
    ]
   },
@@ -37456,19 +37456,19 @@
    ]
   },
   {
-   "id": "40d05b35e6a8402000aa",
+   "id": "b2dbb9a6e50c39823e27",
    "sprache": "en",
-   "sprechtext": "1 over 8 equals 12,5 is memorised now!",
+   "sprechtext": "1 over 8 equals 12.5 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "40d05b35e6a8402000aa_normal.mp3"
+     "datei": "b2dbb9a6e50c39823e27_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "40d05b35e6a8402000aa_langsam.mp3"
+     "datei": "b2dbb9a6e50c39823e27_langsam.mp3"
     }
    ]
   },
@@ -39921,19 +39921,19 @@
    ]
   },
   {
-   "id": "2aff52898565948fa27d",
+   "id": "919e5527488fe7efcea5",
    "sprache": "en",
-   "sprechtext": "2 over 3 equals 66,7 is memorised now!",
+   "sprechtext": "2 over 3 equals 66.7 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "2aff52898565948fa27d_normal.mp3"
+     "datei": "919e5527488fe7efcea5_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "2aff52898565948fa27d_langsam.mp3"
+     "datei": "919e5527488fe7efcea5_langsam.mp3"
     }
    ]
   },
@@ -39972,19 +39972,19 @@
    ]
   },
   {
-   "id": "95db13efba07a477b37b",
+   "id": "95644364418d8e0eb4ed",
    "sprache": "en",
-   "sprechtext": "2 over 5 equals 0,4 is memorised now!",
+   "sprechtext": "2 over 5 equals 0.4 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "95db13efba07a477b37b_normal.mp3"
+     "datei": "95644364418d8e0eb4ed_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "95db13efba07a477b37b_langsam.mp3"
+     "datei": "95644364418d8e0eb4ed_langsam.mp3"
     }
    ]
   },
@@ -41349,19 +41349,19 @@
    ]
   },
   {
-   "id": "2e7520813cecca37b58f",
+   "id": "ace7363d03a83394101a",
    "sprache": "en",
-   "sprechtext": "3 over 10 equals 0,3 is memorised now!",
+   "sprechtext": "3 over 10 equals 0.3 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "2e7520813cecca37b58f_normal.mp3"
+     "datei": "ace7363d03a83394101a_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "2e7520813cecca37b58f_langsam.mp3"
+     "datei": "ace7363d03a83394101a_langsam.mp3"
     }
    ]
   },
@@ -41417,19 +41417,19 @@
    ]
   },
   {
-   "id": "3d8ddb993781b5a6f3c2",
+   "id": "cf92a1d8b458e6daf789",
    "sprache": "en",
-   "sprechtext": "3 over 4 equals 0,75 is memorised now!",
+   "sprechtext": "3 over 4 equals 0.75 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "3d8ddb993781b5a6f3c2_normal.mp3"
+     "datei": "cf92a1d8b458e6daf789_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "3d8ddb993781b5a6f3c2_langsam.mp3"
+     "datei": "cf92a1d8b458e6daf789_langsam.mp3"
     }
    ]
   },
@@ -41468,19 +41468,19 @@
    ]
   },
   {
-   "id": "22a9b70d4212ea460d7c",
+   "id": "9b2c6e412fcd0f8ba24f",
    "sprache": "en",
-   "sprechtext": "3 over 5 equals 0,6 is memorised now!",
+   "sprechtext": "3 over 5 equals 0.6 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "22a9b70d4212ea460d7c_normal.mp3"
+     "datei": "9b2c6e412fcd0f8ba24f_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "22a9b70d4212ea460d7c_langsam.mp3"
+     "datei": "9b2c6e412fcd0f8ba24f_langsam.mp3"
     }
    ]
   },
@@ -41536,19 +41536,19 @@
    ]
   },
   {
-   "id": "47436b856721f0ddf672",
+   "id": "9589936379a1a4651a69",
    "sprache": "en",
-   "sprechtext": "3 over 8 equals 37,5 is memorised now!",
+   "sprechtext": "3 over 8 equals 37.5 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "47436b856721f0ddf672_normal.mp3"
+     "datei": "9589936379a1a4651a69_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "47436b856721f0ddf672_langsam.mp3"
+     "datei": "9589936379a1a4651a69_langsam.mp3"
     }
    ]
   },
@@ -42760,19 +42760,19 @@
    ]
   },
   {
-   "id": "a4e728e08b11e5597f0b",
+   "id": "ff706e40fac9f7cf4f3d",
    "sprache": "en",
-   "sprechtext": "4 over 5 equals 0,8 is memorised now!",
+   "sprechtext": "4 over 5 equals 0.8 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "a4e728e08b11e5597f0b_normal.mp3"
+     "datei": "ff706e40fac9f7cf4f3d_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "a4e728e08b11e5597f0b_langsam.mp3"
+     "datei": "ff706e40fac9f7cf4f3d_langsam.mp3"
     }
    ]
   },
@@ -46041,19 +46041,19 @@
    ]
   },
   {
-   "id": "d2ea41312fc028746f34",
+   "id": "0e09bf315d7c13ca299b",
    "sprache": "en",
-   "sprechtext": "7 over 10 equals 0,7 is memorised now!",
+   "sprechtext": "7 over 10 equals 0.7 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "d2ea41312fc028746f34_normal.mp3"
+     "datei": "0e09bf315d7c13ca299b_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "d2ea41312fc028746f34_langsam.mp3"
+     "datei": "0e09bf315d7c13ca299b_langsam.mp3"
     }
    ]
   },
@@ -54184,19 +54184,19 @@
    ]
   },
   {
-   "id": "d5d3ede4fa6dfafc77d6",
+   "id": "d8bc68c8b53aa843a694",
    "sprache": "en",
-   "sprechtext": "one half equals 0,5 is memorised now!",
+   "sprechtext": "one half equals 0.5 is memorised now!",
    "fassungen": [
     {
      "art": "normal",
      "speed": 1,
-     "datei": "d5d3ede4fa6dfafc77d6_normal.mp3"
+     "datei": "d8bc68c8b53aa843a694_normal.mp3"
     },
     {
      "art": "langsam",
      "speed": 0.8,
-     "datei": "d5d3ede4fa6dfafc77d6_langsam.mp3"
+     "datei": "d8bc68c8b53aa843a694_langsam.mp3"
     }
    ]
   },

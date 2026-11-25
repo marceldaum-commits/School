@@ -2589,4 +2589,5 @@ I18N.add('uk', {"% sind":"% — це",
 "euer Kind":"вашої дитини",
 "Vorlesen ist vorbereitet für unsere eigenen Stimmen: keine Anbindung an externe Anbieter und keine Gerätestimme mehr":"Читання вголос підготовлено для наших власних голосів: жодного підключення до зовнішніх постачальників і жодного голосу пристрою",
 "Vorlesen kommt bald mit unseren eigenen Stimmen.":"Читання вголос незабаром з’явиться з нашими власними голосами.",
-"Der Titel „Echter Rechenblitz“ heißt jetzt „Echter Blitz“, der Rang „Rechenblitz-Legende“ heißt „Zahlensprint-Legende“":"Титул «Справжній Rechenblitz» тепер називається «Справжній Бліц», ранг «Легенда Rechenblitz» – «Легенда Zahlensprint»"});
+"Der Titel „Echter Rechenblitz“ heißt jetzt „Echter Blitz“, der Rang „Rechenblitz-Legende“ heißt „Zahlensprint-Legende“":"Титул «Справжній Rechenblitz» тепер називається «Справжній Бліц», ранг «Легенда Rechenblitz» – «Легенда Zahlensprint»",
+"Vorlesen vorbereitet: Ein Doppelpunkt im Text wird nicht mehr als „geteilt durch“ gelesen":"Читання вголос підготовлено: двокрапка в тексті більше не читається як «поділити на»"});

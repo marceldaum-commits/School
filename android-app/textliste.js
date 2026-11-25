@@ -25,7 +25,7 @@ for (const t of alle) {
   seen.set(id, { id, sprache: t.sprache, sprechtext, fassungen: FASSUNGEN.map(([art, speed]) => ({ art, speed, datei: `${id}_${art}.mp3` })) });
 }
 const liste = [...seen.values()];
-const out = { format: 1, app: 'zahlensprint', stand: new Date().toISOString().slice(0, 10), hinweis: 'Ukrainisch (Piper uk_UA ukrainian_tts, Sprecherin tetiana) ist im Quasselquest-Format nicht vorgesehen; Zahlen stehen als Ziffern, das Tonstudio schreibt sie aus (Marcel 25.11.).', texte: liste };
+const out = { format: 1, app: 'zahlensprint', stand: new Date().toISOString().slice(0, 10), hinweis: 'Ukrainisch (Piper uk_UA ukrainian_tts, Sprecherin tetiana) ist im Quasselquest-Format nicht vorgesehen; Zahlen stehen als Ziffern, das Tonstudio schreibt sie aus (Marcel 25.11.).', eintraege: liste };
 fs.mkdirSync(path.join(__dirname, '../docs/tonstudio'), { recursive: true });
 fs.writeFileSync(path.join(__dirname, '../docs/tonstudio/textliste.json'), JSON.stringify(out, null, 1) + '\n');
 const z = {}; for (const t of liste) z[t.sprache] = (z[t.sprache] || 0) + 1;

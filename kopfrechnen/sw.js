@@ -1,5 +1,5 @@
 // Rechenblitz Service Worker: App läuft nach dem ersten Besuch auch offline.
-const CACHE = 'rechenblitz-3.30.2';
+const CACHE = 'rechenblitz-3.30.3';
 const PUSH = 'rechenblitz-push', STIMME = 'rechenblitz-stimme';   // Erinnerungstext und offline geladene Vorlese-Sätze – bleiben bei Updates erhalten
 const FILES = ['./', 'index.html', 'app.min.css', 'config.js', 'js/rechenblitz.min.js', 'js/lang-en.js', 'js/lang-uk.js', 'manifest.webmanifest', 'icons/logo.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png',
   'icons/apple-touch-icon.png', 'icons/favicon-32.png', 'fonts/Inter.woff2', 'fonts/SourceSerif4-italic.woff2', 'fonts/Caveat.woff2'];

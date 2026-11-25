@@ -24,7 +24,8 @@ function build(opt = {}) {
     for (const tp of Object.keys(T)) { add(T[tp].k, lang); T[tp].l.flat().forEach(x => add(x, lang)); }
   // Häufige Aufgaben (Einmaleins usw.) als ganze Sätze vorab – fertig gesprochen, daher ohne mathSpeak
   const haeufig = JSON.parse(fs.readFileSync(path.join(__dirname, 'vorlesen-haeufig.json'), 'utf8')).texte;
-  const addRaw = (text, sprache) => { const t = text.normalize('NFC').replace(/\s+/g, ' ').trim(), k = sprache + '|' + t; if (t && !seen.has(k)) { seen.add(k); out.push({ text: t, sprache, laufzeit: true }); } };
+  const enZahl = (t, sprache) => sprache === 'en' ? t.replace(/(\d),(\d{1,2})(?!\d)/g, '$1.$2').replace(/(\d),(\d{4,})/g, '$1.$2') : t;   // Englisch: Dezimalpunkt (Tausender-Komma „4,705“ bleibt)
+  const addRaw = (text, sprache) => { text = enZahl(text, sprache); const t = text.normalize('NFC').replace(/\s+/g, ' ').trim(), k = sprache + '|' + t; if (t && !seen.has(k)) { seen.add(k); out.push({ text: t, sprache, laufzeit: true }); } };
   for (const de of blitzDe) { add(de, 'de'); const t = tsv.get(de); if (t) { if (t.en) add(t.en, 'en'); if (t.uk) add(t.uk, 'uk'); } }
   for (const [lang, list] of Object.entries(haeufig)) list.forEach(t => addRaw(t, lang));
   if (opt.liste) return out;   // nur die Liste (für die Textliste des Tonstudios), ohne die Datei zu schreiben

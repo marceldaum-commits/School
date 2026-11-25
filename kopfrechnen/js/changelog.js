@@ -1,8 +1,9 @@
 'use strict';
 // Rechenblitz – Versionen mit Datum (neueste oben). Wird unter „Was ist neu?“ angezeigt.
-const APP_VERSION = '3.30.2';
+const APP_VERSION = '3.30.3';
 const APP_DATE = '2026-11-24';
 const CHANGELOG = [
+  ['3.30.3', '2026-11-25', ['Vorlesen vorbereitet: Ein Doppelpunkt im Text wird nicht mehr als „geteilt durch“ gelesen']],
   ['3.30.2', '2026-11-24', ['Der Titel „Echter Rechenblitz“ heißt jetzt „Echter Blitz“, der Rang „Rechenblitz-Legende“ heißt „Zahlensprint-Legende“']],
   ['3.30.1', '2026-11-24', ['Vorlesen ist vorbereitet für unsere eigenen Stimmen: keine Anbindung an externe Anbieter und keine Gerätestimme mehr']],
   ['3.30.0', '2026-11-24', ['Neues Eltern-Tor: eine Malaufgabe in Worten mit eigener Zifferntastatur – gilt für Elternbereich, Eltern-Einstellungen, Kauf, Einladen und Teilen', 'Einstellungen aufgeteilt: Ton, Musik, Vorlesen, Klassenstufe, Sprache und Design bleiben offen, Pro und Zurücksetzen liegen hinter dem Eltern-Tor', 'Kinder sehen bei Schwierigkeiten nur einen Hilfesatz mit „Leichter üben“ und „Erklärung ansehen“; im Elternbereich gibt es einen abschaltbaren Hinweis']],

@@ -57,7 +57,11 @@ function mathSpeak(text, lang = I18N.lang) {
   // Punkte P(2|8): „P 2 und 8“
   s = s.replace(/\((−?\d[\d,.]*)\|(−?\d[\d,.]*)\)/g, ` $1 ${L.and} $2 `);
   // Rechenzeichen zwischen Zahlen/Klammern/x
-  s = s.replace(/([\dx)²³]) ?([·×÷:]) ?(?=[\d(x√−])/g, (m, a, op) => `${a} ${L.op[op]} `);
+  // Doppelpunkt ist nur dann „geteilt durch“, wenn er wie ein Rechenzeichen steht („12 : 4“ oder „12:4“) –
+  // „Beispiel 8 + 5: 8 + 2 = 10“ und „Nenner 1: 7 = 7/1“ sind Satzzeichen (Fund Tonstudio 25.11.)
+  s = s.replace(/([\dx)²³]) ?([·×÷]) ?(?=[\d(x√−])/g, (m, a, op) => `${a} ${L.op[op]} `);
+  s = s.replace(/([\dx)²³])(?: : |:(?=[\d(x√−]))/g, (m, a) => `${a} ${L.op[':']} `);
+  s = s.replace(/(\p{L}) : (?=\p{L})/gu, (m, a) => `${a} ${L.op[':']} `);   // „Preis : Gramm“ in Wörtern: geteilt durch
   s = s.replace(/([·×÷])/g, m => ` ${L.op[m]} `);
   s = s.replace(/ ?([=≈≙→<>]) ?/g, (m, op) => ` ${L.op[op]} `);
   s = s.replace(/(^|[\s(=])−\s?(?=[\dx(])/g, `$1${sp}`).replace(/ − /g, sp);
