@@ -12,15 +12,21 @@ const W = {
 const tor = [];
 for (const [lang, w] of Object.entries(W)) for (let a = 13; a <= 19; a++) for (let b = 6; b <= 9; b++) tor.push({ text: w.q(w.a[a - 13], w.b[b - 6]), sprache: lang, gruppe: 'tor' });
 const alle = [...fest.map(t => ({ text: t.text, sprache: t.sprache, gruppe: 'fest' })), ...tor];
-const sha = require('crypto');
-const liste = alle.map((t, i) => ({
-  id: `zs-${t.gruppe}-${t.sprache}-${sha.createHash('sha256').update(t.sprache + '|' + t.text).digest('hex').slice(0, 10)}`,
-  text: t.text, sprache: t.sprache, tempo: [1.0, 0.8], gruppe: t.gruppe,
-  ziel: `zahlensprint/${t.sprache}/${t.gruppe}/`,   // Dateiname: <id>-<tempo>.mp3
-}));
-const ids = new Set(liste.map(x => x.id)); if (ids.size !== liste.length) throw new Error('doppelte IDs');
-const out = { format: 1, app: 'zahlensprint', stand: new Date().toISOString().slice(0, 10), hinweis: 'Entwurf, Format bitte mit VERTONUNG.md abgleichen', texte: liste };
+const crypto = require('crypto');
+// Format „Tonstudio“ Format 1 (quasselquest/VERTONUNG.md, Zusammenfassung der AppZentrale 25.11.2026):
+// id = erste 20 Hex-Zeichen von SHA-1 über „<sprache>|<sprechtext>“ (normalisiert: NFC, Leerraum zusammengefasst, getrimmt – Annahme, bitte mit dem Tonstudio abgleichen),
+// fassungen[] mit art (normal 1,0 / langsam 0,8), speed, datei. Rückgabe laut Format: audio/server/<sprache>/.
+const norm = t => String(t).normalize('NFC').replace(/\s+/g, ' ').trim();
+const FASSUNGEN = [['normal', 1.0], ['langsam', 0.8]];
+const seen = new Map();
+for (const t of alle) {
+  const sprechtext = norm(t.text), id = crypto.createHash('sha1').update(`${t.sprache}|${sprechtext}`).digest('hex').slice(0, 20);
+  if (seen.has(id)) continue;   // gleicher Text, gleiche Datei
+  seen.set(id, { id, sprache: t.sprache, sprechtext, fassungen: FASSUNGEN.map(([art, speed]) => ({ art, speed, datei: `${id}_${art}.mp3` })) });
+}
+const liste = [...seen.values()];
+const out = { format: 1, app: 'zahlensprint', stand: new Date().toISOString().slice(0, 10), hinweis: 'Ukrainisch (Piper uk_UA ukrainian_tts, Sprecherin tetiana) ist im Quasselquest-Format nicht vorgesehen; Zahlen stehen als Ziffern, das Tonstudio schreibt sie aus (Marcel 25.11.).', texte: liste };
 fs.mkdirSync(path.join(__dirname, '../docs/tonstudio'), { recursive: true });
 fs.writeFileSync(path.join(__dirname, '../docs/tonstudio/textliste.json'), JSON.stringify(out, null, 1) + '\n');
-const z = {}; for (const t of liste) { const k = t.sprache + '/' + t.gruppe; z[k] = (z[k] || 0) + 1; }
-console.log('Textliste:', liste.length, 'Texte', JSON.stringify(z), '→ ×2 Tempi =', liste.length * 2, 'Dateien');
+const z = {}; for (const t of liste) z[t.sprache] = (z[t.sprache] || 0) + 1;
+console.log('Textliste:', liste.length, 'Texte', JSON.stringify(z), '→', liste.length * FASSUNGEN.length, 'Dateien');
