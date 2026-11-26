@@ -58,6 +58,19 @@ def lgs_solve(lines):
     det = a1 * b2 - a2 * b1
     assert det != 0, 'keine eindeutige Lösung'
     return (c1 * b2 - c2 * b1) / det, (a1 * c2 - a2 * c1) / det   # Cramersche Regel
+def quad_solve(txt, which):
+    # a·x² + b·x + c = 0 aus der Gleichung im Aufgabentext herleiten (Werte bei x = 0, 1, −1), Lösungen mit der Lösungsformel, exakt
+    L, R = txt.split(' = ')
+    f = lambda x: poly_eval(L, x) - poly_eval(R, x)
+    c = f(F(0)); a = (f(F(1)) + f(F(-1))) / 2 - c; b = (f(F(1)) - f(F(-1))) / 2
+    assert a != 0, 'keine quadratische Gleichung'
+    d = b * b - 4 * a * c; n, m = math.isqrt(d.numerator), math.isqrt(d.denominator)
+    assert d >= 0 and n * n == d.numerator and m * m == d.denominator, 'Diskriminante kein Quadrat'
+    r = F(n, m); x1, x2 = (-b - r) / (2 * a), (-b + r) / (2 * a)
+    assert x1.denominator == 1 and x2.denominator == 1 and x1 != x2, 'Lösungen nicht ganz oder gleich'
+    if which == '(x > 0)':
+        pos = [x for x in (x1, x2) if x > 0]; assert len(pos) == 1, 'nicht genau eine positive Lösung'; return pos[0]
+    return x2 if which == '(größere Lösung)' else x1
 def solve(t):
     tp, l, e, txt = t['tp'], t['l'], t['e'], t['text']
     a = F(t['a']['n'], t['a']['d'])
@@ -79,6 +92,8 @@ def solve(t):
         if s == 'von': n = [k['v'] for k in e if k['t'] == 'n']; return F(fs[0]['n'], fs[0]['d']) * n[0], ''
     if has('g') and has('q'):   # Lücke: hinterlegte Lösung einsetzen
         L, R = split_eq(e); return (a if expr_of(L, gap=a) == expr_of(R, gap=a) else None), 'Lücke'
+    if tp == 'quad':
+        return quad_solve(xs[0], xs[1]), 'quad'
     if tp == 'lgs':
         sy = next(k for k in e if k['t'] == 'y'); x, y = lgs_solve(sy['v'])
         assert x.denominator == 1 and y.denominator == 1, 'Lösung nicht ganzzahlig'

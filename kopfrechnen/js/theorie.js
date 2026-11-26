@@ -163,6 +163,14 @@ const THEORIE = {
     ['Beide Gleichungen malnehmen: mit dem kgV der Zahlen vor y arbeiten. Ein Faktor bekommt ein Minus, wenn vor y gleiche Vorzeichen stehen.', 'Beispiel I: 2x + 3y = 12, II: 3x + 2y = 13. kgV von 3 und 2 ist 6.', 'I · 2: 4x + 6y = 24. II · (−3): −9x − 6y = −39. Addieren: −5x = −15, also x = 3.', 'x = 3 in I einsetzen: 6 + 3y = 12, 3y = 6, y = 2. Probe in II: 3 · 3 + 2 · 2 = 13 ✓'],
     ['Erst ordnen: alle x- und y-Glieder auf die linke Seite, die Zahl auf die rechte Seite. Ein Glied, das die Seite wechselt, wechselt sein Vorzeichen.', 'Beispiel I: 5x = 13 + 2y wird zu 5x − 2y = 13. II: 3y = 9 − x wird zu x + 3y = 9.', 'Dann wie gewohnt mit dem Additionsverfahren lösen.', 'Bei großen Zahlen hilft die Probe in beiden Gleichungen besonders.'],
   ] },
+  quad: { k: 'Eine quadratische Gleichung hat x² in sich und meist zwei Lösungen (x kann positiv oder negativ sein). Im Kopf helfen vier Wege: Wurzel ziehen, Faktoren gleich null setzen, Summe und Produkt der Lösungen (Satz von Vieta) und erst durch die Zahl vor x² teilen.', l: [
+    ['x² = Zahl: Gesucht ist die Zahl, die mit sich selbst malgenommen die Zahl ergibt.', 'Beispiel x² = 49 → x = 7, denn 7 · 7 = 49. (Auch −7 passt; hier ist die positive Lösung gesucht.)'],
+    ['Erst x² allein auf eine Seite bringen, dann die Wurzel ziehen.', 'Beispiel x² + 15 = 40 → x² = 25 → x = 5.'],
+    ['a · x² = Zahl: erst beide Seiten durch a teilen. (x + s)² = k²: auf beiden Seiten die Wurzel ziehen – das gibt zwei Möglichkeiten.', 'Beispiel 3x² = 75 → x² = 25 → x = 5.', 'Beispiel (x − 3)² = 25: x − 3 = 5 oder x − 3 = −5, also x = 8 oder x = −2.'],
+    ['Ein Produkt ist null, wenn ein Faktor null ist. Darum kann man die Lösungen direkt ablesen.', 'Beispiel (x + 3)(x − 5) = 0: x + 3 = 0 gibt x = −3, und x − 5 = 0 gibt x = 5.', 'Achtung: Die Zahl in der Klammer hat das Gegenteil des Vorzeichens der Lösung.'],
+    ['Satz von Vieta: Bei x² + px + q = 0 ist die Summe der Lösungen −p und das Produkt q.', 'Beispiel x² − 7x + 12 = 0: Summe 7, Produkt 12 → die Lösungen sind 3 und 4.', 'Beispiel x² + 2x − 15 = 0: Summe −2, Produkt −15 → die Lösungen sind −5 und 3.'],
+    ['Steht vor x² eine Zahl a, teilt man zuerst die ganze Gleichung durch a. Dann geht es wie gewohnt mit Summe und Produkt.', 'Beispiel 2x² − 12x + 16 = 0 → x² − 6x + 8 = 0 → Summe 6, Produkt 8 → x = 2 oder x = 4.'],
+  ] },
   eq: { k: 'Eine Gleichung ist wie eine Waage: Was du links machst, musst du auch rechts machen.', l: [
     ['x + a = b: auf beiden Seiten a abziehen.', 'Beispiel x + 16 = 29 → x = 29 − 16 = 13.'],
     ['a · x = b: beide Seiten durch a teilen. x : a = b: beide Seiten mal a.', 'Beispiel 4x = 40 → x = 10.'],

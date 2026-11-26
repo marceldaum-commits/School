@@ -163,6 +163,14 @@ const THEORIE_I18N = {
       ['Multiply both equations: use the LCM of the numbers in front of y. One factor gets a minus sign if the y terms have the same sign.', 'Example I: 2x + 3y = 12, II: 3x + 2y = 13. The LCM of 3 and 2 is 6.', 'I · 2: 4x + 6y = 24. II · (−3): −9x − 6y = −39. Add: −5x = −15, so x = 3.', 'Put x = 3 into I: 6 + 3y = 12, 3y = 6, y = 2. Check in II: 3 · 3 + 2 · 2 = 13 ✓'],
       ['Rearrange first: all x and y terms to the left, the number to the right. A term that changes sides changes its sign.', 'Example I: 5x = 13 + 2y becomes 5x − 2y = 13. II: 3y = 9 − x becomes x + 3y = 9.', 'Then solve by elimination as usual.', 'With large numbers the check in both equations is especially helpful.'],
     ] },
+    quad: { k: 'A quadratic equation contains x² and usually has two solutions (x can be positive or negative). Four ways help in your head: take the square root, set the factors equal to zero, use the sum and product of the solutions (Vieta\'s formulas) and first divide by the number in front of x².', l: [
+      ['x² = number: we look for the number that gives this number when multiplied by itself.', 'Example x² = 49 → x = 7, because 7 · 7 = 49. (−7 works too; here the positive solution is asked for.)'],
+      ['First get x² on its own on one side, then take the square root.', 'Example x² + 15 = 40 → x² = 25 → x = 5.'],
+      ['a · x² = number: first divide both sides by a. (x + s)² = k²: take the square root on both sides – this gives two possibilities.', 'Example 3x² = 75 → x² = 25 → x = 5.', 'Example (x − 3)² = 25: x − 3 = 5 or x − 3 = −5, so x = 8 or x = −2.'],
+      ['A product is zero when one factor is zero. So you can read off the solutions directly.', 'Example (x + 3)(x − 5) = 0: x + 3 = 0 gives x = −3, and x − 5 = 0 gives x = 5.', 'Careful: the number in the bracket has the opposite sign of the solution.'],
+      ['Vieta\'s formulas: for x² + px + q = 0 the sum of the solutions is −p and the product is q.', 'Example x² − 7x + 12 = 0: sum 7, product 12 → the solutions are 3 and 4.', 'Example x² + 2x − 15 = 0: sum −2, product −15 → the solutions are −5 and 3.'],
+      ['If there is a number a in front of x², first divide the whole equation by a. Then continue as usual with sum and product.', 'Example 2x² − 12x + 16 = 0 → x² − 6x + 8 = 0 → sum 6, product 8 → x = 2 or x = 4.'],
+    ] },
     eq: { k: 'An equation is like a balance: whatever you do on the left, you must also do on the right.', l: [
       ['x + a = b: subtract a on both sides.', 'Example x + 16 = 29 → x = 29 − 16 = 13.'],
       ['a × x = b: divide both sides by a. x ÷ a = b: multiply both sides by a.', 'Example 4x = 40 → x = 10.'],
@@ -404,6 +412,14 @@ const THEORIE_I18N = {
       ['Метод додавання з множенням: спочатку одне рівняння множать на число (кожен член!), щоб перед y стояли протилежні числа, напр. 6y і −6y.', 'Приклад I: x + 6y = 45, II: 6x − y = 11. II · 6: 36x − 6y = 66.', 'Додаємо: x + 36x + 6y − 6y = 45 + 66, отже 37x = 111 і x = 3.', 'Підставляємо x = 3 в I: 3 + 6y = 45, 6y = 42, y = 7. Перевірка в II: 6 · 3 − 7 = 11 ✓'],
       ['Множимо обидва рівняння: беремо НСК чисел перед y. Один множник отримує мінус, якщо перед y однакові знаки.', 'Приклад I: 2x + 3y = 12, II: 3x + 2y = 13. НСК чисел 3 і 2 дорівнює 6.', 'I · 2: 4x + 6y = 24. II · (−3): −9x − 6y = −39. Додаємо: −5x = −15, отже x = 3.', 'Підставляємо x = 3 в I: 6 + 3y = 12, 3y = 6, y = 2. Перевірка в II: 3 · 3 + 2 · 2 = 13 ✓'],
       ['Спочатку впорядкувати: усі члени з x і y — ліворуч, число — праворуч. Член, що переходить на інший бік, змінює знак.', 'Приклад I: 5x = 13 + 2y стає 5x − 2y = 13. II: 3y = 9 − x стає x + 3y = 9.', 'Далі розв’язуємо методом додавання, як звичайно.', 'З великими числами перевірка в обох рівняннях особливо корисна.'],
+    ] },
+    quad: { k: 'Квадратне рівняння містить x² і зазвичай має два розв’язки (x може бути додатним або від’ємним). В умі допомагають чотири способи: добути квадратний корінь, прирівняти множники до нуля, використати суму й добуток розв’язків (теорема Вієта) і спочатку поділити на число перед x².', l: [
+      ['x² = число: шукаємо число, яке, помножене саме на себе, дає це число.', 'Приклад x² = 49 → x = 7, бо 7 · 7 = 49. (−7 теж підходить; тут шукаємо додатний розв’язок.)'],
+      ['Спочатку залиш x² окремо в одній частині, потім добудь квадратний корінь.', 'Приклад x² + 15 = 40 → x² = 25 → x = 5.'],
+      ['a · x² = число: спочатку поділи обидві частини на a. (x + s)² = k²: добудь корінь з обох частин – маємо дві можливості.', 'Приклад 3x² = 75 → x² = 25 → x = 5.', 'Приклад (x − 3)² = 25: x − 3 = 5 або x − 3 = −5, отже x = 8 або x = −2.'],
+      ['Добуток дорівнює нулю, коли один із множників дорівнює нулю. Тому розв’язки можна прочитати одразу.', 'Приклад (x + 3)(x − 5) = 0: x + 3 = 0 дає x = −3, а x − 5 = 0 дає x = 5.', 'Увага: число в дужці має протилежний знак до розв’язку.'],
+      ['Теорема Вієта: для x² + px + q = 0 сума розв’язків дорівнює −p, а добуток дорівнює q.', 'Приклад x² − 7x + 12 = 0: сума 7, добуток 12 → розв’язки 3 і 4.', 'Приклад x² + 2x − 15 = 0: сума −2, добуток −15 → розв’язки −5 і 3.'],
+      ['Якщо перед x² стоїть число a, спочатку поділи все рівняння на a. Далі, як завжди, сума й добуток.', 'Приклад 2x² − 12x + 16 = 0 → x² − 6x + 8 = 0 → сума 6, добуток 8 → x = 2 або x = 4.'],
     ] },
     eq: { k: 'Рівняння — як терези: що робиш ліворуч, те саме роби й праворуч.', l: [
       ['x + a = b: відніми a з обох боків.', 'Приклад x + 16 = 29 → x = 29 − 16 = 13.'],

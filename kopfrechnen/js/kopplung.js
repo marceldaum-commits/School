@@ -26,7 +26,7 @@ const kopplungLink = k => `${KOPPLUNG.seite()}#${k.id}.${k.key}`;
 const THEMA = { add: 'grundrechenarten', sub: 'grundrechenarten', gap: 'grundrechenarten', order: 'grundrechenarten', doppel: 'grundrechenarten',
   mul: 'einmaleins', div: 'einmaleins', frac: 'brueche', dec: 'dezimalzahlen', pct: 'prozent', zins: 'prozent', neg: 'negative-zahlen',
   pow: 'potenzen', zehner: 'potenzen', round: 'runden', unit: 'einheiten', geld: 'einheiten', zeit: 'einheiten', divis: 'teilbarkeit',
-  term: 'terme', eq: 'gleichungen', lgs: 'gleichungssysteme', linear: 'funktionen', geo: 'geometrie', kreis: 'geometrie', word: 'sachaufgaben', dreisatz: 'dreisatz',
+  term: 'terme', eq: 'gleichungen', lgs: 'gleichungssysteme', quad: 'gleichungen', linear: 'funktionen', geo: 'geometrie', kreis: 'geometrie', word: 'sachaufgaben', dreisatz: 'dreisatz',
   wahr: 'wahrscheinlichkeit', stat: 'statistik', folge: 'folgen' };
 
 /** Bericht für die Eltern-Seite (nur Lernstand, keine Personendaten außer dem freiwilligen Spitznamen) */

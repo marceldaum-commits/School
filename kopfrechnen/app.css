@@ -131,6 +131,8 @@ body.ingame .app{height:100dvh;min-height:0;padding-bottom:calc(84px + env(safe-
 .expr{font-weight:800;color:var(--head);font-size:56px;letter-spacing:-.03em;white-space:nowrap;line-height:1.1;max-width:100%;display:flex;align-items:center;justify-content:center;flex-wrap:nowrap}
 .expr .o{color:var(--orange);margin:0 .14em;font-weight:700}
 .expr .eq{color:var(--muted);margin-left:.14em;font-weight:600}
+.expr.wrapq{flex-wrap:wrap;row-gap:.1em}
+.expr.wrapq .tx{flex-basis:100%;text-align:center;margin:0}
 .expr .tx{font-weight:600;font-size:.6em;color:var(--muted);margin:0 .25em;letter-spacing:0}
 .expr sup{font-size:.55em;margin-left:.02em;position:relative;top:-.15em}
 .frac{display:inline-flex;flex-direction:column;align-items:center;font-size:.68em;line-height:1.08;margin:0 .06em;vertical-align:middle}

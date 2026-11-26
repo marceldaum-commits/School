@@ -147,7 +147,7 @@ const TOPICS = {
   neg: { g: '−3', name: 'Negativ', grp: 1 }, pow: { g: 'x²', name: 'Potenzen', grp: 1 },
   term: { g: '3x', name: 'Terme', grp: 1 }, linear: { g: 'f(x)', name: 'Funktionen', grp: 1 }, zehner: { g: '10ⁿ', name: 'Zehnerpotenzen', grp: 1 },
   order: { g: '( )', name: 'Klammern', grp: 2 }, round: { g: '≈', name: 'Runden', grp: 2 }, unit: { g: 'cm', name: 'Einheiten', grp: 2 },
-  divis: { g: 'ggT', name: 'Teiler', grp: 2 }, eq: { g: 'x=', name: 'Gleichung', grp: 2 }, lgs: { g: 'x|y', name: 'Gleichungssysteme', grp: 2 },
+  divis: { g: 'ggT', name: 'Teiler', grp: 2 }, eq: { g: 'x=', name: 'Gleichung', grp: 2 }, lgs: { g: 'x|y', name: 'Gleichungssysteme', grp: 2 }, quad: { g: 'x²=0', name: 'Quadratische Gleichungen', grp: 2 },
   zeit: { g: '🕐', name: 'Uhr & Zeit', grp: 2 }, geo: { g: '📐', name: 'Geometrie', grp: 2 }, folge: { g: '🔢', name: 'Zahlenfolgen', grp: 2 },
   dreisatz: { g: '⇄', name: 'Dreisatz', grp: 2 }, zins: { g: '🏦', name: 'Zinsen', grp: 2 }, wahr: { g: '🎲', name: 'Wahrscheinlichkeit', grp: 2 }, stat: { g: 'Ø', name: 'Statistik', grp: 2 }, kreis: { g: 'π', name: 'Kreis', grp: 2 },
   word: { g: '📖', name: 'Textaufgaben', grp: 3, wide: true }, mix: { g: '★', name: 'Alles gemischt', grp: 3, wide: true },
@@ -168,6 +168,7 @@ const LEVEL_DESC = {
   unit: ['m, cm, kg, g, € und ct', 'km, Liter, Stunden, Minuten', 'Mit Kommazahlen umrechnen', 'Flächen und Rauminhalte', 'Gemischte Angaben (1 h 15 min …)', 'Profi: Tempo, Kommazahlen, gemischte Einheiten'],
   divis: ['Division mit Rest', 'Quersumme', 'Größter gemeinsamer Teiler', 'Kleinstes gemeinsames Vielfaches', 'Primfaktoren & Anzahl der Teiler', 'Profi: Euklid und kgV von drei Zahlen'],
   lgs: ['Additionsverfahren: x + y und x − y', 'Gleichsetzungsverfahren', 'Einsetzungsverfahren', 'Additionsverfahren: eine Gleichung malnehmen', 'Additionsverfahren: beide malnehmen, negative Lösungen', 'Profi: erst ordnen, große Zahlen'],
+  quad: ['Quadratzahl umkehren: x² = Zahl', 'x² plus oder minus eine Zahl', 'Mit Faktor a·x² = Zahl und (x + s)² = Zahl', 'Produkt gleich null: (x + a)(x − b) = 0', 'Summe und Produkt: x² + px + q = 0', 'Profi: a·x² + b·x + c = 0'],
   eq: ['x + a = b', 'a · x = b und x : a = b', 'Zwei Schritte: a · x + b = c', 'Mit negativen Zahlen & Klammern', 'x auf beiden Seiten', 'Profi: Klammern auf beiden Seiten'],
   doppel: ['Verdoppeln & halbieren bis 20', 'Verdoppeln & halbieren bis 100', 'Verdoppeln & halbieren bis 1000', 'Halbieren mit Komma', 'Vierfach, Viertel, dreimal verdoppeln', 'Profi: Kommazahlen halbieren und vervielfachen'],
   geld: ['Cent plus & minus', 'Euro und Cent umrechnen, Rückgeld', 'Euro-Beträge plus & minus', 'Rückgeld und Mal mit Komma', 'Preise vergleichen (Dreisatz)', 'Profi: Kilopreise und Einkauf mit Rückgeld'],
@@ -195,8 +196,8 @@ const CLASS_TOPICS = {
   6: [['mul', 4], ['frac', 1], ['frac', 2], ['dec', 1], ['dec', 2], ['divis', 2], ['unit', 2], ['round', 2], ['neg', 0], ['word', 2], ['doppel', 4], ['geld', 4], ['zeit', 4], ['geo', 3], ['folge', 3], ['stat', 1], ['dreisatz', 1], ['wahr', 0]],
   7: [['frac', 3], ['dec', 3], ['pct', 0], ['pct', 1], ['neg', 2], ['eq', 0], ['order', 3], ['unit', 3], ['divis', 3], ['word', 2], ['geo', 3], ['folge', 3], ['stat', 2], ['dreisatz', 2], ['dreisatz', 3], ['wahr', 1], ['term', 0], ['term', 1], ['zins', 0]],
   8: [['lgs', 0], ['lgs', 1], ['frac', 4], ['dec', 4], ['pct', 2], ['neg', 3], ['eq', 1], ['eq', 2], ['pow', 0], ['round', 3], ['order', 4], ['word', 3], ['geo', 4], ['folge', 4], ['stat', 3], ['dreisatz', 4], ['wahr', 2], ['term', 2], ['term', 3], ['zins', 1], ['zins', 2], ['linear', 0], ['linear', 1], ['kreis', 0], ['kreis', 1]],
-  9: [['lgs', 2], ['lgs', 3], ['pct', 3], ['pow', 1], ['pow', 2], ['eq', 3], ['neg', 4], ['unit', 4], ['round', 4], ['word', 3], ['geo', 4], ['folge', 4], ['stat', 4], ['wahr', 3], ['term', 4], ['zins', 3], ['linear', 2], ['linear', 3], ['kreis', 2], ['kreis', 3], ['zehner', 0], ['zehner', 1], ['zehner', 2]],
-  10: [['lgs', 4], ['pct', 4], ['pow', 3], ['pow', 4], ['eq', 4], ['divis', 4], ['word', 4], ['folge', 4], ['wahr', 4], ['zins', 4], ['linear', 4], ['kreis', 4], ['zehner', 3], ['zehner', 4]],
+  9: [['quad', 0], ['quad', 1], ['lgs', 2], ['lgs', 3], ['pct', 3], ['pow', 1], ['pow', 2], ['eq', 3], ['neg', 4], ['unit', 4], ['round', 4], ['word', 3], ['geo', 4], ['folge', 4], ['stat', 4], ['wahr', 3], ['term', 4], ['zins', 3], ['linear', 2], ['linear', 3], ['kreis', 2], ['kreis', 3], ['zehner', 0], ['zehner', 1], ['zehner', 2]],
+  10: [['quad', 2], ['quad', 3], ['quad', 4], ['lgs', 4], ['pct', 4], ['pow', 3], ['pow', 4], ['eq', 4], ['divis', 4], ['word', 4], ['folge', 4], ['wahr', 4], ['zins', 4], ['linear', 4], ['kreis', 4], ['zehner', 3], ['zehner', 4]],
 };
 function classLevel(k, topic) { // empfohlene Stufe einer Klassenstufe (höchste genannte)
   for (let c = k; c >= 1; c--) { const hits = CLASS_TOPICS[c].filter(([t]) => t === topic); if (hits.length) return Math.max(...hits.map(h => h[1])); }
@@ -430,6 +431,20 @@ function lgsPick(cmax, smin, smax, ok) {
 const lgsSys = (E1, E2) => [`I: ${lgsEq(E1[1], E1[2], E1[3])}`, `II: ${lgsEq(E2[1], E2[2], E2[3])}`];
 const lgsLx = (p, q) => p ? lgsLin(p, 0) + (q ? sgnTerm(q) : '') : fi(q);          // 3x − 4
 const lgsVal = (p, x, q) => `${p === 1 ? '' : p === -1 ? '−' : fi(p) + ' · '}${par(x)}${q ? sgnTerm(q) : ''}`;   // 3 · 5 − 4
+
+/* ---------- Quadratische Gleichungen im Kopf (quad): immer ganzzahlige Lösungen; gefragt ist eine Lösung (positiv, größere oder kleinere) ---------- */
+const quadFac = r => r < 0 ? `(x + ${-r})` : `(x − ${r})`;                     // Faktor mit Nullstelle r
+const quadZero = r => r < 0 ? `x + ${-r} = 0 → x = ${fi(r)}` : `x − ${r} = 0 → x = ${r}`;
+const quadPoly = (a, b, c) => `${a === 1 ? '' : a}x²${b ? ` ${b < 0 ? '−' : '+'} ${Math.abs(b) === 1 ? '' : Math.abs(b)}x` : ''}${c ? ` ${c < 0 ? '−' : '+'} ${Math.abs(c)}` : ''}`;
+function quadPick(lo, hi, ok = () => true) {   // zwei verschiedene Lösungen ≠ 0 mit Summe ≠ 0, [kleinere, größere]
+  let r1, r2; do { r1 = rnd(lo, hi); r2 = rnd(lo, hi); } while (r1 === r2 || !r1 || !r2 || r1 + r2 === 0 || !ok(r1, r2));
+  return [Math.min(r1, r2), Math.max(r1, r2)];
+}
+function quadAsk(txt, [lo, hi], w, hint, pos) {   // pos: Gleichung hat nur eine positive Lösung gesucht; sonst größere oder kleinere Lösung
+  if (pos) return { e: [S_(txt), T('(x > 0)')], a: I(pos), noEq: true, pre: 'x =', hint, w };
+  const big = coin(), x = big ? hi : lo;
+  return { e: [S_(txt), T(big ? '(größere Lösung)' : '(kleinere Lösung)')], a: I(x), noEq: true, pre: 'x =', hint, w: [...w, `${big ? 'Größere' : 'Kleinere'} Lösung: x = ${fi(x)}`] };
+}
 
 const GEN = {
   add(l) { const [a, b] = ADD[l](); return { e: [N(a), O('+'), N(b)], a: I(a + b), w: addW(a, b) }; },
@@ -772,6 +787,32 @@ const GEN = {
     // Stufe 5: Additionsverfahren, beide Gleichungen malnehmen, negative Lösungen
     const { x, y, E1, E2 } = lgsPick(9, -12, 12, (a1, b1, a2, b2) => lcm(Math.abs(b1), Math.abs(b2)) > Math.max(Math.abs(b1), Math.abs(b2)));
     return lgsAsk(x, y, lgsAdd(E1, E2, x, y), lgsSys(E1, E2));
+  },
+  quad(l) {
+    if (l === 0) {   // x² = Quadratzahl, positive Lösung
+      const x = rnd(2, 15);
+      return quadAsk(`x² = ${x * x}`, [0, 0], [`Welche positive Zahl mal sich selbst ergibt ${x * x}?`, `x = ${x}, denn ${x} · ${x} = ${x * x}`], 'Welche Zahl mal sich selbst?', x);
+    }
+    if (l === 1) {   // x² ± Zahl = Zahl
+      const x = rnd(3, 14), c = rnd(4, Math.min(40, x * x - 1));
+      return coin() ? quadAsk(`x² + ${c} = ${x * x + c}`, [0, 0], [`${c} auf beiden Seiten abziehen: x² = ${x * x}`, `x = ${x}, denn ${x} · ${x} = ${x * x}`], 'Erst x² allein', x)
+        : quadAsk(`x² − ${c} = ${x * x - c}`, [0, 0], [`${c} auf beiden Seiten addieren: x² = ${x * x}`, `x = ${x}, denn ${x} · ${x} = ${x * x}`], 'Erst x² allein', x);
+    }
+    if (l === 2) {   // a·x² = Zahl, oder (x + s)² = k²
+      if (coin()) {
+        const a = rnd(2, 12), x = rnd(3, 15);
+        return quadAsk(`${a}x² = ${a * x * x}`, [0, 0], [`Beide Seiten durch ${a} teilen: x² = ${x * x}`, `x = ${x}, denn ${x} · ${x} = ${x * x}`], 'Erst durch den Faktor teilen', x);
+      }
+      const [r1, r2] = quadPick(-14, 14, (a, b) => (b - a) % 2 === 0 && (b - a) / 2 >= 2), m = (r1 + r2) / 2, k = (r2 - r1) / 2, sg = m > 0 ? '−' : '+';
+      return quadAsk(`(x ${sg} ${Math.abs(m)})² = ${k * k}`, [r1, r2], [`Wurzel ziehen: x ${sg} ${Math.abs(m)} = ${k} oder x ${sg} ${Math.abs(m)} = ${fi(-k)}`, `x = ${fi(m + k)} oder x = ${fi(m - k)}`], 'Auf beiden Seiten die Wurzel ziehen');
+    }
+    if (l === 3) {   // Produkt gleich null
+      const [r1, r2] = quadPick(-12, 12), f = coin() ? [r2, r1] : [r1, r2];
+      return quadAsk(`${quadFac(f[0])}${quadFac(f[1])} = 0`, [r1, r2], ['Ein Produkt ist null, wenn ein Faktor null ist.', quadZero(f[0]), quadZero(f[1])], 'Jeder Faktor kann null sein');
+    }
+    // x² + px + q = 0, Satz von Vieta
+    const [r1, r2] = quadPick(-15, 15, (a, b) => a * b !== 0 && Math.abs(a * b) >= 12), p = -(r1 + r2), q = r1 * r2;
+    return quadAsk(`${quadPoly(1, p, q)} = 0`, [r1, r2], [`Gesucht: zwei Zahlen mit Summe ${fi(-p)} und Produkt ${fi(q)}`, `Das sind ${fi(r1)} und ${fi(r2)}`], 'Summe und Produkt der Lösungen');
   },
   word(l) {
     const n = pick(NAMES); let n2; do n2 = pick(NAMES); while (n2 === n);
@@ -1237,6 +1278,10 @@ const PRO = {
     const [, a1, b1, c1] = E1, [, a2, b2, c2] = E2;
     const sys = [`I: ${lgsLin(a1, 0)} = ${fi(c1)}${lgsCo(-b1, 'y', false)}`, `II: ${lgsLin(0, b2)} = ${fi(c2)}${lgsCo(-a2, 'x', false)}`];
     return lgsAsk(x, y, ['Ordnen: alle x- und y-Glieder nach links, die Zahl nach rechts.', `I: ${lgsEq(a1, b1, c1)}`, `II: ${lgsEq(a2, b2, c2)}`, ...lgsAdd(E1, E2, x, y)], sys);
+  },
+  quad() {   // Profi: a·x² + b·x + c = 0 mit Faktor a vor x²
+    const a = rnd(2, 5), [r1, r2] = quadPick(-10, 10), b = -a * (r1 + r2), c = a * r1 * r2, p = -(r1 + r2), q = r1 * r2;
+    return quadAsk(`${quadPoly(a, b, c)} = 0`, [r1, r2], [`Durch ${a} teilen: ${quadPoly(1, p, q)} = 0`, `Gesucht: zwei Zahlen mit Summe ${fi(-p)} und Produkt ${fi(q)}`, `Das sind ${fi(r1)} und ${fi(r2)}`], 'Erst durch den Faktor vor x² teilen');
   },
   word() {
     const n = pick(NAMES); let n2; do n2 = pick(NAMES); while (n2 === n);

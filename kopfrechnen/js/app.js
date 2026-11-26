@@ -523,6 +523,7 @@ function nextTask() {
   G.task = t; G.input = ''; G.t0 = performance.now(); G.hinted = false;
   $('expr').className = 'expr' + (t.story ? ' storymode' : '');
   $('expr').innerHTML = t.e.map(tokHtml).join('') + (t.noEq ? '' : `<span class="eq">${t.eqSign || '='}</span>`);
+  $('expr').classList.toggle('wrapq', t.topic === 'quad');   // Hinweis „(größere Lösung)“ in einer eigenen Zeile unter der Gleichung
   $('hint').textContent = t.hint || '';
   $('unit').textContent = t.unit || '';
   $('pre').textContent = t.pre || '';

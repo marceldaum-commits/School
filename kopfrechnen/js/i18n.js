@@ -142,7 +142,7 @@ const I18N_SAY = {
   uk: { '+': ' плюс ', '−': ' мінус ', '·': ' помножити на ', ':': ' поділити на ', '=': ' дорівнює ', '≈': ' приблизно ', '?': ' скільки ', '√': ' корінь з ', '%': ' відсотків', '/': ' на ' },
 };
 function i18nSpeech(t) {
-  const say = I18N_SAY[I18N.lang]; let s = t.e.some(k => k.t === 'y') ? taskText(t) : tr(taskText(t));   // Gleichungssystem: reine Mathematik, nicht übersetzen
+  const say = I18N_SAY[I18N.lang]; let s = t.e.some(k => k.t === 'y') ? taskText(t) : t.topic === 'quad' ? t.e.map(k => k.t === 's' ? k.v : tr(k.v)).join(' ') : tr(taskText(t));   // Gleichungssystem: reine Mathematik, nicht übersetzen; quadratische Gleichung: Gleichung bleibt, nur der Hinweis „(größere Lösung)“ wird übersetzt
   s = s.replace(/×/g, '·').replace(/÷/g, ':').replace(/[+−·:=≈?√%/]/g, c => say[c] || c).replace(/²/g, I18N.lang === 'en' ? ' squared' : ' в квадраті');
   return s + (t.hint ? '. ' + tr(t.hint) : '');
 }
