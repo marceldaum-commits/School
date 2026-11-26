@@ -51,11 +51,12 @@ async function umzugAlt() {
 }
 // Hinweis auf dem Startbild (die Oberfläche ist noch nicht geladen)
 const umzugTr = t => typeof tr === 'function' ? tr(t) : t;
-function umzugHinweis(t) { try { const el = document.querySelector('#boot small'); if (el) el.textContent = umzugTr(t); } catch {} }
+function umzugHinweis(t) { window.__bootHold = true; try { const el = document.querySelector('#boot small'); if (el) el.textContent = umzugTr(t); } catch {} }
 const umzugInstalliert = () => { try { return matchMedia('(display-mode: standalone)').matches || navigator.standalone === true; } catch { return false; } };
 // Weiterleiten – in der installierten App (Home-Bildschirm) stattdessen „Bitte neu installieren“ mit Knopf zur neuen Adresse
 function umzugWeiter(url) {
   if (!umzugInstalliert()) { location.replace(url); return; }
+  window.__bootHold = true;
   const b = document.getElementById('boot'); if (!b) { location.replace(url); return; }
   b.innerHTML = `<div class="umzug-box"><b>${esc(umzugTr('Zahlensprint ist umgezogen'))}</b><p>${esc(umzugTr('Dein Lernstand ist schon unterwegs. Öffne die neue Adresse und installiere die App dort bitte neu auf dem Startbildschirm. Diese alte App kannst du danach löschen.'))}</p><a class="umzug-btn" href="${url.replace(/"/g, '&quot;')}" target="_blank" rel="noopener">${esc(umzugTr('Zur neuen Adresse'))}</a><small>${UMZUG.ziel(UMZUG.stufe()).replace(/^https:\/\//, '')}</small></div>`;
 }

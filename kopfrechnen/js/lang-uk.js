@@ -2592,4 +2592,5 @@ I18N.add('uk', {"% sind":"% — це",
 "Der Titel „Echter Rechenblitz“ heißt jetzt „Echter Blitz“, der Rang „Rechenblitz-Legende“ heißt „Zahlensprint-Legende“":"Титул «Справжній Rechenblitz» тепер називається «Справжній Бліц», ранг «Легенда Rechenblitz» – «Легенда Zahlensprint»",
 "Vorlesen vorbereitet: Ein Doppelpunkt im Text wird nicht mehr als „geteilt durch“ gelesen":"Читання вголос підготовлено: двокрапка в тексті більше не читається як «поділити на»",
 "Zahlensprint hat jetzt seine eigene Adresse lernen.mathenachhilfe-online.com/zahlensprint/ – dein Lernstand bleibt erhalten":"У Zahlensprint тепер власна адреса lernen.mathenachhilfe-online.com/zahlensprint/ – твій прогрес зберігається",
-"Links, QR-Codes und Urkunden zeigen auf die neue Adresse":"Посилання, QR-коди та грамоти вказують на нову адресу"});
+"Links, QR-Codes und Urkunden zeigen auf die neue Adresse":"Посилання, QR-коди та грамоти вказують на нову адресу",
+"Neuer Start: Beim Öffnen erscheint ein schwarzer Bildschirm mit dem Blitz, der sich beim Laden bewegt und dann groß herausfliegt":"Новий запуск: під час відкриття з’являється чорний екран із блискавкою, яка рухається під час завантаження, а потім велико вилітає"});
