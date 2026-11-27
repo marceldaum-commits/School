@@ -160,6 +160,10 @@ def solve(t):
     if tp == 'zehner':
         if xs:
             s = xs[0]
+            m0 = re.fullmatch(r'([\d.,]+) = x · 10([⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+)', s)   # umschreiben: Zahl = x · 10ⁿ, gesucht x
+            if m0: return F(m0.group(1).replace('.', '').replace(',', '.')) / F(10) ** sup(m0.group(2)), ''
+            m1 = re.fullmatch(r'10([⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+) : 10([⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+) = 10ˣ', s)   # Größenordnungen: 10ᵃ : 10ᵇ = 10ˣ
+            if m1: return F(sup(m1.group(1)) - sup(m1.group(2))), ''
             m = re.fullmatch(r'(.+) = ([\d,]+) · 10ˣ', s)
             if m:
                 lhs, mant = m.group(1), F(m.group(2).replace(',', '.'))

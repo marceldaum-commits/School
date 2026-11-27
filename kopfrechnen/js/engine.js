@@ -1147,8 +1147,17 @@ const GEN = {
     if (l === 0) { const k = rnd(2, 6); return { e: [P10(k)], a: I(10 ** k), w: [`10 hoch ${k}: eine 1 mit ${k} Nullen`, `= ${fi(10 ** k)}`] }; }
     if (l === 1) { const a = rnd(2, 9), k = rnd(2, 6); return { e: [N(a), O('·'), P10(k)], a: I(a * 10 ** k), w: [`${a} mit ${k} Nullen`, `= ${fi(a * 10 ** k)}`] }; }
     if (l === 2) { const i = noTrail(11, 99), k = rnd(3, 7); return { e: [D(i, 1), O('·'), P10(k)], a: I(i * 10 ** (k - 1)), w: [`Komma um ${k} Stellen nach rechts`, `${fmtDec(i, 1)} · 10${String(k).split('').map(c => SUPS[c]).join('')} = ${fi(i * 10 ** (k - 1))}`] }; }
-    if (l === 3) { const i = noTrail(101, 999), k = rnd(4, 9), v = i * 10 ** (k - 2); return { e: [S_(`${fi(v)} = ${fmtDec(i, 2)} · 10ˣ`)], a: I(k), noEq: true, pre: 'x =', w: [`Das Komma wandert von ${fi(v)} bis ${fmtDec(i, 2)} um ${k} Stellen nach links`, `Also 10${String(k).split('').map(c => SUPS[c]).join('')}`] }; }
+    if (l === 3) {
+      const i = noTrail(101, 999), k = rnd(4, 9), v = i * 10 ** (k - 2);
+      if (coin()) {   // umschreiben: Zahl = x · 10ⁿ, gesucht x (1 ≤ x < 10)
+        return { e: [S_(`${fi(v)} = x · 10${supN(k)}`)], a: De(i, 100), noEq: true, pre: 'x =', hint: 'Wie viele Stellen wandert das Komma?', w: [`Das Komma wandert um ${k} Stellen nach links: ${fi(v)} → ${fmtDec(i, 2)}`, `x = ${fmtDec(i, 2)}`] };
+      }
+      return { e: [S_(`${fi(v)} = ${fmtDec(i, 2)} · 10ˣ`)], a: I(k), noEq: true, pre: 'x =', w: [`Das Komma wandert von ${fi(v)} bis ${fmtDec(i, 2)} um ${k} Stellen nach links`, `Also 10${String(k).split('').map(c => SUPS[c]).join('')}`] };
+    }
     const i = noTrail(101, 999), k = rnd(3, 8), v = fmtDec(i, k + 2);
+    if (coin()) {   // kleine Zahl umschreiben: 0,00962 = x · 10⁻³, gesucht x
+      return { e: [S_(`${v} = x · 10${supN(-k)}`)], a: De(i, 100), noEq: true, pre: 'x =', hint: 'Wie viele Stellen wandert das Komma?', w: [`Das Komma wandert um ${k} Stellen nach rechts: ${v} → ${fmtDec(i, 2)}`, `x = ${fmtDec(i, 2)}`] };
+    }
     return { e: [S_(`${v} = ${fmtDec(i, 2)} · 10ˣ`)], a: I(-k), noEq: true, pre: 'x =', w: [`Das Komma wandert von ${v} bis ${fmtDec(i, 2)} um ${k} Stellen nach rechts`, `Kleine Zahl → negativer Exponent: x = −${k}`] };
   },
 
@@ -1385,6 +1394,10 @@ const PRO = {
     }
   },
   zehner() {
+    if (rnd(0, 2) === 0) {   // Größenordnungen vergleichen: 10ᵃ : 10ᵇ = 10ˣ mit großen und negativen Exponenten
+      let e1, e2; do { e1 = rnd(-15, 15); e2 = rnd(-15, 15); } while (Math.abs(e1 - e2) < 4 || (e1 > 0) === (e2 > 0) && rand() < .5);
+      return { e: [S_(`10${supN(e1)} : 10${supN(e2)} = 10ˣ`)], a: I(e1 - e2), noEq: true, pre: 'x =', hint: 'Exponenten abziehen', w: ['Beim Teilen werden die Exponenten abgezogen', `x = ${fi(e1)} − ${par(e2)} = ${fi(e1 - e2)}`] };
+    }
     const MS = [12, 15, 16, 24, 25, 32, 35, 45, 48, 64, 75, 84, 96], A = pick(MS), B = pick(MS);
     let m, n; do { m = rnd(-8, 9); n = rnd(-8, 9); } while (Math.abs(m) < 3 || Math.abs(n) < 3 || m * n > 0 && rand() < .7);
     const show = (X, e) => e >= 1 ? fi(X * 10 ** (e - 1)) : fmtDec(X, 1 - e);          // X/10 · 10^e ausgeschrieben

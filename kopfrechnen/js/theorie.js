@@ -119,9 +119,9 @@ const THEORIE = {
     ['10 hoch n ist eine 1 mit n Nullen: 10⁵ = 100.000.'],
     ['Zahl mal 10ⁿ: n Nullen anhängen. Beispiel 6 · 10² = 600.'],
     ['Kommazahl mal 10ⁿ: Komma um n Stellen nach rechts.', 'Beispiel 5,9 · 10⁶ = 5.900.000.'],
-    ['Große Zahl in wissenschaftlicher Schreibweise: Komma so weit nach links, bis nur noch eine Ziffer davor steht.', 'Die Anzahl der Stellen ist der Exponent: 96.900 = 9,69 · 10⁴.'],
-    ['Kleine Zahl: Komma nach rechts verschieben – der Exponent wird negativ.', 'Beispiel 0,00897 = 8,97 · 10⁻³.'],
-    ['Beim Malnehmen werden die Exponenten addiert: 10³ · 10⁴ = 10⁷.', 'Erst beide Zahlen als Zehnerpotenz schreiben, dann die Vorzahlen malnehmen.'],
+    ['Große Zahl in wissenschaftlicher Schreibweise: Komma so weit nach links, bis nur noch eine Ziffer davor steht.', 'Die Anzahl der Stellen ist der Exponent: 96.900 = 9,69 · 10⁴.', 'Auch rückwärts: Bei 96.900 = x · 10⁴ wandert das Komma 4 Stellen nach links, also x = 9,69.'],
+    ['Kleine Zahl: Komma nach rechts verschieben – der Exponent wird negativ.', 'Beispiel 0,00897 = 8,97 · 10⁻³.', 'Umschreiben: 0,00897 = x · 10⁻³ heißt, das Komma wandert 3 Stellen nach rechts, also x = 8,97.'],
+    ['Beim Malnehmen werden die Exponenten addiert: 10³ · 10⁴ = 10⁷.', 'Erst beide Zahlen als Zehnerpotenz schreiben, dann die Vorzahlen malnehmen.', 'Größenordnungen vergleichen: Beim Teilen werden die Exponenten abgezogen. 10⁸ : 10³ = 10⁵, also ist 10⁸ hunderttausendmal so groß wie 10³.', 'Mit negativen Exponenten: 10⁻² : 10⁻⁶ = 10⁻² − (−6) = 10⁴.'],
   ] },
   order: { k: 'Rechenregeln: Klammern zuerst, dann Punkt (· :) vor Strich (+ −), sonst von links nach rechts.', l: [
     ['Punkt vor Strich: erst mal, dann plus.', 'Beispiel 2 · 6 + 2 = 12 + 2 = 14.'],

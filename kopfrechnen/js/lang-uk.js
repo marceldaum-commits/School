@@ -2629,4 +2629,10 @@ I18N.add('uk', {"% sind":"% — це",
 "{} auf beiden Seiten addieren":"Додай {} до обох частин",
 "Neues Thema „Quadratische Gleichungen“ (Klasse {}–{}): Wurzel ziehen, Produkt gleich null und Summe-Produkt-Verfahren (Satz von Vieta) in {} Stufen, jede Lösung mit Lösungsweg":"Нова тема «Квадратні рівняння» ({}–{} класи): добування кореня, добуток дорівнює нулю та метод суми й добутку (теорема Вієта) у {} рівнях, кожен розв’язок із ходом розв’язання",
 "Theorie zu allen Stufen mit Beispielen":"Теорія до всіх рівнів із прикладами",
-"Am Computer mit großem Bildschirm ist die Startseite breiter, die Themen stehen in einem größeren Raster":"На комп’ютері з великим екраном початкова сторінка ширша, а теми показано більшою сіткою"});
+"Am Computer mit großem Bildschirm ist die Startseite breiter, die Themen stehen in einem größeren Raster":"На комп’ютері з великим екраном початкова сторінка ширша, а теми показано більшою сіткою",
+"Beim Teilen werden die Exponenten abgezogen":"Під час ділення показники віднімаються",
+"Das Komma wandert um {} Stellen nach links":"Кома йде на {} позицій ліворуч",
+"Das Komma wandert um {} Stellen nach rechts":"Кома йде на {} позицій праворуч",
+"Exponenten abziehen":"Відніми показники",
+"Wie viele Stellen wandert das Komma?":"На скільки позицій іде кома?",
+"Zehnerpotenzen: Zahlen in die Form x · {}ⁿ umschreiben (x gesucht) und Größenordnungen vergleichen, auch mit negativen Exponenten":"Степені десяти: переписування чисел у вигляді x · {}ⁿ (x невідоме) та порівняння порядків величин, також із від’ємними показниками"});
