@@ -179,6 +179,7 @@ const PANELS = {
   eltern() {
     const on = zaehlungAn();
     return { title: '👪 Elternbereich', html: `<div class="menu">
+      ${voucherEltern()}
       ${nachhilfeHinweis()}
       ${mi('week', '📊', 'Wochenbericht', 'Was geübt wurde, wo es hakt')}
       ${mi('elternbericht', '📈', 'Elternbericht' + proBadge(), 'Verlauf über 10 Wochen, Stärken und Schwächen je Thema')}
@@ -189,6 +190,7 @@ const PANELS = {
       ${CONFIG.zaehler ? `<button class="setrow" id="zaehlSw" role="switch" aria-checked="${on}"><div><b>Anonyme Nutzungszählung</b><span>Beim Start meldet die App nur „Zahlensprint wurde geöffnet“ und die Version, nach einem Umzug auf die neue Adresse außerdem einmal „Umzug geklappt“ und wenn der Link zur Probestunde angetippt wird – ohne Namen, Kennungen oder Cookies. Hilft uns zu sehen, ob Zahlensprint genutzt wird.</span></div><span class="switch ${on ? 'on' : ''}"></span></button>` : ''}
     </div>`, init() {
       bindNachhilfeHinweis();
+      if ($('voucherBox')) bindVoucher();
       const nh = $('nhSw'); if (nh) nh.onclick = () => { ROOT.hinweisAus = !ROOT.hinweisAus; save(); Sound.click(); nh.setAttribute('aria-checked', !!ROOT.hinweisAus); nh.querySelector('.switch').classList.toggle('on', !!ROOT.hinweisAus); };
       const b = $('zaehlSw'); if (b) b.onclick = () => { ROOT.zaehlung = !zaehlungAn(); save(); Sound.click(); b.setAttribute('aria-checked', ROOT.zaehlung); b.querySelector('.switch').classList.toggle('on', ROOT.zaehlung); };
     } };

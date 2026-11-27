@@ -2636,4 +2636,10 @@ I18N.add('uk', {"% sind":"% — це",
 "Exponenten abziehen":"Відніми показники",
 "Wie viele Stellen wandert das Komma?":"На скільки позицій іде кома?",
 "Zehnerpotenzen: Zahlen in die Form x · {}ⁿ umschreiben (x gesucht) und Größenordnungen vergleichen, auch mit negativen Exponenten":"Степені десяти: переписування чисел у вигляді x · {}ⁿ (x невідоме) та порівняння порядків величин, також із від’ємними показниками",
-"Die anonyme Nutzungszählung geht jetzt immer an die eigene Adresse der App":"Анонімний підрахунок використання тепер завжди надсилається на власну адресу застосунку"});
+"Die anonyme Nutzungszählung geht jetzt immer an die eigene Adresse der App":"Анонімний підрахунок використання тепер завжди надсилається на власну адресу застосунку",
+"Du hast den ganzen Adventskalender gelöst – richtig stark!":"Ти розв’язав(ла) увесь адвент-календар – чудово!",
+"Euer Gutschein für Nachhilfe – online":"Ваш ваучер на Nachhilfe – online",
+"auf ein Stundenpaket":"на пакет занять",
+"Euer Kind hat alle {} Türchen geöffnet – hier ist euer Code für {} % auf ein Stundenpaket.":"Ваша дитина відкрила всі {} віконець – ось ваш код на знижку {} % на пакет занять.",
+"{} % auf jedes Stundenpaket, einmal je Familie. Dieser Code gilt nur einmal und ist nicht mit anderen Gutscheinen kombinierbar.":"Знижка {} % на кожен пакет занять, один раз на родину. Цей код діє лише один раз і не поєднується з іншими ваучерами.",
+"Adventskalender: Kinder sehen nach Türchen {} nur noch eine Belohnung; der Gutschein-Code steht nur im Elternbereich":"Адвент-календар: після віконця 24 діти бачать лише нагороду; код ваучера показано лише в розділі для батьків"});

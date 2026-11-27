@@ -43,7 +43,7 @@ window.RECHENBLITZ_CONFIG = {
   // Gutschein für alle 24 Türchen: jeder Code wird vom Server frisch erzeugt und gilt nur einmal (Leitstand 13.11.):
   // POST /api/gutschein { klasse, tueren } → { code, prozent, bis, gilt }. 10 % auf jedes Stundenpaket, einmal je Familie,
   // bis 15.01.2027, nur bei zutreffender Klassenstufe. Leer lassen (endpoint: '') = Gutschein und Werbung dafür ausgeblendet.
-  // Abgeschaltet (Marcel 19.11., Befund Recht/UWG): Gutschein-Hinweise nicht in Kinderansichten. Wieder einschalten erst nach dem
-  // Umbau (nur im Elternbereich hinter dem Eltern-Tor) und Freigabe durch Recht. Vorher: { endpoint: 'api/gutschein', percent: 10, text: 'auf jedes Stundenpaket', until: '2027-01-15' }
-  adventVoucher: null
+  // Marcel 27.11.2026: Der Code wird NUR im Elternbereich (hinter dem Eltern-Tor) angezeigt; Kinder sehen nach Türchen 24 nur eine Belohnung ohne Geld- oder Kaufbezug.
+  // Anfrage ohne Klassenstufe: POST { tueren: 24 }. Live erst nach Freigabe durch Recht/Leitstand (Wortlaut: docs/plattform/appzentrale/postfach/recht.md).
+  adventVoucher: { endpoint: 'api/gutschein', percent: 10, text: 'auf ein Stundenpaket', until: '2027-01-15' }
 };

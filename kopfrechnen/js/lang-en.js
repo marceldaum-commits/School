@@ -2636,4 +2636,10 @@ I18N.add('en', {"% sind":"% are",
 "Exponenten abziehen":"Subtract the exponents",
 "Wie viele Stellen wandert das Komma?":"How many places does the decimal point move?",
 "Zehnerpotenzen: Zahlen in die Form x · {}ⁿ umschreiben (x gesucht) und Größenordnungen vergleichen, auch mit negativen Exponenten":"Powers of ten: rewrite numbers in the form x · {}ⁿ (x unknown) and compare orders of magnitude, also with negative exponents",
-"Die anonyme Nutzungszählung geht jetzt immer an die eigene Adresse der App":"The anonymous usage count now always goes to the app's own address"});
+"Die anonyme Nutzungszählung geht jetzt immer an die eigene Adresse der App":"The anonymous usage count now always goes to the app's own address",
+"Du hast den ganzen Adventskalender gelöst – richtig stark!":"You have solved the whole Advent calendar – really strong!",
+"Euer Gutschein für Nachhilfe – online":"Your voucher for Nachhilfe – online",
+"auf ein Stundenpaket":"on a lesson package",
+"Euer Kind hat alle {} Türchen geöffnet – hier ist euer Code für {} % auf ein Stundenpaket.":"Your child has opened all {} doors – here is your code for {} % off a lesson package.",
+"{} % auf jedes Stundenpaket, einmal je Familie. Dieser Code gilt nur einmal und ist nicht mit anderen Gutscheinen kombinierbar.":"{} % off every lesson package, once per family. This code can only be used once and cannot be combined with other vouchers.",
+"Adventskalender: Kinder sehen nach Türchen {} nur noch eine Belohnung; der Gutschein-Code steht nur im Elternbereich":"Advent calendar: after door 24 children only see a reward; the voucher code is shown only in the parents' area"});
