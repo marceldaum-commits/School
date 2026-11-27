@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Zahlensprint (früher Rechenblitz)</title>
+<style>
+  :root { --bg: #f7f9fd; --text: #1f2b3e; --head: #101b43; --orange: #ff7418; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #0a1029; --text: #e6ebf6; --head: #fff; } }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--bg); color: var(--text); font: 16px/1.5 system-ui, sans-serif; }
+  main { max-width: 420px; padding: 24px 16px; text-align: center; }
+  h1 { color: var(--head); font-size: 24px; margin: 0 0 8px; }
+  a.btn { display: inline-block; margin-top: 12px; padding: 12px 22px; border-radius: 14px; background: var(--orange); color: #101b43; font-weight: 800; text-decoration: none; }
+  small { display: block; margin-top: 16px; opacity: .75; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Zahlensprint</h1>
+  <p>Aus Rechenblitz ist Zahlensprint geworden. Dein Lernstand bleibt erhalten.</p>
+  <a class="btn" id="weiter" href="/zahlensprint/">Weiter zu Zahlensprint</a>
+  <small>Wenn du die App auf dem Startbildschirm hast: Bitte installiere Zahlensprint dort einmal neu. Die alte App kannst du danach löschen.</small>
+</main>
+<script>
+// Ziel: derselbe Dateiname, dieselbe Abfrage und derselbe Hash (?thema=…, #pro=…, #auftrag=… bleiben erhalten); der Speicher liegt im selben Ursprung
+(function () {
+  var rest = location.pathname.replace(/^\/rechenblitz\//, '').replace(/^index\.html$/, ''), ziel = '/zahlensprint/' + rest + location.search + location.hash;
+  document.getElementById('weiter').href = ziel;
+  try { if (navigator.serviceWorker) navigator.serviceWorker.getRegistrations().then(function (rs) { rs.forEach(function (r) { if (/\/rechenblitz\/$/.test(r.scope)) r.unregister(); }); }); } catch (e) {}
+  try { if (window.caches) caches.keys().then(function (ks) { ks.forEach(function (k) { if (/^rechenblitz-\d/.test(k)) caches.delete(k); }); }); } catch (e) {}
+  setTimeout(function () { location.replace(ziel); }, 600);
+})();
+</script>
+</body>
+</html>

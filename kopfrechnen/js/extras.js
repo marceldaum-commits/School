@@ -1,0 +1,533 @@
+'use strict';
+/* =====================================================================
+   Rechenblitz – Extras für Reichweite & Werbung:
+   Adventskalender, Urkunde, Flyer/Poster mit QR-Code, Freunde einladen,
+   passende Probestunden-Hinweise, Klassen-Challenge (Server), Direktlinks
+   ===================================================================== */
+const publicUrl = () => CONFIG.publicUrl || appUrl();
+const isTestHost = () => !IS_NATIVE && /(^|[.-])test\.|-test\.|localhost|127\.0\.0\.1/.test(location.hostname);
+const longDate = (d = new Date()) => d.toLocaleDateString(locale(), { day: 'numeric', month: 'long', year: 'numeric' });
+
+/* ---------- QR-Code (lokal, js/vendor/qrcode.js) ---------- */
+function qrMatrix(text) { const q = qrcode(0, 'M'); q.addData(text); q.make(); const n = q.getModuleCount(); return { n, dark: (r, c) => q.isDark(r, c) }; }
+function qrSvg(text, color = '#101b43') {
+  const { n, dark } = qrMatrix(text); let d = '';
+  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (dark(r, c)) d += `M${c + 4} ${r + 4}h1v1h-1z`;
+  return `<svg class="qr" viewBox="0 0 ${n + 8} ${n + 8}" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges" role="img" aria-label="QR-Code: ${esc(text)}"><rect width="100%" height="100%" fill="#fff"/><path d="${d}" fill="${color}"/></svg>`;
+}
+function qrDraw(ctx, text, x, y, size) {
+  const { n, dark } = qrMatrix(text), m = 2, cell = size / (n + 2 * m);
+  ctx.fillStyle = '#fff'; ctx.fillRect(x, y, size, size); ctx.fillStyle = '#101b43';
+  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (dark(r, c)) ctx.fillRect(x + (c + m) * cell, y + (r + m) * cell, Math.ceil(cell), Math.ceil(cell));
+}
+/** Urkunde drucken (Marcel 16.11.): „full“ = quer über das ganze A4-Blatt. Das Bild wird gedreht und auf eine
+    Hochformat-Seite gelegt, so füllt es die Seite unabhängig von der Ausrichtung im Druckdialog. „half“ = wie bisher. */
+function printCert(mode) {
+  if (!certCanvas) return;
+  if (mode === 'half') return printRaw(`<img class="certprint" src="${certCanvas.toDataURL('image/png')}" alt="Urkunde">`, 'landscape');
+  const r = document.createElement('canvas'); r.width = certCanvas.height; r.height = certCanvas.width;
+  const x = r.getContext('2d'); x.translate(r.width, 0); x.rotate(Math.PI / 2); x.drawImage(certCanvas, 0, 0);
+  printRaw(`<style>@page{size:A4 portrait;margin:6mm}</style><img class="certprint full" src="${r.toDataURL('image/png')}" alt="Urkunde">`, 'certfull');
+}
+function printRaw(html, cls) {
+  $('print').className = cls || ''; $('print').innerHTML = html;
+  document.body.classList.add('printing');
+  setTimeout(() => { window.print(); setTimeout(() => { document.body.classList.remove('printing'); $('print').className = ''; }, 500); }, 150);
+}
+
+/* ================= Adventskalender ================= */
+const ADVENT_FACTS = [
+  ['⭐', 'Wusstest du? 1 + 2 + 3 + … + 24 = 300. Zählt man alle Türchen-Zahlen zusammen, kommt 300 heraus!'],
+  ['❄️', 'Jede Schneeflocke hat 6 Arme – und trotzdem gleicht keine der anderen.'],
+  ['🍪', '3 Bleche mit je 12 Plätzchen sind 36 Plätzchen. Malnehmen ist schnelles Plusrechnen!'],
+  ['🎄', 'Eine Zahl ist durch 3 teilbar, wenn ihre Quersumme durch 3 teilbar ist: 1224 → 1 + 2 + 2 + 4 = 9 ✓'],
+  ['🕯️', 'Kopfrechen-Trick: Mal 5 heißt mal 10 und dann halbieren. 48 · 5 = 480 : 2 = 240.'],
+  ['🎅', 'Nikolaus! 6 ist eine „vollkommene Zahl“: Ihre Teiler 1 + 2 + 3 ergeben genau 6.'],
+  ['🧦', 'Mal 9 mit den Fingern: Für 9 · 4 knickst du den 4. Finger ein – links 3, rechts 6 → 36.'],
+  ['⛄', 'Ist jede Schneemann-Kugel doppelt so breit wie die darüber, ist die unterste 4-mal so breit wie der Kopf.'],
+  ['🎁', '11 · 23? Die Ziffern addieren und in die Mitte setzen: 2 (2 + 3) 3 → 253.'],
+  ['🦌', '9 Rentiere haben zusammen 36 Beine – 9 · 4 = 36.'],
+  ['🌟', 'Prozent heißt „von Hundert“: 25 % ist ein Viertel, 50 % die Hälfte.'],
+  ['🍫', '12 Stück sind ein Dutzend. Ein Adventskalender hat genau 2 Dutzend Türchen.'],
+  ['🎶', 'Rechne 99 + 47 so: 100 + 47 − 1 = 146.'],
+  ['🧁', 'Brüche teilen gerecht: 3 Kuchen für 4 Kinder – jedes bekommt 3/4 Kuchen.'],
+  ['🛷', 'Trick für Quadratzahlen mit 5 am Ende: 15² → 1 · 2 = 2, dann 25 anhängen: 225.'],
+  ['❄️', 'Minus mal Minus ergibt Plus: (−3) · (−4) = 12.'],
+  ['🎄', 'Ungerade Zahlen ergeben Quadratzahlen: 1 + 3 + 5 + 7 = 16 = 4².'],
+  ['🕯️', 'Runden: 4,6 ≈ 5 und 4,4 ≈ 4. Ab der 5 wird aufgerundet.'],
+  ['🍪', 'Durch 4 teilen heißt zweimal halbieren: 96 → 48 → 24.'],
+  ['🌨️', 'Bei −10 °C ist es frostig kalt. Wird es 15 Grad wärmer, sind es +5 °C.'],
+  ['🌙', 'Um den 21. Dezember ist der kürzeste Tag des Jahres – danach werden die Tage wieder länger!'],
+  ['⚖️', 'Gleichungen sind wie eine Waage: Was du links machst, musst du auch rechts machen.'],
+  ['✨', '1000 Minuten sind 16 Stunden und 40 Minuten.'],
+  ['🎄', 'Frohe Weihnachten! Du hast gerechnet wie ein Profi. 🎉'],
+];
+const ADVENT_ORDER = [7, 19, 2, 14, 23, 10, 5, 17, 1, 12, 21, 8, 16, 3, 24, 11, 20, 6, 13, 9, 22, 4, 18, 15];
+const adventPreview = () => CONFIG.adventPreview === true || (CONFIG.adventPreview === 'auto' && isTestHost());
+function adventYear() { const d = new Date(); return d.getMonth() === 0 ? d.getFullYear() - 1 : d.getFullYear(); }
+function adventPhase() {   // 'off' | 'teaser' | 'on' | 'after'
+  if (!CONFIG.advent) return 'off';
+  if (adventPreview()) return 'on';
+  const d = new Date(), m = d.getMonth() + 1, day = d.getDate();
+  if (m === 11 && day >= 15) return 'teaser';
+  if (m === 12 && day <= 24) return 'on';
+  if ((m === 12 && day > 24) || (m === 1 && day <= 6)) return 'after';
+  return 'off';
+}
+const adventOpen = d => adventPreview() || adventPhase() === 'after' || (adventPhase() === 'on' && new Date().getDate() >= d);
+function adventState() { if (!S.advent || S.advent.year !== adventYear()) S.advent = { year: adventYear(), doors: {} }; return S.advent; }
+// Aufgaben passend zur Klassenstufe: Themen der Klasse + Wiederholung aus dem Vorjahr, gegen Ende schwerer
+const ADVENT_MIN_OK = 3;   // Türchen zählt erst ab 3 von 5 richtig
+const ADVENT_UPPER = [['eq', 4], ['eq', 3], ['pow', 4], ['pow', 3], ['pct', 4], ['frac', 4], ['dec', 4], ['neg', 4], ['order', 4], ['divis', 4], ['round', 4], ['unit', 4], ['word', 4]];
+const adventClassName = k => k >= 11 ? 'Oberstufe' : `Klasse ${k}`;
+function adventPool(k) {
+  if (k >= 11) return ADVENT_UPPER;
+  const cur = CLASS_TOPICS[k] || [], prev = (CLASS_TOPICS[k - 1] || []).filter(([t]) => !cur.some(([c]) => c === t));
+  return [...cur, ...cur, ...prev];   // aktuelle Klasse doppelt gewichtet
+}
+function adventTasks(d) {
+  const k = adventState().klasse || 5;
+  return withSeed(hashStr(`rechenblitz-advent-${adventYear()}-${d}-k${k}`), () => {
+    const pool = shuffle(adventPool(k).slice()), out = [], used = new Set();
+    for (const [t, l] of pool) { if (out.length >= 5) break; if (used.has(t) && pool.length > 8) continue; used.add(t); out.push([t, l]); }
+    while (out.length < 5) out.push(pick(pool));
+    return out.map(([t, l], i) => {
+      const bump = d <= 8 ? 0 : d <= 16 ? (i % 2) : 1;   // 1.–8. normal, 9.–16. gemischt, ab 17. eine Stufe schwerer
+      return makeTask(t, Math.min(4, l + (k >= 11 ? 0 : bump)));
+    });
+  });
+}
+function startAdventDoor(d) { if (!adventState().klasse) return openSheet('advent'); closeSheet(); startGame('advent', { queue: adventTasks(d), op: 'mix', lvl: 0, title: `Türchen ${d}`, door: d }); }
+
+/* ---------- Gutschein für alle 24 Türchen ----------
+   Jeder Code wird vom Server frisch erzeugt (POST adventVoucher.endpoint), einmal abgeholt und im Gerät gespeichert.
+   Ohne Verbindung wird später nachgeholt. */
+const voucher = () => { const v = CONFIG.adventVoucher; return v && (v.endpoint || v.code) ? v : null; };
+const myVoucher = () => adventState().voucher || (voucher() && voucher().code ? { code: voucher().code } : null);
+let voucherBusy = false;
+async function fetchVoucher() {
+  const v = voucher(), st = adventState();
+  if (!v || !v.endpoint || st.voucher || st.voucherEnded || voucherBusy || Object.keys(st.doors).length < 24) return;
+  if (!navigator.onLine) { st.voucherPending = true; save(); return; }
+  voucherBusy = true;
+  try {
+    const r = await fetch(v.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tueren: 24 }) });   // keine Klassenstufe an den Server (Datensparsamkeit, Recht)
+    let j = {}; try { j = await r.json(); } catch {}
+    if (r.ok && j.code) { st.voucher = { code: String(j.code), prozent: j.prozent, bis: j.bis, gilt: j.gilt, date: todayStr() }; st.voucherPending = false; }
+    else if (r.status === 410) { st.voucherEnded = true; st.voucherPending = false; }
+    else st.voucherPending = true;                     // 429/400/5xx → später nochmal
+  } catch { st.voucherPending = true; }
+  voucherBusy = false; save();
+  if ($('voucherBox')) { $('voucherBox').outerHTML = voucherHtml(); const b = $('vCopy'); if (b) bindVoucher(); }
+  if (currentScreen() === 'home') renderHome();
+}
+// NUR im Elternbereich (hinter dem Eltern-Tor; Marcel 27.11.2026: Kaufanreize für Kinder sind tabu) – Kinder sehen nach Türchen 24 nur eine Belohnung ohne Geld- oder Kaufbezug
+function voucherHtml() {
+  const v = voucher(); if (!v) return '';
+  const st = adventState(), mine = myVoucher();
+  const pct = (mine && mine.prozent) || v.percent || 10, until = (mine && mine.bis) || v.until;
+  if (st.voucherEnded) return `<div class="voucher" id="voucherBox"><b>Die Adventsaktion ist beendet.</b><p class="small muted" style="margin:6px 0 0">Danke fürs Mitrechnen!</p></div>`;
+  const head = `<div class="v-top"><span class="v-pct">${pct} %</span><div><b>Euer Gutschein für Nachhilfe – online</b><small>${esc(v.text || 'auf ein Stundenpaket')}${until ? ` · gültig bis ${fmtDay(until)}` : ''}</small></div></div>`;
+  const intro = `<p class="small" style="margin:8px 0 0">Euer Kind hat alle 24 Türchen geöffnet – hier ist euer Code für ${pct} % auf ein Stundenpaket.</p>`;
+  if (!mine) return `<div class="voucher" id="voucherBox">${head}${intro}<p class="small muted" style="margin:6px 0 0">${navigator.onLine && !st.voucherPending ? '⏳ Der Code wird abgeholt …' : '📶 Sobald das Gerät wieder online ist, holen wir den Code ab.'}</p></div>`;
+  return `<div class="voucher" id="voucherBox">${head}${intro}
+    <div class="v-code"><code id="vCode" translate="no">${esc(mine.code)}</code><button class="btn small" id="vCopy">Kopieren</button></div>
+    <p class="v-cond">${pct} % auf jedes Stundenpaket, einmal je Familie. Dieser Code gilt nur einmal und ist nicht mit anderen Gutscheinen kombinierbar.</p>
+    <a class="btn primary block" href="${esc(siteLink(v.url || CONFIG.packagesUrl, 'advent-gutschein'))}" target="_blank" rel="noopener">Zu den Stundenpaketen ↗</a></div>`;
+}
+// Karte für den Elternbereich: nur wenn der Kalender vollständig ist
+const voucherEltern = () => voucher() && Object.keys(adventState().doors).length >= 24 ? voucherHtml() : '';
+// Belohnung für das Kind nach Türchen 24: ohne Geld- oder Kaufbezug
+const adventReward = () => `<div class="card"><h3 style="margin:0 0 6px">🎉 Alle 24 Türchen geschafft!</h3><p style="margin:0">Du hast den ganzen Adventskalender gelöst – richtig stark!</p></div>`;
+function bindVoucher() {
+  fetchVoucher();
+  const b = $('vCopy'); if (!b) return;
+  b.onclick = async () => { try { await navigator.clipboard.writeText(myVoucher().code); toast('Gutscheincode kopiert ✓'); } catch { const r = document.createRange(); r.selectNodeContents($('vCode')); getSelection().removeAllRanges(); getSelection().addRange(r); } };
+}
+addEventListener('online', () => { if (S && S.advent && S.advent.voucherPending) fetchVoucher(); });
+
+/* ================= Urkunde ================= */
+const loadImg = src => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = no; i.src = src; });
+function wrapText(ctx, text, x, y, maxW, lh) {
+  const words = String(text).split(' '); let line = '', lines = [];
+  for (const w of words) { const t = line ? line + ' ' + w : w; if (ctx.measureText(t).width > maxW && line) { lines.push(line); line = w; } else line = t; }
+  lines.push(line); lines.forEach((l, i) => ctx.fillText(l, x, y + i * lh)); return lines.length;
+}
+async function drawCertificate(o) {
+  try { await document.fonts.ready; } catch {}
+  const W = 1600, H = 1131, c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d');
+  x.fillStyle = '#fdfdfb'; x.fillRect(0, 0, W, H);
+  x.strokeStyle = 'rgba(16,27,67,.06)'; x.lineWidth = 2;
+  for (let i = 40; i < W; i += 40) { x.beginPath(); x.moveTo(i, 0); x.lineTo(i, H); x.stroke(); }
+  for (let i = 40; i < H; i += 40) { x.beginPath(); x.moveTo(0, i); x.lineTo(W, i); x.stroke(); }
+  x.strokeStyle = '#101b43'; x.lineWidth = 22; x.strokeRect(34, 34, W - 68, H - 68);
+  x.strokeStyle = '#ff7418'; x.lineWidth = 5; x.strokeRect(70, 70, W - 140, H - 140);
+  x.fillStyle = '#ff7418'; x.beginPath(); x.arc(W - 150, 150, 26, 0, Math.PI * 2); x.fill();
+  try { const logo = await loadImg('icons/logo.svg'); x.drawImage(logo, 120, 110, 96, 96); } catch {}
+  x.textBaseline = 'alphabetic'; x.textAlign = 'left';
+  x.fillStyle = '#101b43'; x.font = '800 42px Inter, Arial, sans-serif'; x.fillText('Zahlensprint', 232, 155);
+  x.fillStyle = '#61718a'; x.font = '500 24px Inter, Arial, sans-serif'; x.fillText(tr('by Nachhilfe – online'), 232, 192);
+  x.textAlign = 'center';
+  const g = x.createLinearGradient(W / 2 - 260, 0, W / 2 + 260, 0); g.addColorStop(0, '#ff8a3d'); g.addColorStop(1, '#df5e0c');
+  x.fillStyle = g; x.font = 'italic 600 128px "Source Serif 4", Georgia, serif'; x.fillText(tr('Urkunde'), W / 2, 345);
+  x.fillStyle = '#61718a'; x.font = '500 32px Inter, Arial, sans-serif'; x.fillText(tr(o.name ? 'für' : 'Für hervorragendes Rechnen'), W / 2, 410);
+  if (o.name) {
+    x.fillStyle = '#2447b5'; x.font = '700 118px Caveat, "Segoe Print", cursive'; x.fillText(o.name, W / 2, 530);
+    const w = Math.min(760, x.measureText(o.name).width + 120); x.strokeStyle = '#dbe4ef'; x.lineWidth = 3; x.beginPath(); x.moveTo(W / 2 - w / 2, 556); x.lineTo(W / 2 + w / 2, 556); x.stroke();
+  }
+  x.fillStyle = '#101b43'; x.font = '800 50px Inter, Arial, sans-serif';
+  const n1 = wrapText(x, o.noTr ? o.line1 : tr(o.line1), W / 2, o.name ? 650 : 560, 1150, 60);
+  x.fillStyle = '#61718a'; x.font = '500 32px Inter, Arial, sans-serif';
+  wrapText(x, tr(o.line2 || ''), W / 2, (o.name ? 650 : 560) + n1 * 60 + 14, 1100, 42);
+  x.font = '96px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; x.fillText(o.icon || '🏅', W / 2, 850);
+  x.textAlign = 'left'; x.fillStyle = '#101b43'; x.font = '600 28px Inter, Arial, sans-serif'; x.fillText(longDate(), 130, 965);
+  x.fillStyle = '#61718a'; x.font = '500 22px Inter, Arial, sans-serif'; x.fillText(tr('Datum'), 130, 1000);
+  x.textAlign = 'right'; x.fillStyle = '#101b43'; x.font = '600 26px Inter, Arial, sans-serif';
+  x.fillText(tr('Kostenlos Kopfrechnen üben:'), W - 330, 945);
+  x.fillStyle = '#df5e0c'; x.fillText(publicUrl().replace(/^https?:\/\//, '').replace(/\/$/, ''), W - 330, 982);
+  qrDraw(x, publicUrl(), W - 300, 850, 170);
+  return c;
+}
+function certFor(kind) {
+  if (kind.badge) { const b = BADGES.find(x => x.id === kind.badge); return { line1: `${tr('Abzeichen')} „${tr(b.name)}“`, line2: b.desc, icon: b.icon, noTr: true }; }
+  return kind;
+}
+let certCanvas = null;
+
+/* ================= Werbung passend zum Lernstand ================= */
+function weakTopic() {
+  const agg = {};
+  for (let i = 0; i < 14; i++) { const h = S.hist[dayStr(i)]; if (!h) continue; for (const [tp, [ok, bad]] of Object.entries(h.tp)) { const a = agg[tp] || (agg[tp] = [0, 0]); a[0] += ok; a[1] += bad; } }
+  let best = null;
+  for (const [tp, [ok, bad]] of Object.entries(agg)) { const n = ok + bad, acc = ok / n; if (n >= 10 && acc < .7 && (!best || acc < best[1])) best = [tp, acc]; }
+  return best && best[0];
+}
+// Weg zur Probestunde (Recht V15, Marcel 24.11.2026): Berechnung nur auf dem Gerät, nichts davon geht an einen Server.
+// KINDERANSICHT: nur der Hilfesatz mit zwei Knöpfen, kein Link nach außen, kein Wort zur Probestunde. Höchstens einmal am Tag.
+function resultPromo() {
+  const today = todayStr();
+  if (!G || G.mode === 'test' || S.promoDay === today) return '';
+  const w = weakTopic(); if (!w) return '';
+  S.promoDay = today; save();
+  return `<div class="card hilfe" id="hilfeKarte" data-topic="${esc(w)}"><p style="margin:0 0 10px">Du kommst hier gerade nicht weiter? Das ist okay. Probier eine leichtere Stufe oder schau dir die Erklärung noch einmal an. Und du kannst jederzeit deine Eltern oder deine Lehrkraft fragen.</p>
+    <div class="row2"><button class="btn" id="hilfeLeicht">Leichter üben</button><button class="btn" id="hilfeErkl">Erklärung ansehen</button></div></div>`;
+}
+function bindHilfe() {
+  const k = $('hilfeKarte'); if (!k) return; const t = k.dataset.topic;
+  $('hilfeLeicht').onclick = () => { S.sel.op = t; S.sel.lvl = Math.max(0, currentLevel(t) - 1); save(); goHome(); toast('Eine leichtere Stufe ist eingestellt.', 2200); };
+  $('hilfeErkl').onclick = () => openSheet('theorie', { topic: t, lvl: currentLevel(t) });
+}
+// Übersetzung mit Platzhaltern {0}, {1} (Wörterbuch-Schlüssel = deutscher Text mit {0}/{1}); Werte dürfen fertiges HTML sein
+function trArgs(de, ...args) {
+  const hit = I18N.lang === 'de' ? null : (I18N.dict[I18N.lang] || {})[i18nKey(de).key];   // Schlüssel wie im Wörterbuch: {0} wird dort zu {{}}
+  return (hit != null ? hit : de).replace(/\{(\d+)\}/g, (m, i) => args[+i] ?? '');
+}
+// ELTERNBEREICH: objektiver Auslöser – ein Thema in den letzten 14 Tagen unter 50 % richtig (mindestens 10 Aufgaben).
+function schwierigesThema() {
+  const agg = {};
+  for (let i = 0; i < 14; i++) { const h = S.hist[dayStr(i)]; if (!h) continue; for (const [tp, [ok, bad]] of Object.entries(h.tp)) { const a = agg[tp] || (agg[tp] = [0, 0]); a[0] += ok; a[1] += bad; } }
+  let best = null;
+  for (const [tp, [ok, bad]] of Object.entries(agg)) { const n = ok + bad; if (n >= 10 && ok / n < .5 && TOPICS[tp] && (!best || ok / n < best[1])) best = [tp, ok / n]; }
+  return best && best[0];
+}
+const NACHHILFE_PAUSE_TAGE = 28;   // höchstens einmal in 4 Wochen je Thema
+function nachhilfeHinweis() {
+  if (ROOT.hinweisAus) return '';
+  const t = schwierigesThema(); if (!t) return '';
+  const seen = S.nachhilfeSeen || (S.nachhilfeSeen = {}), last = seen[t];
+  if (last && (new Date(todayStr()) - new Date(last)) / 864e5 < NACHHILFE_PAUSE_TAGE) return '';
+  seen[t] = todayStr(); save();
+  const body = trArgs('In {0} hat {1} in den letzten Wochen öfter Schwierigkeiten. Das ist normal und lässt sich üben – die App zeigt dazu passende Übungen. Wenn ihr persönliche Unterstützung möchtet: Unser Angebot – eine kostenlose, unverbindliche Probestunde Online-Nachhilfe.', `<b>${esc(tr(TOPICS[t].name))}</b>`, `<b>${esc(profile().name && profile().name !== 'Ich' ? profile().name : tr('euer Kind'))}</b>`);
+  return `<div class="card nh-hinweis" id="nhHinweis"><div style="display:flex;justify-content:space-between;gap:8px"><b>Hinweis</b><button class="linkbtn" id="nhZu" aria-label="Hinweis schließen">✕</button></div>
+    <p style="margin:6px 0 10px" translate="no">${body}</p>
+    <div class="row2"><a class="btn primary" id="nhLink" href="${esc(probeLink('elternbereich'))}" target="_blank" rel="noopener">Probestunde anfragen</a><button class="btn" id="nhAus">Solche Hinweise ausblenden</button></div></div>`;
+}
+function bindNachhilfeHinweis() {
+  if (!$('nhHinweis')) return;
+  $('nhZu').onclick = () => $('nhHinweis').remove();
+  $('nhAus').onclick = () => { ROOT.hinweisAus = true; save(); $('nhHinweis').remove(); toast('Hinweise auf Nachhilfe sind ausgeblendet.', 2400); };
+  $('nhLink').onclick = () => zaehlSenden({ app: 'rechenblitz', ev: 'probestunde_klick', ort: 'elternbereich', v: APP_VERSION });
+}
+const probeLink = ort => { try { const u = new URL(CONFIG.trialUrl); u.searchParams.set('src', 'rechenblitz'); return u.href; } catch { return CONFIG.trialUrl; } };
+// KLASSE 9–10 (nur wenn die Klassenstufe bekannt ist), ohne Tor: sachlicher Tipp, höchstens einmal pro Woche, wegklickbar
+function tippKlasse() {
+  const k = S.settings.klasse;
+  if (!(k === 9 || k === 10) || ROOT.hinweisAus) return '';
+  const last = S.tippDatum; if (last && (new Date(todayStr()) - new Date(last)) / 864e5 < 7) return '';
+  return `<div class="card promo" id="tippKarte" style="position:relative"><button class="linkbtn" id="tippZu" aria-label="Tipp schließen" style="position:absolute;right:10px;top:8px">✕</button>
+    <p style="margin:0 24px 8px 0"><b>Tipp:</b> Wenn ein Thema länger hakt, kann eine persönliche Erklärung helfen. Mit deinen Eltern könnt ihr bei uns eine kostenlose, unverbindliche Probestunde anfragen.</p>
+    <a class="btn small" id="tippLink" href="${esc(probeLink('tipp'))}" target="_blank" rel="noopener">Mehr erfahren</a></div>`;
+}
+function bindTipp() {
+  if (!$('tippKarte')) return;
+  S.tippDatum = todayStr(); save();   // einmal gezeigt: eine Woche Ruhe
+  $('tippZu').onclick = () => $('tippKarte').remove();
+  $('tippLink').onclick = () => zaehlSenden({ app: 'rechenblitz', ev: 'probestunde_klick', ort: 'link', v: APP_VERSION });
+}
+
+/* ================= Freunde einladen ================= */
+const inviteText = () => `Ich übe Kopfrechnen mit Zahlensprint – kostenlos und ohne Anmeldung. Probier's aus: ${publicUrl()}`;
+const shareInvite = () => shareText(inviteText(), 'Zahlensprint – Kopfrechnen üben');
+
+/* ================= Klassen-Challenge (braucht Server) ================= */
+async function classApi(path, body) {
+  let r;
+  try { r = await fetch(CONFIG.classApi + path, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {}); }
+  catch { const e = new Error('Keine Verbindung – bitte später noch einmal versuchen.'); e.status = 0; throw e; }   // offline: verständlich statt „Failed to fetch“
+  let j = {}; try { j = await r.json(); } catch {}
+  if (!r.ok) { const e = new Error(j.error || `Fehler ${r.status}`); e.status = r.status; throw e; }
+  return j;
+}
+const classCode = s => String(s || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 8);
+const nickOk = s => /^[\p{L}\p{N} _.-]{2,20}$/u.test(s);
+let classSending = false;
+async function submitClassPoints(entry) {
+  const P = S;                                        // Profil festhalten (Wechsel während des Sendens)
+  if (entry) { P.klassePending = [...(P.klassePending || []), entry].slice(-50); save(); }
+  if (classSending || !CONFIG.classApi || !P.klasse || !(P.klassePending || []).length) return;
+  classSending = true;
+  try {
+    for (const e of P.klassePending.slice()) {
+      const kl = P.klasse; if (!kl) break;
+      try { await classApi('/klasse/punkte', { code: kl.code, spieler: kl.spieler, ...e }); P.klassePending = P.klassePending.filter(x => x !== e); }
+      catch (err) {
+        if (err.status === 404 || err.status === 403) { P.klasse = null; P.klassePending = []; break; }
+        if (err.status === 400) P.klassePending = P.klassePending.filter(x => x !== e); else break;   // offline/Server: später erneut
+      }
+      save();
+    }
+  } finally { classSending = false; save(); }
+}
+function rankingHtml(d) {
+  if (!d.eintraege || !d.eintraege.length) return '<p class="muted">Diese Woche hat noch niemand Punkte gesammelt. Sei die/der Erste!</p>';
+  return `<ol class="ranking">${d.eintraege.map((e, i) => `<li class="${e.ich ? 'me' : ''}"><span class="rk">${['🥇', '🥈', '🥉'][i] || i + 1}</span><b translate="no">${esc(e.spitzname)}</b><span class="pt">${Math.round(+e.punkte) || 0} P.</span></li>`).join('')}</ol>`;
+}
+
+/* ================= Panels ================= */
+Object.assign(PANELS, {
+  advent() {
+    const st = adventState(), phase = adventPhase(), done = Object.keys(st.doors).length;
+    if (!st.klasse) {
+      const pre = S.settings.klasse || 0;
+      return { title: 'Rechen-Adventskalender', html: `<p style="margin:0 0 6px"><b>In welche Klasse gehst du?</b></p>
+        <p class="small muted" style="margin:0 0 8px">Damit die Aufgaben zu dir passen. Die Klassenstufe gilt für den ganzen Kalender – wer sie später ändert, fängt wieder bei Türchen 1 an.</p>
+        <div class="chips big" id="advK">${[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(n => `<button data-v="${n}" class="${pre === n ? 'sel' : ''}">${n}</button>`).join('')}<button data-v="11" style="flex-basis:100%">Oberstufe (11–13)</button></div>`,
+        init() { $('advK').onclick = e => { const b = e.target.closest('button'); if (!b) return; const k = +b.dataset.v; st.klasse = k; const adopt = k <= 10 && !S.settings.klasse; if (adopt) S.settings.klasse = k; save(); renderHome(); showPanel('advent'); toast(`🎄 ${adventClassName(k)} – viel Spaß!` + (adopt ? ` <span>${tr('Klassenstufe auch für die App übernommen (änderbar in den Einstellungen).')}</span>` : ''), 3200); }; } };
+    }
+    const doors = ADVENT_ORDER.map(d => {
+      const r = st.doors[d], open = adventOpen(d);
+      return `<button class="door ${r ? 'done' : open ? 'open' : 'locked'}" data-door="${d}" ${open ? '' : 'disabled'} aria-label="Türchen ${d}${r ? ', geschafft' : open ? '' : ', noch geschlossen'}"><b>${d}</b>${r ? `<span>${ADVENT_FACTS[d - 1][0]}</span><small>${'★'.repeat(Math.max(1, Math.round(r.correct / 5 * 3)))}</small>` : open ? '<span>🎁</span>' : '<span>🔒</span>'}</button>`;
+    }).join('');
+    const raffle = CONFIG.adventRaffleUrl && done >= (CONFIG.adventRaffleMin || 12)
+      ? `<a class="btn primary block" href="${esc(siteLink(CONFIG.adventRaffleUrl, 'advent-verlosung'))}" target="_blank" rel="noopener">🎁 Bei der Verlosung mitmachen ↗</a>` : CONFIG.adventRaffleUrl ? `<p class="small muted" style="margin:0">Ab ${CONFIG.adventRaffleMin || 12} geöffneten Türchen kannst du bei unserer Verlosung mitmachen.</p>` : '';
+    return { title: 'Rechen-Adventskalender', html: `
+      ${phase === 'teaser' ? '<p class="note">Ab dem <b>1. Dezember</b> öffnet sich jeden Tag ein Türchen mit 5 Aufgaben und einem Rechen-Trick. Verpasste Türchen kannst du nachholen.</p>' : `<p class="small muted" style="margin:0 0 10px">Jeden Tag ein Türchen: 5 Aufgaben für <b>${adventClassName(st.klasse)}</b> und ein Rechen-Trick. Ein Türchen ist geschafft ab ${ADVENT_MIN_OK} von 5 richtig. Verpasste Türchen kannst du nachholen. Geschafft: <b>${done}/24</b> · <button class="linkbtn" id="advChange">Klasse ändern</button></p>`}
+      ${adventPreview() && phase === 'on' && !(new Date().getMonth() === 11) ? '<p class="note">Vorschau-Modus (Testseite): alle Türchen sind offen.</p>' : ''}
+      <div class="advent">${doors}</div>
+      ${done >= 20 ? '<button class="btn block" id="advCert" style="margin-top:12px">🏅 Advents-Urkunde holen</button>' : `<p class="small muted" style="margin:10px 0">Ab 20 Türchen gibt es eine Advents-Urkunde.</p>`}
+      ${done >= 24 && voucher() ? adventReward() : ''}
+      ${raffle}`, init() {
+        bindVoucher();
+        $('advChange') && ($('advChange').onclick = () => { if (!done || confirm(tr('Klassenstufe ändern? Dein Fortschritt im Adventskalender beginnt dann wieder bei null.'))) { S.advent = { year: adventYear(), doors: {} }; save(); renderHome(); showPanel('advent'); } });
+        $('sheetBody').querySelectorAll('[data-door]').forEach(b => b.onclick = () => showPanel('adventDoor', { d: +b.dataset.door }, true));
+        $('advCert') && ($('advCert').onclick = () => showPanel('cert', { line1: 'Rechen-Adventskalender', line2: `${done} von 24 Türchen geschafft · ${adventClassName(st.klasse)}`, icon: '🎄' }, true));
+      } };
+  },
+  adventDoor({ d }) {
+    const r = adventState().doors[d], [icon, fact] = ADVENT_FACTS[d - 1];
+    return { title: `Türchen ${d}`, html: `<div class="doorview"><div class="dicon">${icon}</div><p class="fact">${esc(fact)}</p>
+      ${r ? `<p class="muted">Geschafft am ${fmtDay(r.date)}: <b>${r.correct}/5</b> richtig.</p>` : `<p class="small muted">5 Aufgaben für ${adventClassName(adventState().klasse)} – ab ${ADVENT_MIN_OK} richtigen ist das Türchen geschafft.</p>`}
+      <button class="btn primary block" id="doorGo">${r ? 'Nochmal rechnen' : '5 Aufgaben lösen'}</button></div>`, init() { $('doorGo').onclick = () => startAdventDoor(d); } };
+  },
+  cert(o) {
+    const nm = profile().name === 'Ich' ? '' : profile().name;
+    return { title: 'Urkunde', html: `<label class="field"><span>Name auf der Urkunde (Spitzname reicht, oder leer lassen)</span><input id="certName" maxlength="24" value="${esc(nm)}"></label>
+      <div class="certprev"><img id="certImg" alt="Urkunde"></div>
+      <div class="row3"><button class="btn primary" id="certShare">Teilen</button><a class="btn" id="certSave" download="rechenblitz-urkunde.png">Speichern</a><button class="btn" id="certPrint">Drucken</button></div>
+      <div class="cert-print" id="certPrintOpts" hidden><b>Wie drucken?</b><div class="row2"><button class="btn primary" data-pr="full"><span>📄</span> <span>A4 quer – ganze Seite</span></button><button class="btn" data-pr="half"><span>📃</span> <span>Halbe Seite</span></button></div></div>`,
+      async init() {
+        const data = certFor(o);
+        const render = async () => { certCanvas = await drawCertificate({ ...data, name: $('certName').value.trim() }); const u = certCanvas.toDataURL('image/png'); $('certImg').src = u; $('certSave').href = u; };
+        let t; $('certName').oninput = () => { clearTimeout(t); t = setTimeout(render, 250); };
+        await render();
+        $('certShare').onclick = async () => {
+          const blob = await new Promise(r => certCanvas.toBlob(r, 'image/png')), file = new File([blob], 'rechenblitz-urkunde.png', { type: 'image/png' });
+          if (navigator.canShare && navigator.canShare({ files: [file] })) { try { await navigator.share({ files: [file], title: 'Meine Zahlensprint-Urkunde', text: `Geschafft! ${publicUrl()}` }); } catch {} }
+          else { $('certSave').click(); toast('Bild gespeichert – jetzt z. B. per WhatsApp schicken'); }
+        };
+        $('certPrint').onclick = () => { const o = $('certPrintOpts'); o.hidden = !o.hidden; if (!o.hidden) o.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); };
+        $('certPrintOpts').onclick = e => { const b = e.target.closest('[data-pr]'); if (b) printCert(b.dataset.pr); };
+      } };
+  },
+  invite() {
+    return { title: 'Freunde einladen', html: `<p style="margin:0 0 10px">Zahlensprint ist <b>kostenlos</b> und braucht keine Anmeldung. Zeig den Code deinen Freunden oder schick ihnen den Link.</p>
+      <div class="qrbox">${qrSvg(publicUrl())}<div class="small muted">${esc(publicUrl())}</div></div>
+      <button class="btn primary block" id="invShare">Link teilen</button>
+      <div class="card parents"><b>Für Eltern: Freunde werben</b><p class="small muted" style="margin:4px 0 8px">Empfiehl Nachhilfe – online weiter: Bucht die empfohlene Familie ein Paket ab 10 Stunden, schenken wir dir eine Unterrichtsstunde.</p><a class="btn block" href="${esc(siteLink(CONFIG.referralUrl, 'einladen'))}" target="_blank" rel="noopener">Zu „Freunde werben“ ↗</a></div>`,
+      init() { $('invShare').onclick = shareInvite; } };
+  },
+  flyer() {
+    return { title: 'Flyer & Poster', html: `<p class="small muted" style="margin:0 0 10px">Zum Aushängen in Schule, Hort, Bibliothek oder Praxis – mit QR-Code direkt zu Zahlensprint.</p>
+      <div class="seg" id="flKind"><button data-v="poster" class="sel">Poster (A4)</button><button data-v="cards">4 Handzettel (A6)</button></div>
+      <label class="field" style="margin-top:12px"><span>Eigener Hinweis (optional)</span><input id="flNote" maxlength="70" placeholder="z. B. Empfohlen von der Klasse 4b"></label>
+      <div class="flyerprev" id="flPrev"></div>
+      <button class="btn primary block" id="flPrint" style="margin-top:12px">Drucken / als PDF speichern</button>`,
+      init() {
+        let kind = 'poster';
+        const upd = () => { $('flPrev').innerHTML = flyerHtml($('flNote').value.trim(), true); };
+        $('flKind').onclick = e => { const b = e.target.closest('button'); if (!b) return; kind = b.dataset.v; $('flKind').querySelectorAll('button').forEach(x => x.classList.toggle('sel', x === b)); };
+        $('flNote').oninput = upd; upd();
+        $('flPrint').onclick = () => { const one = flyerHtml($('flNote').value.trim()); printRaw(kind === 'poster' ? `<div class="flyer-a4">${one}</div>` : `<div class="flyer-a6">${one.repeat(4)}</div>`, 'flyerprint'); };
+      } };
+  },
+  klasse(o = {}) {
+    if (!CONFIG.classApi) return { title: 'Klassen-Challenge', html: '<p>Die Klassen-Challenge ist bald verfügbar.</p>' };
+    if (S.klasse) return { title: `<span translate="no">${esc(S.klasse.name || S.klasse.code)}</span>`, html: `<p class="small muted" style="margin:0 0 8px">Du bist dabei als <b translate="no">${esc(S.klasse.spitzname)}</b>. Jede richtige Aufgabe bringt Punkte – je höher die Stufe, desto mehr. Die Wertung startet jeden Montag neu.</p>
+      <div id="rankBox"><p class="muted">Rangliste wird geladen …</p></div>
+      <div class="row2" style="margin-top:12px"><button class="btn" id="klRefresh">Aktualisieren</button><button class="btn" id="klLeave">Klasse verlassen</button></div>`,
+      async init() {
+        const load = async () => { try { await submitClassPoints(); const d = await classApi(`/klasse/${encodeURIComponent(S.klasse.code)}/rangliste?spieler=${encodeURIComponent(S.klasse.spieler)}`); $('rankBox') && ($('rankBox').innerHTML = `${d.bis ? `<p class="small muted">Diese Woche bis ${fmtDay(d.bis)}</p>` : ''}${rankingHtml(d)}`); } catch (e) { $('rankBox') && ($('rankBox').innerHTML = `<p class="status err">${esc(e.message)}</p>`); } };
+        $('klRefresh').onclick = load; load();
+        $('klLeave').onclick = async () => {
+          if (!confirm(tr('Klasse wirklich verlassen? Dein Eintrag in der Rangliste wird gelöscht.'))) return;
+          try { await classApi('/klasse/verlassen', { code: S.klasse.code, spieler: S.klasse.spieler }); } catch (e) { if (e.status !== 404) { toast(esc(e.message)); return; } }
+          S.klasse = null; S.klassePending = []; save(); renderHome(); closeSheet(); toast('Klasse verlassen');
+        };
+      } };
+    return { title: 'Klassen-Challenge', html: `<form class="form" id="klJoin">
+      <p class="small muted" style="margin:0">Deine Lehrkraft gibt dir einen Klassencode. Dann sammelt ihr eine Woche lang Punkte – wer rechnet am meisten?</p>
+      <label class="field"><span>Klassencode</span><input id="klCode" maxlength="8" autocapitalize="characters" autocomplete="off" value="${esc(classCode(o.code))}" placeholder="z. B. K7R2QX" required></label>
+      <label class="field"><span>Spitzname (kein echter Name nötig)</span><input id="klNick" maxlength="20" autocomplete="off" placeholder="z. B. Zahlenfuchs" required></label>
+      <p class="small muted" style="margin:0">In der Rangliste sehen alle aus der Klasse nur deinen Spitznamen und deine Punkte.</p>
+      <button class="btn primary block">Beitreten</button><div class="status err" id="klErr"></div></form>`,
+      init() {
+        $('klJoin').onsubmit = async e => {
+          e.preventDefault(); const code = classCode($('klCode').value), nick = $('klNick').value.trim();
+          if (code.length < 4) return $('klErr').textContent = 'Bitte den Klassencode prüfen.';
+          if (!nickOk(nick)) return $('klErr').textContent = 'Spitzname: 2–20 Zeichen, nur Buchstaben, Zahlen und Leerzeichen.';
+          try { const r = await classApi('/klasse/beitreten', { code, spitzname: nick }); S.klasse = { code, name: r.name || code, spieler: r.spieler, spitzname: nick }; S.klassePending = []; award('klasse'); save(); renderHome(); showPanel('klasse'); toast(`<span>Willkommen in der Klasse,</span> <span translate="no">${esc(nick)}</span>!`); }
+          catch (err) { $('klErr').textContent = err.message; }
+        };
+      } };
+  },
+  classCreate() {
+    if (!CONFIG.classApi) return { title: 'Klassen-Challenge', html: '<p>Die Klassen-Challenge wird gerade eingerichtet und ist bald verfügbar.</p>' };
+    return { title: 'Klassen-Challenge anlegen', html: `<form class="form" id="ccForm"><p class="small muted" style="margin:0">Ihre Klasse rechnet eine Woche lang um die Wette. Die Kinder treten mit einem Code bei und nutzen nur Spitznamen.</p>
+      <label class="field"><span>Name der Klasse</span><input id="ccName" maxlength="30" required placeholder="z. B. 4b Lindenschule"></label>
+      <button class="btn primary block">Klasse anlegen</button><div class="status err" id="ccErr"></div><div id="ccOut"></div></form>`,
+      init() {
+        $('ccForm').onsubmit = async e => {
+          e.preventDefault(); const name = $('ccName').value.trim(); if (name.length < 2) return;
+          try {
+            const r = await classApi('/klasse', { name }), link = `${publicUrl()}#klasse=${r.code}`;
+            const mine = JSON.parse(localStorage.getItem('rb-classes') || '[]'); mine.unshift({ code: r.code, name }); try { localStorage.setItem('rb-classes', JSON.stringify(mine.slice(0, 20))); } catch {}
+            $('ccOut').innerHTML = `<div class="card" style="box-shadow:none;text-align:center"><div class="small muted">Klassencode</div><div class="bigcode" translate="no">${esc(r.code)}</div><div class="qrbox">${qrSvg(link)}</div><textarea class="sharebox" readonly rows="2">${esc(link)}</textarea><div class="row2"><button type="button" class="btn primary" id="ccShare">Teilen</button><button type="button" class="btn" id="ccRank">Rangliste</button></div></div>`;
+            $('ccShare').onclick = () => shareText(`Klassen-Challenge „${name}“ bei Zahlensprint: Code ${r.code}\n${link}`, 'Zahlensprint Klassen-Challenge');
+            $('ccRank').onclick = () => showPanel('rankingView', { code: r.code, name }, true);
+          } catch (err) { $('ccErr').textContent = err.message; }
+        };
+      } };
+  },
+  rankingView(o) {
+    return { title: `Rangliste <span translate="no">${esc(o.name || o.code)}</span>`, html: '<div id="rankBox"><p class="muted">Wird geladen …</p></div>',
+      async init() { try { const d = await classApi(`/klasse/${encodeURIComponent(o.code)}/rangliste`); $('rankBox') && ($('rankBox').innerHTML = rankingHtml(d)); } catch (e) { $('rankBox') && ($('rankBox').innerHTML = `<p class="status err">${esc(e.message)}</p>`); } } };
+  },
+});
+
+function flyerHtml(note, preview) {
+  const url = publicUrl(), short = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+  return `<div class="flyer${preview ? ' prev' : ''}">
+    <div class="fl-head"><img src="icons/logo.svg" alt=""><div><b>Zahlensprint</b><small>by Nachhilfe – online</small></div></div>
+    <div class="fl-eyebrow">Kostenlos · ohne Anmeldung</div>
+    <h2>Kopfrechnen üben mit <em>Zahlensprint</em></h2>
+    <p class="fl-lead">Vom Einmaleins bis zu Brüchen, Prozent und Gleichungen – mit Lösungsweg bei jedem Fehler.</p>
+    <div class="fl-body"><ul><li>29 Themen, 6 Stufen – passt sich automatisch an</li><li>Tageschallenge, Duell & Abzeichen</li><li>Handy, Tablet und PC – auch offline</li><li>Für Lehrkräfte: Aufträge & Arbeitsblätter</li>${voucher() && ['teaser', 'on'].includes(adventPhase()) ? `<li>Im Advent: Rechen-Adventskalender mit ${voucher().percent || 10}-%-Gutschein</li>` : ''}</ul>
+    <div class="fl-qr">${qrSvg(url)}<span>${esc(short)}</span></div></div>
+    ${note ? `<div class="fl-note">${esc(note)}</div>` : ''}
+    <div class="fl-foot"><b>Nachhilfe – online</b> · Persönliche Online-Nachhilfe 1:1 · Kostenlose Probestunde: mathenachhilfe-online.com/probestunde</div></div>`;
+}
+
+/* ================= Startseite & Hooks ================= */
+function renderExtrasHome() {
+  const ph = adventPhase(), ac = $('adventCard');
+  if (ac) {
+    ac.hidden = ph === 'off';
+    if (ph !== 'off') {
+      const n = Object.keys(adventState().doors).length, today = new Date().getDate();
+      const sub = !adventState().klasse && ph !== 'teaser' ? 'Wähle deine Klassenstufe – dann geht’s los!' : ph === 'teaser' ? 'Ab 1. Dezember: jeden Tag ein Türchen mit Rechen-Rätseln' : ph === 'after' ? `Du hast ${n}/24 Türchen geschafft – noch bis 6. Januar nachholbar` : adventState().doors[today] ? `Heute geschafft! ${n}/24 Türchen` : `Türchen ${Math.min(24, today)} wartet auf dich · ${n}/24 geschafft`;
+      const vtag = '';
+      ac.innerHTML = `<div class="adv-ico">🎄</div><div class="ch-txt"><b>Rechen-Adventskalender</b><span>${sub}</span>${vtag}</div><button class="btn small primary" data-open="advent">${ph === 'teaser' ? 'Ansehen' : 'Öffnen'}</button>`;
+    }
+  }
+  $('challengeCard').hidden = !chVisible();
+  const cc = $('classCard');
+  if (cc) {
+    cc.hidden = !CONFIG.classApi;
+    if (CONFIG.classApi) cc.innerHTML = S.klasse
+      ? `<div class="ch-ico">🏫</div><div class="ch-txt"><b>Klassen-Challenge</b><span><span translate="no">${esc(S.klasse.name)}</span> · du bist <span translate="no">${esc(S.klasse.spitzname)}</span></span></div><button class="btn small" data-open="klasse">Rangliste</button>`
+      : `<div class="ch-ico">🏫</div><div class="ch-txt"><b>Klassen-Challenge</b><span>Code von deiner Lehrkraft? Rechnet gemeinsam um die Wette!</span></div><button class="btn small" data-open="klasse">Beitreten</button>`;
+  }
+}
+// wird am Ende jeder Runde aufgerufen; liefert zusätzliche Ergebnis-Karten
+function extrasAfterGame(acc) {
+  let html = '';
+  if (G.mode === 'advent' && G.door) {
+    const st = adventState(), prev = st.doors[G.door], ok = G.correct >= ADVENT_MIN_OK;
+    if (ok && (!prev || G.correct > prev.correct)) st.doors[G.door] = { correct: G.correct, date: todayStr() };
+    const allNow = ok && !prev && Object.keys(st.doors).length >= 24;
+    if (ok) { award('advent'); if (Object.keys(st.doors).length >= 24) award('advent24'); }
+    const [icon, fact] = ADVENT_FACTS[G.door - 1];
+    html += ok || prev
+      ? `<div class="card doorview"><div class="dicon">${icon}</div><b>${ok ? `Türchen ${G.door} geöffnet!` : `Türchen ${G.door} ist schon offen`}</b>${!ok || (prev && prev.correct > G.correct) ? `<p class="small muted" style="margin:4px 0">Dein bestes Ergebnis bleibt: ${Math.max(prev ? prev.correct : 0, G.correct)}/5</p>` : ''}<p class="fact">${esc(fact)}</p><button class="btn block" data-open="advent">Zum Adventskalender</button></div>`
+      : `<div class="card doorview"><div class="dicon">🔒</div><b>Fast! ${G.correct} von 5 richtig</b><p class="muted">Für Türchen ${G.door} brauchst du mindestens ${ADVENT_MIN_OK} richtige. Schau dir die Lösungswege an und probier's nochmal!</p></div>`;
+    if (allNow && voucher()) { html += adventReward(); setTimeout(fetchVoucher, 50); Confetti.burst(200); }   // der Code erscheint nur im Elternbereich
+  }
+  if (S.klasse && CONFIG.classApi && G.correct > 0 && G.mode !== 'test') {
+    const punkte = Math.min(500, G.correct * (G.lvl + 1));   // Server nimmt 1–500 je Runde
+    submitClassPoints({ id: crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(36) + Math.random().toString(36).slice(2), punkte, aufgaben: G.correct + G.wrong, richtig: G.correct });
+    html += `<div class="card small" style="text-align:left">🏫 <b>+${punkte} Punkte</b> für die Klasse <span translate="no">${esc(S.klasse.name)}</span></div>`;
+  }
+  return html;
+}
+function resultExtrasHtml(r) {
+  const cert = (r.stars >= 2 || r.badges.length || G.mode === 'test' || (G.mode === 'advent' && G.correct >= ADVENT_MIN_OK)) && G.correct > 0;
+  return `<div class="sharerow">${cert ? '<button class="btn" id="rCert">🏅 Urkunde</button>' : ''}<button class="btn" id="rInvite">💌 Freunde einladen</button></div>`;
+}
+function bindResultExtras(r) {
+  $('rInvite') && ($('rInvite').onclick = () => openSheet('invite'));
+  $('rCert') && ($('rCert').onclick = () => {
+    const answered = G.correct + G.wrong;
+    let o;
+    if (r.badges.length) o = { badge: r.badges[0] };
+    else if (G.mode === 'test') o = { line1: `Einstufungstest Klasse ${G.klasse} geschafft`, line2: `${G.correct} von ${answered} Aufgaben richtig`, icon: '🧪' };
+    else if (G.mode === 'advent') o = { line1: `Adventskalender – Türchen ${G.door}`, line2: `${G.correct} von 5 Aufgaben richtig`, icon: '🎄' };
+    else o = { line1: `${'★'.repeat(r.stars)} · ${G.op === 'mix' ? 'Alles gemischt' : TOPICS[G.op].name} · Stufe ${G.lvl + 1}`, line2: `${G.correct} von ${answered} Aufgaben richtig${G.mode === 'blitz' ? ' in 60 Sekunden' : ''}`, icon: r.stars === 3 ? '🏆' : '🥈' };
+    openSheet('cert', o);
+  });
+}
+
+/* ---------- Direktlinks: ?thema=frac&stufe=3&modus=training · ?advent · #klasse=CODE ---------- */
+function handleParams() {
+  const p = new URLSearchParams(location.search);
+  let used = false;
+  const th = p.get('thema'), st = p.get('stufe'), mo = p.get('modus');
+  if (th && TOPICS[th]) { S.sel.op = th; used = true; }
+  if (st) { if (st === 'auto') S.sel.lvl = 'auto'; else if (/^[1-6]$/.test(st)) S.sel.lvl = +st - 1; else if (/^profi$/i.test(st)) S.sel.lvl = 5; used = true; }
+  if (used) { save(); renderHome(); }
+  if (p.has('advent')) { used = true; setTimeout(() => openSheet('advent'), 300); }
+  if (used) history.replaceState(null, '', location.pathname + location.hash);
+  if (mo && ['training', 'zen', 'blitz'].includes(mo)) { history.replaceState(null, '', location.pathname + location.hash); setTimeout(() => startGame(mo), 300); }
+  handleClassHash();
+}
+function handleClassHash() {
+  const m = location.hash.match(/^#klasse=([A-Za-z0-9]+)/); if (!m) return;
+  history.replaceState(null, '', location.pathname + location.search);
+  if (!CONFIG.classApi) { toast('Die Klassen-Challenge ist bald verfügbar.'); return; }
+  if (S.klasse && S.klasse.code === classCode(m[1])) { openSheet('klasse'); return; }
+  openSheet('klasse', { code: m[1] });
+}
+addEventListener('hashchange', handleClassHash);
+addEventListener('online', () => submitClassPoints());
+// Abzeichen in der Vitrine antippen → Urkunde
+document.addEventListener('click', e => { const b = e.target.closest('[data-cert]'); if (b && S.badges[b.dataset.cert]) showPanel('cert', { badge: b.dataset.cert }, true); });

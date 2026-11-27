@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rb_w_title">Rechenblitz</string>
+    <string name="rb_w_idle1">🧠 Час для 3 хвилин усного рахунку!</string>
+    <string name="rb_w_idle2">Торкнися – Бліц уже чекає</string>
+    <string name="rb_w_button">Почати</string>
+    <string name="rb_w_desc">Тренування пам’яті, денна мета й серія з одного погляду</string>
+</resources>

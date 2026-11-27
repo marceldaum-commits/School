@@ -1,0 +1,678 @@
+[
+[
+"pct",
+"Ein Preis von # € steigt erst um # % und sinkt dann um # %. Wie hoch ist er am Ende?"
+],
+[
+"pct",
+"Nach einer Erhöhung um # % kostet etwas # €. Was hat es vorher gekostet?"
+],
+[
+"pct",
+"Nach # % Rabatt kostet etwas # €. Was hat es vorher gekostet?"
+],
+[
+"word",
+"Im Stall stehen # Pferde und # Kühe. Wie viele Tiere sind es zusammen?"
+],
+[
+"word",
+"N ist # Jahre alt. N ist # Jahre älter. Wie alt ist N?"
+],
+[
+"word",
+"N hat # Murmeln und bekommt # geschenkt. Wie viele Murmeln hat N jetzt?"
+],
+[
+"word",
+"Auf einem Teller liegen # Kekse. N isst # davon. Wie viele Kekse liegen noch auf dem Teller?"
+],
+[
+"word",
+"N hat # Sticker, N hat # Sticker. Wie viele Sticker hat N mehr?"
+],
+[
+"word",
+"Ein Eis kostet # €. N bezahlt mit # €. Wie viel Geld bekommt N zurück?"
+],
+[
+"word",
+"Ein Hase hat # Beine. Wie viele Beine haben # Hasen zusammen?"
+],
+[
+"word",
+"Auf dem Baum sitzen # Vögel. # fliegen weg. Wie viele Vögel sitzen noch auf dem Baum?"
+],
+[
+"word",
+"N hat # rote und # blaue Perlen. Wie viele Perlen sind das zusammen?"
+],
+[
+"word",
+"Im Bus sitzen # Kinder. An der Haltestelle steigen # aus. Wie viele Kinder sitzen noch im Bus?"
+],
+[
+"word",
+"Eine Schulstunde dauert # Minuten. Wie viele Minuten dauern # Schulstunden?"
+],
+[
+"word",
+"Ein Bus hat # Sitzreihen mit je # Plätzen. Wie viele Kinder können sitzen?"
+],
+[
+"word",
+"Ein Heft kostet # €. N kauft # Hefte. Wie viel muss N bezahlen?"
+],
+[
+"word",
+"N hat # €. Ein Buch kostet # €, ein Stift # €. Wie viel Geld bleibt übrig?"
+],
+[
+"word",
+"# Bonbons werden gerecht an # Kinder verteilt. Wie viele Bonbons bekommt jedes Kind?"
+],
+[
+"word",
+"Im Klassenzimmer stehen # Reihen mit je # Stühlen. Wie viele Stühle sind es zusammen?"
+],
+[
+"word",
+"# Kinder fahren Boot. In ein Boot passen # Kinder. Wie viele Boote braucht man mindestens?"
+],
+[
+"word",
+"N spart jede Woche # €. Wie viel Geld hat N nach # Wochen?"
+],
+[
+"word",
+"Ein Kinoticket für Kinder kostet # €, für Erwachsene # €. Was zahlen # Kinder und ein Erwachsener zusammen?"
+],
+[
+"word",
+"N liest jeden Tag # Seiten. Wie viele Seiten liest N in # Tagen?"
+],
+[
+"word",
+"In einer Packung sind # Stifte. Wie viele Stifte sind in # Packungen?"
+],
+[
+"word",
+"N läuft # Runden. Eine Runde ist # m lang. Wie viele Meter läuft N?"
+],
+[
+"word",
+"Ein Kuchen wird in # gleich große Stücke geteilt. N und N essen zusammen # Stücke. Welcher Bruchteil des Kuchens wurde gegessen?"
+],
+[
+"word",
+"Ein Rechteck ist # cm lang und # cm breit. Wie groß ist seine Fläche?"
+],
+[
+"word",
+"Eine Flasche enthält # l Saft. Wie viele Gläser mit # l kann man damit füllen?"
+],
+[
+"word",
+"Eine Pizza wird in # gleich große Stücke geschnitten. N isst # Stücke. Welcher Bruchteil der Pizza ist übrig?"
+],
+[
+"word",
+"N hat in drei Tests #, # und # Punkte. Wie viele Punkte sind das im Durchschnitt?"
+],
+[
+"word",
+"Ein Garten ist # m lang und # m breit. Wie lang wird ein Zaun rundherum?"
+],
+[
+"word",
+"Ein Rezept für # Personen braucht # g Mehl. Wie viel Mehl braucht man für # Personen?"
+],
+[
+"word",
+"An einer Schule sind # Kinder. #/# davon kommen zu Fuß. Wie viele Kinder sind das?"
+],
+[
+"word",
+"Ein Zimmer ist # m lang und # m breit. Ein Quadratmeter Teppich kostet # €. Was kostet der Teppich für das ganze Zimmer?"
+],
+[
+"word",
+"N hat # € gespart und gibt #/# davon für ein Spiel aus. Wie viel kostet das Spiel?"
+],
+[
+"word",
+"Ein Liter Milch kostet # €. Wie viel kosten # Liter?"
+],
+[
+"word",
+"Ein Beet ist # m lang und # m breit. Auf jeden Quadratmeter kommen # Blumen. Wie viele Blumen braucht man?"
+],
+[
+"word",
+"Ein Zug fährt um # Uhr ab und kommt um # Uhr an. Wie viele Minuten dauert die Fahrt?"
+],
+[
+"word",
+"Holzwürfel haben # cm Kantenlänge. Wie viele passen in eine Kiste, die # cm lang, # cm breit und # cm hoch ist?"
+],
+[
+"word",
+"Ein Maler streicht in # Stunden # m². Wie viele m² schafft er in # Stunden?"
+],
+[
+"word",
+"Ein Auto fährt in # Stunden # km. Wie viele Kilometer fährt es im Durchschnitt pro Stunde?"
+],
+[
+"word",
+"Ein Zug fährt # km pro Stunde. Wie weit kommt er in # Stunden?"
+],
+[
+"word",
+"Ein Schwimmbecken ist # m lang, # m breit und # m tief. Wie viele Kubikmeter Wasser passen hinein?"
+],
+[
+"word",
+"Eine Jacke kostet # € und wird um # % reduziert. Was kostet sie jetzt?"
+],
+[
+"word",
+"In einer Klasse mit # Kindern haben # ein Haustier. Wie viel Prozent sind das?"
+],
+[
+"word",
+"Ein Handy kostet # €. Der Preis steigt um # %. Was kostet es jetzt?"
+],
+[
+"word",
+"# Hefte kosten # €. Wie viel kosten # Hefte?"
+],
+[
+"word",
+"Der Preis steigt von # € auf # €. Um wie viel Prozent ist er gestiegen?"
+],
+[
+"word",
+"Eine Wanderkarte hat den Maßstab # : #. Auf der Karte ist ein Weg # cm lang. Wie viele Meter ist er in Wirklichkeit?"
+],
+[
+"word",
+"Ein T-Shirt kostet nach # % Rabatt noch # €. Was hat es vorher gekostet?"
+],
+[
+"word",
+"Von # Schülerinnen und Schülern kommen # mit dem Fahrrad. Wie viel Prozent sind das?"
+],
+[
+"word",
+"Eine Saftschorle wird aus # Teilen Saft und # Teil Wasser gemischt. Wie viele Liter Saft braucht man für # Liter Schorle?"
+],
+[
+"word",
+"N fährt mit dem Fahrrad # km pro Stunde. Wie viele Minuten braucht N für # km?"
+],
+[
+"word",
+"Auf einem Sparkonto liegen # €. Im Jahr gibt es # % Zinsen. Wie viele Euro Zinsen sind das nach einem Jahr?"
+],
+[
+"word",
+"In einer Klasse sind # Kinder. #/# davon sind Mädchen. Wie viele Jungen sind in der Klasse?"
+],
+[
+"word",
+"N denkt sich eine Zahl, nimmt sie mal # und addiert #. Das Ergebnis ist #. Welche Zahl hat sich N gedacht?"
+],
+[
+"word",
+"Ein Fahrrad kostet # €. Zuerst wird es um # % teurer, dann um # € billiger. Was kostet es am Ende?"
+],
+[
+"word",
+"Eine Klasse mit # Kindern macht einen Ausflug. Der Bus kostet # € für alle, der Eintritt # € pro Kind. Wie viel muss jedes Kind bezahlen?"
+],
+[
+"word",
+"Ein Auto verbraucht # Liter auf # km. Wie viele Liter braucht es für # km?"
+],
+[
+"word",
+"Ein Handytarif kostet # € im Monat plus # Cent pro Minute. N bezahlt in einem Monat # €. Wie viele Minuten hat N telefoniert?"
+],
+[
+"word",
+"Ein Becken fasst # Liter. Pro Minute fließen # Liter hinein. Nach wie vielen Minuten ist es halb voll?"
+],
+[
+"word",
+"Eine Bakterienkultur verdoppelt sich jede Stunde. Am Anfang sind es # Bakterien. Wie viele sind es nach # Stunden?"
+],
+[
+"word",
+"Ein neues Auto kostet # €. Nach einem Jahr ist es # % weniger wert. Wie viel ist es dann noch wert?"
+],
+[
+"word",
+"Ein Rechteck ist doppelt so lang wie breit. Sein Umfang ist # cm. Wie lang ist es?"
+],
+[
+"word",
+"N hat #-mal so viele Murmeln wie N. Zusammen haben sie # Murmeln. Wie viele Murmeln hat N?"
+],
+[
+"word",
+"N ist # Jahre alt, N ist #. In wie vielen Jahren sind beide zusammen # Jahre alt?"
+],
+[
+"word",
+"N kauft # Brötchen zu je # Cent und bezahlt mit # €. Wie viel Cent Rückgeld bekommt N?"
+],
+[
+"word",
+"Eine Leiter ist # m lang. Ihr Fuß steht # m von der Wand entfernt. Wie hoch reicht die Leiter an der Wand?"
+],
+[
+"word",
+"N ist # Jahre alt. Die Mutter ist #-mal so alt. Wie alt ist die Mutter in # Jahren?"
+],
+[
+"word",
+"# Personen brauchen # Tage, um einen Zaun zu streichen. Wie viele Tage brauchen # Personen?"
+],
+[
+"word",
+"# Liter Saft mit # % Fruchtanteil werden mit # Litern Wasser gemischt. Wie viel Prozent Fruchtanteil hat die Mischung?"
+],
+[
+"word",
+"N legt # € zu # % Zinsen an. Nach einem Jahr hebt N # € ab, der Rest wird ein weiteres Jahr mit # % verzinst. Wie viel Geld ist es am Ende?"
+],
+[
+"word",
+"Ein Becken fasst # Liter. Rohr A füllt # Liter pro Minute, Rohr B # Liter pro Minute. Gleichzeitig laufen # Liter pro Minute ab. Nach wie vielen Minuten ist das Becken voll?"
+],
+[
+"word",
+"Ein Handytarif kostet # € im Monat, jede Minute # Cent und jedes Gigabyte Daten # €. N telefoniert jeden Monat # Minuten und braucht # Gigabyte. Wie viel kostet das in einem Jahr?"
+],
+[
+"word",
+"# Kinder und # Lehrkräfte machen einen Ausflug. Der Bus kostet # € für alle, der Eintritt # € pro Kind, Lehrkräfte zahlen keinen Eintritt. Alle Kosten werden auf die Kinder verteilt. Wie viel zahlt jedes Kind?"
+],
+[
+"word",
+"Die Mutter von N ist heute # Jahre alt, N ist #. In wie vielen Jahren ist die Mutter genau doppelt so alt wie N?"
+],
+[
+"geld",
+"Du kaufst etwas für # € und bezahlst mit einem #-€-Schein. Wie viel Rückgeld bekommst du?"
+],
+[
+"geld",
+"Du kaufst für # € ein und bezahlst mit # €. Wie viel Rückgeld bekommst du?"
+],
+[
+"geld",
+"# g Käse kosten # €. Wie viel kostet # kg?"
+],
+[
+"geld",
+"# g kosten # €. Wie viel kostet # kg?"
+],
+[
+"geld",
+"# Stück kosten # €. Wie viel kosten # Stück?"
+],
+[
+"geld",
+"Du kaufst # Hefte zu je # € und # Stifte zu je # € und bezahlst mit # €. Wie viel Rückgeld bekommst du?"
+],
+[
+"zeit",
+"Wie viele Minuten sind eine Viertelstunde?"
+],
+[
+"zeit",
+"Von # Uhr bis # Uhr: Wie viele Stunden sind das?"
+],
+[
+"zeit",
+"Wie viele Minuten sind eine Dreiviertelstunde?"
+],
+[
+"zeit",
+"Wie viele Tage haben # Wochen?"
+],
+[
+"zeit",
+"Es ist # Uhr. Wie spät ist es in # Stunden?"
+],
+[
+"zeit",
+"Wie viele Minuten sind eine halbe Stunde?"
+],
+[
+"zeit",
+"Wie viele Minuten sind eine ganze Stunde?"
+],
+[
+"zeit",
+"Wie viele Stunden sind # Tage und # Stunden?"
+],
+[
+"zeit",
+"Von # Uhr bis # Uhr: Wie viele Minuten sind das?"
+],
+[
+"zeit",
+"Wie viele Tage sind es vom #. MON bis zum #. MON?"
+],
+[
+"zeit",
+"Ein Film beginnt um # Uhr und dauert # Minuten. Wie viele Minuten nach # Uhr ist er zu Ende?"
+],
+[
+"zeit",
+"Wie viele Sekunden sind # h # min # s?"
+],
+[
+"zeit",
+"Wie viele Sekunden sind # Minuten und # Sekunden?"
+],
+[
+"zeit",
+"Ein Radfahrer fährt # Stunden lang mit # km pro Stunde. Wie viele Kilometer schafft er?"
+],
+[
+"zeit",
+"Ein Nachtzug fährt um # Uhr ab und kommt am nächsten Morgen um # Uhr an. Wie viele Minuten dauert die Fahrt?"
+],
+[
+"zeit",
+"Eine Läuferin braucht für # km # min # s. Wie viele Minuten braucht sie für # km?"
+],
+[
+"zeit",
+"Ein Film beginnt um # Uhr und dauert # Stunden. Wie viele Minuten nach # Uhr ist er zu Ende?"
+],
+[
+"zeit",
+"Ein Bus fährt am Montag um # Uhr ab und kommt am Mittwoch um # Uhr an. Wie viele Minuten ist er unterwegs?"
+],
+[
+"zeit",
+"Eine Radtour hat drei Etappen: # h # min, # h # min und # min. Wie viele Minuten dauert sie insgesamt?"
+],
+[
+"zeit",
+"Wie viele Sekunden sind # Tage # h # min?"
+],
+[
+"geo",
+"Ein Quadrat hat die Seitenlänge # cm. Wie groß ist sein Umfang?"
+],
+[
+"geo",
+"Ein Rechteck ist # cm lang und # cm breit. Wie groß ist sein Umfang?"
+],
+[
+"geo",
+"Ein Rechteck ist # m lang und # m breit. Wie groß ist seine Fläche?"
+],
+[
+"geo",
+"Ein Quadrat hat die Seitenlänge # cm. Wie groß ist seine Fläche?"
+],
+[
+"geo",
+"Ein Quadrat hat den Umfang # cm. Wie lang ist eine Seite?"
+],
+[
+"geo",
+"In einem Dreieck sind zwei Winkel #° und #° groß. Wie groß ist der dritte Winkel?"
+],
+[
+"geo",
+"Ein Rechteck hat die Fläche # cm² und ist # cm breit. Wie lang ist es?"
+],
+[
+"geo",
+"Zwei Nebenwinkel ergeben zusammen #°. Einer ist #° groß. Wie groß ist der andere?"
+],
+[
+"geo",
+"Ein Quader ist # cm lang, # cm breit und # cm hoch. Wie groß ist sein Volumen?"
+],
+[
+"geo",
+"Ein Würfel hat die Kantenlänge # cm. Wie groß ist seine Oberfläche?"
+],
+[
+"geo",
+"In einem Viereck sind drei Winkel #°, #° und #° groß. Wie groß ist der vierte Winkel?"
+],
+[
+"geo",
+"Ein Dreieck hat die Grundseite # cm und die Höhe # cm. Wie groß ist seine Fläche?"
+],
+[
+"geo",
+"Ein Würfel hat die Kantenlänge # cm. Wie groß ist sein Volumen?"
+],
+[
+"geo",
+"Ein Trapez hat die parallelen Seiten # cm und # cm und die Höhe # cm. Wie groß ist seine Fläche?"
+],
+[
+"geo",
+"Ein rechtwinkliges Dreieck hat die Katheten # cm und # cm. Wie lang ist die Hypotenuse?"
+],
+[
+"geo",
+"Wie groß ist die Summe aller Innenwinkel in einem #-Eck?"
+],
+[
+"geo",
+"Ein Quader ist # cm lang, # cm breit und # cm hoch. Wie groß ist seine Oberfläche?"
+],
+[
+"geo",
+"Ein rechtwinkliges Dreieck hat die Hypotenuse # cm und eine Kathete # cm. Wie lang ist die andere Kathete?"
+],
+[
+"geo",
+"Ein Grundstück ist ein Rechteck von # m mal # m, aus dem in einer Ecke ein Rechteck von # m mal # m herausgeschnitten ist. Wie groß ist die Fläche?"
+],
+[
+"geo",
+"Ein Prisma hat als Grundfläche ein Dreieck mit Grundseite # cm und Höhe # cm. Das Prisma ist # cm lang. Wie groß ist sein Volumen?"
+],
+[
+"wahr",
+"Du würfelst einmal mit einem normalen Würfel. Wie groß ist die Wahrscheinlichkeit für eine #?"
+],
+[
+"wahr",
+"Du würfelst einmal. Wie groß ist die Wahrscheinlichkeit für eine gerade Zahl?"
+],
+[
+"wahr",
+"Du wirfst eine Münze. Wie groß ist die Wahrscheinlichkeit für Kopf?"
+],
+[
+"wahr",
+"In einer Tüte sind # rote und # blaue Kugeln. Du ziehst blind eine Kugel. Wie groß ist die Wahrscheinlichkeit für Rot?"
+],
+[
+"wahr",
+"In einer Tüte sind # rote, # blaue und # grüne Kugeln. Du ziehst blind eine Kugel. Wie groß ist die Wahrscheinlichkeit für Rot?"
+],
+[
+"wahr",
+"Du würfelst #-mal. Wie oft erwartest du ungefähr eine Zahl größer als #?"
+],
+[
+"wahr",
+"Ein Glücksrad hat # gleich große Felder, # davon sind Gewinne. Wie groß ist die Gewinnchance in Prozent?"
+],
+[
+"wahr",
+"Die Wahrscheinlichkeit für Regen ist #/#. Wie groß ist die Wahrscheinlichkeit, dass es nicht regnet?"
+],
+[
+"wahr",
+"Du würfelst #-mal. Wie oft erwartest du ungefähr eine Zahl kleiner als #?"
+],
+[
+"wahr",
+"Du würfelst #-mal. Wie oft erwartest du ungefähr eine gerade Zahl?"
+],
+[
+"wahr",
+"Du würfelst #-mal. Wie oft erwartest du ungefähr eine Sechs?"
+],
+[
+"wahr",
+"In einer Urne sind # rote und # blaue Kugeln. Du ziehst zweimal mit Zurücklegen. Wie groß ist die Wahrscheinlichkeit für zweimal Rot?"
+],
+[
+"wahr",
+"In einer Urne sind # rote, # blaue und # grüne Kugeln. Du ziehst zweimal mit Zurücklegen. Wie groß ist die Wahrscheinlichkeit für erst Rot, dann Blau?"
+],
+[
+"wahr",
+"Ein Glücksrad hat # gleich große Felder, # davon sind rot. Du drehst zweimal. Wie groß ist die Wahrscheinlichkeit für zweimal Rot?"
+],
+[
+"wahr",
+"In einer Urne sind # rote und # blaue Kugeln. Du ziehst zwei Kugeln ohne Zurücklegen. Wie groß ist die Wahrscheinlichkeit für zweimal Rot?"
+],
+[
+"wahr",
+"In einer Urne sind # rote und # blaue Kugeln. Du ziehst zweimal mit Zurücklegen. Wie groß ist die Wahrscheinlichkeit für mindestens einmal Blau?"
+],
+[
+"wahr",
+"In einer Urne sind # rote und # blaue Kugeln. Du ziehst dreimal mit Zurücklegen. Wie groß ist die Wahrscheinlichkeit für mindestens eine rote Kugel?"
+],
+[
+"wahr",
+"In einer Urne sind # rote und # blaue Kugeln. Du ziehst drei Kugeln ohne Zurücklegen. Wie groß ist die Wahrscheinlichkeit für dreimal Rot?"
+],
+[
+"wahr",
+"In einer Urne sind # rote und # blaue Kugeln. Du ziehst zwei Kugeln ohne Zurücklegen. Wie groß ist die Wahrscheinlichkeit für genau eine rote Kugel?"
+],
+[
+"zins",
+"Wie viele Euro Zinsen bringen # € in einem Jahr bei # % Zinsen?"
+],
+[
+"zins",
+"# € bringen in einem Jahr # € Zinsen. Wie hoch ist der Zinssatz in Prozent?"
+],
+[
+"zins",
+"Bei # % Zinsen gibt es in einem Jahr # € Zinsen. Wie groß ist das Kapital?"
+],
+[
+"zins",
+"# € liegen # Monate zu # % Jahreszins auf dem Konto. Wie viele Euro Zinsen gibt es?"
+],
+[
+"zins",
+"# € werden # Jahre lang mit # % verzinst, die Zinsen bleiben auf dem Konto (Zinseszins). Wie viel Geld ist es nach # Jahren?"
+],
+[
+"zins",
+"# € liegen # Tage zu # % Jahreszins auf dem Konto (# Jahr = # Tage). Wie viele Euro Zinsen gibt es?"
+],
+[
+"zins",
+"# € bringen in # Monaten # € Zinsen. Wie hoch ist der Jahreszinssatz?"
+],
+[
+"zins",
+"# € werden # Jahre lang mit # % verzinst, die Zinsen bleiben auf dem Konto. Wie viel Geld ist es nach # Jahren?"
+],
+[
+"stat",
+"Der Durchschnitt von # Zahlen ist #. # davon sind #, #, #, #, #, #, #. Wie heißt die fehlende Zahl?"
+],
+[
+"stat",
+"Der Durchschnitt von # Zahlen ist #. # davon sind #, #, #, #, #, #. Wie heißt die fehlende Zahl?"
+],
+[
+"stat",
+"Der Durchschnitt von # Zahlen ist #. # davon sind #, #, #, #, #. Wie heißt die fehlende Zahl?"
+],
+[
+"stat",
+"Klasse A hat # Kinder mit durchschnittlich # Punkten, Klasse B # Kinder mit durchschnittlich # Punkten und Klasse C # Kinder mit durchschnittlich # Punkten. Wie groß ist der Durchschnitt aller Kinder?"
+],
+[
+"kreis",
+"Ein Kreis hat den Durchmesser # cm. Wie groß ist sein Umfang?"
+],
+[
+"kreis",
+"Ein Kreis hat den Radius # cm. Wie groß ist sein Umfang?"
+],
+[
+"kreis",
+"Ein Kreis hat den Radius # cm. Wie groß ist seine Fläche?"
+],
+[
+"kreis",
+"Ein Kreis hat den Durchmesser # m. Wie groß ist seine Fläche?"
+],
+[
+"kreis",
+"Ein Zylinder hat den Radius # cm und die Höhe # cm. Wie groß ist sein Volumen?"
+],
+[
+"kreis",
+"Ein Kreisring hat den Außenradius # cm und den Innenradius # cm. Wie groß ist seine Fläche?"
+],
+[
+"kreis",
+"Ein Halbkreis hat den Durchmesser # m. Wie lang ist sein Rand (Bogen und Durchmesser)?"
+],
+[
+"kreis",
+"Ein Zylinder hat den Radius # cm und die Höhe # cm. Wie groß ist seine Oberfläche?"
+],
+[
+"dreisatz",
+"# Hefte kosten # €. Wie viel kosten # Hefte?"
+],
+[
+"dreisatz",
+"Ein Auto fährt mit # Litern Nzin # km. Wie weit kommt es mit # Litern?"
+],
+[
+"dreisatz",
+"# Pumpen leeren ein Becken in # Stunden. Wie lange brauchen # Pumpen?"
+],
+[
+"dreisatz",
+"# kg Äpfel kosten # €. Wie viel kosten # kg?"
+],
+[
+"dreisatz",
+"Ein Futtervorrat reicht für # Pferde # Tage. Nach # Tagen werden # Pferde verkauft. Wie viele Tage reicht der Rest?"
+],
+[
+"dreisatz",
+"Ein Futtervorrat reicht für # Pferde # Tage. Nach # Tagen werden # Pferde dazugekauft. Wie viele Tage reicht der Rest?"
+],
+[
+"dreisatz",
+"# Maschinen stellen in # Stunden # Teile her. Wie viele Teile stellen # Maschinen in # Stunden her?"
+],
+[
+"dreisatz",
+"# Arbeiter pflastern einen Platz in # Tagen. Wie viele Tage brauchen # Arbeiter für # gleich große Plätze?"
+]
+]

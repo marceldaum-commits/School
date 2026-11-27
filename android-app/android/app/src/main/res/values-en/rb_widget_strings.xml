@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rb_w_title">Rechenblitz</string>
+    <string name="rb_w_idle1">🧠 Time for 3 minutes of mental maths!</string>
+    <string name="rb_w_idle2">Tap here – Blitz is waiting</string>
+    <string name="rb_w_button">Go</string>
+    <string name="rb_w_desc">Memory training, daily goal and streak at a glance</string>
+</resources>

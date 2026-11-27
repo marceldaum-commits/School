@@ -1,0 +1,77 @@
+# Rechenblitz – Entwicklungsplan 14.11.–04.12.2026
+
+Marcel 13.11.: „Für die nächsten 3 Wochen täglich ordentlich neue Dinge entwickeln. Bei der Version das Datum dazuschreiben.“
+Jeden Tag ein vollständiges, getestetes Paket. Status: `[ ]` offen · `[x]` erledigt (mit Version und Commit).
+
+## Regeln für jeden Entwicklungstag
+
+1. Eintrag des Tages umsetzen (ist er schon erledigt oder blockiert, den nächsten offenen nehmen; Umfang sinnvoll anpassen und notieren).
+2. Alle neuen Texte auch in `i18n/uebersetzungen.tsv` (Englisch, Ukrainisch) eintragen und `node i18n/build.js` ausführen.
+3. Version erhöhen in `kopfrechnen/js/changelog.js` (`APP_VERSION`, `APP_DATE` = heutiges Datum, neuer Eintrag in `CHANGELOG` – kurz und kindgerecht) und Cache-Name in `kopfrechnen/sw.js`.
+4. Testen: Rechen-Engine (alle Themen/Stufen korrekt), Browser-Durchlauf Handy + PC, Deutsch/Englisch/Ukrainisch ohne fehlende Übersetzungen, kein Überlauf auf 320 px (Seitenbreite = Bildschirmbreite, nichts ragt hinaus), keine Fehler in der Konsole, keine fremden Abrufe; zusätzlich in der **installierten Ansicht** (standalone/TWA) prüfen (Leitstand 39).
+5. Nur erlaubte Dateiarten in `kopfrechnen/` (html, css, js, json, webmanifest, svg, png, jpg, webp, ico, woff2, txt). Keine Personendaten, keine Geheimnisse, keine externen Dienste.
+6. Commit auf den Arbeits-Branch, auf `rechenblitz-test` schieben (nie `rechenblitz-live` – das setzt der Leitstand), Meldung oben in `MELDUNG_RECHENBLITZ.md`, Status hier abhaken.
+8. **Web-App und APK parallel (Marcel 13.11.):** Die APK liefert alle Dateien mit und muss offline spielbar sein. Zu jeder Version `cd android-app && bash build.sh` (Version kommt automatisch aus `changelog.js`), APK-Modus testen (nachgebildetes Capacitor, keine Netzanfrage), APK-Inhalt prüfen. APK-eigene Anpassungen nur in `kopfrechnen/js/native.js`. In der Meldung steht immer die Zeile „Neue APK: 3.x.y gebaut“. Die APK kommt nicht ins Repo. GitHub baut sie beim Push auf `rechenblitz-test` selbst und legt sie dauerhaft auf die Release-Seite `rechenblitz-X.Y.Z`; nach dem Push prüfen, ob der Ablauf grün ist. Zusätzlich nach Google Drive („AndroidApps/Rechenblitz“), solange die APK unter ca. 3 MB bleibt.
+9. **Inhalte kommen von selbst (Marcel 15.11., ab 3.13.0 / Hülle 2):** Vor jedem Commit, der `kopfrechnen/` ändert: `node android-app/stand.js` ausführen. Das erzeugt seit 3.17.0 auch das ausgelieferte Bündel `js/rechenblitz.min.js` + `app.min.css` aus den Quellen, und vor jedem Browser-Test muss es laufen. Neue Skriptdatei: in `android-app/bundle.js` (`SOURCES`) eintragen und `kopfrechnen/stand.json` mitcommitten (der GitHub-Ablauf und `build.sh` brechen sonst ab). Die App lädt neue Stände selbst von GitHub (`rechenblitz-test` bzw. `rechenblitz-live`). Ersatzweise lädt sie vom eigenen Server. Eine **neue APK** braucht es nur, wenn sich etwas unter `android-app/android/` (Java, Manifest, Gradle, Ressourcen) oder an Plugins ändert. Dann `android-app/SHELL` um 1 erhöhen. Braucht auch der **Inhalt** die neue Hülle (neue Plugin-Methoden o. Ä.), zusätzlich `android-app/MIN_SHELL` erhöhen und in der Meldung deutlich schreiben: **„NEUE APK INSTALLIEREN“**. Sonst bleibt MIN_SHELL, und die neue APK ist optional. Web-App und App haben immer dieselbe Versionsnummer.
+7. Braucht etwas einen Server oder eine Entscheidung von Marcel: App-Seite bauen und hinter einem Schalter in `config.js` verstecken, Frage als „OFFEN“ in die Meldung.
+
+## Leitlinien (Marcel 13.11., Markt 2025/26)
+
+- **Marcel 14.11.: Alles muss erlebbar sein** – Bilder, Animationen, Dinge, an die man sich erinnert. Keine statischen Listen oder Karteikarten. Jede neue Funktion bekommt ein eigenes Bild bzw. eine Bewegung.
+
+- **Mechanik, die das Lernen trägt** – nicht nur Punkte/Abzeichen: Wiederholen zum richtigen Zeitpunkt, Strategien als Spielzüge.
+- **Kurze Einheiten (3–5 Min.) und Fortschritt über eine Geschichte** statt über Listen.
+- **Lernen trifft Spielgenres** (Roguelike/Deckbuilder) – für Schulmathe auf dem Handy noch frei.
+- **Gemütlich statt Druck:** keine Bestrafung für Pausen, ruhige Modi.
+- **Design 2026:** kräftige Formen, Bewegung beim Antippen, Vibration, dunkler Modus, große Knöpfe, wenig Text, eigene gezeichnete Illustrationen (keine Stockbilder).
+- **Android-Stärken** (Widgets, Sperrbildschirm, Wear OS, Farben aus dem Hintergrundbild) gehen nur als native App → Store ab 2027; im Browser vorbereiten, was geht.
+- Konkurrenz in DE: Anton, Simpleclub, Knowunity – keins ist ein richtiges Spiel.
+
+## Plan
+
+| Tag | Datum | Thema | Inhalt |
+|---|---|---|---|
+| 1 ✅ | Sa 14.11. | **Merk-Training** (3.6.0) | Verteilte Wiederholung (Leitner/Intervalle) für Einmaleins, Kernaufgaben, Brüche usw.: jede Aufgabe hat eine Merkstärke, „Heute wiederholen“ als 3-Minuten-Runde, Anzeige „X Aufgaben sitzen fest“ |
+| 2 ✅ | So 15.11. (vorgezogen 14.11.) | **Maskottchen „Blitz“** (3.8.0) + Merksätze, Sternbilder, Was-ist-neu | Eigenes, gezeichnetes SVG-Maskottchen (Fuchs/Blitz) mit Stimmungen (freut sich, denkt nach, tröstet); Standard-Runde 3–5 Minuten; Texte kürzen, mehr Symbole |
+| 3 ✅ | Mo 16.11. (vorgezogen 14.11.) | **Rechen-Reise (Kapitel 1–3)** (3.9.0) | Story-Karte statt Liste: Etappen à 3–5 Min., kleine Geschichte je Kapitel, passend zur Klassenstufe |
+| 4 ✅ | Di 17.11. (vorgezogen 15.11.) | **Rechen-Reise (Kapitel 4–6)** (3.10.0) | Weitere Kapitel, Belohnungsbilder, Urkunde je Kapitel |
+| 5 ✅ | Mi 18.11. (vorgezogen 16.11.) | **Rechengarten (gemütlich)** (3.14.0) | Gelöste Aufgaben lassen Pflanzen wachsen; keine Serien-Strafe: „Tage diese Woche“ statt Tage in Folge, Pausen ohne Verlust |
+| 6 ✅ | Do 19.11. (vorgezogen 17.11.) | **Zahlen-Dungeon 1** (3.21.0) | Roguelike: Räume, Gegner = Aufgaben, Lebenspunkte, kurze Läufe (3–5 Min.) |
+| 7 ✅ | Fr 20.11. | **Zahlen-Dungeon 2** | Deckbuilding: Rechen-Karten = echte Strategien (Zehnerfreund, Verdoppeln, Halbieren, Kommaschieber …) |
+| 8 | Sa 21.11. (⏸ Betriebstest – danach) | **Zahlen-Dungeon 3** | Bosse, Freischaltungen, Balance je Klassenstufe |
+| 9 | So 22.11. | **Fehler-Detektiv 1** ⭐ | Typische Denkfehler erkennen (Reihe verrutscht, Stellenwert, Zähler+Nenner addiert, Vorzeichen, Punkt vor Strich …) und genau diesen Fehler mit Bild erklären |
+| 10 | Mo 23.11. | **Fehler-Detektiv 2** ⭐ | „Lernstand-Brief“ für Eltern (Schwachstellen in Worten, druck-/teilbar) + Brücke zur Probestunde |
+| 11 | Di 24.11. | **Sprachbrücke Mathe + Deutsch** ⭐ | Wort in Textaufgaben antippen → Übersetzung (EN/UK) + Vorlesen; Fachwörter-Sammlung (Summe, Nenner …); vorbereitet für Türkisch/Arabisch |
+| 12 | Mi 25.11. | **Einmaleins-Rhythmus** ⭐ | Jede Reihe mit eigenem Beat, im Takt mittippen – Musik als Merkhilfe |
+| 13 | Do 26.11. | **Geister-Rennen + Herausforderungs-Links** ⭐ | Gegen das eigene Ich von letzter Woche; Link „Schlag meine Zeit!“ zum Teilen |
+| 14 | Fr 27.11. | **Design „Expressive“ + „Marcel erklärt“** | Formen, Bewegung, Vibration; Plätze für kurze Erklär-Clips von Marcel (Video/Ton, Schalter in config.js); sichtbarer Hinweis „Ohne Werbung, ohne Konto, offline – datenschutzfreundlich“ |
+| 15 | Sa 28.11. | **Winterdesign + Weihnachtskapitel** | Schnee/Farben im Dezember (abschaltbar), Weihnachtskapitel in der Rechen-Reise |
+| 16 | So 29.11. | **Klassenzimmer-Quiz** | Beamer-/Whiteboard-Modus, 2–4 Teams, Countdown |
+| 17 | Mo 30.11. | **Eltern-Bereich + Nachhilfe-Verbindung** ⭐ | PIN, Fortschritt je Kind, Verlauf; per Code Lernstand (Merk-Himmel, Schwachstellen) mit der Nachhilfelehrkraft teilen und Merk-Stapel als Hausaufgabe empfangen (App-Seite; Server/Lehrer-App: Leitstand) |
+| 18 | Di 01.12. | **Adventskalender-Start + Barrierefreiheit** | Start-Check, Feinschliff; Schriftgröße, Kontrast, Tastatur, Bildschirmleser |
+| 19 | Mi 02.12. | **Trick des Tages + Zahlenmauern** | Kurze Trick-Lektionen (werden Dungeon-Karten), Zahlenmauern passend zur Klasse |
+| 20 | Do 03.12. | **Android-App 2027** | Store-Texte/Bilder, App-Verknüpfungen, Zahl am App-Symbol; Konzept Widgets, Sperrbildschirm, Wear OS, Autofahrt-Modus |
+| 21 | Fr 04.12. | **Abschluss** | Ladezeit, Barrierefreiheit-Check, alle Sprachen, Rückblick + offene Ideen für Marcel/Leitstand |
+
+⭐ = Alleinstellungsmerkmal (Marcel 14.11.: „Was kann man machen als Alleinstellungsmerkmal?“ → „übernimm es step by step“). Kern: **Hinter Rechenblitz steht echte Nachhilfe** – Diagnose, Verbindung zur Lehrkraft, Marcels Erklärungen.
+
+**Erledigt aus dem Ideen-Speicher (3.15.0, 16.11.):** Uhr & Zeit, Geometrie im Kopf, Einkaufen/Geld, Verdoppeln & Halbieren, Zahlenfolgen, 30 neue Textaufgaben.
+
+**Ideen-Speicher (wenn Zeit bleibt):** Autofahrt-Modus (Aufgaben vorlesen, Antwort sprechen), Türkisch/Arabisch für die Sprachbrücke, Schätz-Blitz, Hör-Rechnen, Fehler-Detektiv (typische Fehlermuster), Gleichungs-Waage, Einkaufsspiel, Wochenziele mit Kalender-Erinnerung.
+
+## Erledigt
+
+- 13.11. – 3.5.0: Versionsnummer mit Datum, „Was ist neu?“ im Menü
+- 13.11. – 3.5.1: Erinnerung aufs Handy (Leitstand-Übergabe 38), Play-Store-Vorbereitung, schmale Handys ohne Verkleinern
+- 14.11. – 3.5.2: Gutschein für jedes Stundenpaket; Android-App (APK) mit allen Dateien im Paket, komplett offline, Erinnerung lokal; Web + APK parallel
+- 14.11. – 3.6.0: Merk-Training (verteilte Wiederholung, 185 Kernaufgaben in 6 Stapeln, „Heute wiederholen“ in 3 Minuten)
+- 14.11. – 3.7.0: Merk-Training erlebbar (Marcel: „fesseln, mit Bild und Animation“) – bewegte Bilder je Aufgabe, Merk-Moment, Bild-Tipp, Merk-Himmel mit Sternbildern
+- 14.11. – 3.8.0: Maskottchen Blitz, Merksätze zu allen 185 Merk-Aufgaben, 21 Sternbilder mit Album, „Was ist neu?“-Karte, roter Punkt am Menü-Knopf entfernt (Tag 2 vorgezogen; morgen weiter mit Tag 3 Rechen-Reise)
+- 14.11. – 3.9.0: Rechen-Reise Kapitel 1–3 (Zahlenwald, Rechenfluss, Funkenhöhle) + Fehler-Check mit 20 Korrekturen (Sicherheit der Links, Timing, Fortschritt, Postausgang, Offline-Cache, Sommerzeit, Barrierefreiheit). Nächster Tag: Rechen-Reise Kapitel 4–6.
+- 15.11. – 3.10.0: Rechen-Reise Kapitel 4–6 + Finale, Sticker-Album, große Urkunde; alle Aufgabentexte und Advents-Vorschau in EN/UK vervollständigt. Nächster Tag: Rechengarten.
+- 15.11. – 3.10.1: Knopf „Nach Updates suchen“; 3.11.0: Android-Widget für den Startbildschirm (aus Tag 20 vorgezogen, Marcel).
+- 15.11. – 3.11.1: einzelne Bereiche zurücksetzen; 3.12.0: großes Paket „Blitz-Welt“ (Funken, Garderobe, Zimmer, Rätsel des Tages, Jahreszeiten-Events) auf Marcels Wunsch zusätzlich zum Plan.
+- 16.11. – 3.19.0: jede Stufe nachweislich schwerer (tests/schwierigkeit.js), Profi-Stufe; 3.20.0: Rechenblitz Pro (Sperren aus bis zur Kassen-URL) + Elternbericht.
+- 17.11. – 3.21.0: Zahlen-Dungeon 1 (7 Räume, 5 Herzen, Türen Kampf/Schatz/Lagerfeuer, 5 gezeichnete Monster, Wächter). Nächster Tag: Zahlen-Dungeon 2 (Rechen-Karten).
+- 17.11. – 3.26.0: Zahlen-Dungeon 2 – Rechen-Karten (8 Strategien: Zehnerfreund, Verdoppeln, Halbieren, Tauschaufgabe, Neuner-Trick, Fünfer-Trick, Kommaschieber, Probe/Schild), Deck mit Ziehen/Ablegen, neue Karte nach jedem Sieg, Kartensammlung. Nächster Tag: Zahlen-Dungeon 3 (Bosse, Freischaltungen, Balance).
+- 17./18.11. – 3.26.1/3.26.2/3.26.3 (Betriebstest, nur Fehler/Leitstand-Aufträge): Musik startet sofort, nur Nova; Aufgaben-Prüfung (10 Vorlagen eindeutiger), Nova ganze Sätze ohne Rückfall, neues App-Symbol; ukrainische Brüche richtig vorgelesen. Roadmap pausiert bis nach dem Betriebstest.

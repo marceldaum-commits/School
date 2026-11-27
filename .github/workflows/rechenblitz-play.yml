@@ -1,0 +1,95 @@
+# Rechenblitz für Google Play: baut bei jeder Freigabe auf rechenblitz-live das signierte App-Bundle (AAB).
+# Play-Fassung (RB_STORE=play): lädt neue Inhalte selbst vom Live-Kanal (erlaubt: JavaScript in der WebView),
+# lädt aber nie selbst eine APK – neue App-Hüllen kommen nur über Google Play.
+# Signiert mit dem Upload-Schlüssel aus den Repo-Geheimnissen (Marcel trägt sie ein, siehe PLAYSTORE_RECHENBLITZ.md):
+#   RECHENBLITZ_UPLOAD_KEYSTORE (Datei als Base64), RECHENBLITZ_UPLOAD_STORE_PASSWORD,
+#   RECHENBLITZ_UPLOAD_KEY_ALIAS, RECHENBLITZ_UPLOAD_KEY_PASSWORD – fehlt eines oder ist vertauscht, bricht der Lauf mit klarer Meldung ab
+# Ergebnis: Download unter „Actions → Rechenblitz Play → Artifacts“ (90 Tage), dann in der Play Console hochladen.
+name: Rechenblitz Play
+
+# Play-Store ruht und die Upload-Schlüssel sind noch nicht eingetragen: bis dahin nur per Hand starten
+# (Actions → Rechenblitz Play → Run workflow), damit nicht jede Live-Freigabe als Fehler endet (Marcel 18.11.).
+# Für den Play-Start wieder einschalten:
+#   push:
+#     branches: [rechenblitz-live]
+#     paths: ['kopfrechnen/**', 'android-app/**', '.github/workflows/rechenblitz-play.yml']
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: rechenblitz-play
+  cancel-in-progress: false
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-java@v5
+        with: { distribution: temurin, java-version: '21', cache: gradle }   # Gradle-Bausteine zwischenspeichern (Maven Central drosselte am 16.11. mit 429)
+
+      - name: Upload-Schlüssel prüfen und einrichten
+        id: key
+        env:
+          KEYSTORE: ${{ secrets.RECHENBLITZ_UPLOAD_KEYSTORE }}
+          STORE_PW: ${{ secrets.RECHENBLITZ_UPLOAD_STORE_PASSWORD }}
+          ALIAS: ${{ secrets.RECHENBLITZ_UPLOAD_KEY_ALIAS }}
+          KEY_PW: ${{ secrets.RECHENBLITZ_UPLOAD_KEY_PASSWORD }}
+        run: |
+          # Klare Fehlermeldungen statt stillem Überspringen (Leitstand 16.11., wie kurvenflug-release.yml)
+          fail() { echo "::error title=Rechenblitz Upload-Schlüssel::$1 – siehe PLAYSTORE_RECHENBLITZ.md, Abschnitt A."; exit 1; }
+          miss=""
+          [ -z "$KEYSTORE" ] && miss="$miss RECHENBLITZ_UPLOAD_KEYSTORE"
+          [ -z "$STORE_PW" ] && miss="$miss RECHENBLITZ_UPLOAD_STORE_PASSWORD"
+          [ -z "$ALIAS" ] && miss="$miss RECHENBLITZ_UPLOAD_KEY_ALIAS"
+          [ -z "$KEY_PW" ] && miss="$miss RECHENBLITZ_UPLOAD_KEY_PASSWORD"
+          [ -n "$miss" ] && fail "Geheimnis fehlt:$miss (School → Settings → Secrets and variables → Actions)"
+          KS="$RUNNER_TEMP/upload.keystore"
+          printf '%s' "$KEYSTORE" | tr -d ' \r\n' | base64 -d > "$KS" 2>/dev/null || fail "RECHENBLITZ_UPLOAD_KEYSTORE ist kein gültiger Base64-Text (Datei mit base64 umwandeln, ohne Zeilenumbrüche)"
+          [ -s "$KS" ] || fail "RECHENBLITZ_UPLOAD_KEYSTORE ist leer"
+          keytool -list -keystore "$KS" -storepass "$STORE_PW" >/dev/null 2>&1 || fail "Keystore lässt sich nicht öffnen – RECHENBLITZ_UPLOAD_STORE_PASSWORD falsch oder Datei beschädigt (evtl. mit dem Schlüssel-Passwort vertauscht)"
+          keytool -list -keystore "$KS" -storepass "$STORE_PW" -alias "$ALIAS" >/dev/null 2>&1 || fail "Alias „$ALIAS“ ist nicht im Keystore – RECHENBLITZ_UPLOAD_KEY_ALIAS prüfen (vorhanden: $(keytool -list -keystore "$KS" -storepass "$STORE_PW" 2>/dev/null | grep -i 'PrivateKeyEntry' | cut -d, -f1 | tr '\n' ' '))"
+          # Schlüssel-Passwort prüfen: mit dem Schlüssel einmal testweise signieren
+          echo test > "$RUNNER_TEMP/t.txt" && (cd "$RUNNER_TEMP" && jar cf t.jar t.txt)
+          jarsigner -keystore "$KS" -storepass "$STORE_PW" -keypass "$KEY_PW" "$RUNNER_TEMP/t.jar" "$ALIAS" >/dev/null 2>&1 || fail "RECHENBLITZ_UPLOAD_KEY_PASSWORD passt nicht zum Schlüssel „$ALIAS“ (evtl. mit dem Store-Passwort vertauscht)"
+          rm -f "$RUNNER_TEMP/t.jar" "$RUNNER_TEMP/t.txt"
+          echo "Upload-Schlüssel geprüft: Alias $ALIAS, SHA-256 $(keytool -list -v -keystore "$KS" -storepass "$STORE_PW" -alias "$ALIAS" | grep -m1 'SHA256' | sed 's/.*SHA256: //')"
+          echo "ok=true" >> "$GITHUB_OUTPUT"
+          {
+            echo "RB_UPLOAD_KEYSTORE=$KS"
+            echo "RB_UPLOAD_STORE_PASSWORD=$STORE_PW"
+            echo "RB_UPLOAD_KEY_ALIAS=$ALIAS"
+            echo "RB_UPLOAD_KEY_PASSWORD=$KEY_PW"
+          } >> "$GITHUB_ENV"
+
+      - if: steps.key.outputs.ok == 'true'
+        uses: actions/setup-node@v5
+        with: { node-version: '22' }
+
+      - if: steps.key.outputs.ok == 'true'
+        name: Version lesen
+        id: v
+        run: echo "version=$(grep -oP "APP_VERSION = '\K[0-9.]+" kopfrechnen/js/changelog.js)" >> "$GITHUB_OUTPUT"
+
+      - if: steps.key.outputs.ok == 'true'
+        name: Play-Bundle bauen (Live-Kanal, ohne APK-Selbst-Update)
+        working-directory: android-app
+        run: |
+          npm ci --no-audit --no-fund
+          RB_STORE=play RB_CHANNEL=live bash build.sh release
+          AAB=android/app/build/outputs/bundle/release/app-release.aab
+          jarsigner -verify "$AAB" | grep -q "jar verified" || { echo "::error::Bundle ist nicht signiert."; exit 1; }
+          cp "$AAB" "$RUNNER_TEMP/Rechenblitz-play-${{ steps.v.outputs.version }}.aab"
+          rm -f "$RB_UPLOAD_KEYSTORE"
+
+      - if: steps.key.outputs.ok == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: Rechenblitz-play-${{ steps.v.outputs.version }}
+          path: ${{ runner.temp }}/Rechenblitz-play-${{ steps.v.outputs.version }}.aab
+          retention-days: 90

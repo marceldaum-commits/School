@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rb_w_title">Rechenblitz</string>
+    <string name="rb_w_idle1">🧠 Zeit für 3 Minuten Kopfrechnen!</string>
+    <string name="rb_w_idle2">Tippe hier – Blitz wartet schon</string>
+    <string name="rb_w_button">Los</string>
+    <string name="rb_w_desc">Merk-Training, Tagesziel und Serie auf einen Blick</string>
+</resources>
