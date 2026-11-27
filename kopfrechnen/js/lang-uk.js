@@ -2627,5 +2627,6 @@ I18N.add('uk', {"% sind":"% — це",
 "zwei Zahlen mit Summe {} und Produkt {}":"два числа із сумою {} і добутком {}",
 "{} auf beiden Seiten abziehen":"Віднімі {} з обох частин",
 "{} auf beiden Seiten addieren":"Додай {} до обох частин",
-"Neues Thema „Quadratische Gleichungen“ (Klasse {}–{}): Wurzel ziehen, Produkt gleich null und Summe-Produkt-Verfahren (Satz von Vieta) in {} Stufen, jede Lösung mit Lösungsweg":"Нова тема «Квадратні рівняння» (9–10 класи): добування кореня, добуток дорівнює нулю та метод суми й добутку (теорема Вієта) у 6 рівнях, кожен розв’язок із ходом розв’язання",
-"Theorie zu allen Stufen mit Beispielen":"Теорія до всіх рівнів із прикладами"});
+"Neues Thema „Quadratische Gleichungen“ (Klasse {}–{}): Wurzel ziehen, Produkt gleich null und Summe-Produkt-Verfahren (Satz von Vieta) in {} Stufen, jede Lösung mit Lösungsweg":"Нова тема «Квадратні рівняння» ({}–{} класи): добування кореня, добуток дорівнює нулю та метод суми й добутку (теорема Вієта) у {} рівнях, кожен розв’язок із ходом розв’язання",
+"Theorie zu allen Stufen mit Beispielen":"Теорія до всіх рівнів із прикладами",
+"Am Computer mit großem Bildschirm ist die Startseite breiter, die Themen stehen in einem größeren Raster":"На комп’ютері з великим екраном початкова сторінка ширша, а теми показано більшою сіткою"});

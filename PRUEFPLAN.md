@@ -93,7 +93,7 @@ Der Inhalt ist in **4 Blöcke** geteilt. Jeden Monat wird **ein Block gründlich
 | **Fr 20.11.2026** | – | **Kein Inhaltsupdate** (Marcel 19.11.: „nur Korrekturen“): gründliche Selbstprüfung + Korrekturen (Eltern-Tor im Web für alle Außen-Links, Werbekarte/Probestunde nur im Elternbereich, Schloss-Text gekürzt). Zehnerpotenzen und Elternbericht gratis → Di 24.11. | – |
 | Di 24.11.2026 (ab 15:00) | 3.28.4 bis 3.30.2 | Kein neuer Rechen-Inhalt, sondern Pflicht-Umbauten: Zähl-Fix (3.28.4), Name „Zahlensprint“ (3.29.0, Schritt 1), Eltern-Tor-Standard, V10 neu, Einstellungen geteilt, Weg zur Probestunde V15 (3.30.0), OpenAI/Nova entfernt (3.30.1), Auflage V37 (3.30.2). **Verschoben auf Fr 27.11.:** Quadratische Gleichungen im Kopf, PC-Ansicht, Elternbericht kostenlos, Zehnerpotenzen mit Schreibweise 10ⁿ; Schritt 2 der Umbenennung (Pfad /zahlensprint/) sobald der Leitstand den Ordner anlegt | – (Monats-Check ab Fr) |
 | Do 26.11.2026 | 3.33.0 | Quadratische Gleichungen (quad, Kl. 9–10, 6 Stufen) + Theorie de/en/uk; Prüfer 279.000/279.000, alle 186 Stufen strikt schwerer | Nov. |
-| Fr 27.11.2026 | (geplant) | großes Inhaltsupdate | Nov. |
+| **Fr 27.11.2026** | 3.34.0 | PC-Ansicht ab 1500 px (breiter, Themen-Raster, Test `tests/pc-ansicht.js`). Offen: Elternbericht kostenlos (Entscheidung), Zehnerpotenzen 10ⁿ (präzisieren), Sachaufgaben Physik | Nov. |
 
 ## 6. Prüf-Protokoll
 

@@ -1,8 +1,9 @@
 'use strict';
 // Rechenblitz – Versionen mit Datum (neueste oben). Wird unter „Was ist neu?“ angezeigt.
-const APP_VERSION = '3.33.0';
-const APP_DATE = '2026-11-24';
+const APP_VERSION = '3.34.0';
+const APP_DATE = '2026-11-27';
 const CHANGELOG = [
+  ['3.34.0', '2026-11-27', ['Am Computer mit großem Bildschirm ist die Startseite breiter, die Themen stehen in einem größeren Raster']],
   ['3.33.0', '2026-11-26', ['Neues Thema „Quadratische Gleichungen“ (Klasse 9–10): Wurzel ziehen, Produkt gleich null und Summe-Produkt-Verfahren (Satz von Vieta) in 6 Stufen, jede Lösung mit Lösungsweg', 'Theorie zu allen Stufen mit Beispielen']],
   ['3.32.0', '2026-11-26', ['Neuer Start: Beim Öffnen erscheint ein schwarzer Bildschirm mit dem Blitz, der sich beim Laden bewegt und dann groß herausfliegt']],
   ['3.31.0', '2026-11-25', ['Zahlensprint hat jetzt seine eigene Adresse lernen.mathenachhilfe-online.com/zahlensprint/ – dein Lernstand bleibt erhalten', 'Links, QR-Codes und Urkunden zeigen auf die neue Adresse']],

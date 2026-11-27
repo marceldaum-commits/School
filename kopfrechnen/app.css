@@ -1107,3 +1107,17 @@ button.badge{font:inherit;cursor:pointer}
 #boot .umzug-box p{font-size:15px;line-height:1.45;margin:0;opacity:.92}
 #boot .umzug-btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:14px;background:#ff7a12;color:#0a0f24;font-weight:800;text-decoration:none}
 .pro-kind{font-weight:700;margin:6px 0 8px;padding:10px 12px;border-radius:12px;background:var(--surface);border:1px solid var(--border)}
+
+/* ===== PC-Ansicht (Marcel 19.11./27.11.): ab 1500 px Breite etwas breiter, Themen als größeres Raster, rechte Spalte bleibt beim Scrollen sichtbar – Handy und iPad bleiben unverändert ===== */
+@media (min-width:1500px){
+  .app{max-width:1360px}
+  body.ingame .app{max-width:1360px}
+  .home-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:40px}
+  .col-left{position:static}
+  .col-right{position:sticky;top:20px}
+  .topics{grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+  .topics.wide{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .topic{padding:22px 4px 18px}
+  .topic .g{font-size:34px}
+  .col-right .ask{font-size:34px}
+}

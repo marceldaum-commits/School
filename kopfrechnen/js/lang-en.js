@@ -2627,5 +2627,6 @@ I18N.add('en', {"% sind":"% are",
 "zwei Zahlen mit Summe {} und Produkt {}":"two numbers with sum {} and product {}",
 "{} auf beiden Seiten abziehen":"Subtract {} on both sides",
 "{} auf beiden Seiten addieren":"Add {} on both sides",
-"Neues Thema „Quadratische Gleichungen“ (Klasse {}–{}): Wurzel ziehen, Produkt gleich null und Summe-Produkt-Verfahren (Satz von Vieta) in {} Stufen, jede Lösung mit Lösungsweg":"New topic “Quadratic equations” (grades 9–10): taking the square root, product equals zero and the sum-and-product method (Vieta's formulas) in 6 levels, every solution with solution steps",
-"Theorie zu allen Stufen mit Beispielen":"Theory for all levels with examples"});
+"Neues Thema „Quadratische Gleichungen“ (Klasse {}–{}): Wurzel ziehen, Produkt gleich null und Summe-Produkt-Verfahren (Satz von Vieta) in {} Stufen, jede Lösung mit Lösungsweg":"New topic “Quadratic equations” (grades {}–{}): taking the square root, product equals zero and the sum-and-product method (Vieta's formulas) in {} levels, every solution with solution steps",
+"Theorie zu allen Stufen mit Beispielen":"Theory for all levels with examples",
+"Am Computer mit großem Bildschirm ist die Startseite breiter, die Themen stehen in einem größeren Raster":"On a computer with a large screen the start page is wider and the topics are shown in a larger grid"});
