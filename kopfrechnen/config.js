@@ -31,7 +31,7 @@ window.RECHENBLITZ_CONFIG = {
   stimme: { base: '' },
   // Anonyme Nutzungszählung (Leitstand 18.11.): beim Start nur {app, Version, start:1} – ohne Namen, Kennungen, Cookies.
   // Abschaltbar im Elternbereich; '' = Zählung aus.
-  zaehler: 'https://trainer.mathenachhilfe-online.com/zaehler/v1/e',
+  zaehler: 'https://lernen.mathenachhilfe-online.com/zaehler/v1/e',   // nur für die Android-App (kein eigener Host); im Web zählt jede Adresse an ihren eigenen Host (panels.js zaehlZiel)
   // „🎁 Lern-Geschenk verschenken“ im Elternbereich ('' = ausgeblendet)
   geschenkUrl: 'https://www.mathenachhilfe-online.com/geschenke/?src=rechenblitz-geschenk',
   // Adventskalender: Karte ab 15.11., Türchen 1.–24.12., nachholbar bis 6.1.

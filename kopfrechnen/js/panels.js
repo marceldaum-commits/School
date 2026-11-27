@@ -722,17 +722,16 @@ function resetPart(what, after) {
 
 /* ---------- Anonyme Nutzungszählung (Leitstand 18.11.): einmal je Start {app, v, e:{start:1}} als text/plain ----------
    Keine Namen, keine Kennungen, keine Cookies; im Elternbereich abschaltbar (Standard: an). Nicht auf localhost/Datei.
-   Ziel nach Adresse (Fehler-Fix 24.11.: die Testseite zählte an die Live-Stufe; die Stufe bestimmt der Trainer-Dienst aus dem Host):
-   · lernen(-test).mathenachhilfe-online.com → gleicher Origin /zaehler/v1/e (Test zählt in Test, live in live)
-   · alte Live-Adresse rechenblitz.mathenachhilfe-online.com und die Android-App → CONFIG.zaehler (Live)
-   · alles andere (rechenblitz-test.…, localhost, fremde Adressen) → keine Zählung, nie an die Live-Stufe */
+   Ziel (Marcel 27.11.: „Zählung an den eigenen Host der App“; die Stufe test/live bestimmt der Trainer-Dienst aus dem Host):
+   · lernen(-test).… und rechenblitz(-test).mathenachhilfe-online.com → gleicher Origin /zaehler/v1/e
+   · Android-App → CONFIG.zaehler (lernen.mathenachhilfe-online.com, die App hat keinen eigenen Host)
+   · alles andere (localhost, fremde Adressen) → keine Zählung, nie an eine fremde Stufe */
 const zaehlungAn = () => ROOT.zaehlung !== false;
 function zaehlZiel(host = location.hostname, native = IS_NATIVE, proto = location.protocol, origin = location.origin) {
   if (!CONFIG.zaehler) return '';
-  if (native) return CONFIG.zaehler;                       // APK: eigener Ursprung (localhost/capacitor), immer Live
+  if (native) return CONFIG.zaehler;                       // APK: eigener Ursprung (localhost/capacitor)
   if (!/^https?:$/.test(proto)) return '';
-  if (/^lernen(-test)?\.mathenachhilfe-online\.com$/.test(host)) return origin + '/zaehler/v1/e';
-  if (host === 'rechenblitz.mathenachhilfe-online.com') return CONFIG.zaehler;
+  if (/^(lernen|rechenblitz)(-test)?\.mathenachhilfe-online\.com$/.test(host)) return origin + '/zaehler/v1/e';
   return '';
 }
 function zaehlSenden(body) {

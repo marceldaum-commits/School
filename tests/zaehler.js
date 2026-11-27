@@ -2,10 +2,10 @@
 // Erwartung je Adresse:
 //   lernen-test.…/rechenblitz/  → POST an lernen-test.…/zaehler/v1/e (gleicher Origin, nie an trainer.…)
 //   lernen.…/rechenblitz/       → POST an lernen.…/zaehler/v1/e
-//   rechenblitz.… (alt, live)   → POST an trainer.…/zaehler/v1/e (Umzug dort aus, damit die App startet)
-//   rechenblitz-test.… (alt)    → keine Zählung (nie an die Live-Stufe)
+//   rechenblitz.… (alt, live)   → POST an rechenblitz.…/zaehler/v1/e (eigener Host; Umzug dort aus, damit die App startet)
+//   rechenblitz-test.… (alt)    → POST an rechenblitz-test.…/zaehler/v1/e (eigener Host)
 //   localhost                   → keine Zählung
-//   Android-App (Capacitor)     → trainer.…/zaehler/v1/e
+//   Android-App (Capacitor)     → lernen.…/zaehler/v1/e (die APK hat keinen eigenen Host)
 //   Zählung aus                 → gar nichts
 //   Umzug rechenblitz-test → lernen-test: genau ein „umzug“ (ev) an lernen-test, ohne Merker; mit Zählung aus keiner
 // Aufruf: (cd kopfrechnen && python3 -m http.server 8765) & node tests/zaehler.js
@@ -69,13 +69,13 @@ const ev = r => r.posts.map(x => { const j = JSON.parse(x.body); return `${new U
   const b2 = await run('lernen (live)', { url: 'https://lernen.mathenachhilfe-online.com/rechenblitz/' }); rows.push(b2);
   ok(ev(b2).join() === 'lernen.mathenachhilfe-online.com:start', 'lernen: Ziel falsch ' + ev(b2));
   const c = await run('alt live', { url: 'https://rechenblitz.mathenachhilfe-online.com/' }); rows.push(c);
-  ok(ev(c).join() === 'trainer.mathenachhilfe-online.com:start', 'alt live: Ziel falsch ' + ev(c));
+  ok(ev(c).join() === 'rechenblitz.mathenachhilfe-online.com:start', 'alt live: Ziel falsch ' + ev(c));
   const d = await run('alt test', { url: 'https://rechenblitz-test.mathenachhilfe-online.com/' }); rows.push(d);
-  ok(!d.posts.length, 'alt test: zählt trotzdem ' + ev(d));
+  ok(ev(d).join() === 'rechenblitz-test.mathenachhilfe-online.com:start', 'alt test: Ziel falsch ' + ev(d));
   const e = await run('localhost', { url: 'https://localhost/' }); rows.push(e);
   ok(!e.posts.length, 'localhost: zählt trotzdem ' + ev(e));
   const f = await run('APK', { url: 'https://localhost/', native: true }); rows.push(f);
-  ok(ev(f).join() === 'trainer.mathenachhilfe-online.com:start', 'APK: muss live zählen ' + ev(f));
+  ok(ev(f).join() === 'lernen.mathenachhilfe-online.com:start', 'APK: muss an lernen.… (live) zählen ' + ev(f));
   const g = await run('Zählung aus', { url: 'https://lernen-test.mathenachhilfe-online.com/rechenblitz/', zaehlung: false }); rows.push(g);
   ok(!g.posts.length, 'Zählung aus: sendet trotzdem ' + ev(g));
   // Umzug alt test → lernen-test: ein „umzug“, nicht mehr

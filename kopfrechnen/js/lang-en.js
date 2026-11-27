@@ -2635,4 +2635,5 @@ I18N.add('en', {"% sind":"% are",
 "Das Komma wandert um {} Stellen nach rechts":"The decimal point moves {} places to the right",
 "Exponenten abziehen":"Subtract the exponents",
 "Wie viele Stellen wandert das Komma?":"How many places does the decimal point move?",
-"Zehnerpotenzen: Zahlen in die Form x · {}ⁿ umschreiben (x gesucht) und Größenordnungen vergleichen, auch mit negativen Exponenten":"Powers of ten: rewrite numbers in the form x · {}ⁿ (x unknown) and compare orders of magnitude, also with negative exponents"});
+"Zehnerpotenzen: Zahlen in die Form x · {}ⁿ umschreiben (x gesucht) und Größenordnungen vergleichen, auch mit negativen Exponenten":"Powers of ten: rewrite numbers in the form x · {}ⁿ (x unknown) and compare orders of magnitude, also with negative exponents",
+"Die anonyme Nutzungszählung geht jetzt immer an die eigene Adresse der App":"The anonymous usage count now always goes to the app's own address"});

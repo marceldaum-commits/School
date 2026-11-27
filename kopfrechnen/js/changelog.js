@@ -1,8 +1,9 @@
 'use strict';
 // Rechenblitz – Versionen mit Datum (neueste oben). Wird unter „Was ist neu?“ angezeigt.
-const APP_VERSION = '3.35.0';
+const APP_VERSION = '3.35.1';
 const APP_DATE = '2026-11-27';
 const CHANGELOG = [
+  ['3.35.1', '2026-11-27', ['Die anonyme Nutzungszählung geht jetzt immer an die eigene Adresse der App']],
   ['3.35.0', '2026-11-27', ['Zehnerpotenzen: Zahlen in die Form x · 10ⁿ umschreiben (x gesucht) und Größenordnungen vergleichen, auch mit negativen Exponenten']],
   ['3.34.0', '2026-11-27', ['Am Computer mit großem Bildschirm ist die Startseite breiter, die Themen stehen in einem größeren Raster']],
   ['3.33.0', '2026-11-26', ['Neues Thema „Quadratische Gleichungen“ (Klasse 9–10): Wurzel ziehen, Produkt gleich null und Summe-Produkt-Verfahren (Satz von Vieta) in 6 Stufen, jede Lösung mit Lösungsweg', 'Theorie zu allen Stufen mit Beispielen']],

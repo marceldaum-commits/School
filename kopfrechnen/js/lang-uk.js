@@ -2635,4 +2635,5 @@ I18N.add('uk', {"% sind":"% — це",
 "Das Komma wandert um {} Stellen nach rechts":"Кома йде на {} позицій праворуч",
 "Exponenten abziehen":"Відніми показники",
 "Wie viele Stellen wandert das Komma?":"На скільки позицій іде кома?",
-"Zehnerpotenzen: Zahlen in die Form x · {}ⁿ umschreiben (x gesucht) und Größenordnungen vergleichen, auch mit negativen Exponenten":"Степені десяти: переписування чисел у вигляді x · {}ⁿ (x невідоме) та порівняння порядків величин, також із від’ємними показниками"});
+"Zehnerpotenzen: Zahlen in die Form x · {}ⁿ umschreiben (x gesucht) und Größenordnungen vergleichen, auch mit negativen Exponenten":"Степені десяти: переписування чисел у вигляді x · {}ⁿ (x невідоме) та порівняння порядків величин, також із від’ємними показниками",
+"Die anonyme Nutzungszählung geht jetzt immer an die eigene Adresse der App":"Анонімний підрахунок використання тепер завжди надсилається на власну адресу застосунку"});
