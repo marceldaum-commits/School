@@ -2641,5 +2641,8 @@ I18N.add('uk', {"% sind":"% — це",
 "Euer Gutschein für Nachhilfe – online":"Ваш ваучер на Nachhilfe – online",
 "auf ein Stundenpaket":"на пакет занять",
 "Euer Kind hat alle {} Türchen geöffnet – hier ist euer Code für {} % auf ein Stundenpaket.":"Ваша дитина відкрила всі {} віконець – ось ваш код на знижку {} % на пакет занять.",
-"{} % auf jedes Stundenpaket, einmal je Familie. Dieser Code gilt nur einmal und ist nicht mit anderen Gutscheinen kombinierbar.":"Знижка {} % на кожен пакет занять, один раз на родину. Цей код діє лише один раз і не поєднується з іншими ваучерами.",
-"Adventskalender: Kinder sehen nach Türchen {} nur noch eine Belohnung; der Gutschein-Code steht nur im Elternbereich":"Адвент-календар: після віконця 24 діти бачать лише нагороду; код ваучера показано лише в розділі для батьків"});
+"Adventskalender: Kinder sehen nach Türchen {} nur noch eine Belohnung; der Gutschein-Code steht nur im Elternbereich":"Адвент-календар: після віконця {} діти бачать лише нагороду; код ваучера показано лише в розділі для батьків",
+"{} % auf ein Stundenpaket deiner Wahl":"Знижка {} % на пакет занять на ваш вибір",
+"einlösbar bis":"можна використати до",
+"Einmal je Familie einlösbar, nicht mit anderen Gutscheinen kombinierbar. Gilt nicht für Probestunden, Übungsbücher oder Lern-Apps.":"Можна використати один раз на родину, не поєднується з іншими ваучерами. Не діє для пробних занять, посібників і навчальних застосунків.",
+"Gutschein-Text im Elternbereich überarbeitet":"Текст ваучера в розділі для батьків перероблено"});

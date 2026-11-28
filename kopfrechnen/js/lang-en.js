@@ -2641,5 +2641,8 @@ I18N.add('en', {"% sind":"% are",
 "Euer Gutschein für Nachhilfe – online":"Your voucher for Nachhilfe – online",
 "auf ein Stundenpaket":"on a lesson package",
 "Euer Kind hat alle {} Türchen geöffnet – hier ist euer Code für {} % auf ein Stundenpaket.":"Your child has opened all {} doors – here is your code for {} % off a lesson package.",
-"{} % auf jedes Stundenpaket, einmal je Familie. Dieser Code gilt nur einmal und ist nicht mit anderen Gutscheinen kombinierbar.":"{} % off every lesson package, once per family. This code can only be used once and cannot be combined with other vouchers.",
-"Adventskalender: Kinder sehen nach Türchen {} nur noch eine Belohnung; der Gutschein-Code steht nur im Elternbereich":"Advent calendar: after door 24 children only see a reward; the voucher code is shown only in the parents' area"});
+"Adventskalender: Kinder sehen nach Türchen {} nur noch eine Belohnung; der Gutschein-Code steht nur im Elternbereich":"Advent calendar: after door {} children only see a reward; the voucher code is shown only in the parents' area",
+"{} % auf ein Stundenpaket deiner Wahl":"{} % off a lesson package of your choice",
+"einlösbar bis":"redeemable until",
+"Einmal je Familie einlösbar, nicht mit anderen Gutscheinen kombinierbar. Gilt nicht für Probestunden, Übungsbücher oder Lern-Apps.":"Can be redeemed once per family, cannot be combined with other vouchers. Not valid for trial lessons, practice books or learning apps.",
+"Gutschein-Text im Elternbereich überarbeitet":"Voucher text in the parents' area revised"});

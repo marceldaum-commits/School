@@ -37,7 +37,7 @@ const { chromium } = require('playwright');
     for (const k of ['startVor', 'kalenderVor', 'startNach', 'kalenderNach', 'belohnung']) ok(!KAUF.test(r[k].replace(/\d+\/\d+/g, '')), `${lang}: Kinderansicht „${k}“ mit Kauf-/Geldbezug: ${(r[k].match(KAUF) || [''])[0]} – ${r[k].slice(0, 120)}`);
     ok(r.belohnung.length > 20, lang + ': keine Belohnung nach Türchen 24'); ok(!r.codeImKind, lang + ': Code im Kinder-Bereich'); ok(r.torDavor, lang + ': Elternbereich ohne Tor');
     ok(posts.length === 1 && JSON.parse(posts[0]).tueren === 24 && !('klasse' in JSON.parse(posts[0])), lang + ': Anfrage falsch: ' + posts.join('|'));
-    ok(r.elternBox && r.eltern.includes('ADV-TEST-1234') && /10\s?%/.test(r.eltern), lang + ': Code/Wortlaut fehlt im Elternbereich');
+    ok(r.elternBox && r.eltern.includes('ADV-TEST-1234') && /10\s?%/.test(r.eltern) && /15\.01\.2027/.test(r.eltern), lang + ': Code/Wortlaut fehlt im Elternbereich');
     ok(/24/.test(r.eltern) && !/Klasse|class|клас/.test(r.eltern.split('ADV-TEST-1234')[1] ? r.eltern.split('ADV-TEST-1234')[1].slice(0, 160) : ''), lang + ': Elternwortlaut');
     res[lang] = { elternAnfang: r.eltern.slice(0, 200), belohnung: r.belohnung.replace(/<[^>]+>/g, ' ').slice(0, 120) };
     const m2 = [...new Set(miss)].filter(k => !/^(rechenblitz\.)?mathenachhilfe-online\.com(\/probestunde)?$/.test(k));

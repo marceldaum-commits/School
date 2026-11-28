@@ -1,7 +1,7 @@
 // Zahlensprint (früher Rechenblitz) Service Worker: App läuft nach dem ersten Besuch auch offline.
 // Cache-Name nach Pfad: unter /zahlensprint/ „zahlensprint-<Version>“, sonst (alter Pfad /rechenblitz/, Hosts rechenblitz[-test].…) „rechenblitz-<Version>“ –
 // so räumt der Service Worker des einen Pfads nie die Caches des anderen auf (beide liegen auf demselben Origin lernen.…)
-const VER = '3.36.0', PRE = /\/zahlensprint\/$/.test(self.registration.scope) ? 'zahlensprint' : 'rechenblitz', CACHE = PRE + '-' + VER;
+const VER = '3.36.1', PRE = /\/zahlensprint\/$/.test(self.registration.scope) ? 'zahlensprint' : 'rechenblitz', CACHE = PRE + '-' + VER;
 const PUSH = 'rechenblitz-push', STIMME = 'rechenblitz-stimme';   // Erinnerungstext und offline geladene Vorlese-Sätze – bleiben bei Updates erhalten
 const FILES = ['./', 'index.html', 'app.min.css', 'config.js', 'js/rechenblitz.min.js', 'js/lang-en.js', 'js/lang-uk.js', 'manifest.webmanifest', 'icons/logo.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-maskable-512.png',
   'icons/apple-touch-icon.png', 'icons/favicon-32.png', 'fonts/Inter.woff2', 'fonts/SourceSerif4-italic.woff2', 'fonts/Caveat.woff2'];

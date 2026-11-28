@@ -127,12 +127,12 @@ function voucherHtml() {
   const st = adventState(), mine = myVoucher();
   const pct = (mine && mine.prozent) || v.percent || 10, until = (mine && mine.bis) || v.until;
   if (st.voucherEnded) return `<div class="voucher" id="voucherBox"><b>Die Adventsaktion ist beendet.</b><p class="small muted" style="margin:6px 0 0">Danke fürs Mitrechnen!</p></div>`;
-  const head = `<div class="v-top"><span class="v-pct">${pct} %</span><div><b>Euer Gutschein für Nachhilfe – online</b><small>${esc(v.text || 'auf ein Stundenpaket')}${until ? ` · gültig bis ${fmtDay(until)}` : ''}</small></div></div>`;
+  const head = `<div class="v-top"><span class="v-pct">${pct} %</span><div><b>Euer Gutschein für Nachhilfe – online</b><small>${pct} % auf ein Stundenpaket deiner Wahl${until ? ` · einlösbar bis <span translate="no">${String(until).split('-').reverse().join('.')}</span>` : ''}</small></div></div>`;   // Wortlaut Recht V70
   const intro = `<p class="small" style="margin:8px 0 0">Euer Kind hat alle 24 Türchen geöffnet – hier ist euer Code für ${pct} % auf ein Stundenpaket.</p>`;
   if (!mine) return `<div class="voucher" id="voucherBox">${head}${intro}<p class="small muted" style="margin:6px 0 0">${navigator.onLine && !st.voucherPending ? '⏳ Der Code wird abgeholt …' : '📶 Sobald das Gerät wieder online ist, holen wir den Code ab.'}</p></div>`;
   return `<div class="voucher" id="voucherBox">${head}${intro}
     <div class="v-code"><code id="vCode" translate="no">${esc(mine.code)}</code><button class="btn small" id="vCopy">Kopieren</button></div>
-    <p class="v-cond">${pct} % auf jedes Stundenpaket, einmal je Familie. Dieser Code gilt nur einmal und ist nicht mit anderen Gutscheinen kombinierbar.</p>
+    <p class="v-cond">Einmal je Familie einlösbar, nicht mit anderen Gutscheinen kombinierbar. Gilt nicht für Probestunden, Übungsbücher oder Lern-Apps.</p>
     <a class="btn primary block" href="${esc(siteLink(v.url || CONFIG.packagesUrl, 'advent-gutschein'))}" target="_blank" rel="noopener">Zu den Stundenpaketen ↗</a></div>`;
 }
 // Karte für den Elternbereich: nur wenn der Kalender vollständig ist

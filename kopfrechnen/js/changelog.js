@@ -1,8 +1,9 @@
 'use strict';
 // Rechenblitz – Versionen mit Datum (neueste oben). Wird unter „Was ist neu?“ angezeigt.
-const APP_VERSION = '3.36.0';
-const APP_DATE = '2026-11-27';
+const APP_VERSION = '3.36.1';
+const APP_DATE = '2026-11-28';
 const CHANGELOG = [
+  ['3.36.1', '2026-11-28', ['Gutschein-Text im Elternbereich überarbeitet']],
   ['3.36.0', '2026-11-27', ['Adventskalender: Kinder sehen nach Türchen 24 nur noch eine Belohnung; der Gutschein-Code steht nur im Elternbereich']],
   ['3.35.1', '2026-11-27', ['Die anonyme Nutzungszählung geht jetzt immer an die eigene Adresse der App']],
   ['3.35.0', '2026-11-27', ['Zehnerpotenzen: Zahlen in die Form x · 10ⁿ umschreiben (x gesucht) und Größenordnungen vergleichen, auch mit negativen Exponenten']],
